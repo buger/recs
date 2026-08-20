@@ -36,3 +36,17 @@ func WriteWorkspace(root string) error {
 		return os.WriteFile(dst, data, 0o644)
 	})
 }
+
+// WriteAgentFiles writes AGENTS.md and SKILL.md into the workspace.
+func WriteAgentFiles(root string) error {
+	for _, name := range []string{"AGENTS.md", "SKILL.md"} {
+		data, err := FS.ReadFile("fs/" + name)
+		if err != nil {
+			return err
+		}
+		if err := os.WriteFile(filepath.Join(root, name), data, 0o644); err != nil {
+			return err
+		}
+	}
+	return nil
+}

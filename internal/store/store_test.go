@@ -1,12 +1,15 @@
 package store_test
 
 import (
+	"errors"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"crm/internal/app"
 	"crm/internal/record"
+	"crm/internal/store"
 )
 
 // Verifies: SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2
@@ -84,3 +87,47 @@ func initApp(t *testing.T) *app.App {
 }
 
 var _ = record.Record{}
+
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y SYS-REQ-260820-7WT4
+func TestInboxAndTemplate(t *testing.T) {
+	a := initApp(t)
+	rec, err := a.Create("grant", "grant_tpl2", map[string]any{"title": "T"}, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(rec.Body, "Opportunity") {
+		t.Fatalf("template not applied: %q", rec.Body)
+	}
+	inbox := filepath.Join(a.Root(), "inbox", "loose.md")
+	if err := os.WriteFile(inbox, []byte("---\nid: loose_1\ntype: note\n---\n\n# Loose\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	got, err := a.Show("loose_1")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.ID != "loose_1" {
+		t.Fatalf("%#v", got)
+	}
+}
+
+func TestConflictAndNow(t *testing.T) {
+	a := initApp(t)
+	rec, err := a.Create("grant", "grant_now", map[string]any{"title": "Now", "status": "researching"}, "")
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, err = a.Patch(rec.ID, map[string]any{"status": "applied"}, nil, "sha256:dead")
+	var conf *store.ConflictError
+	if !errors.As(err, &conf) || conf.Expected == "" || conf.Current == "" {
+		t.Fatalf("conflict shape: %v", err)
+	}
+	res, err := a.Patch(rec.ID, map[string]any{"applied_at": "now"}, nil, rec.Version())
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := res.Record.GetString("applied_at")
+	if got == "" || got == "now" {
+		t.Fatalf("now not expanded: %q", got)
+	}
+}

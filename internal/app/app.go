@@ -3,12 +3,14 @@ package app
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 	"time"
 
 	"crm/internal/board"
 	"crm/internal/contextpkg"
+	"crm/internal/defaults"
 	"crm/internal/index"
 	"crm/internal/query"
 	"crm/internal/record"
@@ -64,6 +66,7 @@ func (a *App) Create(typ string, id string, sets map[string]any, body string) (*
 	for k, v := range sets {
 		rec.Set(k, v)
 	}
+	a.Store.ApplyTemplate(rec)
 	if rec.Body == "" {
 		title := rec.GetString("title")
 		if title == "" {
@@ -257,6 +260,9 @@ func (a *App) Triage() ([]TriageItem, error) {
 		if due == "" {
 			due = rec.GetString("due")
 		}
+		if due == "" {
+			due = rec.GetString("deadline")
+		}
 		if due != "" && due < today {
 			out = append(out, TriageItem{ID: rec.ID, Reason: "overdue", Title: title})
 		}
@@ -296,6 +302,32 @@ func (a *App) Context(id string) (*contextpkg.Bundle, error) {
 		return nil, err
 	}
 	return contextpkg.Assemble(seed, all), nil
+}
+
+// Inbox lists unclassified records.
+// Implements: SYS-REQ-260820-DCG4 SW-REQ-260820-D5WE
+func (a *App) Inbox() ([]*record.Record, error) {
+	recs, err := a.Store.LoadAll()
+	if err != nil {
+		return nil, err
+	}
+	var out []*record.Record
+	rootInbox := filepath.Join(a.Root(), "inbox")
+	for _, rec := range recs {
+		if rec.GetString("status") == "inbox" || rec.GetString("triage_status") == "new" {
+			out = append(out, rec)
+			continue
+		}
+		if rec.Path != "" && strings.HasPrefix(rec.Path, rootInbox+string(os.PathSeparator)) {
+			out = append(out, rec)
+		}
+	}
+	return out, nil
+}
+
+// AgentInstall writes AGENTS.md and SKILL.md.
+func (a *App) AgentInstall() error {
+	return defaults.WriteAgentFiles(a.Root())
 }
 
 // Implements: INT-REQ-260820-JC9M

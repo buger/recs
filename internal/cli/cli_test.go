@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -90,4 +91,75 @@ func run(t *testing.T, root string, args ...string) int {
 	}
 	_ = filepath.Separator
 	return code
+}
+
+// Verifies: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C SYS-REQ-260820-DCG4 SW-REQ-260820-D5WE SYS-REQ-260820-9J7C SW-REQ-260820-N02Y SYS-REQ-260820-2SQZ
+func TestAgentInboxTemplateAndEnum(t *testing.T) {
+	root := t.TempDir()
+	if code := run(t, root, "init"); code != 0 {
+		t.Fatal(code)
+	}
+	if code := run(t, root, "agent", "install", "--json"); code != 0 {
+		t.Fatal("agent install")
+	}
+	for _, name := range []string{"AGENTS.md", "SKILL.md"} {
+		if _, err := os.Stat(filepath.Join(root, name)); err != nil {
+			t.Fatalf("missing %s", name)
+		}
+	}
+	if code := run(t, root, "create", "grant", "--id", "grant_tpl", "--title", "Template Grant"); code != 0 {
+		t.Fatal("create")
+	}
+	recOut := &bytes.Buffer{}
+	if code := cli.Main([]string{"--root", root, "show", "grant_tpl"}, recOut, recOut); code != 0 {
+		t.Fatal(recOut.String())
+	}
+	if !strings.Contains(recOut.String(), "## Opportunity") {
+		t.Fatalf("template body missing: %s", recOut.String())
+	}
+	inbox := filepath.Join(root, "inbox", "note.md")
+	if err := os.WriteFile(inbox, []byte("---\nid: note_in\ntype: note\nstatus: inbox\n---\n\n# In\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	out := &bytes.Buffer{}
+	if code := cli.Main([]string{"--root", root, "inbox", "--json"}, out, out); code != 0 {
+		t.Fatal(out.String())
+	}
+	if !strings.Contains(out.String(), "note_in") {
+		t.Fatalf("inbox missing file: %s", out.String())
+	}
+	out.Reset()
+	if code := cli.Main([]string{"--root", root, "set", "grant_tpl", "status", "nope", "--json"}, out, out); code != 1 {
+		t.Fatalf("expected enum fail: %s", out.String())
+	}
+	if !strings.Contains(out.String(), "invalid_enum") || !strings.Contains(out.String(), "allowed") {
+		t.Fatalf("structured enum: %s", out.String())
+	}
+}
+
+func TestConflictJSONAndDeadlineTriage(t *testing.T) {
+	root := t.TempDir()
+	if code := run(t, root, "init"); code != 0 {
+		t.Fatal(code)
+	}
+	if code := run(t, root, "create", "grant", "--id", "grant_c", "--title", "C", "--set", "status=researching"); code != 0 {
+		t.Fatal(code)
+	}
+	out := &bytes.Buffer{}
+	if code := cli.Main([]string{"--root", root, "patch", "grant_c", "--set", "status=applied", "--if-version", "sha256:dead", "--json"}, out, out); code != 1 {
+		t.Fatalf("expected conflict: %s", out.String())
+	}
+	if !strings.Contains(out.String(), "conflict") || !strings.Contains(out.String(), "expected_version") {
+		t.Fatalf("structured conflict: %s", out.String())
+	}
+	if code := run(t, root, "create", "grant", "--id", "grant_due", "--title", "Due", "--set", "status=preparing", "--set", "deadline=2000-01-01"); code != 0 {
+		t.Fatal("create due")
+	}
+	out.Reset()
+	if code := cli.Main([]string{"--root", root, "triage", "--json"}, out, out); code != 0 {
+		t.Fatal(out.String())
+	}
+	if !strings.Contains(out.String(), "grant_due") || !strings.Contains(out.String(), "overdue") {
+		t.Fatalf("deadline triage: %s", out.String())
+	}
 }

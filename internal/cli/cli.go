@@ -113,6 +113,27 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		} else if errors.Is(err, store.ErrExists) {
 			code = "exists"
 		}
+		var enumErr *store.EnumError
+		if errors.As(err, &enumErr) {
+			code = "invalid_enum"
+			if jsonOut {
+				_ = json.NewEncoder(stdout).Encode(map[string]any{
+					"ok": false, "error": code, "field": enumErr.Field,
+					"value": enumErr.Value, "allowed": enumErr.Allowed,
+				})
+				return 1
+			}
+		}
+		var confErr *store.ConflictError
+		if errors.As(err, &confErr) {
+			if jsonOut {
+				_ = json.NewEncoder(stdout).Encode(map[string]any{
+					"ok": false, "error": "conflict",
+					"expected_version": confErr.Expected, "current_version": confErr.Current,
+				})
+				return 1
+			}
+		}
 		if jsonOut {
 			_ = json.NewEncoder(stdout).Encode(map[string]any{"ok": false, "error": code, "message": err.Error()})
 		} else {
@@ -301,6 +322,20 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			return fail(err)
 		}
 		return 0
+	case "inbox":
+		recs, err := a.Inbox()
+		if err != nil {
+			return fail(err)
+		}
+		return write(map[string]any{"ok": true, "records": publicList(recs)}, listHuman(recs))
+	case "agent":
+		if len(rest) < 1 || rest[0] != "install" {
+			return fail(fmt.Errorf("usage: crm agent install"))
+		}
+		if err := a.AgentInstall(); err != nil {
+			return fail(err)
+		}
+		return write(map[string]any{"ok": true, "files": []string{"AGENTS.md", "SKILL.md"}}, "installed AGENTS.md and SKILL.md\n")
 	default:
 		return fail(fmt.Errorf("unknown command %s", cmd))
 	}
@@ -403,10 +438,13 @@ Commands:
   validate             Validate optional schemas
   index                Rebuild disposable index
   context <id>         Assemble related records
+  inbox                List unclassified inbox records
+  agent install        Write AGENTS.md and SKILL.md
   serve                Local HTTP UI on :7777
 
 Flags:
   --json               Stable machine output
+  --md                 Markdown context output
   --root <dir>         Workspace root
   --set k=v            Field assignment
   --filter k=v         Board filter

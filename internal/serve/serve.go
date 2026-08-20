@@ -3,6 +3,7 @@ package serve
 import (
 	"embed"
 	"encoding/json"
+	"errors"
 	"net"
 	"net/http"
 	"strconv"
@@ -10,6 +11,7 @@ import (
 
 	"crm/internal/app"
 	"crm/internal/record"
+	"crm/internal/store"
 )
 
 //go:embed static/index.html
@@ -187,6 +189,14 @@ func writeJSON(w http.ResponseWriter, code int, v any) {
 
 // Implements: SYS-REQ-260820-9W1S
 func writeErr(w http.ResponseWriter, code int, err error) {
-	writeJSON(w, code, map[string]any{"ok": false, "error": err.Error()})
+	payload := map[string]any{"ok": false, "error": err.Error()}
+	var enumErr *store.EnumError
+	if errors.As(err, &enumErr) {
+		payload = map[string]any{"ok": false, "error": "invalid_enum", "field": enumErr.Field, "value": enumErr.Value, "allowed": enumErr.Allowed}
+	}
+	var confErr *store.ConflictError
+	if errors.As(err, &confErr) {
+		payload = map[string]any{"ok": false, "error": "conflict", "expected_version": confErr.Expected, "current_version": confErr.Current}
+	}
+	writeJSON(w, code, payload)
 }
-

@@ -45,3 +45,14 @@ go build -o crm ./cmd/crm
 ./crm board grants
 ./crm serve
 ```
+
+## Agent contract
+
+- `crm agent install` writes `AGENTS.md` and `SKILL.md`.
+- `crm inbox` lists unclassified records and files under `inbox/`.
+- `crm create` applies `templates/<type>.md` when the body is empty.
+- `crm set` and `crm patch` return structured `invalid_enum` errors when a schema enum rejects a value.
+
+- `crm patch --if-version` returns structured `conflict` with expected_version and current_version.
+- `crm set`/`crm patch` expand `now` to an RFC3339 timestamp.
+- `crm triage` treats `deadline` as an overdue date in addition to `due` and `next_action.date`.

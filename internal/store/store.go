@@ -12,6 +12,8 @@ import (
 	"syscall"
 	"time"
 
+	"gopkg.in/yaml.v3"
+
 	"crm/internal/defaults"
 	"crm/internal/record"
 )
@@ -22,15 +24,36 @@ var (
 	ErrExists   = errors.New("record already exists")
 )
 
+// EnumError is a structured invalid_enum failure.
+type EnumError struct {
+	Field   string
+	Value   string
+	Allowed []string
+}
+
+func (e *EnumError) Error() string { return "invalid_enum" }
+
+// ConflictError is a structured optimistic-concurrency failure.
+type ConflictError struct {
+	Expected string
+	Current  string
+}
+
+func (e *ConflictError) Error() string {
+	return fmt.Sprintf("%s: expected %s current %s", ErrConflict, e.Expected, e.Current)
+}
+
+func (e *ConflictError) Unwrap() error { return ErrConflict }
+
 // Store reads and writes Markdown records under a workspace root.
 type Store struct {
 	Root string
 }
 
 type Config struct {
-	Name        string                       `yaml:"name"`
-	DefaultPort int                          `yaml:"default_port"`
-	Types       map[string]TypeSchema        `yaml:"types"`
+	Name        string                `yaml:"name"`
+	DefaultPort int                   `yaml:"default_port"`
+	Types       map[string]TypeSchema `yaml:"types"`
 }
 
 type TypeSchema struct {
@@ -111,14 +134,24 @@ func (s *Store) LoadAll() ([]*record.Record, error) {
 		}
 		return nil, err
 	}
-	err := filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
+	err := walkMarkdown(root, func(path string) error {
+		rec, err := s.readFile(path)
 		if err != nil {
-			return err
+			return fmt.Errorf("%s: %w", path, err)
 		}
-		if d.IsDir() {
-			return nil
-		}
-		if !strings.HasSuffix(strings.ToLower(d.Name()), ".md") {
+		out = append(out, rec)
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	inbox := filepath.Join(s.Root, "inbox")
+	seen := map[string]bool{}
+	for _, rec := range out {
+		seen[rec.Path] = true
+	}
+	err = walkMarkdown(inbox, func(path string) error {
+		if seen[path] {
 			return nil
 		}
 		rec, err := s.readFile(path)
@@ -147,6 +180,62 @@ func (s *Store) readFile(path string) (*record.Record, error) {
 		rec.Set("id", base)
 	}
 	return rec, nil
+}
+
+func walkMarkdown(root string, fn func(path string) error) error {
+	if _, err := os.Stat(root); err != nil {
+		if os.IsNotExist(err) {
+			return nil
+		}
+		return err
+	}
+	return filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() {
+			return nil
+		}
+		if !strings.HasSuffix(strings.ToLower(d.Name()), ".md") {
+			return nil
+		}
+		return fn(path)
+	})
+}
+
+// ApplyTemplate fills empty fields and body from templates/<type>.md.
+// Implements: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
+func (s *Store) ApplyTemplate(rec *record.Record) {
+	if rec == nil || rec.Type == "" {
+		return
+	}
+	path := filepath.Join(s.Root, "templates", rec.Type+".md")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return
+	}
+	tpl, err := record.Parse(path, data)
+	if err != nil {
+		return
+	}
+	for k, v := range tpl.Fields {
+		if k == "id" {
+			continue
+		}
+		if rec.Get(k) == nil || rec.GetString(k) == "" {
+			rec.Set(k, v)
+		}
+	}
+	if strings.TrimSpace(rec.Body) == "" {
+		body := tpl.Body
+		title := rec.GetString("title")
+		if title == "" {
+			title = rec.GetString("name")
+		}
+		body = strings.ReplaceAll(body, "{{title}}", title)
+		body = strings.ReplaceAll(body, "{{name}}", rec.GetString("name"))
+		rec.Body = body
+	}
 }
 
 // Get returns the record with a stable id.
@@ -242,10 +331,11 @@ func (s *Store) Patch(id string, sets map[string]any, deletes []string, ifVersio
 	}
 	cur := rec.Version()
 	if ifVersion != "" && ifVersion != cur {
-		return nil, fmt.Errorf("%w: expected %s current %s", ErrConflict, ifVersion, cur)
+		return nil, &ConflictError{Expected: ifVersion, Current: cur}
 	}
 	changed := map[string]map[string]any{}
 	for k, v := range sets {
+		v = expandNow(v)
 		from := rec.Get(k)
 		rec.Set(k, v)
 		changed[k] = map[string]any{"from": from, "to": v}
@@ -255,11 +345,79 @@ func (s *Store) Patch(id string, sets map[string]any, deletes []string, ifVersio
 		rec.Delete(k)
 		changed[k] = map[string]any{"from": from, "to": nil}
 	}
+	if err := s.checkEnum(rec, sets); err != nil {
+		return nil, err
+	}
 	rec.Set("updated_at", time.Now().UTC().Format(time.RFC3339))
 	if err := s.Write(rec); err != nil {
 		return nil, err
 	}
 	return &PatchResult{Record: rec, Changed: changed, Version: rec.Version()}, nil
+}
+
+func (s *Store) checkEnum(rec *record.Record, sets map[string]any) error {
+	cfg, err := loadTypeSchemas(s.Root)
+	if err != nil || cfg == nil {
+		return nil
+	}
+	schema, ok := cfg[rec.Type]
+	if !ok {
+		return nil
+	}
+	for k := range sets {
+		fs, ok := schema[k]
+		if !ok || len(fs) == 0 {
+			continue
+		}
+		got := rec.GetString(k)
+		if got == "" {
+			continue
+		}
+		found := false
+		for _, e := range fs {
+			if strings.EqualFold(e, got) {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return &EnumError{Field: k, Value: got, Allowed: fs}
+		}
+	}
+	return nil
+}
+
+func loadTypeSchemas(root string) (map[string]map[string][]string, error) {
+	data, err := os.ReadFile(filepath.Join(root, "crm.yaml"))
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil, nil
+		}
+		return nil, err
+	}
+	var raw struct {
+		Types map[string]struct {
+			Fields map[string]struct {
+				Enum []string `yaml:"enum"`
+			} `yaml:"fields"`
+		} `yaml:"types"`
+	}
+	if err := yaml.Unmarshal(data, &raw); err != nil {
+		return nil, err
+	}
+	out := map[string]map[string][]string{}
+	for typ, ts := range raw.Types {
+		fields := map[string][]string{}
+		for name, fs := range ts.Fields {
+			if len(fs.Enum) > 0 {
+				fields[name] = fs.Enum
+			}
+		}
+		if len(fields) > 0 {
+			out[typ] = fields
+		}
+	}
+	return out, nil
 }
 
 type fileLock struct {
@@ -302,4 +460,15 @@ func FileHash(path string) (string, error) {
 	}
 	sum := sha256.Sum256(data)
 	return "sha256:" + hex.EncodeToString(sum[:]), nil
+}
+
+func expandNow(v any) any {
+	s, ok := v.(string)
+	if !ok {
+		return v
+	}
+	if strings.EqualFold(s, "now") || s == "$now" {
+		return time.Now().UTC().Format(time.RFC3339)
+	}
+	return v
 }

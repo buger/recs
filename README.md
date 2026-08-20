@@ -1212,7 +1212,7 @@ verify modification timestamp/hash
 
 apply patch
 
-write temporary file
+write a temp file
 
 atomic rename
 
