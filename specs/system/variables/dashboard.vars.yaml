@@ -1,0 +1,59 @@
+component: dashboard
+variables:
+    - name: dashboard_requested
+      type: bool
+      direction: input
+      description: Decide condition dashboard requested.
+    - name: dashboard_file_loaded
+      type: bool
+      direction: input
+      description: Decide condition dashboard file loaded.
+    - name: layout_slot_count
+      type: int
+      direction: input
+      description: Count of layout slots on a dashboard.
+      range:
+        max: 4
+        min: 0
+    - name: yaml_source_used
+      type: bool
+      direction: output
+      description: Decide condition yaml source used.
+    - name: widget_projected
+      type: bool
+      direction: output
+      description: Decide condition widget projected.
+    - name: placeholder_rendered
+      type: bool
+      direction: output
+      description: Decide condition placeholder rendered.
+    - name: dashboard_rejected
+      type: bool
+      direction: output
+      description: Decide condition dashboard rejected.
+    - name: widget_type_known
+      type: bool
+      direction: input
+      description: Decide condition widget type known.
+    - name: missing_source
+      type: bool
+      direction: input
+      description: Decide condition missing source.
+    - name: widget_rejected
+      type: bool
+      direction: output
+      description: Decide condition widget rejected.
+    - name: widget_type
+      type: enum
+      direction: input
+      description: Widget type enum for a dashboard slot.
+      values:
+        - count
+        - list
+        - notes
+        - watch
+        - pipeline
+        - metrics
+        - board
+        - markdown
+        - unknown

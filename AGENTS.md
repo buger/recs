@@ -15,6 +15,7 @@ Do not treat folder location as semantic status.
 - `crm.yaml` holds name, default port, and optional type schemas.
 - `records/` holds canonical Markdown records.
 - `boards/` holds matcher views.
+- `dashboards/` holds YAML dashboard views.
 - `inbox/` holds unclassified incoming files.
 - `templates/` holds create templates.
 - `.crm/` holds disposable index, cache, and locks.
@@ -49,6 +50,14 @@ Direct Markdown editing remains valid. Run `crm validate` after a manual edit.
 ## Boards
 
 Boards are views. A move updates the column field or `on_drop` sets. The file path stays.
+
+## Dashboards
+
+Dashboards are views in `dashboards/*.yaml`. Add a file, then `crm dashboard` or `crm serve`.
+
+Widget types: count, list, notes, watch, pipeline, metrics, board, markdown.
+Use `query:`, `source:`, or `board:`. Layout defaults to `2x2`. Empty slots are placeholders.
+Agents write YAML. There is no in-app chat.
 
 ## Validation
 

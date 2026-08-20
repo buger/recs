@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"crm/internal/app"
+	"crm/internal/dashboard"
 	"crm/internal/record"
 	"crm/internal/store"
 )
@@ -17,7 +18,7 @@ import (
 //go:embed static/index.html
 var uiFS embed.FS
 
-// Listen serves the local HTTP API and Kanban UI.
+// Listen serves the local HTTP API, dashboard gallery, and Kanban UI.
 // Implements: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 INT-REQ-260820-AHKR
 func Listen(a *app.App, port int) error {
 	ln, err := net.Listen("tcp", net.JoinHostPort("127.0.0.1", strconv.Itoa(port)))
@@ -27,7 +28,7 @@ func Listen(a *app.App, port int) error {
 	return http.Serve(ln, Handler(a))
 }
 
-// Implements: SYS-REQ-260820-9W1S
+// Implements: SYS-REQ-260820-9W1S SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY
 func Handler(a *app.App) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/records", func(w http.ResponseWriter, r *http.Request) {
@@ -141,6 +142,64 @@ func Handler(a *app.App) http.Handler {
 			cols = append(cols, map[string]any{"id": c.Column.ID, "title": c.Column.Title, "records": summaries(c.Records)})
 		}
 		writeJSON(w, 200, map[string]any{"ok": true, "board": view.Board.ID, "name": view.Board.Name, "columns": cols})
+	})
+	mux.HandleFunc("/api/dashboards", func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case http.MethodGet:
+			dashboards, err := a.ListDashboards()
+			if err != nil {
+				writeErr(w, 500, err)
+				return
+			}
+			var items []map[string]any
+			for _, d := range dashboards {
+				items = append(items, map[string]any{
+					"id": d.ID, "name": d.Name, "description": d.Description,
+					"layout": d.Layout, "widgets": len(d.Widgets),
+				})
+			}
+			if items == nil {
+				items = []map[string]any{}
+			}
+			writeJSON(w, 200, map[string]any{"ok": true, "dashboards": items})
+		case http.MethodPost:
+			var body struct {
+				ID          string             `json:"id"`
+				Name        string             `json:"name"`
+				Layout      string             `json:"layout"`
+				Description string             `json:"description"`
+				Widgets     []dashboard.Widget `json:"widgets"`
+			}
+			if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+				writeErr(w, 400, err)
+				return
+			}
+			d, err := a.CreateDashboard(body.ID, body.Name, body.Layout, body.Description, body.Widgets)
+			if err != nil {
+				writeErr(w, 400, err)
+				return
+			}
+			writeJSON(w, 201, map[string]any{"ok": true, "dashboard": d.ID, "path": d.File})
+		default:
+			w.WriteHeader(405)
+		}
+	})
+	mux.HandleFunc("/api/dashboards/", func(w http.ResponseWriter, r *http.Request) {
+		id := strings.TrimPrefix(r.URL.Path, "/api/dashboards/")
+		if id == "" {
+			w.WriteHeader(404)
+			return
+		}
+		if r.Method != http.MethodGet {
+			w.WriteHeader(405)
+			return
+		}
+		proj, err := a.ProjectDashboard(id)
+		if err != nil {
+			writeErr(w, 404, err)
+			return
+		}
+		writeJSON(w, 200, map[string]any{"ok": true, "dashboard": proj})
 	})
 	mux.HandleFunc("/api/search", func(w http.ResponseWriter, r *http.Request) {
 		recs, err := a.Search(r.URL.Query().Get("q"))

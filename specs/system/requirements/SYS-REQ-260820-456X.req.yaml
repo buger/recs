@@ -1,0 +1,82 @@
+id: SYS-REQ-260820-456X
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when dashboard_requested the dashboard shall always satisfy (layout_slot_count >= 0 => ((layout_slot_count <= 4) & yaml_source_used & (widget_projected | placeholder_rendered | dashboard_rejected)))
+description: The product shall load dashboard views from YAML files. The product shall project widgets from a query, a source path, or a board. The product shall keep Markdown records as the store.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260820-4255
+component: dashboard
+rationale: Dashboards are views. The files stay the store.
+tags: []
+variables: []
+traces:
+    satisfies:
+        - STK-REQ-260820-Y3Q4
+        - STK-REQ-260820-KAGT
+        - STK-REQ-260820-4255
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: ""
+        ai_generated: true
+history:
+    created_by: agent:grok
+    created_at: "2026-08-20T20:17:28Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T20:29:20Z"
+obligation_checklist:
+    - boundary
+    - empty_input
+    - error_handling
+    - nominal
+obligation_hazards:
+    - class: boundary
+      worst_case: A layout with more than four slots is treated as unbounded and the page jumps.
+      severity: low
+    - class: empty_input
+      worst_case: An empty dashboards directory is treated as a crash, so init cannot start.
+      severity: low
+    - class: error_handling
+      worst_case: A failed dashboard load is reported as success, so the gallery shows a false view.
+      severity: medium
+    - class: nominal
+      worst_case: A valid dashboard request does not project widgets from the YAML files.
+      severity: low
+hazard_review:
+    reviewed_at: "2026-08-20T20:28:56Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - nominal
+            - error_handling
+            - boundary
+            - empty_input
+        - category: property
+          disposition: not_applicable
+          rationale: Dashboard projection is a view. Write properties live on store mutations.
+        - category: domain
+          disposition: not_applicable
+          rationale: Path and HTTP domain classes are owned by dashboard software and serve children.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+lifecycle:
+    change_history:
+        - date: "2026-08-20T20:29:20Z"
+          from: draft
+          to: review
+          reason: File-native dashboard specs ready for review
+          changed_by: agent:grok

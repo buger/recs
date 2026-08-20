@@ -43,6 +43,22 @@ variables:
       range:
         max: 65535
         min: 1
+    - name: gallery_requested
+      type: bool
+      direction: input
+      description: Decide condition gallery requested.
+    - name: gallery_rendered
+      type: bool
+      direction: output
+      description: Decide condition gallery rendered.
+    - name: preview_cards_shown
+      type: bool
+      direction: output
+      description: Decide condition preview cards shown.
+    - name: dashboard_api_requested
+      type: bool
+      direction: input
+      description: Decide condition dashboard api requested.
 domain:
     mutex:
         - name: listen_port_mode

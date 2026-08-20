@@ -102,6 +102,7 @@ func (s *Store) Init() error {
 		"records/tasks",
 		"records/misc",
 		"boards",
+		"dashboards",
 		"inbox",
 		"attachments",
 		"templates",

@@ -10,6 +10,7 @@ import (
 
 	"crm/internal/board"
 	"crm/internal/contextpkg"
+	"crm/internal/dashboard"
 	"crm/internal/defaults"
 	"crm/internal/index"
 	"crm/internal/query"
@@ -323,6 +324,43 @@ func (a *App) Inbox() ([]*record.Record, error) {
 		}
 	}
 	return out, nil
+}
+
+// ListDashboards reads dashboards/*.yaml.
+// Implements: SYS-REQ-260820-456X SW-REQ-260820-NA06
+func (a *App) ListDashboards() ([]*dashboard.Dashboard, error) {
+	return dashboard.LoadAll(a.Root())
+}
+
+// Dashboard loads one dashboard definition.
+// Implements: SYS-REQ-260820-456X SW-REQ-260820-NA06
+func (a *App) Dashboard(id string) (*dashboard.Dashboard, error) {
+	return dashboard.Load(a.Root(), id)
+}
+
+// CreateDashboard writes dashboards/<id>.yaml.
+// Implements: SYS-REQ-260820-456X SW-REQ-260820-NA06
+func (a *App) CreateDashboard(id, name, layout, description string, widgets []dashboard.Widget) (*dashboard.Dashboard, error) {
+	return dashboard.Create(a.Root(), id, name, layout, description, widgets)
+}
+
+// ProjectDashboard fills widget payloads from store records, queries, and boards.
+// Implements: SYS-REQ-260820-456X SW-REQ-260820-NA06 INT-REQ-260820-NHBY
+func (a *App) ProjectDashboard(id string) (*dashboard.Projection, error) {
+	d, err := dashboard.Load(a.Root(), id)
+	if err != nil {
+		return nil, err
+	}
+	recs, err := a.Store.LoadAll()
+	if err != nil {
+		return nil, err
+	}
+	return dashboard.Project(d, dashboard.Env{
+		Root: a.Root(), Records: recs,
+		Board: func(bid string) (*board.View, error) {
+			return a.Board(bid, nil)
+		},
+	}), nil
 }
 
 // AgentInstall writes AGENTS.md and SKILL.md.

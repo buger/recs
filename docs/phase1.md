@@ -24,6 +24,7 @@ This document explains Phase 1 behavior for the local `crm` binary.
 - SYS-REQ-260820-Q8GR / SW-REQ-260820-BNR7: `crm index` rebuilds disposable cache.
 - SYS-REQ-260820-0TQX / SW-REQ-260820-V48V: `crm context` assembles related records.
 - SYS-REQ-260820-9W1S / SW-REQ-260820-8ZS7: `crm serve` binds localhost and serves the Kanban UI.
+- SYS-REQ-260820-456X / SW-REQ-260820-NA06 / SW-REQ-260820-EJVT: YAML dashboards, gallery previews, and a 2x2 widget view.
 - SYS-REQ-260820-PG9C / SW-REQ-260820-YB5C: `--json` emits stable machine output.
 - SYS-REQ-260820-7WT4 / SW-REQ-260820-9C5Z: status lives in frontmatter, not folders.
 
@@ -31,6 +32,7 @@ This document explains Phase 1 behavior for the local `crm` binary.
 
 - INT-REQ-260820-JC9M: CLI uses the shared application layer.
 - INT-REQ-260820-AHKR: HTTP uses the same application layer as the CLI.
+- INT-REQ-260820-NHBY: HTTP dashboard routes project through the same application layer.
 - INT-REQ-260820-JRWN: board move writes frontmatter through the store.
 - INT-REQ-260820-2JKK: index rebuild scans store records and does not mutate canonical files.
 
@@ -43,6 +45,7 @@ go build -o crm ./cmd/crm
 ./crm create grant --title "Demo" --set status=researching
 ./crm query 'type=grant' --json
 ./crm board grants
+./crm dashboard
 ./crm serve
 ```
 

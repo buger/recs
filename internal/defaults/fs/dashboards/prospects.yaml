@@ -1,0 +1,23 @@
+id: prospects
+name: Prospect CRM
+description: Pipeline health
+layout: 2x2
+theme: light
+widgets:
+  - id: pipeline
+    type: metrics
+    title: Prospect pipeline
+    query: 'type=customer'
+    stats:
+      - label: active prospects
+        query: 'type=customer status=active'
+      - label: overdue follow-ups
+        query: 'type=customer next_action.date<today'
+      - label: due within 7 days
+        before: +7d
+        field: next_action.date
+      - label: total records
+        query: ''
+    reminder:
+      query: 'type=customer next_action.date<today'
+      template: "{{name}} — follow-up was due {{next_action.date}}"

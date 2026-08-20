@@ -40,6 +40,12 @@ func TestCLIAllCommandsAndFlags(t *testing.T) {
 	if run(t, root, "patch", "grant_c", "--set", "status=applied") != 0 || run(t, root, "patch") == 0 {
 		t.Fatal("patch")
 	}
+	if run(t, root, "dashboard") != 0 || run(t, root, "dashboard", "prospects", "--json") != 0 {
+		t.Fatal("dashboard")
+	}
+	if run(t, root, "dashboard", "new") == 0 || run(t, root, "dashboard", "new", "extra", "--name", "Extra") != 0 {
+		t.Fatal("dashboard new")
+	}
 	if run(t, root, "board") != 0 || run(t, root, "board", "grants", "--filter", "status=applied", "--filter", "bad") != 0 {
 		t.Fatal("board")
 	}

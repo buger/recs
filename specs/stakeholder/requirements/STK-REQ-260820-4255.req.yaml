@@ -1,0 +1,81 @@
+id: STK-REQ-260820-4255
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: ""
+description: The product shall let an operator switch between file-native dashboards.
+formalization_strategy: informal
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+component: web_operator
+rationale: A human needs more than one board view. The product shall keep dashboards as YAML files.
+tags: []
+variables: []
+traces: {}
+verification:
+    assurance_level: E
+    formalization_status: none
+    review:
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: ""
+        ai_generated: true
+history:
+    created_by: agent:grok
+    created_at: "2026-08-20T20:17:23Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T20:29:20Z"
+obligation_checklist:
+    - boundary
+    - error_handling
+    - nominal
+obligation_hazards:
+    - class: boundary
+      worst_case: A missing dashboard or empty slot set is shown as a crash, so the gallery is unusable.
+      severity: low
+    - class: error_handling
+      worst_case: A missing dashboard file is reported as success, so the operator edits the wrong view.
+      severity: medium
+    - class: nominal
+      worst_case: A valid serve session does not let the operator switch between YAML dashboards.
+      severity: low
+hazard_review:
+    reviewed_at: "2026-08-20T20:28:55Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - nominal
+            - error_handling
+            - boundary
+        - category: property
+          disposition: not_applicable
+          rationale: Stakeholder dashboard story is a UI contract. Algebraic properties live on dashboard children.
+        - category: domain
+          disposition: not_applicable
+          rationale: Localhost HTTP domain classes are owned by serve and dashboard children.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+stakeholder:
+    persona: web_operator
+    story: As a web_operator, I want YAML dashboards so that I can switch views.
+    acceptance_criteria:
+        - id: AC-001
+          text: crm serve shows a gallery of YAML dashboards with live previews.
+          verification_method: test
+          derived_reqs:
+            - SYS-REQ-260820-456X
+lifecycle:
+    change_history:
+        - date: "2026-08-20T20:29:20Z"
+          from: draft
+          to: review
+          reason: File-native dashboard specs ready for review
+          changed_by: agent:grok

@@ -1,0 +1,25 @@
+id: workspace
+name: Workspace
+description: Grants, tasks, and notes
+layout: 2x2
+theme: light
+widgets:
+  - id: grants
+    type: list
+    title: Grant pipeline
+    query: 'type=grant'
+    group_by: status
+    limit: 8
+  - id: blocked
+    type: count
+    title: Blocked onboardings
+    query: 'type=onboarding status=blocked'
+  - id: grants-board
+    type: board
+    title: Grants board
+    board: grants
+  - id: notes
+    type: notes
+    title: Workspace notes
+    query: 'type=note'
+    limit: 4

@@ -15,6 +15,7 @@ Use this skill to operate a file-native CRM workspace.
 - `crm.yaml` — workspace config and optional type schemas
 - `records/` — canonical Markdown records
 - `boards/` — Kanban views over records
+- `dashboards/` — YAML dashboard views
 - `inbox/` — unclassified incoming files
 - `templates/` — record templates
 - `.crm/` — derived index, cache, and locks
@@ -61,3 +62,7 @@ On a bad enum:
 ## Boards
 
 A board is a matcher view. `crm move` updates frontmatter only.
+
+## Dashboards
+
+Write `dashboards/<id>.yaml`. `crm dashboard` lists them. `crm serve` shows the gallery.

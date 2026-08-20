@@ -49,7 +49,7 @@ func TestInitCreatesLayout(t *testing.T) {
 	if err := a.Init(); err != nil {
 		t.Fatal(err)
 	}
-	for _, p := range []string{"crm.yaml", "records", "boards", "inbox", "attachments", "templates", ".crm/index", ".crm/cache", ".crm/runtime"} {
+	for _, p := range []string{"crm.yaml", "records", "boards", "dashboards", "inbox", "attachments", "templates", ".crm/index", ".crm/cache", ".crm/runtime"} {
 		if _, err := os.Stat(filepath.Join(a.Root(), p)); err != nil {
 			t.Fatalf("missing %s: %v", p, err)
 		}

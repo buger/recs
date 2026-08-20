@@ -10,6 +10,7 @@ import (
 
 	"crm/internal/app"
 	"crm/internal/board"
+	"crm/internal/dashboard"
 	"crm/internal/record"
 	"crm/internal/serve"
 	"crm/internal/store"
@@ -236,6 +237,43 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			return fail(err)
 		}
 		return write(boardJSON(view), boardHuman(view))
+	case "dashboard":
+		if len(rest) == 0 {
+			dashboards, err := a.ListDashboards()
+			if err != nil {
+				return fail(err)
+			}
+			var names []string
+			var b strings.Builder
+			for _, d := range dashboards {
+				names = append(names, d.ID)
+				fmt.Fprintf(&b, "%s\t%s\t%d widgets\n", d.ID, d.Name, len(d.Widgets))
+			}
+			return write(map[string]any{"ok": true, "dashboards": names}, b.String())
+		}
+		if rest[0] == "new" {
+			if len(rest) < 2 {
+				return fail(fmt.Errorf("usage: crm dashboard new <id>"))
+			}
+			id := rest[1]
+			name, _ := sets["name"].(string)
+			layout, _ := sets["layout"].(string)
+			desc, _ := sets["description"].(string)
+			var widgets []dashboard.Widget
+			if typ, ok := sets["type"].(string); ok && typ != "" {
+				widgets = []dashboard.Widget{{ID: "main", Type: typ, Title: name, Query: sets["query"]}}
+			}
+			d, err := a.CreateDashboard(id, name, layout, desc, widgets)
+			if err != nil {
+				return fail(err)
+			}
+			return write(map[string]any{"ok": true, "dashboard": d.ID, "path": d.File}, "created "+d.ID+"\n")
+		}
+		proj, err := a.ProjectDashboard(rest[0])
+		if err != nil {
+			return fail(err)
+		}
+		return write(map[string]any{"ok": true, "dashboard": proj}, dashboardHuman(proj))
 	case "move":
 		if len(rest) < 3 {
 			return fail(fmt.Errorf("usage: crm move <id> <board> <column>"))
@@ -418,6 +456,20 @@ func contextHuman(seed *record.Record, related []*record.Record) string {
 	return b.String()
 }
 
+// Implements: SYS-REQ-260820-456X
+func dashboardHuman(proj *dashboard.Projection) string {
+	var b strings.Builder
+	fmt.Fprintf(&b, "%s\t%s\t%d components\n", proj.ID, proj.Name, proj.WidgetCount)
+	for _, w := range proj.Widgets {
+		kind := w.Type
+		if w.Placeholder {
+			kind = "placeholder"
+		}
+		fmt.Fprintf(&b, "  %s\t%s\t%s\n", w.ID, kind, w.Title)
+	}
+	return b.String()
+}
+
 // Implements: SYS-REQ-260820-PG9C
 func printHelp(w io.Writer) {
 	fmt.Fprint(w, `crm - file-native agent CRM
@@ -432,6 +484,8 @@ Commands:
   set <id> <f> <v>     Set one field
   patch <id> --set k=v Patch fields
   board [name]         List boards or show a board
+  dashboard [id]       List dashboards or show one
+  dashboard new <id>   Write dashboards/<id>.yaml
   move <id> <b> <col>  Move a card
   next                 List next actions
   triage               List items that need a decision

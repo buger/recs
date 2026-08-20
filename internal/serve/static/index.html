@@ -2,70 +2,365 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>CRM boards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 0; background: #0f1419; color: #e7ecf1; }
-header { padding: 16px 24px; border-bottom: 1px solid #243040; display: flex; gap: 16px; align-items: center; }
-select, input { background: #1b2430; color: #e7ecf1; border: 1px solid #314055; padding: 6px 10px; border-radius: 6px; }
-#board { display: flex; gap: 12px; padding: 16px; overflow-x: auto; align-items: flex-start; }
-.col { min-width: 220px; background: #151c25; border: 1px solid #243040; border-radius: 10px; padding: 10px; }
-.col h3 { margin: 0 0 10px; font-size: 14px; color: #9fb0c3; }
-.card { background: #1c2734; border: 1px solid #314055; border-radius: 8px; padding: 10px; margin-bottom: 8px; cursor: grab; }
-.card small { color: #8aa0b5; }
+:root {
+  --bg: #eef1f4;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --soft: #f3f4f6;
+  --primary: #111827;
+  --orange: #f59e0b;
+  --orange-bg: #fff7ed;
+  --green: #059669;
+  --green-bg: #ecfdf5;
+  --red: #dc2626;
+  --red-bg: #fef2f2;
+  --blue: #2563eb;
+  --blue-bg: #eff6ff;
+  --radius: 16px;
+  --shadow: 0 1px 2px rgba(15,23,42,.05), 0 10px 28px rgba(15,23,42,.06);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; }
+button, input, select { font: inherit; }
+a { color: inherit; }
+.topnav { display: flex; align-items: center; gap: 20px; padding: 18px 32px 0; }
+.brand { font-weight: 700; letter-spacing: -.02em; }
+.navlink { color: var(--muted); text-decoration: none; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; }
+.navlink.active { color: var(--text); border-bottom-color: var(--text); }
+.navlink:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid #93c5fd; outline-offset: 2px;
+}
+.page { padding: 20px 32px 48px; }
+.hero { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin: 18px 0 28px; min-height: 84px; }
+.hero h1 { margin: 0; font-size: 40px; letter-spacing: -.03em; }
+.hero p { margin: 8px 0 0; color: var(--muted); font-size: 16px; }
+.btn { border: 0; border-radius: 12px; padding: 10px 14px; cursor: pointer; font-weight: 600; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-ghost { background: transparent; color: var(--text); }
+.btn-row { display: flex; gap: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 22px; }
+.dash-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; cursor: pointer; border: 1px solid transparent; min-height: 320px; }
+.dash-card:hover { border-color: #d1d5db; }
+.dash-card h2 { margin: 0; font-size: 22px; }
+.dash-card .count { color: var(--muted); margin: 4px 0 14px; font-size: 14px; }
+.preview { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; height: 210px; }
+.slot { background: var(--soft); border-radius: 12px; overflow: hidden; padding: 8px; font-size: 10px; color: var(--muted); }
+.slot.filled { background: #fff; border: 1px solid var(--line); color: var(--text); }
+.slot .st { font-weight: 700; font-size: 11px; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini-stat { font-size: 18px; font-weight: 800; }
+.toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+.back { color: var(--muted); text-decoration: none; font-weight: 500; }
+.switcher { display: flex; gap: 6px; flex-wrap: wrap; }
+.pill-nav { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; color: var(--muted); }
+.pill-nav.on { background: var(--primary); color: #fff; border-color: var(--primary); }
+.widgets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.widget { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 18px 16px; min-height: 280px; position: relative; display: flex; flex-direction: column; }
+.widget.placeholder { background: #f3f4f6; box-shadow: none; }
+.widget h3 { margin: 0; font-size: 16px; }
+.widget .src { color: var(--muted); font-size: 12px; margin: 4px 0 10px; }
+.expand { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border: 0; background: transparent; color: #9ca3af; cursor: pointer; border-radius: 8px; }
+.expand:hover { background: var(--soft); color: var(--text); }
+.pills { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 2px 8px; font-size: 11px; font-weight: 600; background: var(--soft); color: #374151; text-transform: lowercase; }
+.tag.done, .tag.won, .tag.applied, .tag.complete, .tag.active { background: var(--green-bg); color: var(--green); }
+.tag.new, .tag.watch, .tag.high, .tag.preparing { background: var(--orange-bg); color: #c2410c; }
+.tag.queued, .tag.owner, .tag.waiting, .tag.researching { background: var(--blue-bg); color: var(--blue); }
+.tag.blocked, .tag.rejected, .tag.overdue { background: var(--red-bg); color: var(--red); }
+.item { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; }
+.item .t { font-weight: 600; }
+.item .b { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.stat { background: var(--soft); border-radius: 12px; padding: 12px; }
+.stat b { display: block; font-size: 26px; letter-spacing: -.03em; }
+.stat span { color: var(--muted); font-size: 12px; }
+.bar { height: 6px; background: #e5e7eb; border-radius: 99px; overflow: hidden; margin-top: 8px; }
+.bar > i { display: block; height: 100%; background: linear-gradient(90deg, #fb923c, #34d399); }
+.remind { margin-top: 12px; color: #9a3412; font-size: 13px; }
+.md { font-size: 13px; line-height: 1.45; color: #374151; overflow: auto; }
+.md h1, .md h2, .md h3 { margin: 0 0 8px; }
+.board-mini { display: flex; gap: 8px; overflow: auto; }
+.board-mini .col { min-width: 110px; background: var(--soft); border-radius: 10px; padding: 8px; }
+.board-mini .card { background: #fff; border-radius: 8px; padding: 6px; margin-top: 6px; font-size: 12px; }
+.empty { color: var(--muted); padding: 48px 0; text-align: center; }
+.modal { position: fixed; inset: 0; background: rgba(17,24,39,.35); display: none; align-items: center; justify-content: center; padding: 24px; }
+.modal.show { display: flex; }
+.modal .sheet { background: #fff; border-radius: 20px; padding: 24px; width: min(460px, 100%); box-shadow: var(--shadow); }
+.modal h2 { margin: 0 0 16px; }
+label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 6px; }
+input, select { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fff; }
+.kanban { display: flex; gap: 12px; overflow-x: auto; align-items: flex-start; padding-bottom: 20px; }
+.kcol { min-width: 240px; background: #fff; border-radius: 14px; padding: 12px; box-shadow: var(--shadow); }
+.kcol h3 { margin: 0 0 10px; font-size: 14px; color: var(--muted); }
+.kcard { background: #f9fafb; border: 1px solid var(--line); border-radius: 10px; padding: 10px; margin-bottom: 8px; cursor: grab; }
+.kcard small { color: var(--muted); }
+.search { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; min-width: 200px; }
+.full { position: fixed; inset: 0; background: var(--bg); z-index: 20; padding: 24px 32px; overflow: auto; display: none; }
+.full.show { display: block; }
+@media (max-width: 800px) {
+  .grid, .widgets, .preview { grid-template-columns: 1fr; }
+  .page, .topnav { padding-left: 16px; padding-right: 16px; }
+  .hero h1 { font-size: 32px; }
+}
 </style>
 </head>
 <body>
-<header>
-  <strong>File-native CRM</strong>
-  <select id="boards"></select>
-  <input id="q" placeholder="search"/>
-</header>
-<div id="board"></div>
+<nav class="topnav">
+  <div class="brand">File-native CRM</div>
+  <a class="navlink" id="nav-dash" href="#/">Dashboards</a>
+  <a class="navlink" id="nav-boards" href="#/boards">Boards</a>
+</nav>
+<main class="page" id="app"></main>
+<div class="modal" id="modal"></div>
+<div class="full" id="full"></div>
 <script>
-const boardsEl = document.getElementById('boards');
-const boardEl = document.getElementById('board');
-const qEl = document.getElementById('q');
-async function loadBoards() {
+const app = document.getElementById('app');
+const modal = document.getElementById('modal');
+const full = document.getElementById('full');
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pillClass = (p) => {
+  const x = String(p||'').toLowerCase();
+  if (['done','won','applied','complete','active'].includes(x)) return 'done';
+  if (['new','watch','high','preparing'].includes(x)) return 'new';
+  if (['queued','waiting','researching'].includes(x)) return 'queued';
+  if (['blocked','rejected','overdue'].includes(x)) return 'blocked';
+  return '';
+};
+const pills = (arr) => (arr||[]).slice(0,4).map(p => `<span class="tag ${pillClass(p)}">${esc(p)}</span>`).join('');
+const expandBtn = (id) => `<button class="expand" title="Expand" data-expand="${esc(id)}"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>`;
+
+function route() {
+  const h = location.hash || '#/';
+  document.getElementById('nav-dash').classList.toggle('active', !h.startsWith('#/boards'));
+  document.getElementById('nav-boards').classList.toggle('active', h.startsWith('#/boards'));
+  if (h.startsWith('#/boards')) return showBoards(h.replace('#/boards','').replace(/^\//,''));
+  if (h.startsWith('#/d/')) return showDash(h.slice(4));
+  return showGallery();
+}
+
+async function showGallery() {
+  const r = await fetch('/api/dashboards');
+  const j = await r.json();
+  const list = j.dashboards || [];
+  app.innerHTML = `
+    <div class="hero">
+      <div>
+        <h1>Dashboard</h1>
+        <p>Customize a theme and build your own dashboard.</p>
+      </div>
+      <button class="btn btn-primary" id="new-dash">+ New dashboard</button>
+    </div>
+    ${list.length ? `<div class="grid" id="cards"></div>` : `<div class="empty">No dashboards yet. Agents write YAML in dashboards/, or use + New dashboard.</div>`}
+  `;
+  document.getElementById('new-dash').onclick = openNew;
+  const cards = document.getElementById('cards');
+  if (!cards) return;
+  for (const d of list) {
+    const el = document.createElement('article');
+    el.className = 'dash-card';
+    el.innerHTML = `<h2>${esc(d.name||d.id)}</h2><div class="count">${d.widgets||0} components</div><div class="preview" id="pv-${esc(d.id)}">${'<div class="slot"></div>'.repeat(4)}</div>`;
+    el.onclick = () => { location.hash = '#/d/' + d.id; };
+    cards.appendChild(el);
+    fillPreview(d.id);
+  }
+}
+
+async function fillPreview(id) {
+  try {
+    const r = await fetch('/api/dashboards/' + encodeURIComponent(id));
+    const j = await r.json();
+    const widgets = (j.dashboard && j.dashboard.widgets) || [];
+    const box = document.getElementById('pv-' + id);
+    if (!box) return;
+    box.innerHTML = '';
+    for (let i=0;i<4;i++) {
+      const w = widgets[i];
+      const slot = document.createElement('div');
+      slot.className = 'slot' + (w && !w.placeholder ? ' filled' : '');
+      if (w && !w.placeholder) {
+        slot.innerHTML = `<div class="st">${esc(w.title||w.type)}</div>` + miniWidget(w);
+      }
+      box.appendChild(slot);
+    }
+  } catch (e) {}
+}
+
+function miniWidget(w) {
+  if (w.type === 'metrics' && w.stats) {
+    return w.stats.slice(0,2).map(s => `<div><span class="mini-stat">${esc(s.value)}</span> ${esc(s.label)}</div>`).join('');
+  }
+  if (w.type === 'count') return `<div class="mini-stat">${esc(w.count||0)}</div>`;
+  if (w.items && w.items.length) return w.items.slice(0,3).map(it => `<div>${esc(it.title)}</div>`).join('');
+  if (w.board) return `<div>${esc(w.board.name||'board')}</div>`;
+  return `<div>${esc(w.meta||w.type)}</div>`;
+}
+
+async function showDash(id) {
+  const [projR, listR] = await Promise.all([fetch('/api/dashboards/'+encodeURIComponent(id)), fetch('/api/dashboards')]);
+  const projJ = await projR.json();
+  const listJ = await listR.json();
+  if (!projJ.ok) { app.innerHTML = `<div class="empty">Dashboard not found.</div>`; return; }
+  const d = projJ.dashboard;
+  const list = listJ.dashboards || [];
+  app.innerHTML = `
+    <div class="toolbar">
+      <a class="back" href="#/">← Gallery</a>
+      <div class="switcher">${list.map(x => `<button class="pill-nav ${x.id===d.id?'on':''}" data-id="${esc(x.id)}">${esc(x.name||x.id)}</button>`).join('')}</div>
+    </div>
+    <div class="hero" style="min-height:auto;margin-top:8px">
+      <div><h1>${esc(d.name)}</h1><p>${esc(d.description||'File-native dashboard')}</p></div>
+    </div>
+    <div class="widgets" id="widgets"></div>
+  `;
+  app.querySelectorAll('.pill-nav').forEach(b => b.onclick = () => location.hash = '#/d/' + b.dataset.id);
+  const box = document.getElementById('widgets');
+  (d.widgets||[]).forEach(w => box.appendChild(renderWidget(w)));
+}
+
+function renderWidget(w, expanded) {
+  const el = document.createElement('section');
+  el.className = 'widget' + (w.placeholder ? ' placeholder' : '');
+  if (w.placeholder) return el;
+  el.innerHTML = `
+    ${expanded ? '' : expandBtn(w.id)}
+    <h3>${esc(w.title||w.type)}</h3>
+    <div class="src">${esc(w.source||'')}</div>
+    <div class="body"></div>
+  `;
+  const body = el.querySelector('.body');
+  if (w.type === 'metrics') {
+    body.innerHTML = `<div class="stats">${(w.stats||[]).map(s => `<div class="stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join('')}</div>
+      ${(w.reminders||[]).map(x => `<div class="remind">${esc(x)}</div>`).join('')}`;
+  } else if (w.type === 'count') {
+    body.innerHTML = `<div class="stat"><b>${esc(w.count||0)}</b><span>${esc(w.meta||'records')}</span></div>`;
+  } else if (w.type === 'list') {
+    body.innerHTML = (w.groups||[]).map(g => `<div style="margin-bottom:10px"><div class="src" style="font-weight:600">${esc(g.name)}</div>${(g.items||[]).map(itemLine).join('')}</div>`).join('')
+      || (w.items||[]).map(itemLine).join('') || '<div class="src">No records</div>';
+  } else if (w.type === 'notes' || w.type === 'watch' || w.type === 'pipeline') {
+    body.innerHTML = (w.items||[]).map((it,i) => itemLine(it, w.type==='pipeline' ? (i+1)+'. ' : '')).join('') || '<div class="src">No records</div>';
+    if (w.type==='pipeline' && w.progress) body.innerHTML += `<div class="bar"><i style="width:${Math.round(w.progress*100)}%"></i></div>`;
+  } else if (w.type === 'board' && w.board) {
+    body.innerHTML = `<div class="board-mini">${(w.board.columns||[]).map(c => `<div class="col"><strong>${esc(c.title)}</strong>${(c.records||[]).slice(0,4).map(r => `<div class="card">${esc(r.title)}</div>`).join('')}</div>`).join('')}</div>`;
+  } else if (w.type === 'markdown') {
+    body.innerHTML = `<div class="md">${w.html || esc(w.markdown||'')}</div>`;
+  } else {
+    body.innerHTML = `<div class="src">${esc(w.error||w.meta||'')}</div>`;
+  }
+  const btn = el.querySelector('[data-expand]');
+  if (btn) btn.onclick = (e) => { e.stopPropagation(); openFull(w); };
+  return el;
+}
+function itemLine(it, prefix='') {
+  return `<div class="item"><div class="t">${esc(prefix)}${esc(it.title||it.id)}</div>
+    <div class="b">${esc(it.path||'')} ${esc(it.date||'')}</div>
+    <div class="pills">${pills(it.pills)}</div>
+    ${it.body ? `<div class="b">${esc(it.body)}</div>` : ''}</div>`;
+}
+function openFull(w) {
+  full.className = 'full show';
+  full.innerHTML = `<button class="btn btn-ghost" id="close-full">← Back</button>`;
+  const big = renderWidget(w, true);
+  big.style.minHeight = '70vh';
+  full.appendChild(big);
+  document.getElementById('close-full').onclick = () => { full.className = 'full'; full.innerHTML=''; };
+}
+
+function openNew() {
+  modal.className = 'modal show';
+  modal.innerHTML = `<form class="sheet" id="new-form">
+    <h2>New dashboard</h2>
+    <label>Name</label><input name="name" required placeholder="Prospect CRM"/>
+    <label>Id slug</label><input name="id" required placeholder="prospects"/>
+    <label>Layout</label><select name="layout"><option value="2x2">2x2</option><option value="1x2">1x2</option><option value="1x1">1x1</option></select>
+    <label>First widget type</label>
+    <select name="type"><option value="">None yet</option>
+      <option>count</option><option>list</option><option>notes</option><option>watch</option>
+      <option>pipeline</option><option>metrics</option><option>board</option><option>markdown</option></select>
+    <div class="btn-row" style="margin-top:18px;justify-content:flex-end">
+      <button type="button" class="btn btn-ghost" id="cancel">Cancel</button>
+      <button class="btn btn-primary" type="submit">Create YAML</button>
+    </div>
+  </form>`;
+  const form = document.getElementById('new-form');
+  const name = form.elements.name;
+  const id = form.elements.id;
+  name.addEventListener('input', () => {
+    if (!id.dataset.touched) id.value = name.value.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+  });
+  id.addEventListener('input', () => id.dataset.touched = '1');
+  document.getElementById('cancel').onclick = () => { modal.className='modal'; };
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    const body = {id: id.value, name: name.value, layout: form.elements.layout.value, widgets: []};
+    if (form.elements.type.value) body.widgets = [{id:'main', type: form.elements.type.value, title: name.value}];
+    const r = await fetch('/api/dashboards', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+    const j = await r.json();
+    if (!j.ok) { alert(j.error || 'create failed'); return; }
+    modal.className = 'modal';
+    location.hash = '#/d/' + body.id;
+    route();
+  };
+}
+
+async function showBoards(id) {
   const r = await fetch('/api/boards');
   const j = await r.json();
-  boardsEl.innerHTML = (j.boards||[]).map(b => `<option value="${b.id}">${b.name}</option>`).join('');
-  if (j.boards && j.boards[0]) loadBoard(j.boards[0].id);
-}
-async function loadBoard(id) {
-  const r = await fetch('/api/boards/' + id);
-  const j = await r.json();
+  const boards = j.boards || [];
+  if (!id && boards[0]) id = boards[0].id;
+  app.innerHTML = `
+    <div class="toolbar">
+      <strong>Boards</strong>
+      <select id="boards">${boards.map(b => `<option value="${esc(b.id)}" ${b.id===id?'selected':''}>${esc(b.name)}</option>`).join('')}</select>
+      <input class="search" id="q" placeholder="search"/>
+    </div>
+    <div class="kanban" id="board"></div>`;
+  const sel = document.getElementById('boards');
+  sel.onchange = () => location.hash = '#/boards/' + sel.value;
+  document.getElementById('q').addEventListener('keydown', async e => {
+    if (e.key !== 'Enter') return;
+    const sr = await fetch('/api/search?q=' + encodeURIComponent(e.target.value));
+    const sj = await sr.json();
+    document.getElementById('board').innerHTML = `<div class="kcol"><h3>Search</h3>${(sj.records||[]).map(rec => `<div class="kcard"><div>${esc(rec.title)}</div><small>${esc(rec.id)}</small></div>`).join('')}</div>`;
+  });
+  if (!id) return;
+  const br = await fetch('/api/boards/' + encodeURIComponent(id));
+  const bj = await br.json();
+  const boardEl = document.getElementById('board');
   boardEl.innerHTML = '';
-  (j.columns||[]).forEach(col => {
+  (bj.columns||[]).forEach(col => {
     const d = document.createElement('div');
-    d.className = 'col';
-    d.dataset.col = col.id;
-    d.innerHTML = `<h3>${col.title}</h3>`;
+    d.className = 'kcol';
+    d.innerHTML = `<h3>${esc(col.title)}</h3>`;
     d.addEventListener('dragover', e => e.preventDefault());
     d.addEventListener('drop', async e => {
       e.preventDefault();
       const rid = e.dataTransfer.getData('id');
       await fetch('/api/boards/' + id + '/move', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id: rid, column: col.id})});
-      loadBoard(id);
+      showBoards(id);
     });
     (col.records||[]).forEach(rec => {
       const c = document.createElement('div');
-      c.className = 'card';
+      c.className = 'kcard';
       c.draggable = true;
-      c.innerHTML = `<div>${rec.title||rec.id}</div><small>${rec.id}</small>`;
+      c.innerHTML = `<div>${esc(rec.title||rec.id)}</div><small>${esc(rec.id)}</small>`;
       c.addEventListener('dragstart', e => e.dataTransfer.setData('id', rec.id));
       d.appendChild(c);
     });
     boardEl.appendChild(d);
   });
 }
-boardsEl.addEventListener('change', () => loadBoard(boardsEl.value));
-qEl.addEventListener('keydown', async e => {
-  if (e.key !== 'Enter') return;
-  const r = await fetch('/api/search?q=' + encodeURIComponent(qEl.value));
-  const j = await r.json();
-  boardEl.innerHTML = `<div class="col"><h3>Search</h3>${(j.records||[]).map(rec => `<div class="card"><div>${rec.title}</div><small>${rec.id}</small></div>`).join('')}</div>`;
-});
-loadBoards();
+
+window.addEventListener('hashchange', route);
+route();
 </script>
 </body>
 </html>

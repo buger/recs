@@ -156,3 +156,85 @@ func TestListenBusyPort(t *testing.T) {
 	}
 	_ = io.Discard
 }
+
+// Verifies: SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY
+// SYS-REQ-260820-456X:nominal:nominal
+// SW-REQ-260820-EJVT:nominal:nominal
+// INT-REQ-260820-NHBY:nominal:nominal
+// INT-REQ-260820-NHBY:integration:integration
+func TestDashboardAPIAndUI(t *testing.T) {
+	a := setupApp(t)
+	h := serve.Handler(a)
+	get := func(path string) *httptest.ResponseRecorder {
+		req := httptest.NewRequest(http.MethodGet, path, nil)
+		w := httptest.NewRecorder()
+		h.ServeHTTP(w, req)
+		return w
+	}
+	ui := get("/")
+	if ui.Code != 200 || !strings.Contains(ui.Body.String(), "Dashboard") || !strings.Contains(ui.Body.String(), "New dashboard") {
+		t.Fatalf("ui %d %s", ui.Code, ui.Body.String()[:min(200, ui.Body.Len())])
+	}
+	if !strings.Contains(ui.Body.String(), "#/d/") || !strings.Contains(ui.Body.String(), "Dashboards") {
+		t.Fatal("gallery routing")
+	}
+	list := get("/api/dashboards")
+	if list.Code != 200 || !strings.Contains(list.Body.String(), "prospects") || !strings.Contains(list.Body.String(), "workspace") {
+		t.Fatal(list.Body.String())
+	}
+	one := get("/api/dashboards/prospects")
+	if one.Code != 200 || !strings.Contains(one.Body.String(), "widgets") {
+		t.Fatal(one.Body.String())
+	}
+	ws := get("/api/dashboards/workspace")
+	if ws.Code != 200 {
+		t.Fatal(ws.Body.String())
+	}
+	if get("/api/dashboards/missing").Code != 404 {
+		t.Fatal("missing dash")
+	}
+	if get("/api/dashboards/").Code != 404 {
+		t.Fatal("empty id")
+	}
+	w := httptest.NewRecorder()
+	h.ServeHTTP(w, httptest.NewRequest(http.MethodPut, "/api/dashboards", nil))
+	if w.Code != 405 {
+		t.Fatal(w.Code)
+	}
+	w = httptest.NewRecorder()
+	h.ServeHTTP(w, httptest.NewRequest(http.MethodPost, "/api/dashboards/prospects", nil))
+	if w.Code != 405 {
+		t.Fatal(w.Code)
+	}
+	post := func(body any, origin string) *httptest.ResponseRecorder {
+		b, _ := json.Marshal(body)
+		req := httptest.NewRequest(http.MethodPost, "/api/dashboards", bytes.NewReader(b))
+		req.Header.Set("Content-Type", "application/json")
+		if origin != "" {
+			req.Header.Set("Origin", origin)
+		}
+		rec := httptest.NewRecorder()
+		h.ServeHTTP(rec, req)
+		return rec
+	}
+	created := post(map[string]any{"id": "extra", "name": "Extra", "layout": "2x2", "widgets": []any{map[string]any{"id": "c", "type": "count", "title": "N"}}}, "http://localhost:7777")
+	if created.Code != 201 {
+		t.Fatal(created.Body.String())
+	}
+	if post("{", "http://127.0.0.1").Code != 400 {
+		t.Fatal("bad json")
+	}
+	if post(map[string]any{"id": "bad/id"}, "http://localhost").Code != 400 {
+		t.Fatal("bad id")
+	}
+	if post(map[string]any{"id": "evil"}, "https://evil.example").Code != 403 {
+		t.Fatal("csrf")
+	}
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
