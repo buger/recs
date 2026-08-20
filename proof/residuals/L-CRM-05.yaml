@@ -1,0 +1,12 @@
+id: L-CRM-05
+title: CLI errors may include local file paths
+description: Human CLI errors may include workspace paths. This is below the bar for a same-machine file CRM. Do not refile as information disclosure unless serve leaks paths to a non-loopback client.
+status: closed
+severity: info
+kill_number: 0 remote client exposure; CLI is same-machine
+kill_domain: local-cli-error-path-leak
+sample_table:
+    - pair: stderr/local-path
+      mid_f: "1"
+      notes: same_machine_operator
+kill_method: analytic

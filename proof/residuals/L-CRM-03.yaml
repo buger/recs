@@ -1,0 +1,12 @@
+id: L-CRM-03
+title: Query clause regex is not catastrophic ReDoS
+description: The query clause regexp is a single-pass field/op/value matcher with bounded alternatives. Do not refile as ReDoS unless a polynomial or exponential backtracking input is demonstrated.
+status: closed
+severity: low
+kill_number: 0 catastrophic backtracking on clause parser samples
+kill_domain: query-clause-regex-redos
+sample_table:
+    - pair: query.clauseRe/simple-alt
+      mid_f: "1"
+      notes: linear_alternation
+kill_method: analytic+test

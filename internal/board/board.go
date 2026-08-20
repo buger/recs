@@ -80,6 +80,9 @@ func LoadAll(root string) ([]*Board, error) {
 
 // Implements: SYS-REQ-260820-4628
 func Load(root, name string) (*Board, error) {
+	if name == "" || strings.ContainsAny(name, `/\`) || strings.Contains(name, "..") {
+		return nil, fmt.Errorf("invalid board name %q", name)
+	}
 	for _, ext := range []string{".yaml", ".yml"} {
 		path := filepath.Join(root, "boards", name+ext)
 		data, err := os.ReadFile(path)

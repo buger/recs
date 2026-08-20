@@ -7,6 +7,11 @@ import (
 )
 
 // Verifies: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
+// SYS-REQ-260820-YWV4:boundary:nominal
+// SYS-REQ-260820-YWV4:empty_input:nominal
+// SYS-REQ-260820-YWV4:nominal:nominal
+// SW-REQ-260820-8PMR:boundary:nominal
+// SW-REQ-260820-8PMR:empty_input:nominal
 func TestValidateEnum(t *testing.T) {
 	a := app.OpenOrCWD(t.TempDir())
 	if err := a.Init(); err != nil {

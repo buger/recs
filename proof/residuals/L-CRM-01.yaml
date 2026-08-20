@@ -1,0 +1,12 @@
+id: L-CRM-01
+title: Malformed frontmatter fails closed
+description: LoadAll returns a loud parse error when a record lacks a closing frontmatter delimiter. This is the declared malformed_recovers_or_errors_loudly policy. Do not refile as data-loss unless a truncated file is imported as a valid record.
+status: closed
+severity: low
+kill_number: 0 silent imports of truncated YAML frontmatter
+kill_domain: malformed-frontmatter-fail-closed
+sample_table:
+    - pair: broken.md/workspace
+      mid_f: "1"
+      notes: loud_parse_error
+kill_method: analytic+test

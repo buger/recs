@@ -4,11 +4,8 @@ status: review
 priority: shall
 category: interface
 req_type: guarantee
-fretish: when board_move_committed the board shall always satisfy (matcher_depth
-    >= 0 => ((column_list_len > 0) & store_frontmatter_write_used & 
-    !record_file_relocated))
-description: A board move shall mutate record frontmatter through the store and 
-    shall not relocate the file.
+fretish: when board_move_committed the board shall always satisfy (matcher_depth >= 0 => ((column_list_len > 0) & store_frontmatter_write_used & !record_file_relocated))
+description: A board move shall mutate record frontmatter through the store and shall not relocate the file.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -21,7 +18,7 @@ tags: []
 variables: []
 traces:
     satisfies:
-      - SYS-REQ-260820-BVBE
+        - SYS-REQ-260820-BVBE
 verification:
     assurance_level: E
     formalization_status: valid
@@ -29,41 +26,58 @@ verification:
         status: in_review
         reviewer: agent:grok
         reviewed_at: "2026-08-20T19:30:00Z"
-        ai_generated: false
+        ai_generated: true
     gaps_reviewed_at: "2026-08-20T19:24:30.196551Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q
-        reviewer: agent:grok
-        reason: 'Move SW adds column_list_len <= 64 and keeps file_path_unchanged;
-            it is not the board-view grouping requirement. [owner INT-REQ-260820-JRWN;
-            pair ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q]'
-        reviewed_at: "2026-08-20T19:24:29.24388Z"
-      - check: ambiguity
-        issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR
-        reviewer: agent:grok
-        reason: 'Board-view SW groups by column field with column_list_len <= 64;
-            it is not the move path that shares matcher_depth. [owner INT-REQ-260820-JRWN;
-            pair ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR]'
-        reviewed_at: "2026-08-20T19:24:29.634329Z"
-      - check: ambiguity
-        issue_key: ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628
-        reviewer: agent:grok
-        reason: 'System board view is a matcher projection; shared matcher bounds
-            do not merge it with move. [owner INT-REQ-260820-JRWN; pair ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628]'
-        reviewed_at: "2026-08-20T19:24:30.196551Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q
+          reviewer: agent:grok
+          reason: 'Move SW adds column_list_len <= 64 and keeps file_path_unchanged; it is not the board-view grouping requirement. [owner INT-REQ-260820-JRWN; pair ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q]'
+          reviewed_at: "2026-08-20T19:24:29.24388Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR
+          reviewer: agent:grok
+          reason: 'Board-view SW groups by column field with column_list_len <= 64; it is not the move path that shares matcher_depth. [owner INT-REQ-260820-JRWN; pair ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR]'
+          reviewed_at: "2026-08-20T19:24:29.634329Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628
+          reviewer: agent:grok
+          reason: 'System board view is a matcher projection; shared matcher bounds do not merge it with move. [owner INT-REQ-260820-JRWN; pair ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628]'
+          reviewed_at: "2026-08-20T19:24:30.196551Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:32Z"
-    last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:23:52Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T19:39:51Z"
 obligation_checklist:
-  - atomicity
+    - atomicity
+obligation_hazards:
+    - class: atomicity
+      worst_case: A move writes frontmatter but also relocates the file, leaving a torn path and status pair.
+      severity: medium
+hazard_review:
+    reviewed_at: "2026-08-20T19:40:41Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: not_applicable
+          rationale: Integration move contract is an atomicity property across board and store.
+        - category: property
+          disposition: reviewed
+          applied:
+            - atomicity
+        - category: domain
+          disposition: not_applicable
+          rationale: Path confinement and write atomicity are owned by board load and store write.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:52Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:52Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

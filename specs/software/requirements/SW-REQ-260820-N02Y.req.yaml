@@ -4,12 +4,8 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when record_create_requested the store shall always satisfy 
-    (parse_budget >= 0 => ((frontmatter_sep_index >= 3) & ((record_id_assigned &
-    record_type_stored & frontmatter_written & markdown_body_written) | 
-    create_rejected)))
-description: The store shall parse and write Markdown records with YAML 
-    frontmatter, a closing delimiter, and a stable id.
+fretish: when record_create_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 3) & ((record_id_assigned & record_type_stored & frontmatter_written & markdown_body_written) | create_rejected)))
+description: The store shall parse and write Markdown records with YAML frontmatter, a closing delimiter, and a stable id.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -17,13 +13,12 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-9J7C
 component: store
-rationale: The parser keeps id and type in frontmatter. Unknown types remain 
-    valid records.
+rationale: The parser keeps id and type in frontmatter. Unknown types remain valid records.
 tags: []
 variables: []
 traces:
     satisfies:
-      - SYS-REQ-260820-9J7C
+        - SYS-REQ-260820-9J7C
 verification:
     assurance_level: E
     formalization_status: valid
@@ -31,50 +26,100 @@ verification:
         status: in_review
         reviewer: agent:grok
         reviewed_at: "2026-08-20T19:30:00Z"
-        ai_generated: false
+        ai_generated: true
     gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y
-        reviewer: agent:grok
-        reason: 'Create SW requires frontmatter_sep_index >= 3 plus id and type write;
-            that is not init layout or patch atomicity. [owner SW-REQ-260820-N02Y;
-            pair ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y]'
-        reviewed_at: "2026-08-20T19:24:29.515038Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4
-        reviewer: agent:grok
-        reason: 'Patch SW requires temp write, atomic rename, and conflict report;
-            shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-N02Y;
-            pair ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4]'
-        reviewed_at: "2026-08-20T19:24:29.722669Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ
-        reviewer: agent:grok
-        reason: 'System patch requires atomic rename or conflict; shared parse_budget
-            does not merge it with create or init. [owner SW-REQ-260820-N02Y; pair
-            ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ]'
-        reviewed_at: "2026-08-20T19:24:30.050143Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-KJ34
-        reviewer: agent:grok
-        reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget
-            does not merge it with create or patch. [owner SW-REQ-260820-N02Y; pair
-            ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-KJ34]'
-        reviewed_at: "2026-08-20T19:24:30.504223Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y
+          reviewer: agent:grok
+          reason: 'Create SW requires frontmatter_sep_index >= 3 plus id and type write; that is not init layout or patch atomicity. [owner SW-REQ-260820-N02Y; pair ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y]'
+          reviewed_at: "2026-08-20T19:24:29.515038Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4
+          reviewer: agent:grok
+          reason: 'Patch SW requires temp write, atomic rename, and conflict report; shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-N02Y; pair ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4]'
+          reviewed_at: "2026-08-20T19:24:29.722669Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ
+          reviewer: agent:grok
+          reason: 'System patch requires atomic rename or conflict; shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-N02Y; pair ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ]'
+          reviewed_at: "2026-08-20T19:24:30.050143Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-KJ34
+          reviewer: agent:grok
+          reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget does not merge it with create or patch. [owner SW-REQ-260820-N02Y; pair ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-KJ34]'
+          reviewed_at: "2026-08-20T19:24:30.504223Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
-    last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:23:51Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T19:41:14Z"
 obligation_checklist:
-  - malformed_input
-  - nominal
+    - boundary
+    - error_handling
+    - malformed_input
+    - malformed_recovers_or_errors_loudly
+    - nominal
+    - path_traversal_prevented
+    - untrusted_input_bounded
+obligation_hazards:
+    - class: boundary
+      worst_case: A record at a type or filename boundary is rejected as unreadable, so a human cannot keep editing Markdown without the binary.
+      severity: low
+    - class: error_handling
+      worst_case: A failed write is reported as success, so the human edits the wrong file and loses notes.
+      severity: medium
+    - class: malformed_input
+      worst_case: Malformed frontmatter is treated as a valid record, so search and boards operate on corrupt canonical files.
+      severity: medium
+    - class: malformed_recovers_or_errors_loudly
+      worst_case: A truncated frontmatter file is silently skipped, hiding corruption from list, search, and validate.
+      severity: medium
+    - class: nominal
+      worst_case: A valid create writes a file without stable id or type, so later show and patch cannot find it.
+      severity: low
+    - class: path_traversal_prevented
+      worst_case: An attacker-supplied record id or type writes a Markdown file outside the workspace root.
+      severity: medium
+    - class: untrusted_input_bounded
+      worst_case: Hostile YAML constructs an unbounded object graph and exhausts memory during frontmatter parse.
+      severity: medium
+nominal_evidence_exemptions:
+    - obligation_class: error_handling
+      reason: FRETish models only rejection of invalid create or parse inputs; happy-path create is witnessed by the nominal obligation, not by error_handling.
+      reviewer: agent:grok
+    - obligation_class: malformed_input
+      reason: FRETish models only loud failure on malformed frontmatter; valid records are witnessed by the nominal obligation on the same requirement.
+      reviewer: agent:grok
+hazard_review:
+    reviewed_at: "2026-08-20T19:40:36Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - malformed_input
+            - nominal
+            - boundary
+            - error_handling
+        - category: property
+          disposition: not_applicable
+          rationale: Create properties for atomic write live on the patch software requirement.
+        - category: domain
+          disposition: reviewed
+          applied:
+            - path_traversal_prevented
+            - malformed_recovers_or_errors_loudly
+            - untrusted_input_bounded
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:53Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:53Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

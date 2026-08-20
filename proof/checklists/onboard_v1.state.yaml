@@ -1,5 +1,5 @@
 checklist: onboard_v1
-updated_at: "2026-08-20T19:33:32Z"
+updated_at: "2026-08-20T19:45:58Z"
 steps:
     ac-sweep:
         status: confirmed
@@ -14,6 +14,29 @@ steps:
             - id: acceptance_witness_quality
               status: pass
               at: "2026-08-20T19:33:32Z"
+    annotations-heavy:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:45:58Z"
+        confirmed_by: agent:grok
+        note: Triple-form obligation evidence on existing tests; obligation_witness_grounded pass (107 grounded, 22 coverage-cleared). Honest deferrals remain for invariant_preservation lemmas and concurrent race-lane profiles.
+        scope_key: crm
+        check_results:
+            - id: annotation_validity
+              status: pass
+              at: "2026-08-20T19:45:58Z"
+            - id: obligation_witness_grounded
+              status: pass
+              at: "2026-08-20T19:45:58Z"
+    hazard:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:41:28Z"
+        confirmed_by: agent:grok
+        note: 'Worst-case-first sweep on store/query/board/cli/serve/validate/index/context. Confirmed-novel: path traversal via id/type/board name, concurrent write without nested-lock split, unbounded HTTP body, localhost CSRF via Origin. Fixed in code+tests. Catalog ACCEPT with worst_case on file/CLI/HTTP classes (no DeFi). spec_lint_hazard_consequence and obligation_decomposition_complete green. Unfiled per sweep: report-only, no KI auto-file.'
+        scope_key: crm
+        check_results:
+            - id: spec_lint_hazard_consequence
+              status: pass
+              at: "2026-08-20T19:41:28Z"
     init:
         status: confirmed
         confirmed_at: "2026-08-20T19:09:25Z"
@@ -35,6 +58,16 @@ steps:
         confirmed_at: "2026-08-20T19:09:29Z"
         confirmed_by: agent:grok
         note: 'Stakeholders: file_user, agent_operator, web_operator, maintainer. Components: store, query, board, cli, serve, validate, index, context.'
+    residual:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:42:33Z"
+        confirmed_by: agent:grok
+        note: 'Dispositioned five closed residuals with samples: fail-closed malformed YAML, loopback-unauthenticated serve, query ReDoS false positive, create-then-validate enum policy, local CLI path leak. residual_kill_hygiene pass. Confirmed-novel hazards were fixed in code, not parked.'
+        scope_key: crm
+        check_results:
+            - id: residual_kill_hygiene
+              status: pass
+              at: "2026-08-20T19:42:33Z"
     skeleton:
         status: confirmed
         confirmed_at: "2026-08-20T19:09:29Z"

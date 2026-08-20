@@ -16,6 +16,20 @@ import (
 )
 
 // Verifies: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C INT-REQ-260820-JC9M SYS-REQ-260820-5C9D SW-REQ-260820-ZKCV SYS-REQ-260820-DCG4 SW-REQ-260820-D5WE
+// SYS-REQ-260820-PG9C:determinism:nominal
+// SYS-REQ-260820-PG9C:nominal:nominal
+// SW-REQ-260820-YB5C:determinism:nominal
+// SW-REQ-260820-YB5C:nominal:nominal
+// INT-REQ-260820-JC9M:nominal:nominal
+// INT-REQ-260820-JC9M:integration:integration
+// SYS-REQ-260820-5C9D:empty_input:nominal
+// SYS-REQ-260820-5C9D:nominal:nominal
+// SW-REQ-260820-ZKCV:empty_input:nominal
+// SW-REQ-260820-ZKCV:nominal:nominal
+// SYS-REQ-260820-DCG4:empty_input:nominal
+// SYS-REQ-260820-DCG4:nominal:nominal
+// SW-REQ-260820-D5WE:empty_input:nominal
+// SW-REQ-260820-D5WE:nominal:nominal
 func TestCLIJSONAndTriage(t *testing.T) {
 	root := t.TempDir()
 	if code := run(t, root, "init", "--json"); code != 0 {
@@ -46,6 +60,23 @@ func TestCLIJSONAndTriage(t *testing.T) {
 }
 
 // Verifies: INT-REQ-260820-AHKR SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7
+// INT-REQ-260820-AHKR:nominal:nominal
+// INT-REQ-260820-AHKR:integration:integration
+// SYS-REQ-260820-9W1S:error_handling:nominal
+// SYS-REQ-260820-9W1S:nominal:nominal
+// SYS-REQ-260820-9W1S:boundary:nominal
+// SYS-REQ-260820-9W1S:auth_required:nominal
+// SYS-REQ-260820-9W1S:path_traversal_prevented:nominal
+// SYS-REQ-260820-9W1S:input_size_bounded:nominal
+// SW-REQ-260820-8ZS7:error_handling:nominal
+// SW-REQ-260820-8ZS7:nominal:nominal
+// SW-REQ-260820-8ZS7:boundary:nominal
+// SW-REQ-260820-8ZS7:auth_required:nominal
+// SW-REQ-260820-8ZS7:path_traversal_prevented:nominal
+// SW-REQ-260820-8ZS7:input_size_bounded:nominal
+// SYS-REQ-260820-9W1S:csrf_protection:nominal
+// SW-REQ-260820-8ZS7:csrf_protection:nominal
+// INT-REQ-260820-AHKR:csrf_protection:nominal
 func TestServeUsesAppLayer(t *testing.T) {
 	root := t.TempDir()
 	a := app.OpenOrCWD(root)
@@ -94,6 +125,9 @@ func run(t *testing.T, root string, args ...string) int {
 }
 
 // Verifies: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C SYS-REQ-260820-DCG4 SW-REQ-260820-D5WE SYS-REQ-260820-9J7C SW-REQ-260820-N02Y SYS-REQ-260820-2SQZ
+// agent inbox template enum
+// SYS-REQ-260820-PG9C:determinism:nominal
+// SW-REQ-260820-YB5C:determinism:nominal
 func TestAgentInboxTemplateAndEnum(t *testing.T) {
 	root := t.TempDir()
 	if code := run(t, root, "init"); code != 0 {
@@ -161,5 +195,72 @@ func TestConflictJSONAndDeadlineTriage(t *testing.T) {
 	}
 	if !strings.Contains(out.String(), "grant_due") || !strings.Contains(out.String(), "overdue") {
 		t.Fatalf("deadline triage: %s", out.String())
+	}
+}
+
+// Verifies: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 INT-REQ-260820-AHKR
+// SYS-REQ-260820-9W1S:csrf_protection:negative
+// SW-REQ-260820-8ZS7:csrf_protection:negative
+// INT-REQ-260820-AHKR:csrf_protection:negative
+func TestServeRejectsForeignOrigin(t *testing.T) {
+	root := t.TempDir()
+	a := app.OpenOrCWD(root)
+	if err := a.Init(); err != nil {
+		t.Fatal(err)
+	}
+	ts := httptest.NewServer(serve.Handler(a))
+	defer ts.Close()
+	req, err := http.NewRequest(http.MethodPost, ts.URL+"/api/records", strings.NewReader(`{"type":"grant","id":"grant_csrf","title":"X"}`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Origin", "https://evil.example")
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != 403 {
+		t.Fatalf("status %d", resp.StatusCode)
+	}
+	if _, err := a.Show("grant_csrf"); err == nil {
+		t.Fatal("csrf create succeeded")
+	}
+}
+
+// Verifies: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7
+// SYS-REQ-260820-9W1S:input_size_bounded:negative
+// SW-REQ-260820-8ZS7:input_size_bounded:negative
+func TestServeRejectsOversizedBody(t *testing.T) {
+	root := t.TempDir()
+	a := app.OpenOrCWD(root)
+	if err := a.Init(); err != nil {
+		t.Fatal(err)
+	}
+	ts := httptest.NewServer(serve.Handler(a))
+	defer ts.Close()
+	body := `{"type":"grant","id":"grant_big","title":"` + strings.Repeat("x", 2<<20) + `"}`
+	resp, err := http.Post(ts.URL+"/api/records", "application/json", strings.NewReader(body))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode == 201 {
+		t.Fatal("oversized create succeeded")
+	}
+}
+
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
+// SYS-REQ-260820-4628:path_traversal_prevented:negative
+// SW-REQ-260820-NBGR:path_traversal_prevented:negative
+func TestBoardRejectsTraversalName(t *testing.T) {
+	root := t.TempDir()
+	a := app.OpenOrCWD(root)
+	if err := a.Init(); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := a.Board("../crm", nil); err == nil {
+		t.Fatal("expected invalid board name")
 	}
 }

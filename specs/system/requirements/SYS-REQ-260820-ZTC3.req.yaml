@@ -4,12 +4,8 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when query_expression_received the query shall always satisfy (expr_len
-    > 0 => ((clause_count > 0) & (((operator_eq_applied | operator_cmp_applied |
-    operator_contains_applied | operator_in_applied) & records_filtered) | 
-    query_rejected)))
-description: The product shall filter records with a deterministic query 
-    language.
+fretish: when query_expression_received the query shall always satisfy (expr_len > 0 => ((clause_count > 0) & (((operator_eq_applied | operator_cmp_applied | operator_contains_applied | operator_in_applied) & records_filtered) | query_rejected)))
+description: The product shall filter records with a deterministic query language.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -21,11 +17,11 @@ rationale: Agents need structured selection. Simple field operators come first.
 tags: []
 variables: []
 references:
-  - type: document
-    id: README.md
+    - type: document
+      id: README.md
 traces:
     satisfies:
-      - STK-REQ-260820-V5ZD
+        - STK-REQ-260820-V5ZD
 verification:
     assurance_level: E
     formalization_status: valid
@@ -33,34 +29,58 @@ verification:
         status: in_review
         reviewer: agent:grok
         reviewed_at: "2026-08-20T19:30:00Z"
-        ai_generated: false
+        ai_generated: true
     gaps_reviewed_at: "2026-08-20T19:24:30.676683Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|query|SW-REQ-260820-X37F|SYS-REQ-260820-ZTC3
-        reviewer: agent:grok
-        reason: 'System query requires deterministic operators; shared expr_len does
-            not merge it with full-text search. [owner SYS-REQ-260820-ZTC3; pair ambiguity|query|SW-REQ-260820-X37F|SYS-REQ-260820-ZTC3]'
-        reviewed_at: "2026-08-20T19:24:30.676683Z"
-      - check: ambiguity
-        issue_key: ambiguity|query|SYS-REQ-260820-HJPH|SYS-REQ-260820-ZTC3
-        reviewer: agent:grok
-        reason: 'System query requires deterministic operators; shared expr_len does
-            not merge it with full-text search. [owner SYS-REQ-260820-ZTC3; pair ambiguity|query|SYS-REQ-260820-HJPH|SYS-REQ-260820-ZTC3]'
-        reviewed_at: "2026-08-20T19:24:30.676683Z"
+        - check: ambiguity
+          issue_key: ambiguity|query|SW-REQ-260820-X37F|SYS-REQ-260820-ZTC3
+          reviewer: agent:grok
+          reason: 'System query requires deterministic operators; shared expr_len does not merge it with full-text search. [owner SYS-REQ-260820-ZTC3; pair ambiguity|query|SW-REQ-260820-X37F|SYS-REQ-260820-ZTC3]'
+          reviewed_at: "2026-08-20T19:24:30.676683Z"
+        - check: ambiguity
+          issue_key: ambiguity|query|SYS-REQ-260820-HJPH|SYS-REQ-260820-ZTC3
+          reviewer: agent:grok
+          reason: 'System query requires deterministic operators; shared expr_len does not merge it with full-text search. [owner SYS-REQ-260820-ZTC3; pair ambiguity|query|SYS-REQ-260820-HJPH|SYS-REQ-260820-ZTC3]'
+          reviewed_at: "2026-08-20T19:24:30.676683Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
-    last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:21:26Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T19:39:49Z"
 obligation_checklist:
-  - determinism
-  - malformed_input
+    - determinism
+    - malformed_input
+obligation_hazards:
+    - class: determinism
+      worst_case: The same query expression returns a different record set across runs, so agents cannot trust filters.
+      severity: medium
+    - class: malformed_input
+      worst_case: An invalid query is treated as match-all, exposing or mutating every record.
+      severity: medium
+hazard_review:
+    reviewed_at: "2026-08-20T19:40:38Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - malformed_input
+        - category: property
+          disposition: reviewed
+          applied:
+            - determinism
+        - category: domain
+          disposition: not_applicable
+          rationale: Query is an in-memory predicate over already-parsed records; no filesystem or HTTP sink.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:55Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:55Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

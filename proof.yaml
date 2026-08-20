@@ -77,6 +77,8 @@ project:
             - coverage/**
             - .proof/**
     checks:
+        hazard_consequence:
+            require_worst_case_scope: all
         slow_tests:
             enabled: true
         code_mcdc:

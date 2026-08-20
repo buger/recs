@@ -8,59 +8,91 @@ fretish: ""
 description: The product shall keep Markdown files as the canonical record store.
 formalization_strategy: informal
 informal_verification:
-  method: ""
-  evidence: ""
-  verified: false
+    method: ""
+    evidence: ""
+    verified: false
 component: file_user
-rationale: A human edits Markdown and Git directly. The repository shall stay usable without the CRM
-  binary.
+rationale: A human edits Markdown and Git directly. The repository shall stay usable without the CRM binary.
 tags: []
 variables: []
 references:
-- type: document
-  id: README.md
+    - type: document
+      id: README.md
 traces: {}
 verification:
-  assurance_level: E
-  formalization_status: none
-  review:
-    status: in_review
-    reviewer: agent:grok
-    reviewed_at: "2026-08-20T19:30:00Z"
-    ai_generated: false
+    assurance_level: E
+    formalization_status: none
+    review:
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
+        ai_generated: true
 history:
-  created_by: human:cli
-  created_at: "2026-08-20T18:59:33Z"
-  last_modified_by: human:cli
-  last_modified_at: "2026-08-20T19:21:25Z"
+    created_by: human:cli
+    created_at: "2026-08-20T18:59:33Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T19:39:46Z"
 obligation_checklist:
-- boundary
-- empty_input
-- error_handling
-- nominal
-stakeholder:
-  persona: file_user
-  story: As a file_user, I want Markdown records so that Git remains the history.
-  acceptance_criteria:
-  - id: AC-001
-    text: A human can read and edit a record file without the CRM binary.
-    verification_method: test
-    derived_reqs:
-    - SYS-REQ-260820-KJ34
-    - SYS-REQ-260820-9J7C
-    - SYS-REQ-260820-7WT4
-    - SYS-REQ-260820-HJPH
-    - SYS-REQ-260820-4628
-lifecycle:
-  change_history:
-  - date: "2026-08-20T19:06:52Z"
-    from: draft
-    to: review
-    reason: ''
-    changed_by: human:cli
+    - boundary
+    - empty_input
+    - error_handling
+    - nominal
+obligation_hazards:
+    - class: boundary
+      worst_case: A record at a type or field boundary is rejected as unreadable, so humans cannot edit Markdown without the binary.
+      severity: low
+    - class: empty_input
+      worst_case: An empty new workspace is treated as corrupt, so a file user cannot start from a blank folder.
+      severity: low
+    - class: error_handling
+      worst_case: A failed write is reported as success, so the human edits the wrong file and loses notes.
+      severity: medium
+    - class: nominal
+      worst_case: A valid Markdown record is not shown or listed, so Git history no longer matches what the CRM presents.
+      severity: low
+hazard_review:
+    reviewed_at: "2026-08-20T19:40:33Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - boundary
+            - empty_input
+            - error_handling
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: Stakeholder file-user story is an interface contract; algebraic properties live on store children.
+        - category: domain
+          disposition: not_applicable
+          rationale: File-user stakeholder does not own HTTP, path, or concurrency surfaces; those sit on store and serve.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 acceptance_review:
-  reviewed_at: '2026-08-20T19:35:00Z'
-  reviewed_by: agent:ac-sweep
-  disposition: reviewed
-  templates_applied: []
-  notes: Persist surface is records/*.md. No dual-surface enforce/project pair.
+    reviewed_at: "2026-08-20T19:35:00Z"
+    reviewed_by: agent:ac-sweep
+    disposition: reviewed
+    notes: Persist surface is records/*.md. No dual-surface enforce/project pair.
+stakeholder:
+    persona: file_user
+    story: As a file_user, I want Markdown records so that Git remains the history.
+    acceptance_criteria:
+        - id: AC-001
+          text: A human can read and edit a record file without the CRM binary.
+          verification_method: test
+          derived_reqs:
+            - SYS-REQ-260820-KJ34
+            - SYS-REQ-260820-9J7C
+            - SYS-REQ-260820-7WT4
+            - SYS-REQ-260820-HJPH
+            - SYS-REQ-260820-4628
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:52Z"
+          from: draft
+          to: review
+          reason: ''
+          changed_by: human:cli

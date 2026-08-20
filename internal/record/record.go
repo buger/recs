@@ -230,6 +230,21 @@ func (r *Record) Version() string {
 }
 
 // Implements: SYS-REQ-260820-9J7C
+func ValidStableID(id string) bool {
+	if id == "" || strings.ContainsAny(id, `/\`) || strings.Contains(id, "..") {
+		return false
+	}
+	return sanitizeID(id) == id
+}
+
+// Implements: SYS-REQ-260820-9J7C
+func ValidType(typ string) bool {
+	if typ == "" || strings.ContainsAny(typ, `/\`) || strings.Contains(typ, "..") {
+		return false
+	}
+	return sanitizeID(typ) == typ
+}
+
 func SlugID(typ, title string) string {
 	typ = sanitizeID(typ)
 	title = sanitizeID(title)

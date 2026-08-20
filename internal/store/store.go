@@ -210,6 +210,9 @@ func (s *Store) ApplyTemplate(rec *record.Record) {
 		return
 	}
 	path := filepath.Join(s.Root, "templates", rec.Type+".md")
+	if err := confinedToRoot(s.Root, path); err != nil {
+		return
+	}
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return
@@ -259,6 +262,9 @@ func (s *Store) Create(rec *record.Record) error {
 	if rec.Type == "" {
 		return fmt.Errorf("type is required")
 	}
+	if !record.ValidType(rec.Type) {
+		return fmt.Errorf("invalid type %q", rec.Type)
+	}
 	if rec.ID == "" {
 		title := rec.GetString("title")
 		if title == "" {
@@ -266,6 +272,9 @@ func (s *Store) Create(rec *record.Record) error {
 		}
 		rec.ID = record.SlugID(rec.Type, title)
 		rec.Set("id", rec.ID)
+	}
+	if !record.ValidStableID(rec.ID) {
+		return fmt.Errorf("invalid id %q", rec.ID)
 	}
 	if rec.GetString("created_at") == "" {
 		rec.Set("created_at", time.Now().UTC().Format(time.RFC3339))
@@ -292,8 +301,23 @@ func (s *Store) Create(rec *record.Record) error {
 // Write stores a record with a temp file and rename.
 // Implements: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4 SYS-REQ-260820-7WT4 SW-REQ-260820-9C5Z
 func (s *Store) Write(rec *record.Record) error {
+	if rec.ID != "" {
+		lock, err := s.lock(rec.ID)
+		if err != nil {
+			return err
+		}
+		defer lock.Close()
+	}
+	return s.writeLocked(rec)
+}
+
+// Implements: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4 SYS-REQ-260820-9J7C
+func (s *Store) writeLocked(rec *record.Record) error {
 	if rec.Path == "" {
 		return fmt.Errorf("record path is empty")
+	}
+	if err := confinedToRoot(s.Root, rec.Path); err != nil {
+		return err
 	}
 	if err := os.MkdirAll(filepath.Dir(rec.Path), 0o755); err != nil {
 		return err
@@ -306,6 +330,26 @@ func (s *Store) Write(rec *record.Record) error {
 	if err := os.Rename(tmp, rec.Path); err != nil {
 		_ = os.Remove(tmp)
 		return err
+	}
+	return nil
+}
+
+// Implements: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
+func confinedToRoot(root, path string) error {
+	absRoot, err := filepath.Abs(root)
+	if err != nil {
+		return err
+	}
+	absPath, err := filepath.Abs(path)
+	if err != nil {
+		return err
+	}
+	rel, err := filepath.Rel(absRoot, absPath)
+	if err != nil {
+		return err
+	}
+	if rel == ".." || strings.HasPrefix(rel, ".."+string(os.PathSeparator)) {
+		return fmt.Errorf("path escapes workspace: %s", path)
 	}
 	return nil
 }
@@ -349,7 +393,7 @@ func (s *Store) Patch(id string, sets map[string]any, deletes []string, ifVersio
 		return nil, err
 	}
 	rec.Set("updated_at", time.Now().UTC().Format(time.RFC3339))
-	if err := s.Write(rec); err != nil {
+	if err := s.writeLocked(rec); err != nil {
 		return nil, err
 	}
 	return &PatchResult{Record: rec, Changed: changed, Version: rec.Version()}, nil

@@ -4,12 +4,8 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when record_create_requested the store shall always satisfy 
-    (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((record_id_assigned &
-    record_type_stored & frontmatter_written & markdown_body_written) | 
-    create_rejected)))
-description: The product shall create, show, and list records that keep a stable
-    id and an open type.
+fretish: when record_create_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((record_id_assigned & record_type_stored & frontmatter_written & markdown_body_written) | create_rejected)))
+description: The product shall create, show, and list records that keep a stable id and an open type.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -17,17 +13,16 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-KAGT
 component: store
-rationale: Records are Markdown files with YAML frontmatter. Types stay 
-    open-ended.
+rationale: Records are Markdown files with YAML frontmatter. Types stay open-ended.
 tags: []
 variables: []
 references:
-  - type: document
-    id: README.md
+    - type: document
+      id: README.md
 traces:
     satisfies:
-      - STK-REQ-260820-V5ZD
-      - STK-REQ-260820-KAGT
+        - STK-REQ-260820-V5ZD
+        - STK-REQ-260820-KAGT
 verification:
     assurance_level: E
     formalization_status: valid
@@ -35,51 +30,105 @@ verification:
         status: in_review
         reviewer: agent:grok
         reviewed_at: "2026-08-20T19:30:00Z"
-        ai_generated: false
+        ai_generated: true
     gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
-        reviewer: agent:grok
-        reason: 'System create/show/list requires stable id and type; shared parse_budget
-            does not merge it with init or patch. [owner SYS-REQ-260820-9J7C; pair
-            ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C]'
-        reviewed_at: "2026-08-20T19:24:30.275834Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
-        reviewer: agent:grok
-        reason: 'System create/show/list requires stable id and type; shared parse_budget
-            does not merge it with init or patch. [owner SYS-REQ-260820-9J7C; pair
-            ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C]'
-        reviewed_at: "2026-08-20T19:24:30.275834Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
-        reviewer: agent:grok
-        reason: 'System create/show/list requires stable id and type; shared parse_budget
-            does not merge it with init or patch. [owner SYS-REQ-260820-9J7C; pair
-            ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C]'
-        reviewed_at: "2026-08-20T19:24:30.275834Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34
-        reviewer: agent:grok
-        reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget
-            does not merge it with create or patch. [owner SYS-REQ-260820-9J7C; pair
-            ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34]'
-        reviewed_at: "2026-08-20T19:24:30.504223Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
+          reviewer: agent:grok
+          reason: 'System create/show/list requires stable id and type; shared parse_budget does not merge it with init or patch. [owner SYS-REQ-260820-9J7C; pair ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C]'
+          reviewed_at: "2026-08-20T19:24:30.275834Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
+          reviewer: agent:grok
+          reason: 'System create/show/list requires stable id and type; shared parse_budget does not merge it with init or patch. [owner SYS-REQ-260820-9J7C; pair ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C]'
+          reviewed_at: "2026-08-20T19:24:30.275834Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
+          reviewer: agent:grok
+          reason: 'System create/show/list requires stable id and type; shared parse_budget does not merge it with init or patch. [owner SYS-REQ-260820-9J7C; pair ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C]'
+          reviewed_at: "2026-08-20T19:24:30.275834Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34
+          reviewer: agent:grok
+          reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget does not merge it with create or patch. [owner SYS-REQ-260820-9J7C; pair ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34]'
+          reviewed_at: "2026-08-20T19:24:30.504223Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
-    last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:23:49Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T19:41:14Z"
 obligation_checklist:
-  - empty_input
-  - malformed_input
-  - nominal
+    - boundary
+    - empty_input
+    - error_handling
+    - malformed_input
+    - malformed_recovers_or_errors_loudly
+    - nominal
+    - path_traversal_prevented
+    - untrusted_input_bounded
+obligation_hazards:
+    - class: boundary
+      worst_case: A record at a type or filename boundary is rejected as unreadable, so a human cannot keep editing Markdown without the binary.
+      severity: low
+    - class: empty_input
+      worst_case: An empty workspace or missing records directory is treated as a hard crash, so init and list cannot recover from a new folder.
+      severity: low
+    - class: error_handling
+      worst_case: A failed write is reported as success, so the human edits the wrong file and loses notes.
+      severity: medium
+    - class: malformed_input
+      worst_case: Malformed frontmatter is treated as a valid record, so search and boards operate on corrupt canonical files.
+      severity: medium
+    - class: malformed_recovers_or_errors_loudly
+      worst_case: A truncated frontmatter file is silently skipped, hiding corruption from list, search, and validate.
+      severity: medium
+    - class: nominal
+      worst_case: A valid create or show returns the wrong id or omits required type, so agents address the wrong file.
+      severity: low
+    - class: path_traversal_prevented
+      worst_case: An attacker-supplied record id or type writes a Markdown file outside the workspace root.
+      severity: medium
+    - class: untrusted_input_bounded
+      worst_case: Hostile YAML constructs an unbounded object graph and exhausts memory during frontmatter parse.
+      severity: medium
+nominal_evidence_exemptions:
+    - obligation_class: error_handling
+      reason: FRETish models only rejection of invalid create or parse inputs; happy-path create is witnessed by the nominal obligation, not by error_handling.
+      reviewer: agent:grok
+    - obligation_class: malformed_input
+      reason: FRETish models only loud failure on malformed frontmatter; valid records are witnessed by the nominal obligation on the same requirement.
+      reviewer: agent:grok
+hazard_review:
+    reviewed_at: "2026-08-20T19:40:35Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - empty_input
+            - malformed_input
+            - nominal
+            - boundary
+            - error_handling
+        - category: property
+          disposition: not_applicable
+          rationale: Create/show/list properties for atomic write live on the patch requirement.
+        - category: domain
+          disposition: reviewed
+          applied:
+            - path_traversal_prevented
+            - malformed_recovers_or_errors_loudly
+            - untrusted_input_bounded
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:54Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

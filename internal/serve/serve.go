@@ -159,7 +159,27 @@ func Handler(a *app.App) http.Handler {
 		data, _ := uiFS.ReadFile("static/index.html")
 		_, _ = w.Write(data)
 	})
-	return mux
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet && r.Method != http.MethodHead {
+			r.Body = http.MaxBytesReader(w, r.Body, 1<<20)
+			if origin := r.Header.Get("Origin"); origin != "" && !allowedOrigin(origin) {
+				writeJSON(w, 403, map[string]any{"ok": false, "error": "origin_denied"})
+				return
+			}
+		}
+		mux.ServeHTTP(w, r)
+	})
+}
+
+func allowedOrigin(origin string) bool {
+	switch strings.ToLower(origin) {
+	case "http://127.0.0.1", "http://localhost", "https://127.0.0.1", "https://localhost":
+		return true
+	}
+	if strings.HasPrefix(strings.ToLower(origin), "http://127.0.0.1:") || strings.HasPrefix(strings.ToLower(origin), "http://localhost:") {
+		return true
+	}
+	return false
 }
 
 // Implements: SYS-REQ-260820-9W1S

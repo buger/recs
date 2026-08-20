@@ -4,11 +4,8 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when move_requested the board shall always satisfy (matcher_depth >= 0 
-    => ((column_list_len > 0) & ((column_known & frontmatter_field_updated & 
-    file_path_unchanged) | move_rejected)))
-description: The product shall move a record by changing frontmatter, not by 
-    moving the file.
+fretish: when move_requested the board shall always satisfy (matcher_depth >= 0 => ((column_list_len > 0) & ((column_known & frontmatter_field_updated & file_path_unchanged) | move_rejected)))
+description: The product shall move a record by changing frontmatter, not by moving the file.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -16,17 +13,16 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-V5ZD
 component: board
-rationale: A move updates the column field or on_drop sets. The file path stays 
-    stable.
+rationale: A move updates the column field or on_drop sets. The file path stays stable.
 tags: []
 variables: []
 references:
-  - type: document
-    id: README.md
+    - type: document
+      id: README.md
 traces:
     satisfies:
-      - STK-REQ-260820-Y3Q4
-      - STK-REQ-260820-V5ZD
+        - STK-REQ-260820-Y3Q4
+        - STK-REQ-260820-V5ZD
 verification:
     assurance_level: E
     formalization_status: valid
@@ -34,34 +30,58 @@ verification:
         status: in_review
         reviewer: agent:grok
         reviewed_at: "2026-08-20T19:30:00Z"
-        ai_generated: false
+        ai_generated: true
     gaps_reviewed_at: "2026-08-20T19:24:30.374223Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE
-        reviewer: agent:grok
-        reason: 'System move changes frontmatter only; shared matcher bounds do not
-            merge it with board view. [owner SYS-REQ-260820-BVBE; pair ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE]'
-        reviewed_at: "2026-08-20T19:24:30.374223Z"
-      - check: ambiguity
-        issue_key: ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE
-        reviewer: agent:grok
-        reason: 'System move changes frontmatter only; shared matcher bounds do not
-            merge it with board view. [owner SYS-REQ-260820-BVBE; pair ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE]'
-        reviewed_at: "2026-08-20T19:24:30.374223Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE
+          reviewer: agent:grok
+          reason: 'System move changes frontmatter only; shared matcher bounds do not merge it with board view. [owner SYS-REQ-260820-BVBE; pair ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE]'
+          reviewed_at: "2026-08-20T19:24:30.374223Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE
+          reviewer: agent:grok
+          reason: 'System move changes frontmatter only; shared matcher bounds do not merge it with board view. [owner SYS-REQ-260820-BVBE; pair ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE]'
+          reviewed_at: "2026-08-20T19:24:30.374223Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
-    last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:23:50Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T19:39:50Z"
 obligation_checklist:
-  - error_handling
-  - nominal
+    - error_handling
+    - nominal
+obligation_hazards:
+    - class: error_handling
+      worst_case: An unknown column is applied as a raw field write, corrupting status without a clear error.
+      severity: medium
+    - class: nominal
+      worst_case: A valid move updates the file path instead of frontmatter, breaking the board-is-a-view rule.
+      severity: low
+hazard_review:
+    reviewed_at: "2026-08-20T19:40:40Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - error_handling
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: Move atomicity is owned by the integration requirement and store write path.
+        - category: domain
+          disposition: not_applicable
+          rationale: Move updates frontmatter through the store write path that already carries atomic_write.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:54Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

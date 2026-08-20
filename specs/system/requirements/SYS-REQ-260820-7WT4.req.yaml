@@ -29,15 +29,46 @@ verification:
         status: in_review
         reviewer: agent:grok
         reviewed_at: "2026-08-20T19:30:00Z"
-        ai_generated: false
+        ai_generated: true
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:09Z"
-    last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:23:49Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T19:43:50Z"
 obligation_checklist:
     - invariant_preservation
     - nominal
+obligation_deferrals:
+    - obligation_class: invariant_preservation
+      reason: Filesystem status-change invariant is not SMT-modelable yet; TestMoveKeepsPath is the executable witness until a lemma lands.
+      tracking: onboard_v1-annotations
+      owner: agent:grok
+obligation_hazards:
+    - class: invariant_preservation
+      worst_case: A status change relocates the file or drops id/type, breaking the Markdown-is-canonical invariant.
+      severity: medium
+    - class: nominal
+      worst_case: A valid status change is not persisted in frontmatter, so boards show a stale column.
+      severity: low
+hazard_review:
+    reviewed_at: "2026-08-20T19:40:37Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - nominal
+        - category: property
+          disposition: reviewed
+          applied:
+            - invariant_preservation
+        - category: domain
+          disposition: not_applicable
+          rationale: Status-change invariant is a property; file-path confinement is owned by create and patch.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:54Z"

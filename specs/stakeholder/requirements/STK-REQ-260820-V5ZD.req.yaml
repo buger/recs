@@ -8,64 +8,101 @@ fretish: ""
 description: The product shall provide a deterministic CLI with stable JSON output.
 formalization_strategy: informal
 informal_verification:
-  method: ""
-  evidence: ""
-  verified: false
+    method: ""
+    evidence: ""
+    verified: false
 component: agent_operator
 rationale: An agent uses structured commands. The agent shall not parse unstable human text.
 tags: []
 variables: []
 references:
-- type: document
-  id: README.md
+    - type: document
+      id: README.md
 traces: {}
 verification:
-  assurance_level: E
-  formalization_status: none
-  review:
-    status: in_review
-    reviewer: agent:grok
-    reviewed_at: "2026-08-20T19:30:00Z"
-    ai_generated: false
+    assurance_level: E
+    formalization_status: none
+    review:
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
+        ai_generated: true
 history:
-  created_by: human:cli
-  created_at: "2026-08-20T18:59:33Z"
-  last_modified_by: human:cli
-  last_modified_at: "2026-08-20T19:21:25Z"
+    created_by: human:cli
+    created_at: "2026-08-20T18:59:33Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-20T19:39:47Z"
 obligation_checklist:
-- boundary
-- determinism
-- error_handling
-- malformed_input
-- nominal
-stakeholder:
-  persona: agent_operator
-  story: As an agent_operator, I want stable JSON so that I can automate CRM work.
-  acceptance_criteria:
-  - id: AC-001
-    text: A command with --json emits a JSON object with an ok field.
-    verification_method: test
-    derived_reqs:
-    - SYS-REQ-260820-9J7C
-    - SYS-REQ-260820-2SQZ
-    - SYS-REQ-260820-ZTC3
-    - SYS-REQ-260820-HJPH
-    - SYS-REQ-260820-BVBE
-    - SYS-REQ-260820-5C9D
-    - SYS-REQ-260820-DCG4
-    - SYS-REQ-260820-YWV4
-    - SYS-REQ-260820-0TQX
-    - SYS-REQ-260820-PG9C
-lifecycle:
-  change_history:
-  - date: "2026-08-20T19:06:52Z"
-    from: draft
-    to: review
-    reason: ''
-    changed_by: human:cli
+    - boundary
+    - determinism
+    - error_handling
+    - malformed_input
+    - nominal
+obligation_hazards:
+    - class: boundary
+      worst_case: A JSON command at a field or enum boundary returns unstructured text, so agents cannot parse the failure.
+      severity: medium
+    - class: determinism
+      worst_case: The same --json command returns a different payload across runs, so agents cannot automate against the workspace.
+      severity: medium
+    - class: error_handling
+      worst_case: A conflict or invalid enum is emitted as a generic crash, so agents retry blindly and overwrite work.
+      severity: medium
+    - class: malformed_input
+      worst_case: Malformed flags or YAML are accepted as ok:true JSON, so agents persist corrupt records.
+      severity: medium
+    - class: nominal
+      worst_case: A valid --json command omits the ok field, breaking the agent contract.
+      severity: low
+hazard_review:
+    reviewed_at: "2026-08-20T19:40:34Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - boundary
+            - error_handling
+            - malformed_input
+            - nominal
+        - category: property
+          disposition: reviewed
+          applied:
+            - determinism
+        - category: domain
+          disposition: not_applicable
+          rationale: Agent JSON contract is evidenced on CLI children; file and HTTP domain classes sit on store and serve.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 acceptance_review:
-  reviewed_at: '2026-08-20T19:35:00Z'
-  reviewed_by: agent:ac-sweep
-  disposition: reviewed
-  templates_applied: []
-  notes: CLI --json is the projection surface. Errors use the same ok field.
+    reviewed_at: "2026-08-20T19:35:00Z"
+    reviewed_by: agent:ac-sweep
+    disposition: reviewed
+    notes: CLI --json is the projection surface. Errors use the same ok field.
+stakeholder:
+    persona: agent_operator
+    story: As an agent_operator, I want stable JSON so that I can automate CRM work.
+    acceptance_criteria:
+        - id: AC-001
+          text: A command with --json emits a JSON object with an ok field.
+          verification_method: test
+          derived_reqs:
+            - SYS-REQ-260820-9J7C
+            - SYS-REQ-260820-2SQZ
+            - SYS-REQ-260820-ZTC3
+            - SYS-REQ-260820-HJPH
+            - SYS-REQ-260820-BVBE
+            - SYS-REQ-260820-5C9D
+            - SYS-REQ-260820-DCG4
+            - SYS-REQ-260820-YWV4
+            - SYS-REQ-260820-0TQX
+            - SYS-REQ-260820-PG9C
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:52Z"
+          from: draft
+          to: review
+          reason: ''
+          changed_by: human:cli

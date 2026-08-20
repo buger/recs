@@ -1,0 +1,12 @@
+id: L-CRM-04
+title: Create admits invalid enum until validate
+description: crm create can persist a value outside crm.yaml enums; crm set/patch reject invalid_enum; crm validate reports the file. Do not refile as missing enum enforcement unless patch accepts a disallowed value.
+status: closed
+severity: low
+kill_number: 0 accepted patch writes of disallowed enum values
+kill_domain: create-enum-deferred-to-validate
+sample_table:
+    - pair: grant.status/nope
+      mid_f: "1"
+      notes: create_then_validate
+kill_method: analytic+test

@@ -1,0 +1,12 @@
+id: L-CRM-02
+title: Localhost serve is unauthenticated by design
+description: crm serve binds 127.0.0.1 and declares auth posture none. Any local process can call the API. Do not refile as missing auth unless the listener is reachable off-loopback.
+status: closed
+severity: low
+kill_number: 0 remote bind; serve listens on 127.0.0.1 only
+kill_domain: loopback-unauthenticated-serve
+sample_table:
+    - pair: 127.0.0.1:7777/loopback
+      mid_f: "1"
+      notes: auth_posture_none
+kill_method: analytic
