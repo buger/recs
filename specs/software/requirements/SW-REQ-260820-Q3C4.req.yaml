@@ -4,8 +4,12 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & atomic_rename_completed & frontmatter_updated) | (version_mismatch & conflict_reported) | mutation_rejected)))
-description: The store shall apply field patches with a temp file and an atomic rename.
+fretish: when record_mutation_requested the store shall always satisfy 
+    (parse_budget >= 0 => ((frontmatter_sep_index >= 3) & ((temp_file_written & 
+    atomic_rename_completed & frontmatter_updated) | (version_mismatch & 
+    conflict_reported) | mutation_rejected)))
+description: The store shall update frontmatter through a temp file and rename, 
+    with a closing delimiter at index 3 or higher.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,29 +17,72 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-2SQZ
 component: store
-rationale: Atomic rename prevents torn writes. A version mismatch reports conflict.
+rationale: Atomic rename prevents torn writes. A version mismatch reports 
+    conflict.
 tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-2SQZ
+      - SYS-REQ-260820-2SQZ
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'Patch SW requires temp write, atomic rename, and conflict report;
+            shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-Q3C4;
+            pair ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4]'
+        reviewed_at: "2026-08-20T19:24:29.722669Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'Patch SW requires temp write, atomic rename, and conflict report;
+            shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-Q3C4;
+            pair ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4]'
+        reviewed_at: "2026-08-20T19:24:29.722669Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'Patch SW requires temp write, atomic rename, and conflict report;
+            shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-Q3C4;
+            pair ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4]'
+        reviewed_at: "2026-08-20T19:24:29.722669Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
+        reviewer: agent:grok
+        reason: 'System create/show/list requires stable id and type; shared parse_budget
+            does not merge it with init or patch. [owner SW-REQ-260820-Q3C4; pair
+            ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C]'
+        reviewed_at: "2026-08-20T19:24:30.275834Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34
+        reviewer: agent:grok
+        reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget
+            does not merge it with create or patch. [owner SW-REQ-260820-Q3C4; pair
+            ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34]'
+        reviewed_at: "2026-08-20T19:24:30.504223Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:11:06Z"
+    last_modified_at: "2026-08-20T19:23:51Z"
+obligation_checklist:
+  - atomicity
+  - concurrent
+  - error_handling
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:53Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:53Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

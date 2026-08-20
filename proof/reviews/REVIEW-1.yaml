@@ -1,0 +1,11 @@
+id: REVIEW-1
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:32Z"
+subject: SW-REQ-260820-6EVX
+decision: approved
+comment: Parse rejects empty expr and unknown operators, then maps = < > contains in to clause ops; clause_count is the regex match count so it cannot exceed expr_len. App.Query loads records and Filter applies those clauses or returns query_rejected.
+citations:
+    - internal/query/query.go:23@Parse
+    - internal/app/app.go:108@Query
+    - internal/query/query_test.go:10@TestQueryAndSearch

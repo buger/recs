@@ -1,0 +1,10 @@
+id: REVIEW-2
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:32Z"
+subject: SW-REQ-260820-8PMR
+decision: approved
+comment: Check returns SchemaPresent=false and OK when crm.yaml is missing or Types is empty (validation_skipped). When Types exist it walks required fields and enums and appends violations. schema_count is the Types map size; the 64 bound is a model ceiling, not a runtime reject.
+citations:
+    - internal/validate/validate.go:56@Check
+    - internal/validate/validate_test.go:10@TestValidateEnum

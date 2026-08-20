@@ -1,0 +1,11 @@
+id: REVIEW-3
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:32Z"
+subject: SW-REQ-260820-8ZS7
+decision: approved
+comment: Listen binds tcp localhost port then http.Serve Handler. Handler serves /api/records through app.List/Create and embeds static/index.html. listen_port is the CLI --port integer. The formula requires listen_port <= 65535, localhost bind, default or custom port, and static UI from the embed.
+citations:
+    - internal/serve/serve.go:20@Listen
+    - internal/serve/serve.go:29@Handler
+    - internal/cli/cli_test.go:49@TestServeUsesAppLayer

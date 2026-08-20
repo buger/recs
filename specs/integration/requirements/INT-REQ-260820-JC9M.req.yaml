@@ -4,8 +4,11 @@ status: review
 priority: shall
 category: interface
 req_type: guarantee
-fretish: when cli_command_dispatched the cli shall always satisfy (arg_count > 0 => ((store_api_used | query_api_used | board_api_used) & shared_record_model_used))
-description: The CLI shall call the shared application layer for store, query, and board operations.
+fretish: when cli_command_dispatched the cli shall always satisfy (arg_count > 0
+    => ((store_api_used | query_api_used | board_api_used) & 
+    shared_record_model_used))
+description: The CLI shall call the shared application layer for store, query, 
+    and board operations.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,32 +16,57 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-9J7C
 component: cli
-rationale: CLI and HTTP share one application layer. The CLI shall not bypass that layer for structured mutations.
+rationale: CLI and HTTP share one application layer. The CLI shall not bypass 
+    that layer for structured mutations.
 tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-9J7C
-        - SYS-REQ-260820-ZTC3
-        - SYS-REQ-260820-4628
-        - SYS-REQ-260820-PG9C
+      - SYS-REQ-260820-9J7C
+      - SYS-REQ-260820-ZTC3
+      - SYS-REQ-260820-4628
+      - SYS-REQ-260820-PG9C
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:29.967656Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE
+        reviewer: agent:grok
+        reason: 'Triage SW lists inbox, missing metadata, overdue, and blocker cases;
+            shared arg_count is only the CLI invocation bound. [owner INT-REQ-260820-JC9M;
+            pair ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE]'
+        reviewed_at: "2026-08-20T19:24:29.129778Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-YB5C
+        reviewer: agent:grok
+        reason: 'JSON SW requires ok-mode mutex of json vs human output; shared arg_count
+            is only an input bound. [owner INT-REQ-260820-JC9M; pair ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-YB5C]'
+        reviewed_at: "2026-08-20T19:24:29.89288Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-ZKCV
+        reviewer: agent:grok
+        reason: 'Next SW collects and sorts due actions; it is not triage listing
+            or JSON mode. [owner INT-REQ-260820-JC9M; pair ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-ZKCV]'
+        reviewed_at: "2026-08-20T19:24:29.967656Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:10:48Z"
+    last_modified_at: "2026-08-20T19:23:52Z"
+obligation_checklist:
+  - nominal
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:51Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:51Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

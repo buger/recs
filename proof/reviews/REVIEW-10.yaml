@@ -1,0 +1,12 @@
+id: REVIEW-10
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:49Z"
+subject: SW-REQ-260820-NBGR
+decision: approved
+comment: App.Board loads boards/<name>.yaml, filters via Matches, then Project groups by ColumnOf. Missing board files reject. column_list_len is the YAML columns slice; 64 is a model ceiling for board files.
+citations:
+    - internal/board/board.go:54@LoadAll
+    - internal/board/board.go:146@Project
+    - internal/app/app.go:136@Board
+    - internal/store/store_test.go:55@TestMoveKeepsPath

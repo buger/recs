@@ -4,8 +4,12 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when init_command_invoked the store shall always satisfy (parse_budget >= 0 => (workspace_dir_count > 0 & crm_yaml_written & records_dir_created & boards_dir_created & inbox_dir_created & attachments_dir_created & templates_dir_created & derived_dirs_created))
-description: The store shall write crm.yaml and the standard workspace directories during init.
+fretish: when init_command_invoked the store shall always satisfy (parse_budget 
+    >= 0 => (workspace_dir_count >= 8 & crm_yaml_written & records_dir_created &
+    boards_dir_created & inbox_dir_created & attachments_dir_created & 
+    templates_dir_created & derived_dirs_created))
+description: The store shall write crm.yaml and at least eight workspace 
+    directories during init.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,29 +17,64 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-KJ34
 component: store
-rationale: Init creates the editable workspace. Derived .crm directories stay rebuildable.
+rationale: Init creates the editable workspace. Derived .crm directories stay 
+    rebuildable.
 tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-KJ34
+      - SYS-REQ-260820-KJ34
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:30.275834Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y
+        reviewer: agent:grok
+        reason: 'Create SW requires frontmatter_sep_index >= 3 plus id and type write;
+            that is not init layout or patch atomicity. [owner SW-REQ-260820-MQF2;
+            pair ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y]'
+        reviewed_at: "2026-08-20T19:24:29.515038Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'Patch SW requires temp write, atomic rename, and conflict report;
+            shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-MQF2;
+            pair ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4]'
+        reviewed_at: "2026-08-20T19:24:29.722669Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ
+        reviewer: agent:grok
+        reason: 'System patch requires atomic rename or conflict; shared parse_budget
+            does not merge it with create or init. [owner SW-REQ-260820-MQF2; pair
+            ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ]'
+        reviewed_at: "2026-08-20T19:24:30.050143Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
+        reviewer: agent:grok
+        reason: 'System create/show/list requires stable id and type; shared parse_budget
+            does not merge it with init or patch. [owner SW-REQ-260820-MQF2; pair
+            ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C]'
+        reviewed_at: "2026-08-20T19:24:30.275834Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:11:06Z"
+    last_modified_at: "2026-08-20T19:23:51Z"
+obligation_checklist:
+  - empty_input
+  - nominal
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:53Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:53Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

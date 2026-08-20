@@ -1,5 +1,5 @@
 checklist: onboard_v1
-updated_at: "2026-08-20T19:11:25Z"
+updated_at: "2026-08-20T19:31:49Z"
 steps:
     init:
         status: confirmed
@@ -40,6 +40,41 @@ steps:
             - id: levels_connected
               status: pass
               at: "2026-08-20T19:09:29Z"
+    spec-review-1:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:23:38Z"
+        confirmed_by: agent:grok
+        note: SW children strengthened with bounds/conjuncts; STK obligations declared; ambiguity reviewed with unique reasons; exit audit 36/36 pass.
+        check_results:
+            - id: spec_lint_decomposition_adds_refinement
+              status: pass
+              at: "2026-08-20T19:23:38Z"
+            - id: spec_lint_formalization_quality
+              status: pass
+              at: "2026-08-20T19:23:38Z"
+            - id: solver_modeling_opportunity
+              status: pass
+              at: "2026-08-20T19:23:38Z"
+            - id: under_modeled_requirements_clean
+              status: pass
+              at: "2026-08-20T19:23:38Z"
+    spec-review-2:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:28:53Z"
+        confirmed_by: agent:grok
+        check_results:
+            - id: spec_lint_spec_conformance_review_grounded
+              status: pass
+              at: "2026-08-20T19:28:53Z"
+            - id: software_formalization_complete
+              status: pass
+              at: "2026-08-20T19:28:53Z"
+    surface-matrix:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:31:49Z"
+        confirmed_by: agent:grok
+        note: 'Cold unbiased extract for package crm: 0 surfaces, dual_surface_gap=0. packages.yaml prefixes cmd/crm + internal. surface_coverage pass. acceptance_criteria_witnessed logged (4 STK AC-001 missing e2e acceptance witnesses; deferred to ac-sweep).'
+        scope_key: crm
     traces-light:
         status: confirmed
         confirmed_at: "2026-08-20T19:10:24Z"

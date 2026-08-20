@@ -4,8 +4,8 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when context_requested the context shall always satisfy (relation_count >= 0 => ((seed_record_loaded & relations_resolved & related_records_assembled) | context_rejected))
-description: The context component shall load a seed record and assemble records linked by stable ids.
+fretish: when context_requested the context shall always satisfy (relation_count >= 0 => ((relation_count <= 256) & ((seed_record_loaded & relations_resolved & related_records_assembled) | context_rejected)))
+description: The context component shall load a seed record, resolve at most 256 related ids, and assemble related records.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -23,15 +23,18 @@ verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:11:20Z"
+    last_modified_at: "2026-08-20T19:23:51Z"
+obligation_checklist:
+    - error_handling
+    - nominal
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:53Z"

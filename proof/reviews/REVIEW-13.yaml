@@ -1,0 +1,11 @@
+id: REVIEW-13
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:58Z"
+subject: SW-REQ-260820-X37F
+decision: approved
+comment: Search splits the query on whitespace (term_count <= expr_len) and requires every term in searchable(), which concatenates YAML frontmatter, body, and filename. Empty query returns no matches (search_rejected).
+citations:
+    - internal/query/search.go:13@Search
+    - internal/app/app.go:117@Search
+    - internal/query/query_test.go:10@TestQueryAndSearch

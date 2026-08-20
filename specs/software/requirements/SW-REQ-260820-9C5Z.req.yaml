@@ -4,8 +4,11 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when record_status_changed the store shall always satisfy frontmatter_status_updated & !folder_relocation_required
-description: The store shall update status inside frontmatter and shall not relocate the record file.
+fretish: when record_status_changed the store shall always satisfy 
+    frontmatter_status_updated & frontmatter_updated & 
+    !folder_relocation_required
+description: The store shall update status inside frontmatter, write the 
+    frontmatter, and shall not relocate the record file.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -18,24 +21,44 @@ tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-7WT4
+      - SYS-REQ-260820-7WT4
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:30.050143Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'Patch SW requires temp write, atomic rename, and conflict report;
+            shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-9C5Z;
+            pair ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4]'
+        reviewed_at: "2026-08-20T19:24:29.722669Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ
+        reviewer: agent:grok
+        reason: 'System patch requires atomic rename or conflict; shared parse_budget
+            does not merge it with create or init. [owner SW-REQ-260820-9C5Z; pair
+            ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ]'
+        reviewed_at: "2026-08-20T19:24:30.050143Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:06:52Z"
+    last_modified_at: "2026-08-20T19:23:50Z"
+obligation_checklist:
+  - invariant_preservation
+  - nominal
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:52Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:52Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

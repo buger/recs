@@ -4,7 +4,9 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when command_completed the cli shall always satisfy (arg_count > 0 => ((json_flag_set & json_output_emitted) | (!json_flag_set & human_output_emitted)))
+fretish: when command_completed the cli shall always satisfy (arg_count > 0 => 
+    ((json_flag_set & json_output_emitted) | (!json_flag_set & 
+    human_output_emitted)))
 description: The product shall emit stable JSON when a command uses --json.
 formalization_strategy: fretish
 informal_verification:
@@ -17,28 +19,48 @@ rationale: Agents consume machine output. Human text remains the default.
 tags: []
 variables: []
 references:
-    - type: document
-      id: README.md
+  - type: document
+    id: README.md
 traces:
     satisfies:
-        - STK-REQ-260820-V5ZD
+      - STK-REQ-260820-V5ZD
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:30.597544Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C
+        reviewer: agent:grok
+        reason: 'System JSON mode is the machine output contract; shared arg_count
+            does not merge it with next or triage. [owner SYS-REQ-260820-PG9C; pair
+            ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C]'
+        reviewed_at: "2026-08-20T19:24:30.597544Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260820-PG9C
+        reviewer: agent:grok
+        reason: 'System JSON mode is the machine output contract; shared arg_count
+            does not merge it with next or triage. [owner SYS-REQ-260820-PG9C; pair
+            ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260820-PG9C]'
+        reviewed_at: "2026-08-20T19:24:30.597544Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:09Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:10:48Z"
+    last_modified_at: "2026-08-20T19:21:26Z"
+obligation_checklist:
+  - determinism
+  - nominal
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:54Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:54Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

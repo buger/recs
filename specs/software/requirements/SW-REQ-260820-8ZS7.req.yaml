@@ -4,8 +4,8 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when serve_command_invoked the serve shall always satisfy (listen_port > 0 => (http_bound_localhost & (default_port_selected | custom_port_selected) & static_ui_served))
-description: The serve component shall bind localhost, serve the static Kanban UI, and expose the record API.
+fretish: when serve_command_invoked the serve shall always satisfy (listen_port > 0 => ((listen_port <= 65535) & http_bound_localhost & (default_port_selected | custom_port_selected) & static_ui_served))
+description: The serve component shall bind a localhost port at most 65535, serve the static Kanban UI, and expose the record API.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -23,15 +23,18 @@ verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:10:48Z"
+    last_modified_at: "2026-08-20T19:23:50Z"
+obligation_checklist:
+    - error_handling
+    - nominal
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:52Z"

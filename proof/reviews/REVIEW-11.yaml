@@ -1,0 +1,12 @@
+id: REVIEW-11
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:58Z"
+subject: SW-REQ-260820-Q3C4
+decision: approved
+comment: Patch flocks the id, compares ifVersion to Record.Version() sha256, then Write writes path.tmp and rename. rec.Bytes() always emits --- so frontmatter_sep_index is at least 3. Mismatch returns ErrConflict; enum failure is mutation_rejected.
+citations:
+    - internal/store/store.go:309@Patch
+    - internal/store/store.go:282@Write
+    - internal/record/record.go:227@Version
+    - internal/store/store_test.go:28@TestCreateShowPatch

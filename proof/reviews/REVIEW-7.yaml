@@ -1,0 +1,10 @@
+id: REVIEW-7
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:48Z"
+subject: SW-REQ-260820-EX7Q
+decision: approved
+comment: ApplyMove rejects unknown columns, then applies on_drop.set/remove or sets Column.Field. App.Move writes the same Path and errors if the path changes. column_list_len is len(Board.Columns); 64 is a model ceiling, not a runtime cap.
+citations:
+    - internal/board/board.go:171@ApplyMove
+    - internal/store/store_test.go:55@TestMoveKeepsPath

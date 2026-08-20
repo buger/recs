@@ -1,0 +1,11 @@
+id: REVIEW-8
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:48Z"
+subject: SW-REQ-260820-MQF2
+decision: approved
+comment: Store.Init mkdirs records/*, boards, inbox, attachments, templates, and .crm/{index,cache,runtime/locks} then defaults.WriteWorkspace writes crm.yaml. That is more than eight workspace dirs, matching workspace_dir_count >= 8.
+citations:
+    - internal/store/store.go:78@Init
+    - internal/app/app.go:58@Init
+    - internal/store/store_test.go:14@TestInitCreatesLayout

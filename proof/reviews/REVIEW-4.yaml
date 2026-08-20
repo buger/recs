@@ -1,0 +1,11 @@
+id: REVIEW-4
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:32Z"
+subject: SW-REQ-260820-9C5Z
+decision: approved
+comment: Write serializes rec.Bytes() to path.tmp then rename onto the same Path. Patch/Set change Fields including status and call Write; App.Move refuses if Path changes. Status lives in frontmatter only; no folder relocation on status change.
+citations:
+    - internal/store/store.go:282@Write
+    - internal/store/store.go:309@Patch
+    - internal/store/store_test.go:54

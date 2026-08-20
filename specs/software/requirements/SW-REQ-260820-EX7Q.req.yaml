@@ -4,8 +4,11 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when move_requested the board shall always satisfy (matcher_depth >= 0 => ((column_list_len > 0) & ((column_known & frontmatter_field_updated & file_path_unchanged) | move_rejected)))
-description: The board component shall apply on_drop sets or the column field and keep the file path.
+fretish: when move_requested the board shall always satisfy (matcher_depth >= 0 
+    => ((column_list_len > 0) & (column_list_len <= 64) & ((column_known & 
+    frontmatter_field_updated & file_path_unchanged) | move_rejected)))
+description: The board component shall apply on_drop sets or the column field, 
+    keep the file path, and accept at most 64 columns.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -18,24 +21,50 @@ tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-BVBE
+      - SYS-REQ-260820-BVBE
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:30.196551Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q
+        reviewer: agent:grok
+        reason: 'Move SW adds column_list_len <= 64 and keeps file_path_unchanged;
+            it is not the board-view grouping requirement. [owner SW-REQ-260820-EX7Q;
+            pair ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q]'
+        reviewed_at: "2026-08-20T19:24:29.24388Z"
+      - check: ambiguity
+        issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR
+        reviewer: agent:grok
+        reason: 'Board-view SW groups by column field with column_list_len <= 64;
+            it is not the move path that shares matcher_depth. [owner SW-REQ-260820-EX7Q;
+            pair ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR]'
+        reviewed_at: "2026-08-20T19:24:29.634329Z"
+      - check: ambiguity
+        issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628
+        reviewer: agent:grok
+        reason: 'System board view is a matcher projection; shared matcher bounds
+            do not merge it with move. [owner SW-REQ-260820-EX7Q; pair ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628]'
+        reviewed_at: "2026-08-20T19:24:30.196551Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:30Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:11:07Z"
+    last_modified_at: "2026-08-20T19:23:51Z"
+obligation_checklist:
+  - error_handling
+  - nominal
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:53Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:53Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

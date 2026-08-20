@@ -1,0 +1,10 @@
+id: REVIEW-5
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:33Z"
+subject: SW-REQ-260820-BNR7
+decision: approved
+comment: Rebuild scans the recs slice from Store.LoadAll and writes only .crm/index/*.json via temp+rename. It never opens or rewrites records/*.md, so canonical_state_mutated is false and index_is_canonical is false.
+citations:
+    - internal/index/index.go:21@Rebuild
+    - internal/index/index_test.go:12@TestIndexAndContext

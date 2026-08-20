@@ -26,15 +26,18 @@ verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:11:20Z"
+    last_modified_at: "2026-08-20T19:23:49Z"
+obligation_checklist:
+    - error_handling
+    - nominal
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:53Z"

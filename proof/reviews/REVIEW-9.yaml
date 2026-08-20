@@ -1,0 +1,12 @@
+id: REVIEW-9
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:48Z"
+subject: SW-REQ-260820-N02Y
+decision: approved
+comment: Parse requires a leading --- so the closing delimiter index is at least 3. Create assigns SlugID, writes type/id/timestamps, then Write emits YAML frontmatter plus body. Missing type or a colliding id is create_rejected.
+citations:
+    - internal/record/record.go:27@Parse
+    - internal/store/store.go:246@Create
+    - internal/app/app.go:61@Create
+    - internal/store/store_test.go:28@TestCreateShowPatch

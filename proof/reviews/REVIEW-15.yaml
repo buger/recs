@@ -1,0 +1,10 @@
+id: REVIEW-15
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:58Z"
+subject: SW-REQ-260820-ZKCV
+decision: approved
+comment: Next collects open tasks and next_action fields, then sorts by date and priorityRank. Empty workspace yields next_empty. CLI requires the next verb so arg_count >= 1.
+citations:
+    - internal/app/app.go:201@Next
+    - internal/cli/cli_test.go:19@TestCLIJSONAndTriage

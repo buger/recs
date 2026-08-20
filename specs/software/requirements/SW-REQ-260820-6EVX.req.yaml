@@ -4,8 +4,12 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when query_expression_received the query shall always satisfy (expr_len > 0 => ((clause_count > 0) & (((operator_eq_applied | operator_cmp_applied | operator_contains_applied | operator_in_applied) & records_filtered) | query_rejected)))
-description: The query engine shall parse simple field operators and filter loaded records.
+fretish: when query_expression_received the query shall always satisfy (expr_len
+    > 0 => ((clause_count > 0) & (clause_count <= expr_len) & 
+    (((operator_eq_applied | operator_cmp_applied | operator_contains_applied | 
+    operator_in_applied) & records_filtered) | query_rejected)))
+description: The query engine shall parse field operators, bound clause count by
+    expression length, and filter records.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -18,24 +22,44 @@ tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-ZTC3
+      - SYS-REQ-260820-ZTC3
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:30.43733Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F
+        reviewer: agent:grok
+        reason: 'Search SW adds term_count <= expr_len and scans body plus filename;
+            it is not the structured query operator requirement. [owner SW-REQ-260820-6EVX;
+            pair ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F]'
+        reviewed_at: "2026-08-20T19:24:29.826669Z"
+      - check: ambiguity
+        issue_key: ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH
+        reviewer: agent:grok
+        reason: 'System search scans frontmatter, body, and filename; shared expr_len
+            does not merge it with query operators. [owner SW-REQ-260820-6EVX; pair
+            ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH]'
+        reviewed_at: "2026-08-20T19:24:30.43733Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:11:06Z"
+    last_modified_at: "2026-08-20T19:23:50Z"
+obligation_checklist:
+  - determinism
+  - malformed_input
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:52Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:52Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

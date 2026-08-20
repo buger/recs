@@ -4,8 +4,11 @@ status: review
 priority: shall
 category: interface
 req_type: guarantee
-fretish: when index_rebuild_requested the index shall always satisfy (record_count >= 0 => (store_records_scanned & index_files_rewritten & !canonical_state_mutated))
-description: Index rebuild shall scan store records, rewrite derived files, and leave canonical records unchanged.
+fretish: when index_rebuild_requested the index shall always satisfy 
+    (record_count >= 0 => (store_records_scanned & index_files_rewritten & 
+    !canonical_state_mutated))
+description: Index rebuild shall scan store records, rewrite derived files, and 
+    leave canonical records unchanged.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,29 +16,42 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-Q8GR
 component: index
-rationale: The index is disposable cache. Canonical Markdown files stay the source of truth.
+rationale: The index is disposable cache. Canonical Markdown files stay the 
+    source of truth.
 tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-Q8GR
+      - SYS-REQ-260820-Q8GR
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:29.061156Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7
+        reviewer: agent:grok
+        reason: 'Index SW adds store_records_scanned and !canonical_state_mutated;
+            that is a software rebuild rule, not the INT rewrite contract. [owner
+            INT-REQ-260820-2JKK; pair ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7]'
+        reviewed_at: "2026-08-20T19:24:29.061156Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:32Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:11:20Z"
+    last_modified_at: "2026-08-20T19:23:52Z"
+obligation_checklist:
+  - idempotency
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:51Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:51Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

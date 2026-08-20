@@ -1,0 +1,11 @@
+id: REVIEW-6
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:48Z"
+subject: SW-REQ-260820-D5WE
+decision: approved
+comment: Triage walks LoadAll and emits inbox, missing_metadata, overdue, and blocker items, or an empty slice. Inbox is a narrower status/path filter. CLI dispatch requires the triage verb so arg_count is at least 1.
+citations:
+    - internal/app/app.go:244@Triage
+    - internal/app/app.go:306@Inbox
+    - internal/cli/cli_test.go:19@TestCLIJSONAndTriage

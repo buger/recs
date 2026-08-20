@@ -4,8 +4,12 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when init_command_invoked the store shall always satisfy (parse_budget >= 0 => (workspace_dir_count > 0 & crm_yaml_written & records_dir_created & boards_dir_created & inbox_dir_created & attachments_dir_created & templates_dir_created & derived_dirs_created))
-description: The product shall create a workspace layout when the operator runs crm init.
+fretish: when init_command_invoked the store shall always satisfy (parse_budget 
+    >= 0 => (workspace_dir_count > 0 & crm_yaml_written & records_dir_created & 
+    boards_dir_created & inbox_dir_created & attachments_dir_created & 
+    templates_dir_created & derived_dirs_created))
+description: The product shall create a workspace layout when the operator runs 
+    crm init.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,32 +17,68 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-KAGT
 component: store
-rationale: A workspace needs crm.yaml, records, boards, inbox, attachments, templates, and derived cache directories.
+rationale: A workspace needs crm.yaml, records, boards, inbox, attachments, 
+    templates, and derived cache directories.
 tags: []
 variables: []
 references:
-    - type: document
-      id: README.md
+  - type: document
+    id: README.md
 traces:
     satisfies:
-        - STK-REQ-260820-T8AZ
+      - STK-REQ-260820-T8AZ
+      - STK-REQ-260820-KAGT
 verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: pending
-        reviewer: ""
-        reviewed_at: ""
+        status: in_review
+        reviewer: agent:grok
+        reviewed_at: "2026-08-20T19:30:00Z"
         ai_generated: false
+    gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-KJ34
+        reviewer: agent:grok
+        reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget
+            does not merge it with create or patch. [owner SYS-REQ-260820-KJ34; pair
+            ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-KJ34]'
+        reviewed_at: "2026-08-20T19:24:30.504223Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34
+        reviewer: agent:grok
+        reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget
+            does not merge it with create or patch. [owner SYS-REQ-260820-KJ34; pair
+            ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34]'
+        reviewed_at: "2026-08-20T19:24:30.504223Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-KJ34
+        reviewer: agent:grok
+        reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget
+            does not merge it with create or patch. [owner SYS-REQ-260820-KJ34; pair
+            ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-KJ34]'
+        reviewed_at: "2026-08-20T19:24:30.504223Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34
+        reviewer: agent:grok
+        reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget
+            does not merge it with create or patch. [owner SYS-REQ-260820-KJ34; pair
+            ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34]'
+        reviewed_at: "2026-08-20T19:24:30.504223Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:07Z"
     last_modified_by: human:cli
-    last_modified_at: "2026-08-20T19:11:06Z"
+    last_modified_at: "2026-08-20T19:21:26Z"
+obligation_checklist:
+  - empty_input
+  - nominal
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:54Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:54Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

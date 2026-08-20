@@ -1,0 +1,6 @@
+packages:
+  crm:
+    prefixes:
+      - cmd/crm
+      - internal
+    extra_prefixes: []

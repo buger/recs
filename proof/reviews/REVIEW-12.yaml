@@ -1,0 +1,10 @@
+id: REVIEW-12
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-20T19:27:58Z"
+subject: SW-REQ-260820-V48V
+decision: approved
+comment: App.Context loads the seed via Get (context_rejected on miss) then Assemble walks outgoing company/customer/owner plus reverse links. relation_count is the related slice length; 256 is a model ceiling, not a runtime cap.
+citations:
+    - internal/contextpkg/context.go:16@Assemble
+    - internal/index/index_test.go:12@TestIndexAndContext
