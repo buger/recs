@@ -1,5 +1,5 @@
 checklist: onboard_v1
-updated_at: "2026-08-20T19:45:58Z"
+updated_at: "2026-08-20T20:16:17Z"
 steps:
     ac-sweep:
         status: confirmed
@@ -27,6 +27,31 @@ steps:
             - id: obligation_witness_grounded
               status: pass
               at: "2026-08-20T19:45:58Z"
+    coverage:
+        status: confirmed
+        confirmed_at: "2026-08-20T20:15:10Z"
+        confirmed_by: agent:grok
+        note: 'code_mcdc_coverage PASS: 375/375 decisions, 440/440 conditions, 0 incomplete functions (23 classified defensive ignores). mcdc_coverage PASS. mcdc_ignore_classified PASS. go test ./... green. Honest debt unchanged: 4 deferred obligations + 4 nominal exemptions.'
+        scope_key: crm
+        check_results:
+            - id: code_mcdc_coverage
+              status: pass
+              at: "2026-08-20T20:15:10Z"
+            - id: code_mcdc_measure
+              status: pass
+              at: "2026-08-20T20:15:10Z"
+    debt-standing:
+        status: confirmed
+        confirmed_at: "2026-08-20T20:16:17Z"
+        confirmed_by: agent:grok
+        note: 'Handoff to continuous pipeline. Standing honest debt (left in place): 4 deferred obligations (invariant_preservation lemmas on SYS-REQ-260820-7WT4/SW-REQ-260820-9C5Z; concurrent race-lane on SYS-REQ-260820-2SQZ/SW-REQ-260820-Q3C4) and 4 reviewer-stamped nominal exemptions. KI-1 Cosmopolitan APE packaging remains open/low/ship_with_known_issue. 5 residuals closed. code_mcdc_coverage 100% decisions/conditions. process_checklist should now be complete.'
+        check_results:
+            - id: known_issues_reviewed
+              status: pass
+              at: "2026-08-20T20:16:17Z"
+            - id: waivers_reviewed
+              status: pass
+              at: "2026-08-20T20:16:17Z"
     hazard:
         status: confirmed
         confirmed_at: "2026-08-20T19:41:28Z"
@@ -37,6 +62,18 @@ steps:
             - id: spec_lint_hazard_consequence
               status: pass
               at: "2026-08-20T19:41:28Z"
+    history-mine:
+        status: confirmed
+        confirmed_at: "2026-08-20T20:15:56Z"
+        confirmed_by: agent:grok
+        note: 'Mined git log through ef8e9a1. Product behavior changes: ac26d14 (inbox/agent/templates/enum JSON — feature, existing CHG-260820-BVSR) and a6adf86 (path confinement, HTTP body bound, Origin CSRF — already residualized L-CRM-01..05 and obligation-hardened). Later commits are tests/specs/coverage, not new defects. problem_reports_reviewed PASS (no open DEFECT stubs fabricated). change_evidence_complete PASS. residual_kill_hygiene PASS (5). No P0 vectors.'
+        check_results:
+            - id: problem_reports_reviewed
+              status: pass
+              at: "2026-08-20T20:15:56Z"
+            - id: change_evidence_complete
+              status: pass
+              at: "2026-08-20T20:15:56Z"
     init:
         status: confirmed
         confirmed_at: "2026-08-20T19:09:25Z"
