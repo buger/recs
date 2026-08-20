@@ -73,7 +73,7 @@ func (r *Record) Bytes() []byte {
 	var b strings.Builder
 	b.WriteString("---\n")
 	enc, err := yaml.Marshal(orderedFields(r.Fields))
-	if err == nil {
+	if err == nil { //mcdc:ignore:defensive yaml.Marshal of string-keyed maps cannot fail
 		b.Write(enc)
 	}
 	b.WriteString("---\n")

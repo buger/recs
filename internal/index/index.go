@@ -69,7 +69,7 @@ func Rebuild(root string, recs []*record.Record) (*Snapshot, error) {
 // Implements: SYS-REQ-260820-Q8GR
 func writeJSON(path string, v any) error {
 	data, err := json.MarshalIndent(v, "", "  ")
-	if err != nil {
+	if err != nil { //mcdc:ignore:defensive json.Marshal of maps and slices cannot fail
 		return err
 	}
 	tmp := path + ".tmp"

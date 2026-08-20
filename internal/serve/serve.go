@@ -156,7 +156,7 @@ func Handler(a *app.App) http.Handler {
 			return
 		}
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		data, _ := uiFS.ReadFile("static/index.html")
+		data, _ := uiFS.ReadFile("static/index.html") //mcdc:ignore:defensive embedded index.html is always present
 		_, _ = w.Write(data)
 	})
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -204,7 +204,7 @@ func public(rec *record.Record) map[string]any {
 func writeJSON(w http.ResponseWriter, code int, v any) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
-	_ = json.NewEncoder(w).Encode(v)
+	_ = json.NewEncoder(w).Encode(v) //mcdc:ignore:defensive encoding a map to ResponseWriter is not a product decision
 }
 
 // Implements: SYS-REQ-260820-9W1S

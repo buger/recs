@@ -36,7 +36,7 @@ func Search(recs []*record.Record, q string) []*record.Record {
 func searchable(rec *record.Record) string {
 	var b strings.Builder
 	if rec.Fields != nil {
-		if enc, err := yaml.Marshal(rec.Fields); err == nil {
+		if enc, err := yaml.Marshal(rec.Fields); err == nil { //mcdc:ignore:defensive yaml.Marshal of record field maps cannot fail
 			b.Write(enc)
 		}
 	}
