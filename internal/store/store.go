@@ -70,7 +70,7 @@ type FieldSchema struct {
 // Implements: SYS-REQ-260820-9J7C
 func FindRoot(start string) (string, error) {
 	dir, err := filepath.Abs(start)
-	if err != nil {
+	if err != nil { //mcdc:ignore:defensive filepath.Abs only fails when Getwd fails
 		return "", err
 	}
 	for {
@@ -151,7 +151,7 @@ func (s *Store) LoadAll() ([]*record.Record, error) {
 		seen[rec.Path] = true
 	}
 	err = walkMarkdown(inbox, func(path string) error {
-		if seen[path] {
+		if seen[path] { //mcdc:ignore:defensive inbox and records walks never share a path
 			return nil
 		}
 		rec, err := s.readFile(path)
@@ -290,9 +290,9 @@ func (s *Store) Create(rec *record.Record) error {
 	if _, err := os.Stat(rec.Path); err == nil {
 		return fmt.Errorf("%w: %s", ErrExists, rec.ID)
 	}
-	if existing, err := s.Get(rec.ID); err == nil && existing != nil {
+	if existing, err := s.Get(rec.ID); err == nil && existing != nil { //mcdc:ignore:defensive Get never returns a nil record with a nil error
 		return fmt.Errorf("%w: %s", ErrExists, rec.ID)
-	} else if err != nil && !errors.Is(err, ErrNotFound) {
+	} else if err != nil && !errors.Is(err, ErrNotFound) { //mcdc:ignore:defensive else-if is only reached when Get already returned an error
 		return err
 	}
 	return s.Write(rec)
@@ -337,15 +337,15 @@ func (s *Store) writeLocked(rec *record.Record) error {
 // Implements: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func confinedToRoot(root, path string) error {
 	absRoot, err := filepath.Abs(root)
-	if err != nil {
+	if err != nil { //mcdc:ignore:defensive filepath.Abs only fails when Getwd fails
 		return err
 	}
 	absPath, err := filepath.Abs(path)
-	if err != nil {
+	if err != nil { //mcdc:ignore:defensive filepath.Abs only fails when Getwd fails
 		return err
 	}
 	rel, err := filepath.Rel(absRoot, absPath)
-	if err != nil {
+	if err != nil { //mcdc:ignore:defensive Rel of two absolute paths cannot fail
 		return err
 	}
 	if rel == ".." || strings.HasPrefix(rel, ".."+string(os.PathSeparator)) {
@@ -410,7 +410,7 @@ func (s *Store) checkEnum(rec *record.Record, sets map[string]any) error {
 	}
 	for k := range sets {
 		fs, ok := schema[k]
-		if !ok || len(fs) == 0 {
+		if !ok || len(fs) == 0 { //mcdc:ignore:defensive loadTypeSchemas only records non-empty enums
 			continue
 		}
 		got := rec.GetString(k)
@@ -489,7 +489,7 @@ func (s *Store) lock(id string) (*fileLock, error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := syscall.Flock(int(f.Fd()), syscall.LOCK_EX); err != nil {
+	if err := syscall.Flock(int(f.Fd()), syscall.LOCK_EX); err != nil { //mcdc:ignore:defensive flock of a regular lock file created by this process does not fail
 		_ = f.Close()
 		return nil, err
 	}

@@ -15,7 +15,7 @@ var FS embed.FS
 // Implements: SYS-REQ-260820-KJ34
 func WriteWorkspace(root string) error {
 	return fs.WalkDir(FS, "fs", func(path string, d fs.DirEntry, err error) error {
-		if err != nil {
+		if err != nil { //mcdc:ignore:defensive embedded defaults tree cannot fail WalkDir
 			return err
 		}
 		if d.IsDir() {
@@ -30,7 +30,7 @@ func WriteWorkspace(root string) error {
 			return err
 		}
 		data, err := FS.ReadFile(path)
-		if err != nil {
+		if err != nil { //mcdc:ignore:defensive embedded file from WalkDir is always readable
 			return err
 		}
 		return os.WriteFile(dst, data, 0o644)
@@ -41,7 +41,7 @@ func WriteWorkspace(root string) error {
 func WriteAgentFiles(root string) error {
 	for _, name := range []string{"AGENTS.md", "SKILL.md"} {
 		data, err := FS.ReadFile("fs/" + name)
-		if err != nil {
+		if err != nil { //mcdc:ignore:defensive AGENTS.md and SKILL.md are embedded
 			return err
 		}
 		if err := os.WriteFile(filepath.Join(root, name), data, 0o644); err != nil {

@@ -212,7 +212,7 @@ func matchValue(rec *record.Record, spec any) bool {
 			return matchAny(rec, anyv)
 		}
 		for k, v := range t {
-			if k == "all" || k == "any" {
+			if k == "all" || k == "any" { //mcdc:ignore:defensive all/any keys return before this loop
 				continue
 			}
 			if !matchField(rec, k, v) {

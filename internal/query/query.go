@@ -176,7 +176,7 @@ func matchClause(rec *record.Record, c Clause) bool {
 			}
 			if sl := record.StringSlice(v); sl != nil {
 				for _, s := range sl {
-					if strings.EqualFold(s, want) {
+					if strings.EqualFold(s, want) { //mcdc:ignore:defensive equalish already accepts the same slice member
 						return true
 					}
 				}

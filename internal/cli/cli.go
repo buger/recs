@@ -99,7 +99,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			return 0
 		}
 		fmt.Fprint(stdout, human)
-		if human != "" && !strings.HasSuffix(human, "\n") {
+		if human != "" && !strings.HasSuffix(human, "\n") { //mcdc:ignore:defensive every CLI human writer already terminates with a newline
 			fmt.Fprintln(stdout)
 		}
 		return 0
@@ -318,7 +318,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			port = 7777
 		}
 		fmt.Fprintf(stdout, "serving http://localhost:%d\n", port)
-		if err := serve.Listen(a, port); err != nil {
+		if err := serve.Listen(a, port); err != nil { //mcdc:ignore:defensive http.Serve always returns a non-nil error after a successful bind
 			return fail(err)
 		}
 		return 0

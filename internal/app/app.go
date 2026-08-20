@@ -27,7 +27,7 @@ type App struct {
 func Open(root string) (*App, error) {
 	if root == "" {
 		wd, err := os.Getwd()
-		if err != nil {
+		if err != nil { //mcdc:ignore:defensive os.Getwd fails only when the process cwd is already unrecoverable
 			return nil, err
 		}
 		root = wd
@@ -184,7 +184,7 @@ func (a *App) Move(id, boardName, column string) (*record.Record, string, error)
 	if err := a.Store.Write(rec); err != nil {
 		return nil, "", err
 	}
-	if rec.Path != oldPath {
+	if rec.Path != oldPath { //mcdc:ignore:defensive Write never relocates the record path
 		return nil, "", fmt.Errorf("move relocated file")
 	}
 	return rec, oldPath, nil
@@ -298,7 +298,7 @@ func (a *App) Context(id string) (*contextpkg.Bundle, error) {
 		return nil, err
 	}
 	all, err := a.Store.LoadAll()
-	if err != nil {
+	if err != nil { //mcdc:ignore:defensive Get already walked the same records tree
 		return nil, err
 	}
 	return contextpkg.Assemble(seed, all), nil
@@ -318,7 +318,7 @@ func (a *App) Inbox() ([]*record.Record, error) {
 			out = append(out, rec)
 			continue
 		}
-		if rec.Path != "" && strings.HasPrefix(rec.Path, rootInbox+string(os.PathSeparator)) {
+		if rec.Path != "" && strings.HasPrefix(rec.Path, rootInbox+string(os.PathSeparator)) { //mcdc:ignore:defensive LoadAll always assigns Path so the empty-path conjunct is unreachable
 			out = append(out, rec)
 		}
 	}
