@@ -1,6 +1,19 @@
 checklist: onboard_v1
-updated_at: "2026-08-20T19:31:49Z"
+updated_at: "2026-08-20T19:33:32Z"
 steps:
+    ac-sweep:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:33:32Z"
+        confirmed_by: agent:grok
+        note: 'All 4 STKs stamped acceptance_review=reviewed. Dedicated cli acceptance tests witness AC-001. Force checks pass: acceptance_criteria_witnessed, acceptance_witness_quality, spec_lint_acceptance_review_current.'
+        scope_key: crm
+        check_results:
+            - id: acceptance_criteria_witnessed
+              status: pass
+              at: "2026-08-20T19:33:32Z"
+            - id: acceptance_witness_quality
+              status: pass
+              at: "2026-08-20T19:33:32Z"
     init:
         status: confirmed
         confirmed_at: "2026-08-20T19:09:25Z"
