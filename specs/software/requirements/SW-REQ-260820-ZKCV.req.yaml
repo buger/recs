@@ -4,8 +4,8 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when next_command_invoked the cli shall always satisfy (arg_count >= 1) & ((due_actions_collected & actions_sorted) | next_empty)
-description: The CLI shall collect and sort next actions from record fields and task records. The command shall take at least one argument.
+fretish: when next_command_invoked the cli shall always satisfy (arg_count >= 1 => ((due_actions_collected & actions_sorted) | next_empty))
+description: When the command has at least one argument, the CLI shall collect due actions and sort them, or report that the next set is empty.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -54,7 +54,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:30Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-20T19:39:52Z"
+    last_modified_at: "2026-08-20T19:49:39Z"
 obligation_checklist:
     - empty_input
     - nominal

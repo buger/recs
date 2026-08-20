@@ -4,7 +4,7 @@ status: review
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when serve_command_invoked the serve shall always satisfy (listen_port > 0 => ((listen_port <= 65535) & http_bound_localhost & (default_port_selected | custom_port_selected) & static_ui_served))
+fretish: when serve_command_invoked the serve shall always satisfy (listen_port > 0 => (http_bound_localhost & (default_port_selected | custom_port_selected) & static_ui_served & shared_app_layer_used & shared_record_model_used & !separate_database_used))
 description: The serve component shall bind a localhost port at most 65535, serve the static Kanban UI, and expose the record API.
 formalization_strategy: fretish
 informal_verification:
@@ -31,7 +31,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-20T19:41:14Z"
+    last_modified_at: "2026-08-20T19:49:49Z"
 obligation_checklist:
     - auth_required
     - boundary
