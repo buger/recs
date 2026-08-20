@@ -1,0 +1,119 @@
+component: store
+variables:
+    - name: init_command_invoked
+      type: bool
+      direction: input
+      description: Decide condition init command invoked.
+    - name: record_create_requested
+      type: bool
+      direction: input
+      description: Decide condition record create requested.
+    - name: record_mutation_requested
+      type: bool
+      direction: input
+      description: Decide condition record mutation requested.
+    - name: record_status_changed
+      type: bool
+      direction: input
+      description: Decide condition record status changed.
+    - name: crm_yaml_written
+      type: bool
+      direction: output
+      description: Decide condition crm yaml written.
+    - name: records_dir_created
+      type: bool
+      direction: output
+      description: Decide condition records dir created.
+    - name: boards_dir_created
+      type: bool
+      direction: output
+      description: Decide condition boards dir created.
+    - name: inbox_dir_created
+      type: bool
+      direction: output
+      description: Decide condition inbox dir created.
+    - name: attachments_dir_created
+      type: bool
+      direction: output
+      description: Decide condition attachments dir created.
+    - name: templates_dir_created
+      type: bool
+      direction: output
+      description: Decide condition templates dir created.
+    - name: derived_dirs_created
+      type: bool
+      direction: output
+      description: Decide condition derived dirs created.
+    - name: record_id_assigned
+      type: bool
+      direction: output
+      description: Decide condition record id assigned.
+    - name: record_type_stored
+      type: bool
+      direction: output
+      description: Decide condition record type stored.
+    - name: frontmatter_written
+      type: bool
+      direction: output
+      description: Decide condition frontmatter written.
+    - name: markdown_body_written
+      type: bool
+      direction: output
+      description: Decide condition markdown body written.
+    - name: create_rejected
+      type: bool
+      direction: output
+      description: Decide condition create rejected.
+    - name: temp_file_written
+      type: bool
+      direction: output
+      description: Decide condition temp file written.
+    - name: atomic_rename_completed
+      type: bool
+      direction: output
+      description: Decide condition atomic rename completed.
+    - name: frontmatter_updated
+      type: bool
+      direction: output
+      description: Decide condition frontmatter updated.
+    - name: version_mismatch
+      type: bool
+      direction: output
+      description: Decide condition version mismatch.
+    - name: conflict_reported
+      type: bool
+      direction: output
+      description: Decide condition conflict reported.
+    - name: mutation_rejected
+      type: bool
+      direction: output
+      description: Decide condition mutation rejected.
+    - name: frontmatter_status_updated
+      type: bool
+      direction: output
+      description: Decide condition frontmatter status updated.
+    - name: folder_relocation_required
+      type: bool
+      direction: output
+      description: Decide condition folder relocation required.
+    - name: workspace_dir_count
+      type: int
+      direction: output
+      description: Count of workspace directories created by init.
+      range:
+        max: 32
+        min: 0
+    - name: frontmatter_sep_index
+      type: int
+      direction: output
+      description: Byte index of the closing frontmatter delimiter.
+      range:
+        max: 1e+06
+        min: -1
+    - name: parse_budget
+      type: int
+      direction: input
+      description: Maximum frontmatter scan budget in bytes.
+      range:
+        max: 1e+06
+        min: 0

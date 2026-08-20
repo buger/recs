@@ -1,0 +1,41 @@
+id: INT-REQ-260820-JRWN
+version: 1
+status: review
+priority: shall
+category: interface
+req_type: guarantee
+fretish: when board_move_committed the board shall always satisfy (matcher_depth >= 0 => ((column_list_len > 0) & store_frontmatter_write_used & !record_file_relocated))
+description: A board move shall mutate record frontmatter through the store and shall not relocate the file.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: SYS-REQ-260820-BVBE
+component: board
+rationale: The board view is not storage. The store owns the file write.
+tags: []
+variables: []
+traces:
+    satisfies:
+        - SYS-REQ-260820-BVBE
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:32Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:11:07Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:52Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

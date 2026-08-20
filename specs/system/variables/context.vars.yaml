@@ -1,0 +1,29 @@
+component: context
+variables:
+    - name: context_requested
+      type: bool
+      direction: input
+      description: Decide condition context requested.
+    - name: seed_record_loaded
+      type: bool
+      direction: output
+      description: Decide condition seed record loaded.
+    - name: relations_resolved
+      type: bool
+      direction: output
+      description: Decide condition relations resolved.
+    - name: related_records_assembled
+      type: bool
+      direction: output
+      description: Decide condition related records assembled.
+    - name: context_rejected
+      type: bool
+      direction: output
+      description: Decide condition context rejected.
+    - name: relation_count
+      type: int
+      direction: input
+      description: Count of related ids collected for a seed record.
+      range:
+        max: 256
+        min: 0

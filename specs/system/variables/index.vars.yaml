@@ -1,0 +1,33 @@
+component: index
+variables:
+    - name: index_rebuild_requested
+      type: bool
+      direction: input
+      description: Decide condition index rebuild requested.
+    - name: index_rebuilt_from_records
+      type: bool
+      direction: output
+      description: Decide condition index rebuilt from records.
+    - name: index_is_canonical
+      type: bool
+      direction: output
+      description: Decide condition index is canonical.
+    - name: store_records_scanned
+      type: bool
+      direction: output
+      description: Decide condition store records scanned.
+    - name: index_files_rewritten
+      type: bool
+      direction: output
+      description: Decide condition index files rewritten.
+    - name: canonical_state_mutated
+      type: bool
+      direction: output
+      description: Decide condition canonical state mutated.
+    - name: record_count
+      type: int
+      direction: input
+      description: Count of records scanned while rebuilding the index.
+      range:
+        max: 100000
+        min: 0

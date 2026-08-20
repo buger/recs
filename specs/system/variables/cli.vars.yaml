@@ -1,0 +1,92 @@
+component: cli
+variables:
+    - name: next_command_invoked
+      type: bool
+      direction: input
+      description: Decide condition next command invoked.
+    - name: triage_command_invoked
+      type: bool
+      direction: input
+      description: Decide condition triage command invoked.
+    - name: command_completed
+      type: bool
+      direction: input
+      description: Decide condition command completed.
+    - name: json_flag_set
+      type: bool
+      direction: input
+      description: Decide condition json flag set.
+    - name: due_actions_collected
+      type: bool
+      direction: output
+      description: Decide condition due actions collected.
+    - name: actions_sorted
+      type: bool
+      direction: output
+      description: Decide condition actions sorted.
+    - name: next_empty
+      type: bool
+      direction: output
+      description: Decide condition next empty.
+    - name: inbox_items_listed
+      type: bool
+      direction: output
+      description: Decide condition inbox items listed.
+    - name: missing_metadata_listed
+      type: bool
+      direction: output
+      description: Decide condition missing metadata listed.
+    - name: overdue_actions_listed
+      type: bool
+      direction: output
+      description: Decide condition overdue actions listed.
+    - name: blockers_listed
+      type: bool
+      direction: output
+      description: Decide condition blockers listed.
+    - name: triage_empty
+      type: bool
+      direction: output
+      description: Decide condition triage empty.
+    - name: json_output_emitted
+      type: bool
+      direction: output
+      description: Decide condition json output emitted.
+    - name: human_output_emitted
+      type: bool
+      direction: output
+      description: Decide condition human output emitted.
+    - name: cli_command_dispatched
+      type: bool
+      direction: input
+      description: Decide condition cli command dispatched.
+    - name: store_api_used
+      type: bool
+      direction: output
+      description: Decide condition store api used.
+    - name: query_api_used
+      type: bool
+      direction: output
+      description: Decide condition query api used.
+    - name: board_api_used
+      type: bool
+      direction: output
+      description: Decide condition board api used.
+    - name: shared_record_model_used
+      type: bool
+      direction: output
+      description: Decide condition shared record model used.
+    - name: arg_count
+      type: int
+      direction: input
+      description: Count of CLI arguments after the program name.
+      range:
+        max: 256
+        min: 0
+domain:
+    mutex:
+        - name: output_mode
+          members:
+            - json_output_emitted
+            - human_output_emitted
+          reason: A command emits JSON output or human text, not both.

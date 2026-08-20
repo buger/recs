@@ -1,0 +1,60 @@
+id: STK-REQ-260820-V5ZD
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: ''
+description: The product shall provide a deterministic CLI with stable JSON output.
+formalization_strategy: informal
+informal_verification:
+  method: ''
+  evidence: ''
+  verified: false
+component: agent_operator
+rationale: An agent uses structured commands. The agent shall not parse unstable human
+  text.
+tags: []
+variables: []
+references:
+- type: document
+  id: README.md
+traces: {}
+verification:
+  assurance_level: E
+  formalization_status: none
+  review:
+    status: pending
+    reviewer: ''
+    reviewed_at: ''
+    ai_generated: false
+history:
+  created_by: human:cli
+  created_at: '2026-08-20T18:59:33Z'
+  last_modified_by: human:cli
+  last_modified_at: '2026-08-20T19:08:08Z'
+stakeholder:
+  persona: agent_operator
+  story: As an agent_operator, I want stable JSON so that I can automate CRM work.
+  acceptance_criteria:
+  - id: AC-001
+    text: A command with --json emits a JSON object with an ok field.
+    verification_method: test
+    derived_reqs:
+    - SYS-REQ-260820-9J7C
+    - SYS-REQ-260820-2SQZ
+    - SYS-REQ-260820-ZTC3
+    - SYS-REQ-260820-HJPH
+    - SYS-REQ-260820-BVBE
+    - SYS-REQ-260820-5C9D
+    - SYS-REQ-260820-DCG4
+    - SYS-REQ-260820-YWV4
+    - SYS-REQ-260820-0TQX
+    - SYS-REQ-260820-PG9C
+lifecycle:
+  change_history:
+  - date: '2026-08-20T19:06:52Z'
+    from: draft
+    to: review
+    reason: ''
+    changed_by: human:cli

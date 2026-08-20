@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>CRM boards</title>
+<style>
+body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 0; background: #0f1419; color: #e7ecf1; }
+header { padding: 16px 24px; border-bottom: 1px solid #243040; display: flex; gap: 16px; align-items: center; }
+select, input { background: #1b2430; color: #e7ecf1; border: 1px solid #314055; padding: 6px 10px; border-radius: 6px; }
+#board { display: flex; gap: 12px; padding: 16px; overflow-x: auto; align-items: flex-start; }
+.col { min-width: 220px; background: #151c25; border: 1px solid #243040; border-radius: 10px; padding: 10px; }
+.col h3 { margin: 0 0 10px; font-size: 14px; color: #9fb0c3; }
+.card { background: #1c2734; border: 1px solid #314055; border-radius: 8px; padding: 10px; margin-bottom: 8px; cursor: grab; }
+.card small { color: #8aa0b5; }
+</style>
+</head>
+<body>
+<header>
+  <strong>File-native CRM</strong>
+  <select id="boards"></select>
+  <input id="q" placeholder="search"/>
+</header>
+<div id="board"></div>
+<script>
+const boardsEl = document.getElementById('boards');
+const boardEl = document.getElementById('board');
+const qEl = document.getElementById('q');
+async function loadBoards() {
+  const r = await fetch('/api/boards');
+  const j = await r.json();
+  boardsEl.innerHTML = (j.boards||[]).map(b => `<option value="${b.id}">${b.name}</option>`).join('');
+  if (j.boards && j.boards[0]) loadBoard(j.boards[0].id);
+}
+async function loadBoard(id) {
+  const r = await fetch('/api/boards/' + id);
+  const j = await r.json();
+  boardEl.innerHTML = '';
+  (j.columns||[]).forEach(col => {
+    const d = document.createElement('div');
+    d.className = 'col';
+    d.dataset.col = col.id;
+    d.innerHTML = `<h3>${col.title}</h3>`;
+    d.addEventListener('dragover', e => e.preventDefault());
+    d.addEventListener('drop', async e => {
+      e.preventDefault();
+      const rid = e.dataTransfer.getData('id');
+      await fetch('/api/boards/' + id + '/move', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id: rid, column: col.id})});
+      loadBoard(id);
+    });
+    (col.records||[]).forEach(rec => {
+      const c = document.createElement('div');
+      c.className = 'card';
+      c.draggable = true;
+      c.innerHTML = `<div>${rec.title||rec.id}</div><small>${rec.id}</small>`;
+      c.addEventListener('dragstart', e => e.dataTransfer.setData('id', rec.id));
+      d.appendChild(c);
+    });
+    boardEl.appendChild(d);
+  });
+}
+boardsEl.addEventListener('change', () => loadBoard(boardsEl.value));
+qEl.addEventListener('keydown', async e => {
+  if (e.key !== 'Enter') return;
+  const r = await fetch('/api/search?q=' + encodeURIComponent(qEl.value));
+  const j = await r.json();
+  boardEl.innerHTML = `<div class="col"><h3>Search</h3>${(j.records||[]).map(rec => `<div class="card"><div>${rec.title}</div><small>${rec.id}</small></div>`).join('')}</div>`;
+});
+loadBoards();
+</script>
+</body>
+</html>

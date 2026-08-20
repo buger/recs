@@ -1,0 +1,41 @@
+id: SW-REQ-260820-YB5C
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when command_completed the cli shall always satisfy (arg_count > 0 => ((json_flag_set & json_output_emitted) | (!json_flag_set & human_output_emitted)))
+description: The CLI shall emit JSON objects when --json is set and human text otherwise.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: SYS-REQ-260820-PG9C
+component: cli
+rationale: JSON keys stay stable for agents. Human output stays readable.
+tags: []
+variables: []
+traces:
+    satisfies:
+        - SYS-REQ-260820-PG9C
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:31Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:10:48Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:53Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

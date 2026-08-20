@@ -1,0 +1,40 @@
+component: validate
+variables:
+    - name: validate_command_invoked
+      type: bool
+      direction: input
+      description: Decide condition validate command invoked.
+    - name: schema_missing
+      type: bool
+      direction: input
+      description: Decide condition schema missing.
+    - name: schema_present
+      type: bool
+      direction: input
+      description: Decide condition schema present.
+    - name: validation_skipped
+      type: bool
+      direction: output
+      description: Decide condition validation skipped.
+    - name: records_valid
+      type: bool
+      direction: output
+      description: Decide condition records valid.
+    - name: violations_reported
+      type: bool
+      direction: output
+      description: Decide condition violations reported.
+    - name: schema_count
+      type: int
+      direction: input
+      description: Count of optional type schemas.
+      range:
+        max: 64
+        min: 0
+domain:
+    mutex:
+        - name: schema_presence
+          members:
+            - schema_missing
+            - schema_present
+          reason: A type schema is either missing or present.

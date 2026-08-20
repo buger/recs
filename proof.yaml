@@ -1,0 +1,115 @@
+project:
+    name: crm
+    purpose: File-native Agent CRM with Markdown records, CLI, boards, and local serve
+    scope: Phase 1 file-native CRM verification
+    specs:
+        - path: specs/stakeholder
+          prefix: STK-REQ
+          type: stakeholder
+        - path: specs/system
+          prefix: SYS-REQ
+          type: system
+          parent_spec: specs/stakeholder
+        - path: specs/software
+          prefix: SW-REQ
+          type: subsystem
+          parent_spec: specs/system
+        - path: specs/integration
+          prefix: INT-REQ
+          type: integration
+          parent_spec: specs/system
+          cross_component: true
+    id_format:
+        pattern: '{prefix}-{date:YYMMDD}-{rand:4}'
+        auto_increment: false
+    obligation_classes:
+        - nominal
+        - error_handling
+        - malformed_input
+        - boundary
+        - empty_input
+        - edge_case
+        - concurrent
+        - access_denied
+        - determinism
+        - idempotency
+        - commutativity
+        - monotonicity
+        - totality
+        - atomicity
+        - invariant_preservation
+        - nil_safety
+        - overflow_safety
+        - encoding_safety
+    signals:
+        defaults: auto
+    evidence_classes:
+        - example
+        - boundary
+        - malformed
+        - property
+        - fuzz
+        - differential
+        - review
+        - formal
+    commands:
+        build: go build -o crm ./cmd/crm
+        test: go test ./...
+        lint: go vet ./...
+    verification_scope:
+        include:
+            - '**'
+        completeness:
+            production_include:
+                - '**'
+            production_exclude:
+                - '**/*_test.go'
+                - '**/testdata/**'
+            rationale: Initialized by proof init --template go-package for a package-scoped verification slice.
+    lint:
+        exclude:
+            - .git/**
+            - vendor/**
+            - third_party/**
+            - node_modules/**
+            - dist/**
+            - build/**
+            - coverage/**
+            - .proof/**
+    checks:
+        slow_tests:
+            enabled: true
+        code_mcdc:
+            advisory: false
+            min_statement_percent: 100
+            min_decision_percent: 100
+            min_condition_percent: 100
+            targets:
+                - id: go-package
+                  language: go
+                  scope: ./...
+                  test_packages: ./...
+        property_fixtures_exist:
+            enabled: true
+        flip_fixtures_exist:
+            enabled: true
+        fixture_staleness_clean:
+            enabled: true
+        code_signal_obligations_reviewed:
+            enabled: true
+        code_signal_unbindable:
+            enabled: true
+        change_evidence_complete:
+            enabled: true
+        plan_of_record_current:
+            enabled: true
+    approval:
+        agent_autonomous_for:
+            all: true
+    documentation:
+        sources:
+            - path: docs/
+              type: manual
+        threshold: 80
+    trace_policy:
+        mode: source_native

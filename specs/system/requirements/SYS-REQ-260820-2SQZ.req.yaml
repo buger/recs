@@ -1,0 +1,44 @@
+id: SYS-REQ-260820-2SQZ
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & atomic_rename_completed & frontmatter_updated) | (version_mismatch & conflict_reported) | mutation_rejected)))
+description: The product shall update record frontmatter through crm set and crm patch.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260820-V5ZD
+component: store
+rationale: Deterministic field writes reduce malformed YAML. Atomic rename protects concurrent editors.
+tags: []
+variables: []
+references:
+    - type: document
+      id: README.md
+traces:
+    satisfies:
+        - STK-REQ-260820-V5ZD
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:08Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:11:06Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:53Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

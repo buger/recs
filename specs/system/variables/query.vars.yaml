@@ -1,0 +1,75 @@
+component: query
+variables:
+    - name: query_expression_received
+      type: bool
+      direction: input
+      description: Decide condition query expression received.
+    - name: search_query_received
+      type: bool
+      direction: input
+      description: Decide condition search query received.
+    - name: operator_eq_applied
+      type: bool
+      direction: output
+      description: Decide condition operator eq applied.
+    - name: operator_cmp_applied
+      type: bool
+      direction: output
+      description: Decide condition operator cmp applied.
+    - name: operator_contains_applied
+      type: bool
+      direction: output
+      description: Decide condition operator contains applied.
+    - name: operator_in_applied
+      type: bool
+      direction: output
+      description: Decide condition operator in applied.
+    - name: records_filtered
+      type: bool
+      direction: output
+      description: Decide condition records filtered.
+    - name: query_rejected
+      type: bool
+      direction: output
+      description: Decide condition query rejected.
+    - name: frontmatter_scanned
+      type: bool
+      direction: output
+      description: Decide condition frontmatter scanned.
+    - name: markdown_scanned
+      type: bool
+      direction: output
+      description: Decide condition markdown scanned.
+    - name: filename_scanned
+      type: bool
+      direction: output
+      description: Decide condition filename scanned.
+    - name: matches_returned
+      type: bool
+      direction: output
+      description: Decide condition matches returned.
+    - name: search_rejected
+      type: bool
+      direction: output
+      description: Decide condition search rejected.
+    - name: clause_count
+      type: int
+      direction: output
+      description: Count of parsed query clauses.
+      range:
+        max: 64
+        min: 0
+    - name: term_count
+      type: int
+      direction: output
+      description: Count of full-text search terms.
+      range:
+        max: 64
+        min: 0
+    - name: expr_len
+      type: int
+      direction: input
+      description: Length of the submitted query or search text.
+      range:
+        max: 4096
+        min: 0

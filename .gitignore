@@ -1,0 +1,4 @@
+# ReqProof local-only state (versionable .proof/ audit objects stay tracked).
+.proof/
+
+/crm

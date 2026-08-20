@@ -1,0 +1,52 @@
+component: serve
+variables:
+    - name: serve_command_invoked
+      type: bool
+      direction: input
+      description: Decide condition serve command invoked.
+    - name: http_bound_localhost
+      type: bool
+      direction: output
+      description: Decide condition http bound localhost.
+    - name: default_port_selected
+      type: bool
+      direction: output
+      description: Decide condition default port selected.
+    - name: custom_port_selected
+      type: bool
+      direction: output
+      description: Decide condition custom port selected.
+    - name: static_ui_served
+      type: bool
+      direction: output
+      description: Decide condition static ui served.
+    - name: http_api_requested
+      type: bool
+      direction: input
+      description: Decide condition http api requested.
+    - name: shared_app_layer_used
+      type: bool
+      direction: output
+      description: Decide condition shared app layer used.
+    - name: shared_record_model_used
+      type: bool
+      direction: output
+      description: Decide condition shared record model used.
+    - name: separate_database_used
+      type: bool
+      direction: output
+      description: Decide condition separate database used.
+    - name: listen_port
+      type: int
+      direction: input
+      description: TCP port for the local HTTP server.
+      range:
+        max: 65535
+        min: 1
+domain:
+    mutex:
+        - name: listen_port_mode
+          members:
+            - default_port_selected
+            - custom_port_selected
+          reason: Serve selects either the default port or a custom port.

@@ -1,0 +1,44 @@
+id: SYS-REQ-260820-4628
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when board_requested the board shall always satisfy (matcher_depth >= 0 => ((column_list_len > 0) & ((matcher_applied & column_field_projected & records_grouped) | board_rejected)))
+description: The product shall present boards as matcher views over records.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260820-Y3Q4
+component: board
+rationale: Boards group records by a column field. Folder location does not define the board.
+tags: []
+variables: []
+references:
+    - type: document
+      id: README.md
+traces:
+    satisfies:
+        - STK-REQ-260820-KAGT
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:08Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:11:07Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

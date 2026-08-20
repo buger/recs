@@ -1,0 +1,44 @@
+id: SYS-REQ-260820-ZTC3
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when query_expression_received the query shall always satisfy (expr_len > 0 => ((clause_count > 0) & (((operator_eq_applied | operator_cmp_applied | operator_contains_applied | operator_in_applied) & records_filtered) | query_rejected)))
+description: The product shall filter records with a deterministic query language.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260820-V5ZD
+component: query
+rationale: Agents need structured selection. Simple field operators come first.
+tags: []
+variables: []
+references:
+    - type: document
+      id: README.md
+traces:
+    satisfies:
+        - STK-REQ-260820-V5ZD
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:08Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:11:06Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:55Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

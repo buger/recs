@@ -1,0 +1,44 @@
+id: SYS-REQ-260820-PG9C
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when command_completed the cli shall always satisfy (arg_count > 0 => ((json_flag_set & json_output_emitted) | (!json_flag_set & human_output_emitted)))
+description: The product shall emit stable JSON when a command uses --json.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260820-V5ZD
+component: cli
+rationale: Agents consume machine output. Human text remains the default.
+tags: []
+variables: []
+references:
+    - type: document
+      id: README.md
+traces:
+    satisfies:
+        - STK-REQ-260820-V5ZD
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:09Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:10:48Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

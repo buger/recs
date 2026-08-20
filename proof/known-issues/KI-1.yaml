@@ -1,0 +1,24 @@
+id: KI-1
+title: Cosmopolitan APE packaging is not built
+description: The Cosmopolitan toolchain is not installed on this machine. Phase 1 ships a normal go build binary instead of crm.com.
+affected_requirements:
+    - SYS-REQ-260820-9W1S
+    - STK-REQ-260820-T8AZ
+commands:
+    - command -v cosmocc
+severity: low
+severity_basis: risk
+risk: correctness
+reproducer_command: command -v cosmocc
+introduced_in: inception
+defect_class: latent
+mitigation: Maintainers build with go build -o crm ./cmd/crm until cosmocc is installed.
+remediation: Add an APE packaging target after the Cosmopolitan toolchain is available.
+customer_impact: Cross-platform single-file crm.com distribution is not available yet.
+owner: Leonid Bugaev
+release_disposition: ship_with_known_issue
+status: open
+history:
+    - at: "2026-08-20T19:06:24Z"
+      by: human:buger
+      action: created

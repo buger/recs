@@ -1,0 +1,41 @@
+id: SW-REQ-260820-Q3C4
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & atomic_rename_completed & frontmatter_updated) | (version_mismatch & conflict_reported) | mutation_rejected)))
+description: The store shall apply field patches with a temp file and an atomic rename.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: SYS-REQ-260820-2SQZ
+component: store
+rationale: Atomic rename prevents torn writes. A version mismatch reports conflict.
+tags: []
+variables: []
+traces:
+    satisfies:
+        - SYS-REQ-260820-2SQZ
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:29Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:11:06Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:53Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

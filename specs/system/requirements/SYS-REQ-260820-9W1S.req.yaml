@@ -1,0 +1,44 @@
+id: SYS-REQ-260820-9W1S
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when serve_command_invoked the serve shall always satisfy (listen_port > 0 => (http_bound_localhost & (default_port_selected | custom_port_selected) & static_ui_served))
+description: The product shall serve a local HTTP API and Kanban UI on localhost.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260820-Y3Q4
+component: serve
+rationale: The default port is 7777. The UI uses no Node runtime and no database.
+tags: []
+variables: []
+references:
+    - type: document
+      id: README.md
+traces:
+    satisfies:
+        - STK-REQ-260820-T8AZ
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:08Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:10:48Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

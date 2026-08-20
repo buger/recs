@@ -1,0 +1,36 @@
+name: crm
+default_port: 7777
+types:
+  grant:
+    required:
+      - title
+      - status
+    fields:
+      status:
+        type: string
+        enum:
+          - discovered
+          - researching
+          - qualified
+          - preparing
+          - applied
+          - waiting
+          - won
+          - rejected
+  person:
+    required:
+      - name
+  company:
+    required:
+      - name
+  task:
+    required:
+      - title
+      - status
+    fields:
+      status:
+        type: string
+        enum:
+          - open
+          - done
+          - cancelled

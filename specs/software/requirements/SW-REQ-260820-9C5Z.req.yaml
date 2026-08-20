@@ -1,0 +1,41 @@
+id: SW-REQ-260820-9C5Z
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when record_status_changed the store shall always satisfy frontmatter_status_updated & !folder_relocation_required
+description: The store shall update status inside frontmatter and shall not relocate the record file.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: SYS-REQ-260820-7WT4
+component: store
+rationale: Semantic state is metadata. Path stability preserves links.
+tags: []
+variables: []
+traces:
+    satisfies:
+        - SYS-REQ-260820-7WT4
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:31Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:06:52Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:52Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

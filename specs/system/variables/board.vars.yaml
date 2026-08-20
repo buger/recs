@@ -1,0 +1,68 @@
+component: board
+variables:
+    - name: board_requested
+      type: bool
+      direction: input
+      description: Decide condition board requested.
+    - name: move_requested
+      type: bool
+      direction: input
+      description: Decide condition move requested.
+    - name: matcher_applied
+      type: bool
+      direction: output
+      description: Decide condition matcher applied.
+    - name: column_field_projected
+      type: bool
+      direction: output
+      description: Decide condition column field projected.
+    - name: records_grouped
+      type: bool
+      direction: output
+      description: Decide condition records grouped.
+    - name: board_rejected
+      type: bool
+      direction: output
+      description: Decide condition board rejected.
+    - name: column_known
+      type: bool
+      direction: output
+      description: Decide condition column known.
+    - name: frontmatter_field_updated
+      type: bool
+      direction: output
+      description: Decide condition frontmatter field updated.
+    - name: file_path_unchanged
+      type: bool
+      direction: output
+      description: Decide condition file path unchanged.
+    - name: move_rejected
+      type: bool
+      direction: output
+      description: Decide condition move rejected.
+    - name: board_move_committed
+      type: bool
+      direction: input
+      description: Decide condition board move committed.
+    - name: store_frontmatter_write_used
+      type: bool
+      direction: output
+      description: Decide condition store frontmatter write used.
+    - name: record_file_relocated
+      type: bool
+      direction: output
+      description: Decide condition record file relocated.
+    - name: column_list_len
+      type: int
+      direction: output
+      description: Count of columns on a board.
+      range:
+        max: 64
+        min: 0
+    - name: matcher_depth
+      type: int
+      direction: input
+      description: Nesting depth of a board matcher.
+      range:
+        max: 16
+        min: 0

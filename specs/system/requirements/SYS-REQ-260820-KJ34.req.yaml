@@ -1,0 +1,44 @@
+id: SYS-REQ-260820-KJ34
+version: 1
+status: review
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when init_command_invoked the store shall always satisfy (parse_budget >= 0 => (workspace_dir_count > 0 & crm_yaml_written & records_dir_created & boards_dir_created & inbox_dir_created & attachments_dir_created & templates_dir_created & derived_dirs_created))
+description: The product shall create a workspace layout when the operator runs crm init.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260820-KAGT
+component: store
+rationale: A workspace needs crm.yaml, records, boards, inbox, attachments, templates, and derived cache directories.
+tags: []
+variables: []
+references:
+    - type: document
+      id: README.md
+traces:
+    satisfies:
+        - STK-REQ-260820-T8AZ
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: pending
+        reviewer: ""
+        reviewed_at: ""
+        ai_generated: false
+history:
+    created_by: human:cli
+    created_at: "2026-08-20T19:00:07Z"
+    last_modified_by: human:cli
+    last_modified_at: "2026-08-20T19:11:06Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

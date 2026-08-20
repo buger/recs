@@ -1,0 +1,70 @@
+checklist: onboard_v1
+updated_at: "2026-08-20T19:11:25Z"
+steps:
+    init:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:09:25Z"
+        confirmed_by: agent:grok
+        note: proof.yaml exists; commands set to go test ./... and go build -o crm ./cmd/crm
+        verify_result:
+            exit_code: 0
+            passed: true
+            at: "2026-08-20T19:09:25Z"
+        check_results:
+            - id: validate_passes
+              status: pass
+              at: "2026-08-20T19:09:25Z"
+            - id: role_prompt_hygiene
+              status: pass
+              at: "2026-08-20T19:09:25Z"
+    research:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:09:29Z"
+        confirmed_by: agent:grok
+        note: 'Stakeholders: file_user, agent_operator, web_operator, maintainer. Components: store, query, board, cli, serve, validate, index, context.'
+    skeleton:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:09:29Z"
+        confirmed_by: agent:grok
+        note: 'Four-layer skeleton: 4 STK, 15 SYS, 15 SW, 4 INT. Exit audit checks are green.'
+        check_results:
+            - id: l0_stakeholder_complete
+              status: pass
+              at: "2026-08-20T19:09:29Z"
+            - id: l1_system_complete
+              status: pass
+              at: "2026-08-20T19:09:29Z"
+            - id: l2_software_complete
+              status: pass
+              at: "2026-08-20T19:09:29Z"
+            - id: levels_connected
+              status: pass
+              at: "2026-08-20T19:09:29Z"
+    traces-light:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:10:24Z"
+        confirmed_by: agent:grok
+        note: Implements/Verifies/Documents autolinked; orphan_code_clean is clean.
+        scope_key: go-package
+        check_results:
+            - id: annotation_validity
+              status: pass
+              at: "2026-08-20T19:10:24Z"
+            - id: orphan_code_clean
+              status: pass
+              at: "2026-08-20T19:10:24Z"
+    variables:
+        status: confirmed
+        confirmed_at: "2026-08-20T19:11:25Z"
+        confirmed_by: agent:grok
+        note: Requirement-first variables; variable_orphans_clean, variables_declared, and nonbool_inputs_constrained pass.
+        check_results:
+            - id: variable_orphans_clean
+              status: pass
+              at: "2026-08-20T19:11:25Z"
+            - id: variables_declared
+              status: pass
+              at: "2026-08-20T19:11:25Z"
+            - id: variable_drift
+              status: pass
+              at: "2026-08-20T19:11:25Z"

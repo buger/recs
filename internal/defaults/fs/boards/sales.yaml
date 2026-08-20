@@ -1,0 +1,20 @@
+name: Sales
+description: Leads and deals
+match:
+  type:
+    - lead
+    - deal
+    - customer
+columns:
+  - id: new
+    title: New
+  - id: qualified
+    title: Qualified
+  - id: proposal
+    title: Proposal
+  - id: closed_won
+    title: Closed won
+  - id: closed_lost
+    title: Closed lost
+column:
+  field: sales_stage
