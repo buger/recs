@@ -12,6 +12,7 @@ import (
 	"crm/internal/cli"
 )
 
+// Verifies: SYS-REQ-260821-8FKR SW-REQ-260821-FCGM SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
 func TestCLIFlagWithoutValueAndValidateBranches(t *testing.T) {
 	root := t.TempDir()
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}
@@ -49,6 +50,7 @@ func TestCLIFlagWithoutValueAndValidateBranches(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 INT-REQ-260820-AHKR
 func TestCLIServePortDefaultAndOverride(t *testing.T) {
 	root := t.TempDir()
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}
@@ -73,6 +75,7 @@ func TestCLIServePortDefaultAndOverride(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 INT-REQ-260820-AHKR
 func TestCLIServeListenError(t *testing.T) {
 	root := t.TempDir()
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}

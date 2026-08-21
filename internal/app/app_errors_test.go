@@ -8,6 +8,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestLoadAllErrorPaths(t *testing.T) {
 	a := setup(t)
 	if _, err := a.Create("grant", "grant_e", map[string]any{"title": "E", "status": "researching", "tags": []any{"x"}}, ""); err != nil {
@@ -53,6 +54,7 @@ func TestLoadAllErrorPaths(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR SYS-REQ-260820-5C9D SW-REQ-260820-ZKCV
 func TestBoardFilterMissAndNextFallback(t *testing.T) {
 	a := setup(t)
 	if _, err := a.Create("grant", "grant_f", map[string]any{"title": "F", "status": "researching", "tags": []any{"no"}}, ""); err != nil {
@@ -74,6 +76,7 @@ func TestBoardFilterMissAndNextFallback(t *testing.T) {
 	_ = record.StringSlice(nil)
 }
 
+// Verifies: SYS-REQ-260820-BVBE SW-REQ-260820-EX7Q
 func TestMoveWriteError(t *testing.T) {
 	a := setup(t)
 	if _, err := a.Create("grant", "grant_m", map[string]any{"title": "M", "status": "researching"}, ""); err != nil {

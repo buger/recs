@@ -18,6 +18,7 @@ func writeBoard(t *testing.T, root, name, body string) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
 func TestLoadAndProject(t *testing.T) {
 	root := t.TempDir()
 	if got, err := LoadAll(root); err != nil || got != nil {
@@ -83,6 +84,7 @@ func TestLoadAndProject(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
 func TestMatchHelpers(t *testing.T) {
 	rec := &record.Record{Fields: map[string]any{"status": "open", "tags": []any{"a", "b"}, "title": "Hello"}}
 	if !matchValue(rec, map[string]any{"all": []any{map[string]any{"status": "open"}}}) {

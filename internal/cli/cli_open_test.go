@@ -4,6 +4,7 @@ import (
 	"testing"
 )
 
+// Verifies: SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2
 func TestOpenAppInitBranch(t *testing.T) {
 	a, err := openApp("init", t.TempDir())
 	if err != nil || a == nil {

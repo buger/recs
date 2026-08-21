@@ -8,6 +8,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-Q8GR SW-REQ-260820-BNR7 SYS-REQ-260820-0TQX SW-REQ-260820-V48V
 func TestRelatedIDsMissingAndSelf(t *testing.T) {
 	root := t.TempDir()
 	recs := []*record.Record{
@@ -23,6 +24,7 @@ func TestRelatedIDsMissingAndSelf(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-Q8GR SW-REQ-260820-BNR7
 func TestWriteJSONFailures(t *testing.T) {
 	root := t.TempDir()
 	if err := writeJSON(filepath.Join(root, "nope", "x.json"), map[string]int{"a": 1}); err == nil {
@@ -73,6 +75,7 @@ func TestWriteJSONFailures(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-Q8GR SW-REQ-260820-BNR7 SYS-REQ-260820-0TQX SW-REQ-260820-V48V
 func TestRelatedIDsNonStringTarget(t *testing.T) {
 	ids := relatedIDs(&record.Record{Fields: map[string]any{
 		"relations": []any{map[string]any{"target": 3}, map[string]any{}},

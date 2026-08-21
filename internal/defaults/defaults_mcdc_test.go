@@ -8,6 +8,7 @@ import (
 	"crm/internal/defaults"
 )
 
+// Verifies: SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2
 func TestWriteWorkspaceMkdirBlocked(t *testing.T) {
 	root := t.TempDir()
 	if err := os.WriteFile(filepath.Join(root, "boards"), []byte("x"), 0o644); err != nil {

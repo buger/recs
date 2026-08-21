@@ -9,6 +9,7 @@ import (
 	"crm/internal/validate"
 )
 
+// Verifies: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
 func TestCheckNilFieldAndNonEnum(t *testing.T) {
 	root := t.TempDir()
 	if err := os.WriteFile(filepath.Join(root, "crm.yaml"), []byte(`types:

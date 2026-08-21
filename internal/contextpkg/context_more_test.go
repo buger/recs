@@ -6,6 +6,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SW-REQ-260820-V48V SYS-REQ-260820-0TQX
 func TestLooksIDAndOutgoing(t *testing.T) {
 	if looksID("") || looksID("   ") || looksID("plain") {
 		t.Fatal("false ids")

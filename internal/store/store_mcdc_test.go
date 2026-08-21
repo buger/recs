@@ -8,6 +8,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2
 func TestInitAndFindRootFailures(t *testing.T) {
 	file := filepath.Join(t.TempDir(), "notdir")
 	if err := os.WriteFile(file, []byte("x"), 0o644); err != nil {
@@ -38,6 +39,7 @@ func TestInitAndFindRootFailures(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestLoadAllPermissionAndInboxFile(t *testing.T) {
 	base := t.TempDir()
 	file := filepath.Join(base, "notdir")
@@ -101,6 +103,7 @@ func TestLoadAllPermissionAndInboxFile(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4
 func TestCreateGetExistsAndWriteFailures(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {
@@ -149,6 +152,7 @@ func TestCreateGetExistsAndWriteFailures(t *testing.T) {
 	_ = os.Chmod(s.recordsDir(), 0o755)
 }
 
+// Verifies: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4
 func TestWriteLockedAndConfined(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {
@@ -189,6 +193,7 @@ func TestWriteLockedAndConfined(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-7WT4 SW-REQ-260820-9C5Z SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4
 func TestPatchAndEnumAndHashAndLock(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {
@@ -276,6 +281,7 @@ func TestPatchAndEnumAndHashAndLock(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4 SYS-REQ-260820-9J7C
 func TestWriteLockedAfterLockAndInboxRead(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {
@@ -289,6 +295,7 @@ func TestWriteLockedAfterLockAndInboxRead(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
 func TestCheckEnumNilConfigAndMissingYAML(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.checkEnum(&record.Record{Type: "note", Fields: map[string]any{}}, map[string]any{"x": 1}); err != nil {
@@ -299,6 +306,7 @@ func TestCheckEnumNilConfigAndMissingYAML(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestWalkMarkdownMissingInbox(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {
@@ -312,6 +320,7 @@ func TestWalkMarkdownMissingInbox(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestCreateGetUnexpectedErrorAndTemplateEscape(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {
@@ -334,6 +343,7 @@ func TestCreateGetUnexpectedErrorAndTemplateEscape(t *testing.T) {
 	s.ApplyTemplate(&record.Record{Type: filepath.Join("..", "..", "..", "tmp", "x"), Fields: map[string]any{}})
 }
 
+// Verifies: SYS-REQ-260820-7WT4 SW-REQ-260820-9C5Z SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4
 func TestPatchLockAndWriteErrors(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {
@@ -361,6 +371,7 @@ func TestPatchLockAndWriteErrors(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestCreateGetLoadError(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {

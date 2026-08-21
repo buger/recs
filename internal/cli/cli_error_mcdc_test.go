@@ -9,6 +9,7 @@ import (
 	"crm/internal/cli"
 )
 
+// Verifies: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4 SYS-REQ-260820-PG9C SW-REQ-260820-YB5C
 func TestCLIValidateFailEnumConflictAndStoreErrors(t *testing.T) {
 	root := t.TempDir()
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}
@@ -80,6 +81,7 @@ func TestCLIValidateFailEnumConflictAndStoreErrors(t *testing.T) {
 }
 
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR SYS-REQ-260820-PG9C SW-REQ-260820-YB5C
 func TestCLIBoardListError(t *testing.T) {
 	root := t.TempDir()
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}

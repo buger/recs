@@ -6,6 +6,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-ZTC3 SW-REQ-260820-6EVX
 func TestMatchClauseIndependence(t *testing.T) {
 	rec := &record.Record{Fields: map[string]any{
 		"status": "open", "n": 5, "tags": []any{"Go", "crm"}, "title": "Hello",
@@ -45,6 +46,7 @@ func TestMatchClauseIndependence(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-ZTC3 SW-REQ-260820-6EVX SYS-REQ-260820-HJPH SW-REQ-260820-X37F
 func TestSplitClausesEmptyCurAndSearchableRune(t *testing.T) {
 	if parts := splitClauses(""); len(parts) != 0 {
 		t.Fatal(parts)
@@ -62,6 +64,7 @@ func TestSplitClausesEmptyCurAndSearchableRune(t *testing.T) {
 	_ = searchable(recs[0])
 }
 
+// Verifies: SYS-REQ-260820-ZTC3 SW-REQ-260820-6EVX
 func TestMatchContainsAndInNilField(t *testing.T) {
 	rec := &record.Record{Fields: map[string]any{}}
 	if matchClause(rec, Clause{Field: "title", Op: "contains", Value: "zz"}) {

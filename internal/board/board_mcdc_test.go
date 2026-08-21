@@ -8,6 +8,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
 func TestLoadAllErrorAndDirEntries(t *testing.T) {
 	root := t.TempDir()
 	if err := os.WriteFile(filepath.Join(root, "boards"), []byte("file"), 0o644); err != nil {
@@ -28,6 +29,7 @@ func TestLoadAllErrorAndDirEntries(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
 func TestLoadDotDotNameIDAndPerms(t *testing.T) {
 	root := t.TempDir()
 	if _, err := Load(root, "foo..bar"); err == nil {
@@ -56,6 +58,7 @@ func TestLoadDotDotNameIDAndPerms(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
 func TestProjectEmptyColumnAndMatchMisses(t *testing.T) {
 	b := &Board{
 		Column:  ColumnConfig{Field: "status"},
@@ -95,6 +98,7 @@ func TestProjectEmptyColumnAndMatchMisses(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
 func TestLoadAllSkipsDirectory(t *testing.T) {
 	root := t.TempDir()
 	if err := os.MkdirAll(filepath.Join(root, "boards", "subdir"), 0o755); err != nil {
@@ -109,6 +113,7 @@ func TestLoadAllSkipsDirectory(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
 func TestMatchMissingEmptyString(t *testing.T) {
 	rec := &record.Record{Fields: map[string]any{"title": ""}}
 	if !matchField(rec, "title", map[string]any{"missing": true}) {

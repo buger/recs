@@ -6,6 +6,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SW-REQ-260820-V48V SYS-REQ-260820-0TQX
 func TestAssembleSeenAndLooksIDFalse(t *testing.T) {
 	seed := &record.Record{ID: "person_a", Fields: map[string]any{
 		"company":  "plain",

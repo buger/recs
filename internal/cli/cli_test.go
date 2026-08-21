@@ -244,6 +244,7 @@ func TestAgentInboxTemplateAndEnum(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C SYS-REQ-260820-2SQZ SYS-REQ-260820-DCG4 SW-REQ-260820-D5WE
 func TestConflictJSONAndDeadlineTriage(t *testing.T) {
 	root := t.TempDir()
 	if code := run(t, root, "init"); code != 0 {

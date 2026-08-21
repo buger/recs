@@ -9,6 +9,7 @@ import (
 	"crm/internal/validate"
 )
 
+// Verifies: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
 func TestCheckSchemaAbsentAndRequired(t *testing.T) {
 	root := t.TempDir()
 	res, err := validate.Check(root, nil)
@@ -48,6 +49,7 @@ func TestCheckSchemaAbsentAndRequired(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
 func TestLoadConfigMissing(t *testing.T) {
 	if _, err := validate.LoadConfig(t.TempDir()); err == nil {
 		t.Fatal("expected missing")

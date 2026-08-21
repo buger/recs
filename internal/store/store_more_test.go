@@ -8,6 +8,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2
 func TestCreateBranchesAndLoadAll(t *testing.T) {
 	s := &Store{Root: t.TempDir()}
 	if err := s.Init(); err != nil {
@@ -69,6 +70,7 @@ func TestCreateBranchesAndLoadAll(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2 SYS-REQ-260820-9J7C
 func TestFindRootAndBadFiles(t *testing.T) {
 	if _, err := FindRoot(t.TempDir()); err == nil {
 		t.Fatal("missing root")

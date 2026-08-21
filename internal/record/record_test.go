@@ -11,6 +11,7 @@ type strer struct{ s string }
 
 func (s strer) String() string { return s.s }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestParseVariants(t *testing.T) {
 	rec, err := Parse("x.md", []byte("no frontmatter"))
 	if err != nil || rec.Body != "no frontmatter" {
@@ -36,6 +37,7 @@ func TestParseVariants(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestBytesAndGetSetDelete(t *testing.T) {
 	r := &Record{}
 	_ = r.Bytes()
@@ -83,6 +85,7 @@ func TestBytesAndGetSetDelete(t *testing.T) {
 	_ = r.Version()
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestAsMapAndValid(t *testing.T) {
 	m, ok := asMap(map[string]any{"a": 1})
 	if !ok || m["a"] != 1 {
@@ -109,6 +112,7 @@ func TestAsMapAndValid(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestTypeDirDisplayCompareSlice(t *testing.T) {
 	for typ, dir := range map[string]string{
 		"person": "people", "company": "companies", "customer": "customers",

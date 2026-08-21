@@ -9,6 +9,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-5C9D SW-REQ-260820-ZKCV SYS-REQ-260820-DCG4 SW-REQ-260820-D5WE
 func TestNextTriageInboxIndependence(t *testing.T) {
 	a := setup(t)
 	if _, err := a.Create("task", "task_done", map[string]any{"title": "Done", "status": "done", "priority": "high"}, ""); err != nil {
@@ -53,6 +54,7 @@ func TestNextTriageInboxIndependence(t *testing.T) {
 	_ = record.DisplayName(&record.Record{ID: "x"})
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestOpenDeletedCWD(t *testing.T) {
 	wd, err := os.Getwd()
 	if err != nil {
@@ -69,6 +71,7 @@ func TestOpenDeletedCWD(t *testing.T) {
 	_, _ = app.Open("")
 }
 
+// Verifies: SYS-REQ-260820-BVBE SW-REQ-260820-EX7Q INT-REQ-260820-JRWN
 func TestMoveDoesNotRelocate(t *testing.T) {
 	a := setup(t)
 	rec, err := a.Create("grant", "grant_mv", map[string]any{"title": "M", "status": "researching"}, "")
@@ -84,6 +87,7 @@ func TestMoveDoesNotRelocate(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-0TQX SW-REQ-260820-V48V
 func TestContextAfterGetUsesSameTree(t *testing.T) {
 	a := setup(t)
 	if _, err := a.Create("note", "note_ctx", map[string]any{"title": "C"}, ""); err != nil {

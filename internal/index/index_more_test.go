@@ -8,6 +8,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-Q8GR SW-REQ-260820-BNR7 INT-REQ-260820-2JKK
 func TestRebuildRelationsAndTags(t *testing.T) {
 	root := t.TempDir()
 	recs := []*record.Record{
@@ -30,6 +31,7 @@ func TestRebuildRelationsAndTags(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-Q8GR SW-REQ-260820-BNR7
 func TestRebuildUnwritable(t *testing.T) {
 	root := t.TempDir()
 	if err := os.WriteFile(filepath.Join(root, ".crm"), []byte("x"), 0o644); err != nil {

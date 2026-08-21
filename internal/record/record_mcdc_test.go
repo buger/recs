@@ -4,6 +4,7 @@ import (
 	"testing"
 )
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestParseCRFirstCloserAndNullFields(t *testing.T) {
 	rec, err := Parse("x.md", []byte("---\nid: a\n---\r\nmore\n---\nbody"))
 	if err != nil || rec.ID != "a" {
@@ -19,6 +20,7 @@ func TestParseCRFirstCloserAndNullFields(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestSetNilFieldsAndExistingMap(t *testing.T) {
 	r := &Record{}
 	r.Set("title", "Hello")
@@ -32,6 +34,7 @@ func TestSetNilFieldsAndExistingMap(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func TestValidTypeSanitizeAndCompareIndependence(t *testing.T) {
 	if ValidType("Grant") {
 		t.Fatal("uppercase type should fail sanitize equality")

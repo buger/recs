@@ -121,6 +121,7 @@ func TestLoadCreateProject(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-456X SW-REQ-260820-NA06
 func TestProjectWidgetKinds(t *testing.T) {
 	a := setupWorkspace(t)
 	root := a.Root()
@@ -174,6 +175,7 @@ widgets:
 	}
 }
 
+// Verifies: SYS-REQ-260820-456X SW-REQ-260820-NA06
 func TestProjectErrorsAndPlaceholders(t *testing.T) {
 	a := setupWorkspace(t)
 	recs, _ := a.Store.LoadAll()
@@ -208,6 +210,7 @@ func TestProjectErrorsAndPlaceholders(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-456X SW-REQ-260820-NA06
 func TestQueryMapAndDates(t *testing.T) {
 	a := setupWorkspace(t)
 	recs, _ := a.Store.LoadAll()
@@ -225,6 +228,7 @@ func TestQueryMapAndDates(t *testing.T) {
 	_ = dashboard.Project(d2, dashboard.Env{Records: recs, Now: time.Now().UTC()})
 }
 
+// Verifies: SYS-REQ-260820-456X SW-REQ-260820-NA06
 func TestBadYAMLAndNonYaml(t *testing.T) {
 	dir := t.TempDir()
 	os.MkdirAll(filepath.Join(dir, "dashboards"), 0o755)
@@ -239,6 +243,7 @@ func TestBadYAMLAndNonYaml(t *testing.T) {
 	_ = record.DisplayName(&record.Record{ID: "x"})
 }
 
+// Verifies: SYS-REQ-260820-456X SW-REQ-260820-NA06
 func TestCreateNameDefault(t *testing.T) {
 	dir := t.TempDir()
 	d, err := dashboard.Create(dir, "solo", "", "", "", nil)

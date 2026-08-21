@@ -26,6 +26,7 @@ func setupApp(t *testing.T) *app.App {
 	return a
 }
 
+// Verifies: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 SYS-REQ-260821-QF1J SW-REQ-260821-82BA
 func TestHandlerRoutes(t *testing.T) {
 	a := setupApp(t)
 	h := serve.Handler(a)
@@ -143,6 +144,7 @@ func TestHandlerRoutes(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 INT-REQ-260820-AHKR
 func TestListenBusyPort(t *testing.T) {
 	ln, err := net.Listen("tcp", "127.0.0.1:0")
 	if err != nil {

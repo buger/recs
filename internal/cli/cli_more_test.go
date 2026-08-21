@@ -7,6 +7,7 @@ import (
 	"crm/internal/cli"
 )
 
+// Verifies: SYS-REQ-260821-8FKR SW-REQ-260821-FCGM SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C
 func TestCLIAllCommandsAndFlags(t *testing.T) {
 	root := t.TempDir()
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}
@@ -91,6 +92,7 @@ func TestCLIAllCommandsAndFlags(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2 SYS-REQ-260820-PG9C SW-REQ-260820-YB5C
 func TestCLIInitJSONAndHumanErrors(t *testing.T) {
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}
 	if cli.Main([]string{"init", "--root", t.TempDir()}, out, errb) == 2 {

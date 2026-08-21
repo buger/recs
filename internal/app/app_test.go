@@ -18,6 +18,7 @@ func setup(t *testing.T) *app.App {
 	return a
 }
 
+// Verifies: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2
 func TestOpenAndCreateVariants(t *testing.T) {
 	if _, err := app.Open(t.TempDir()); err == nil {
 		t.Fatal("no workspace")
@@ -46,6 +47,7 @@ func TestOpenAndCreateVariants(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-ZTC3 SW-REQ-260820-6EVX SYS-REQ-260820-HJPH SW-REQ-260820-X37F SYS-REQ-260820-4628 SW-REQ-260820-NBGR SYS-REQ-260820-5C9D SW-REQ-260820-ZKCV SYS-REQ-260820-DCG4 SW-REQ-260820-D5WE
 func TestListQuerySearchBoardNextTriage(t *testing.T) {
 	a := setup(t)
 	if _, err := a.Create("grant", "grant_a", map[string]any{"title": "A", "status": "inbox", "priority": "high", "due": "2000-01-01", "health": "at_risk", "blockers": []any{"x"}, "tags": []any{"go"}}, "alpha"); err != nil {

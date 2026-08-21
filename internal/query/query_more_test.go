@@ -6,6 +6,7 @@ import (
 	"crm/internal/record"
 )
 
+// Verifies: SYS-REQ-260820-ZTC3 SW-REQ-260820-6EVX
 func TestParseAndMatchAllOps(t *testing.T) {
 	if _, err := Parse(""); err == nil {
 		t.Fatal("empty")
@@ -79,6 +80,7 @@ func TestParseAndMatchAllOps(t *testing.T) {
 	}
 }
 
+// Verifies: SYS-REQ-260820-ZTC3 SW-REQ-260820-6EVX
 func TestParseQuotedAndNeq(t *testing.T) {
 	cs, err := Parse(`title = "Hello World" status != closed`)
 	if err != nil || len(cs) != 2 {
