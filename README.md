@@ -2,21 +2,25 @@ File-Native Agent CRM
 
 1. Product idea
 
-A lightweight CRM where plain Markdown files are the canonical database.
+An agentic CRM stored in files. Plain Markdown is the canonical database.
 
-There is no required server, SaaS backend, PostgreSQL, SQLite, or proprietary storage format.
+There is no required server, SaaS backend, PostgreSQL, SQLite, cloud account, login, or proprietary storage format.
 
-The CRM is designed primarily for:
+The product is only:
 
-AI agents such as Claude Code, Codex, Gemini CLI, etc.
+the files on disk
 
-humans working directly with files and Git
+a deterministic CLI
 
-optional local visualization through a simple web interface
+an optional local web UI
 
-automation through a native CLI
+a single local executable
 
-distribution as a single Cosmopolitan APE executable
+Intelligence is not in the CRM. External agents (Claude Code, Codex, Gemini CLI, Grok, and the like) classify records, draft replies, decide next actions, and talk to the rest of the world. Humans edit the same files in Git.
+
+The CRM does not ship Gmail, cloud sync, or authentication. Those are not later features. They are out.
+
+Any action that needs judgment, a network account, or a third-party API is an agent action against the files or the CLI.
 
 The core principle is:
 
@@ -553,7 +557,7 @@ card:
 
 16. Customer email triage use case
 
-Incoming mail can become records.
+An agent may turn a message it already has into a record. The CRM does not fetch mail.
 
 Example:
 
@@ -600,13 +604,11 @@ Needs reply
 Waiting on customer
 Resolved
 
-17. Email ingestion
+17. Record ingestion
 
-The core should not require Gmail integration.
+The CRM never talks to Gmail, IMAP, Outlook, or any mail host.
 
-Instead it should define an ingestion protocol.
-
-For example:
+An agent (or any other program) may drop a provider-neutral JSON record:
 
 crm ingest email email.json
 
@@ -614,21 +616,7 @@ or:
 
 cat email.json | crm ingest
 
-This allows external systems to supply mail from:
-
-Gmail
-
-IMAP
-
-Outlook
-
-webhook automation
-
-agent harness
-
-MCP tools
-
-The CRM remains provider-neutral.
+The binary only writes a Markdown file. Fetching mail, choosing a thread, and writing a reply are agent work.
 
 18. Inbox
 
@@ -963,34 +951,18 @@ Generated indexes can later accelerate this.
 
 The canonical files must never depend on the index existing.
 
-27. AI-native harness
+27. Agent discovery
 
-The project should ship an agent contract such as:
+The CRM shall not ship AGENTS.md, SKILL.md, or `crm agent install`.
 
-AGENTS.md
-SKILL.md
+Agents discover the tool the same way they discover proof: they run help and they read errors.
 
-embedded in the executable and installable with:
+crm --help
+crm query --help
 
-crm agent install
+A failed `--json` command shall return structured JSON that names the error, the field, and the allowed next values.
 
-This teaches agents:
-
-repository structure
-
-record schema
-
-how to search
-
-how to mutate records
-
-how relationships work
-
-how boards work
-
-validation rules
-
-when to use CLI versus direct file editing
+Help text and error payloads are the prompt. They shall be complete enough that an agent does not need a sidecar skill file.
 
 28. Agent workflow API
 
@@ -1378,19 +1350,9 @@ and:
 
 crm import customers.csv
 
-Potential integrations later:
+There are no planned SaaS adapters inside the binary (HubSpot, Salesforce, Gmail, calendars, Slack, and the like).
 
-HubSpot
-Salesforce
-Notion
-Airtable
-Linear
-Gmail
-Google Calendar
-Outlook
-Slack
-
-These should remain adapters around the core filesystem model.
+If a workspace must talk to those systems, an external agent reads or writes files and calls the CLI. The CRM stays a filesystem.
 
 43. Hooks
 
@@ -1528,9 +1490,7 @@ Cosmopolitan build
 
 embedded web assets
 
-AGENTS.md / SKILL.md
-
-Do not initially build:
+Permanent non-goals (not later work):
 
 authentication
 
@@ -1538,7 +1498,9 @@ cloud sync
 
 multi-user permissions
 
-email provider integrations
+email provider integrations (Gmail, IMAP, Outlook)
+
+SaaS CRM adapters inside the binary
 
 elaborate plugin systems
 
@@ -1554,9 +1516,7 @@ SQLite fallback
 
 server deployment infrastructure
 
-The CRM should deliberately not contain an AI model.
-
-The AI already lives outside it.
+The CRM does not contain an AI model. Agents already exist outside it.
 
 48. Important architectural principle
 
@@ -1585,6 +1545,8 @@ deterministic query engine
 Intelligence
    ↓
 external AI agent
+
+The last layer is never compiled into crm. Agents use the CLI and the files.
 
 This avoids turning the CRM into another opaque AI application.
 
@@ -1626,9 +1588,12 @@ my-crm/
 │   ├── onboarding.yaml
 │   └── grants.yaml
 │
+├── dashboards/
+│   ├── prospects.yaml
+│   └── workspace.yaml
+│
 ├── templates/
 ├── attachments/
-├── AGENTS.md
 └── .crm/
     ├── index/
     ├── cache/
@@ -1640,13 +1605,17 @@ The CRM should feel less like Salesforce and more like:
 
 Git + Markdown + jq + Kanban + an agent harness
 
+This is an agentic CRM stored in files. The binary does not log in, sync, or send mail. Agents do those things, if they are needed at all.
+
 The filesystem itself becomes the API.
 
 The CLI adds deterministic semantics where plain file editing becomes dangerous.
 
 The web UI is merely a projection of that filesystem.
 
-And AI agents don’t need a special SDK, database driver, GraphQL schema, or MCP server to understand the CRM.
+AI agents do not need a special SDK, database driver, GraphQL schema, MCP server, or SKILL.md to understand the CRM.
+
+They start with `crm --help` and structured errors.
 
 They can simply:
 

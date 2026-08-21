@@ -1,4 +1,4 @@
-<!-- Documents: SYS-REQ-260820-456X SW-REQ-260820-NA06 SW-REQ-260820-EJVT INT-REQ-260820-NHBY -->
+<!-- Documents: STK-REQ-260820-4255 SYS-REQ-260820-456X SW-REQ-260820-NA06 SW-REQ-260820-EJVT INT-REQ-260820-NHBY -->
 
 # File-native dashboards
 
@@ -44,6 +44,7 @@ Widgets get data from `query:`, `source:`, or `board:`.
 ## Commands
 
 ```
+crm help dashboard
 crm dashboard
 crm dashboard workspace --json
 crm dashboard new myboard --name "My board"

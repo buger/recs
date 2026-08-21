@@ -1,4 +1,4 @@
-<!-- Documents: STK-REQ-260821-QTPP STK-REQ-260821-NTWY SYS-REQ-260821-JYEJ SYS-REQ-260821-QF1J SYS-REQ-260821-AFPN SW-REQ-260821-8C2C SW-REQ-260821-82BA SW-REQ-260821-AC3S INT-REQ-260821-8HAC INT-REQ-260821-MRGW -->
+<!-- Documents: STK-REQ-260820-4255 STK-REQ-260821-QTPP STK-REQ-260821-NTWY SYS-REQ-260821-JYEJ SYS-REQ-260821-QF1J SYS-REQ-260821-AFPN SYS-REQ-260821-8FKR SW-REQ-260821-8C2C SW-REQ-260821-82BA SW-REQ-260821-AC3S SW-REQ-260821-FCGM INT-REQ-260821-8HAC INT-REQ-260821-MRGW INT-REQ-260821-BSH3 -->
 # Phase 1 file-native CRM
 
 This document explains Phase 1 behavior for the local `crm` binary.
@@ -27,6 +27,7 @@ This document explains Phase 1 behavior for the local `crm` binary.
 - SYS-REQ-260820-9W1S / SW-REQ-260820-8ZS7: `crm serve` binds localhost and serves the Kanban UI.
 - SYS-REQ-260820-456X / SW-REQ-260820-NA06 / SW-REQ-260820-EJVT: YAML dashboards, gallery previews, and a 2x2 widget view.
 - SYS-REQ-260820-PG9C / SW-REQ-260820-YB5C: `--json` emits stable machine output.
+- SYS-REQ-260821-8FKR / SW-REQ-260821-FCGM / INT-REQ-260821-BSH3: help and structured errors are the agent interface.
 - SYS-REQ-260820-7WT4 / SW-REQ-260820-9C5Z: status lives in frontmatter, not folders.
 
 ## Interfaces
@@ -55,7 +56,7 @@ go build -o crm ./cmd/crm
 
 ## Agent contract
 
-- `crm agent install` writes `AGENTS.md` and `SKILL.md`.
+- Agents discover commands from `crm --help`, `crm help <cmd>`, and structured JSON errors. The binary does not write AGENTS.md or SKILL.md.
 - `crm inbox` lists unclassified records and files under `inbox/`.
 - `crm create` applies `templates/<type>.md` when the body is empty.
 - `crm set` and `crm patch` return structured `invalid_enum` errors when a schema enum rejects a value.
