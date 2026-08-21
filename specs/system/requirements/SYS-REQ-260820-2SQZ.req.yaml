@@ -48,13 +48,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T08:50:51Z"
+        reviewed_at: "2026-08-21T09:00:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:a866cb8346b57c961d8722b40c4376bf80285f9eaa65035935f32967c973a826
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after closing the concurrent deferral with a race test and INT-REQ-260821-5BJJ; required store behavior is unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -68,39 +68,52 @@ verification:
               rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
               superseded_at: "2026-08-21T08:50:51Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
+            - kind: unchanged
+              rationale: Re-approve after closing the concurrent deferral with a race test and INT-REQ-260821-5BJJ; required store behavior is unchanged.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
+          issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ
+          reviewer: agent:grok
+          reason: 'Reviewed all 91 pairs. Shared vars are complementary, not merged contracts: CLI pairs share arg_count as a parse budget across help, remaining commands, and store/query/board dispatch; serve pairs share the no-separate-DB layer and listen_port across record API, dashboard/gallery, remaining UI, and static UI; gallery outputs are the HTTP surface of EJVT plus the shared-app NHBY integration; board pairs share matcher_depth/column_list_len between view grouping and move; store pairs share parse_budget and write/conflict outcomes across init, create, patch, and the INT-REQ-260821-5BJJ conflict implication child.'
+          reviewed_at: "2026-08-21T08:58:56.356721Z"
+        - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'System patch requires atomic rename or conflict; shared parse_budget does not merge it with create or init. [owner SYS-REQ-260820-2SQZ; pair ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ]'
-          reviewed_at: "2026-08-20T19:24:30.050143Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'System patch requires atomic rename or conflict; shared parse_budget does not merge it with create or init. [owner SYS-REQ-260820-2SQZ; pair ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ]'
-          reviewed_at: "2026-08-20T19:24:30.050143Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'System patch requires atomic rename or conflict; shared parse_budget does not merge it with create or init. [owner SYS-REQ-260820-2SQZ; pair ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ]'
-          reviewed_at: "2026-08-20T19:24:30.050143Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
           reviewer: agent:grok
-          reason: 'System create/show/list requires stable id and type; shared parse_budget does not merge it with init or patch. [owner SYS-REQ-260820-2SQZ; pair ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C]'
-          reviewed_at: "2026-08-20T19:24:30.275834Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-KJ34
           reviewer: agent:grok
-          reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget does not merge it with create or patch. [owner SYS-REQ-260820-2SQZ; pair ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-KJ34]'
-          reviewed_at: "2026-08-20T19:24:30.504223Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T08:50:51Z"
+    last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
     - atomic_write
     - atomicity

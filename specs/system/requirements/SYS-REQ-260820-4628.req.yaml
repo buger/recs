@@ -49,13 +49,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:47:05Z"
+        reviewed_at: "2026-08-21T09:00:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:6f13b9ff21138d3834a7883701c0385fe1aa6ec7259bff01b99818b967602a60
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -65,29 +65,37 @@ verification:
               rationale: Re-attest parent after children were reviewed so the plan of record stays current.
               superseded_at: "2026-08-21T07:47:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-20T19:24:30.374223Z"
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628
           reviewer: agent:grok
-          reason: 'System board view is a matcher projection; shared matcher bounds do not merge it with move. [owner SYS-REQ-260820-4628; pair ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628]'
-          reviewed_at: "2026-08-20T19:24:30.196551Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628
           reviewer: agent:grok
-          reason: 'System board view is a matcher projection; shared matcher bounds do not merge it with move. [owner SYS-REQ-260820-4628; pair ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628]'
-          reviewed_at: "2026-08-20T19:24:30.196551Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE
           reviewer: agent:grok
-          reason: 'System move changes frontmatter only; shared matcher bounds do not merge it with board view. [owner SYS-REQ-260820-4628; pair ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE]'
-          reviewed_at: "2026-08-20T19:24:30.374223Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:47:05Z"
+    last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
     - empty_input
     - nominal

@@ -43,13 +43,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T08:50:51Z"
+        reviewed_at: "2026-08-21T09:00:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:9abd82d50b66affc939cc9623aa2e0f9041ff17b0b11d52367520137abb90e6c
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after closing the concurrent deferral with a race test and INT-REQ-260821-5BJJ; required store behavior is unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -63,34 +63,47 @@ verification:
               rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
               superseded_at: "2026-08-21T08:50:51Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
+            - kind: unchanged
+              rationale: Re-approve after closing the concurrent deferral with a race test and INT-REQ-260821-5BJJ; required store behavior is unchanged.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
+          issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'Patch SW requires temp write, atomic rename, and conflict report; shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-Q3C4; pair ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4]'
-          reviewed_at: "2026-08-20T19:24:29.722669Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'Patch SW requires temp write, atomic rename, and conflict report; shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-Q3C4; pair ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4]'
-          reviewed_at: "2026-08-20T19:24:29.722669Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'Patch SW requires temp write, atomic rename, and conflict report; shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-Q3C4; pair ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4]'
-          reviewed_at: "2026-08-20T19:24:29.722669Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
           reviewer: agent:grok
-          reason: 'System create/show/list requires stable id and type; shared parse_budget does not merge it with init or patch. [owner SW-REQ-260820-Q3C4; pair ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C]'
-          reviewed_at: "2026-08-20T19:24:30.275834Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34
           reviewer: agent:grok
-          reason: 'System init writes crm.yaml and workspace dirs; shared parse_budget does not merge it with create or patch. [owner SW-REQ-260820-Q3C4; pair ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34]'
-          reviewed_at: "2026-08-20T19:24:30.504223Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
     not_modeled:
         - predicate: end == -1
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
@@ -114,7 +127,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T08:50:51Z"
+    last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
     - atomic_write
     - atomicity

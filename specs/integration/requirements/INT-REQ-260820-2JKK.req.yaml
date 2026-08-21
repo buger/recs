@@ -45,31 +45,39 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:39:06Z"
+        reviewed_at: "2026-08-21T09:00:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:6abb2e16e37df5d51e0bd7fdc7422f1640f0cd8cfc87a6feb2aa658b6a84da9e
         ai_generated: false
         motivation:
-            kind: chg
-            ref: CHG-260821-DFVQ
+            kind: unchanged
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
               superseded_at: "2026-08-21T07:39:06Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-20T19:24:29.061156Z"
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7
           reviewer: agent:grok
-          reason: 'Index SW adds store_records_scanned and !canonical_state_mutated; that is a software rebuild rule, not the INT rewrite contract. [owner INT-REQ-260820-2JKK; pair ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7]'
-          reviewed_at: "2026-08-20T19:24:29.061156Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:32Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:39:06Z"
+    last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
     - idempotency
 obligation_hazards:

@@ -67,13 +67,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T08:07:51Z"
+        reviewed_at: "2026-08-21T09:00:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:773dd955e35308b26a9f2f0c0e391c83f2f3877613e3ac1e339baecb4d33e0e3
         ai_generated: false
         motivation:
-            kind: chg
-            ref: CHG-260821-TZ9S
+            kind: unchanged
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: chg
               ref: CHG-260821-G2PS
@@ -103,6 +103,37 @@ verification:
               rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
               superseded_at: "2026-08-21T08:07:51Z"
               superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-TZ9S
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+        - check: ambiguity
+          issue_key: ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260821-MRGW
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|INT-REQ-260820-NHBY|INT-REQ-260821-MRGW
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260820-8ZS7
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
     not_modeled:
         - predicate: i >= len(row)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
@@ -136,7 +167,7 @@ history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:41Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T08:07:51Z"
+    last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
     - nominal
 obligation_hazards:

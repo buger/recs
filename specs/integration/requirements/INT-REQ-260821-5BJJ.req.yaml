@@ -11,12 +11,35 @@ informal_verification:
     method: ""
     evidence: ""
     verified: false
-parent: SW-REQ-260820-Q3C4
+parent: SYS-REQ-260820-2SQZ
 component: store
 rationale: CLI and HTTP callers share the store lock. A stale version must surface as conflict rather than a torn write.
 tags: []
-variables: []
-traces: {}
+variables:
+    - record_mutation_requested
+    - version_mismatch
+    - conflict_reported
+traces:
+    satisfies:
+        - SYS-REQ-260820-2SQZ
+    reviewed_at: "2026-08-21T09:00:39.754292Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:084b0b5bfdcbfe90fc70331e93f7b09a6c2863b5010568801b30b95c2d86c8db
+    review_history:
+        - reviewed_at: "2026-08-21T09:00:39.754292Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/store/store.go
+            - internal/store/store_race_test.go
+            - specs/system/requirements/SYS-REQ-260820-2SQZ.req.yaml
+    components:
+        - store
+        - cli
+        - serve
 verification:
     assurance_level: E
     formalization_status: valid
@@ -26,17 +49,77 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T08:50:45Z"
+        reviewed_at: "2026-08-21T09:00:44Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:f705d40aa303827cc00b975e847194db90bac350465fc3a8389712f1f92a36e3
+        fingerprint: sha256:dae9150cb93dacb8f9072c933732c54c8deaa313ecebe42338399102e4c50f07
         ai_generated: false
+        motivation:
+            kind: unchanged
+            rationale: Re-approve after adding interface metadata, traces.components, and phase1 documentation; required concurrent store behavior is unchanged.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:44Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
+    gaps_reviewed_by: agent:grok
+    gap_reviews:
+        - check: ambiguity
+          issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ
+          reviewer: agent:grok
+          reason: 'Reviewed all 91 pairs. Shared vars are complementary, not merged contracts: CLI pairs share arg_count as a parse budget across help, remaining commands, and store/query/board dispatch; serve pairs share the no-separate-DB layer and listen_port across record API, dashboard/gallery, remaining UI, and static UI; gallery outputs are the HTTP surface of EJVT plus the shared-app NHBY integration; board pairs share matcher_depth/column_list_len between view grouping and move; store pairs share parse_budget and write/conflict outcomes across init, create, patch, and the INT-REQ-260821-5BJJ conflict implication child.'
+          reviewed_at: "2026-08-21T08:58:56.356721Z"
 history:
     created_by: agent:grok
     created_at: "2026-08-21T08:50:23Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T08:50:45Z"
+    last_modified_at: "2026-08-21T09:00:44Z"
 obligation_checklist:
     - concurrent
+obligation_hazards:
+    - class: concurrent
+      worst_case: Two overlapping patches interleave field writes and drop one editor update without a conflict.
+      severity: medium
+hazard_review:
+    reviewed_at: "2026-08-21T08:59:27Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - concurrent
+        - category: property
+          disposition: not_applicable
+          rationale: Concurrent patch serialization is a scenario race contract, not an algebraic property of store writes.
+        - category: domain
+          disposition: not_applicable
+          rationale: Path confinement and write atomicity stay on the parent store mutation requirements.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+interface:
+    caller: cli
+    callee: store
+    type: function_call
+    signature: App.Patch() -> Record
+    producer: store
+    consumer:
+        - cli
+        - serve
+    owner: team:crm
+    version: v1.0.0
+    compatibility_policy: semver-lax
+    risk_tier: 3
 lifecycle:
     change_history:
         - date: "2026-08-21T08:50:45Z"

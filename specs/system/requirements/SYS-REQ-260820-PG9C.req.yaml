@@ -45,13 +45,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:47:05Z"
+        reviewed_at: "2026-08-21T09:00:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:c41a9ae4c3bf65b97ecc6babee7c3c60e58afdb1cf0fe57247b6b95f7796235b
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -61,24 +61,62 @@ verification:
               rationale: Re-attest parent after children were reviewed so the plan of record stays current.
               superseded_at: "2026-08-21T07:47:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-20T19:24:30.597544Z"
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
+          issue_key: ambiguity|cli|INT-REQ-260821-8HAC|SYS-REQ-260820-PG9C
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|cli|INT-REQ-260821-BSH3|SYS-REQ-260820-PG9C
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'System JSON mode is the machine output contract; shared arg_count does not merge it with next or triage. [owner SYS-REQ-260820-PG9C; pair ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C]'
-          reviewed_at: "2026-08-20T19:24:30.597544Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'System JSON mode is the machine output contract; shared arg_count does not merge it with next or triage. [owner SYS-REQ-260820-PG9C; pair ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260820-PG9C]'
-          reviewed_at: "2026-08-20T19:24:30.597544Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|cli|SW-REQ-260821-8C2C|SYS-REQ-260820-PG9C
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-8FKR
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
+        - check: ambiguity
+          issue_key: ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-JYEJ
+          reviewer: agent:grok
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:09Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:47:05Z"
+    last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
     - determinism
     - nominal

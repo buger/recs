@@ -44,13 +44,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:42:37Z"
+        reviewed_at: "2026-08-21T09:00:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:a94ce32d25c2ae99fcb1e1678b10fedef9225ed9810b44a6c6b5ff85a89bffea
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -60,24 +60,32 @@ verification:
               rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
               superseded_at: "2026-08-21T07:42:37Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-20T19:24:30.374223Z"
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR
           reviewer: agent:grok
-          reason: 'Board-view SW groups by column field with column_list_len <= 64; it is not the move path that shares matcher_depth. [owner SW-REQ-260820-NBGR; pair ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR]'
-          reviewed_at: "2026-08-20T19:24:29.634329Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR
           reviewer: agent:grok
-          reason: 'Board-view SW groups by column field with column_list_len <= 64; it is not the move path that shares matcher_depth. [owner SW-REQ-260820-NBGR; pair ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR]'
-          reviewed_at: "2026-08-20T19:24:29.634329Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
         - check: ambiguity
           issue_key: ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE
           reviewer: agent:grok
-          reason: 'System move changes frontmatter only; shared matcher bounds do not merge it with board view. [owner SW-REQ-260820-NBGR; pair ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE]'
-          reviewed_at: "2026-08-20T19:24:30.374223Z"
+          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
+          reviewed_at: "2026-08-21T09:00:14.991509Z"
     not_modeled:
         - predicate: len(record.StringSlice(rec.Get("blockers")
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
@@ -85,7 +93,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:30Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:42:38Z"
+    last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
     - empty_input
     - nominal
