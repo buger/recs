@@ -37,16 +37,3 @@ func WriteWorkspace(root string) error {
 	})
 }
 
-// WriteAgentFiles writes AGENTS.md and SKILL.md into the workspace.
-func WriteAgentFiles(root string) error {
-	for _, name := range []string{"AGENTS.md", "SKILL.md"} {
-		data, err := FS.ReadFile("fs/" + name)
-		if err != nil { //mcdc:ignore:defensive AGENTS.md and SKILL.md are embedded
-			return err
-		}
-		if err := os.WriteFile(filepath.Join(root, name), data, 0o644); err != nil {
-			return err
-		}
-	}
-	return nil
-}

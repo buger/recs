@@ -21,12 +21,8 @@ import (
 var Input io.Reader = os.Stdin
 
 // Main is the CLI entry.
-// Implements: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C INT-REQ-260820-JC9M
+// Implements: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C INT-REQ-260820-JC9M SYS-REQ-260821-8FKR SW-REQ-260821-FCGM INT-REQ-260821-BSH3
 func Main(args []string, stdout, stderr io.Writer) int {
-	if len(args) == 0 {
-		printHelp(stdout)
-		return 0
-	}
 	jsonOut := false
 	root := ""
 	port := 0
@@ -38,6 +34,10 @@ func Main(args []string, stdout, stderr io.Writer) int {
 	mdOut := false
 	csvOut := false
 	relation := ""
+	helpFlag := false
+	if len(args) == 0 {
+		return printGlobalHelp(stdout, false)
+	}
 	for i := 0; i < len(args); i++ {
 		a := args[i]
 		switch {
@@ -46,8 +46,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		case a == "--md":
 			mdOut = true
 		case a == "--help" || a == "-h":
-			printHelp(stdout)
-			return 0
+			helpFlag = true
 		case a == "--root" && i+1 < len(args):
 			i++
 			root = args[i]
@@ -100,11 +99,19 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		}
 	}
 	if len(filtered) == 0 {
-		printHelp(stdout)
-		return 0
+		return printGlobalHelp(stdout, jsonOut)
 	}
 	cmd := filtered[0]
 	rest := filtered[1:]
+	if cmd == "help" {
+		if len(rest) == 0 {
+			return printGlobalHelp(stdout, jsonOut)
+		}
+		return printCommandHelp(stdout, stderr, rest[0], jsonOut)
+	}
+	if helpFlag {
+		return printCommandHelp(stdout, stderr, cmd, jsonOut)
+	}
 	write := func(v any, human string) int {
 		if jsonOut {
 			enc := json.NewEncoder(stdout)
@@ -134,6 +141,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 				_ = json.NewEncoder(stdout).Encode(map[string]any{
 					"ok": false, "error": code, "field": enumErr.Field,
 					"value": enumErr.Value, "allowed": enumErr.Allowed,
+					"message": err.Error(), "next": nextHint(cmd, err.Error()),
 				})
 				return 1
 			}
@@ -144,16 +152,37 @@ func Main(args []string, stdout, stderr io.Writer) int {
 				_ = json.NewEncoder(stdout).Encode(map[string]any{
 					"ok": false, "error": "conflict",
 					"expected_version": confErr.Expected, "current_version": confErr.Current,
+					"message": err.Error(), "next": "crm show " + strings.Join(rest, " "),
 				})
 				return 1
 			}
 		}
+		payload := map[string]any{"ok": false, "error": code, "message": err.Error()}
+		if strings.HasPrefix(err.Error(), "unknown command") {
+			payload["error"] = "unknown_command"
+			payload["field"] = "command"
+			parts := strings.Split(err.Error(), " ")
+			if len(parts) >= 3 {
+				payload["value"] = parts[2]
+			}
+			payload["allowed"] = commandNames()
+		}
+		if n := nextHint(cmd, err.Error()); n != "" {
+			payload["next"] = n
+		}
 		if jsonOut {
-			_ = json.NewEncoder(stdout).Encode(map[string]any{"ok": false, "error": code, "message": err.Error()})
+			_ = json.NewEncoder(stdout).Encode(payload)
 		} else {
 			fmt.Fprintln(stderr, err.Error())
+			if n, ok := payload["next"].(string); ok && n != "" {
+				fmt.Fprintln(stderr, "next: "+n)
+			}
 		}
 		return 1
+	}
+
+	if _, ok := lookupCommand(cmd); !ok {
+		return fail(fmt.Errorf("unknown command %s", cmd))
 	}
 
 	if cmd == "init" {
@@ -379,14 +408,6 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			return fail(err)
 		}
 		return write(map[string]any{"ok": true, "records": publicList(recs)}, listHuman(recs))
-	case "agent":
-		if len(rest) < 1 || rest[0] != "install" {
-			return fail(fmt.Errorf("usage: crm agent install"))
-		}
-		if err := a.AgentInstall(); err != nil {
-			return fail(err)
-		}
-		return write(map[string]any{"ok": true, "files": []string{"AGENTS.md", "SKILL.md"}}, "installed AGENTS.md and SKILL.md\n")
 	case "edit":
 		if len(rest) < 1 {
 			return fail(fmt.Errorf("usage: crm edit <id> [--body ...] [--set k=v]"))
@@ -516,7 +537,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		}
 		return write(res, gitHuman(res))
 	default:
-		return fail(fmt.Errorf("unknown command %s", cmd))
+		return fail(fmt.Errorf("unknown command %s", cmd)) //mcdc:ignore:defensive unknown commands are rejected before openApp
 	}
 }
 
@@ -609,55 +630,6 @@ func dashboardHuman(proj *dashboard.Projection) string {
 		fmt.Fprintf(&b, "  %s\t%s\t%s\n", w.ID, kind, w.Title)
 	}
 	return b.String()
-}
-
-// Implements: SYS-REQ-260820-PG9C
-func printHelp(w io.Writer) {
-	fmt.Fprint(w, `crm - file-native agent CRM
-
-Commands:
-  init                 Create workspace layout
-  create <type>        Create a record
-  show <id>            Show a record
-  list                 List records
-  search <query>       Full-text search
-  query <expr>         Filter records
-  set <id> <f> <v>     Set one field
-  patch <id> --set k=v Patch fields
-  board [name]         List boards or show a board
-  dashboard [id]       List dashboards or show one
-  dashboard new <id>   Write dashboards/<id>.yaml
-  move <id> <b> <col>  Move a card
-  next                 List next actions
-  triage               List items that need a decision
-  validate             Validate optional schemas
-  index                Rebuild disposable index
-  context <id>         Assemble related records
-  inbox                List unclassified inbox records
-  agent install        Write AGENTS.md and SKILL.md
-  serve                Local HTTP UI on :7777
-  edit <id>            Edit body/frontmatter or open $EDITOR
-  delete <id>          Delete a record file
-  link <id> <target>   Write a canonical relation
-  ingest [email] [src] Create a record from provider-neutral JSON
-  export               Export records as JSON or CSV
-  import <file.csv>    Import records from CSV
-  diff                 Show git diff when a repo exists
-  changed              List git-changed workspace files
-  history <id>         Show git history for a record
-
-Flags:
-  --json               Stable machine output
-  --csv                CSV export format
-  --md                 Markdown context output
-  --root <dir>         Workspace root
-  --set k=v            Field assignment
-  --body text          Markdown body
-  --type <type>        Type filter or import default
-  --relation <type>    Relation type for link
-  --filter k=v         Board filter
-  --if-version <hash>  Optimistic concurrency
-`)
 }
 
 // Implements: SYS-REQ-260821-JYEJ

@@ -166,6 +166,7 @@ func (a *App) Link(id, target, rel string) (*store.PatchResult, error) {
 	return a.Store.Patch(id, map[string]any{"relations": raw}, nil, "")
 }
 
+// Implements: SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C
 func relationsOf(rec *record.Record) []Relation {
 	var out []Relation
 	if rec == nil {
@@ -325,6 +326,7 @@ func (a *App) ImportCSV(r io.Reader, defaultType string) ([]*record.Record, erro
 	return created, nil
 }
 
+// Implements: SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C
 func (a *App) gitRoot() string {
 	dir := a.Root()
 	for {
@@ -339,6 +341,7 @@ func (a *App) gitRoot() string {
 	}
 }
 
+// Implements: SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C
 func runGit(dir string, args ...string) (string, error) {
 	cmd := exec.Command("git", args...)
 	cmd.Dir = dir
@@ -439,6 +442,7 @@ func (a *App) History(id string) GitResult {
 	return GitResult{OK: true, Git: true, History: lines, Output: out}
 }
 
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA
 func publicRecord(rec *record.Record) map[string]any {
 	out := map[string]any{"id": rec.ID, "type": rec.Type, "path": rec.Path, "body": rec.Body, "version": rec.Version()}
 	for k, v := range rec.Fields {
@@ -530,6 +534,7 @@ func (a *App) AttachmentFile(rel string) (string, error) {
 	return abs, nil
 }
 
+// Implements: SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C SYS-REQ-260821-QF1J
 func storeConfined(root, path string) error {
 	absRoot, err := filepath.Abs(root)
 	if err != nil {

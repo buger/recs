@@ -11,7 +11,6 @@ import (
 	"crm/internal/board"
 	"crm/internal/contextpkg"
 	"crm/internal/dashboard"
-	"crm/internal/defaults"
 	"crm/internal/index"
 	"crm/internal/query"
 	"crm/internal/record"
@@ -361,11 +360,6 @@ func (a *App) ProjectDashboard(id string) (*dashboard.Projection, error) {
 			return a.Board(bid, nil)
 		},
 	}), nil
-}
-
-// AgentInstall writes AGENTS.md and SKILL.md.
-func (a *App) AgentInstall() error {
-	return defaults.WriteAgentFiles(a.Root())
 }
 
 // Implements: INT-REQ-260820-JC9M

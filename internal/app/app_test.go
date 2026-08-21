@@ -156,9 +156,6 @@ func TestListQuerySearchBoardNextTriage(t *testing.T) {
 	if _, err := a.Context("nope"); err == nil {
 		t.Fatal("missing context")
 	}
-	if err := a.AgentInstall(); err != nil {
-		t.Fatal(err)
-	}
 	_ = record.DisplayName(&record.Record{ID: "x"})
 }
 

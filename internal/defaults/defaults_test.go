@@ -19,22 +19,9 @@ func TestWriteWorkspaceAndAgents(t *testing.T) {
 	if _, err := os.Stat(filepath.Join(root, "crm.yaml")); err != nil {
 		t.Fatal(err)
 	}
-	if err := defaults.WriteAgentFiles(root); err != nil {
-		t.Fatal(err)
-	}
-	if _, err := os.Stat(filepath.Join(root, "AGENTS.md")); err != nil {
-		t.Fatal(err)
-	}
-}
-
-func TestWriteAgentFilesBlocked(t *testing.T) {
-	root := t.TempDir()
-	if err := os.WriteFile(filepath.Join(root, "AGENTS.md"), nil, 0o444); err != nil {
-		t.Fatal(err)
-	}
-	_ = os.Chmod(filepath.Join(root, "AGENTS.md"), 0o444)
-	if err := defaults.WriteAgentFiles(root); err != nil {
-		// overwrite may still succeed depending on OS
-		_ = err
+	for _, name := range []string{"AGENTS.md", "SKILL.md"} {
+		if _, err := os.Stat(filepath.Join(root, name)); err == nil {
+			t.Fatalf("init must not write %s", name)
+		}
 	}
 }

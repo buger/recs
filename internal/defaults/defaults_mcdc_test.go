@@ -17,9 +17,3 @@ func TestWriteWorkspaceMkdirBlocked(t *testing.T) {
 		t.Fatal("expected mkdir fail")
 	}
 }
-
-func TestWriteAgentFilesMissingRoot(t *testing.T) {
-	if err := defaults.WriteAgentFiles(filepath.Join(t.TempDir(), "nope")); err == nil {
-		t.Fatal("expected write fail")
-	}
-}

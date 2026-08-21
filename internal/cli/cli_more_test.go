@@ -65,8 +65,11 @@ func TestCLIAllCommandsAndFlags(t *testing.T) {
 	if run(t, root, "context", "grant_c", "--md") != 0 {
 		t.Fatal("context md")
 	}
-	if run(t, root, "inbox") != 0 || run(t, root, "agent", "install") != 0 || run(t, root, "agent") == 0 {
-		t.Fatal("inbox/agent")
+	if run(t, root, "inbox") != 0 {
+		t.Fatal("inbox")
+	}
+	if run(t, root, "agent", "install") == 0 || run(t, root, "agent") == 0 {
+		t.Fatal("agent command must not exist")
 	}
 	if run(t, root, "create") == 0 || run(t, root, "nope") == 0 {
 		t.Fatal("usage/unknown")

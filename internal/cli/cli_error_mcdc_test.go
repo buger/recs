@@ -65,13 +65,12 @@ func TestCLIValidateFailEnumConflictAndStoreErrors(t *testing.T) {
 		{"inbox"},
 		{"context", "note_v"},
 		{"move", "note_v", "grants", "open"},
-		{"agent", "install"},
 		{"set", "note_v", "title", "Z"},
 		{"show", "note_v"},
 	} {
 		all := append([]string{"--root", root}, args...)
 		code := cli.Main(all, out, errb)
-		if args[0] == "board" || args[0] == "agent" {
+		if args[0] == "board" {
 			continue
 		}
 		if code == 0 {
@@ -80,20 +79,6 @@ func TestCLIValidateFailEnumConflictAndStoreErrors(t *testing.T) {
 	}
 }
 
-func TestCLIAgentInstallBlocked(t *testing.T) {
-	root := t.TempDir()
-	out, errb := &bytes.Buffer{}, &bytes.Buffer{}
-	if cli.Main([]string{"--root", root, "init"}, out, errb) != 0 {
-		t.Fatal("init")
-	}
-	_ = os.Remove(filepath.Join(root, "AGENTS.md"))
-	if err := os.Mkdir(filepath.Join(root, "AGENTS.md"), 0o755); err != nil {
-		t.Fatal(err)
-	}
-	if cli.Main([]string{"--root", root, "agent", "install"}, out, errb) == 0 {
-		t.Fatal("agent write to dir")
-	}
-}
 
 func TestCLIBoardListError(t *testing.T) {
 	root := t.TempDir()

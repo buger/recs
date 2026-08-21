@@ -209,12 +209,9 @@ func TestAgentInboxTemplateAndEnum(t *testing.T) {
 	if code := run(t, root, "init"); code != 0 {
 		t.Fatal(code)
 	}
-	if code := run(t, root, "agent", "install", "--json"); code != 0 {
-		t.Fatal("agent install")
-	}
 	for _, name := range []string{"AGENTS.md", "SKILL.md"} {
-		if _, err := os.Stat(filepath.Join(root, name)); err != nil {
-			t.Fatalf("missing %s", name)
+		if _, err := os.Stat(filepath.Join(root, name)); err == nil {
+			t.Fatalf("init must not write %s", name)
 		}
 	}
 	if code := run(t, root, "create", "grant", "--id", "grant_tpl", "--title", "Template Grant"); code != 0 {

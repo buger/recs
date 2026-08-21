@@ -12,6 +12,10 @@ import (
 )
 
 // Verifies: SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C INT-REQ-260821-8HAC SYS-REQ-260821-QF1J
+// SYS-REQ-260821-JYEJ:nominal:nominal
+// SYS-REQ-260821-JYEJ:error_handling:negative
+// SW-REQ-260821-8C2C:nominal:nominal
+// INT-REQ-260821-8HAC:nominal:nominal
 func TestRemainingCLICommands(t *testing.T) {
 	root := t.TempDir()
 	if run(t, root, "init") != 0 {

@@ -14,6 +14,11 @@ import (
 )
 
 // Verifies: SYS-REQ-260821-QF1J SW-REQ-260821-82BA INT-REQ-260821-MRGW STK-REQ-260821-NTWY
+// SYS-REQ-260821-QF1J:nominal:nominal
+// SW-REQ-260821-82BA:nominal:nominal
+// INT-REQ-260821-MRGW:nominal:nominal
+// INT-REQ-260821-MRGW:integration:integration
+// STK-REQ-260821-NTWY:nominal:nominal
 func TestRecordViewEditorSearchFiltersAttachments(t *testing.T) {
 	a := setupApp(t)
 	if _, err := a.Create("person", "person_alice", map[string]any{"name": "Alice Smith"}, "Hello [[grant_a]]\n"); err != nil {
