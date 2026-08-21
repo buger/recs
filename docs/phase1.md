@@ -1,4 +1,4 @@
-<!-- Documents: STK-REQ-260820-4255 STK-REQ-260821-QTPP STK-REQ-260821-NTWY SYS-REQ-260821-JYEJ SYS-REQ-260821-QF1J SYS-REQ-260821-AFPN SYS-REQ-260821-8FKR SW-REQ-260821-8C2C SW-REQ-260821-82BA SW-REQ-260821-AC3S SW-REQ-260821-FCGM INT-REQ-260821-8HAC INT-REQ-260821-MRGW INT-REQ-260821-BSH3 -->
+<!-- Documents: STK-REQ-260820-4255 STK-REQ-260821-QTPP STK-REQ-260821-NTWY SYS-REQ-260821-JYEJ SYS-REQ-260821-QF1J SYS-REQ-260821-AFPN SYS-REQ-260821-8FKR SW-REQ-260821-8C2C SW-REQ-260821-82BA SW-REQ-260821-AC3S SW-REQ-260821-FCGM INT-REQ-260821-8HAC INT-REQ-260821-MRGW INT-REQ-260821-BSH3 INT-REQ-260821-5BJJ -->
 # Phase 1 file-native CRM
 
 This document explains Phase 1 behavior for the local `crm` binary.
@@ -37,6 +37,7 @@ This document explains Phase 1 behavior for the local `crm` binary.
 - INT-REQ-260820-NHBY: HTTP dashboard routes project through the same application layer.
 - INT-REQ-260820-JRWN: board move writes frontmatter through the store.
 - INT-REQ-260820-2JKK: index rebuild scans store records and does not mutate canonical files.
+- INT-REQ-260821-5BJJ: concurrent patches serialize through the store lock and report version conflicts.
 - SYS-REQ-260821-JYEJ / SW-REQ-260821-8C2C / INT-REQ-260821-8HAC: edit, delete, link, ingest, export, import, and git companion commands.
 - SYS-REQ-260821-QF1J / SW-REQ-260821-82BA / INT-REQ-260821-MRGW: record view, editor, search page, board filters, attachments, and wikilinks.
 - SYS-REQ-260821-AFPN / SW-REQ-260821-AC3S: Cosmopolitan APE wrapper (`make ape`).
