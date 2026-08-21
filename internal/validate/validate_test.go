@@ -12,20 +12,14 @@ import (
 // SYS-REQ-260820-YWV4:nominal:nominal
 // SW-REQ-260820-8PMR:boundary:nominal
 // SW-REQ-260820-8PMR:empty_input:nominal
-// MCDC SW-REQ-260820-8PMR: records_valid=F, schema_count_GE_0=F, schema_missing=T, schema_present=F, validate_command_invoked=T, validation_skipped=F, violations_reported=F => TRUE
-// MCDC SW-REQ-260820-8PMR: records_valid=F, schema_count_GE_0=T, schema_missing=F, schema_present=F, validate_command_invoked=T, validation_skipped=F, violations_reported=F => TRUE
 //mcdc:ignore SW-REQ-260820-8PMR: records_valid=F, schema_count_GE_0=T, schema_missing=F, schema_present=T, validate_command_invoked=T, validation_skipped=F, violations_reported=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
-// MCDC SW-REQ-260820-8PMR: records_valid=F, schema_count_GE_0=T, schema_missing=F, schema_present=T, validate_command_invoked=T, validation_skipped=F, violations_reported=T => TRUE
-// MCDC SW-REQ-260820-8PMR: records_valid=F, schema_count_GE_0=T, schema_missing=T, schema_present=F, validate_command_invoked=F, validation_skipped=F, violations_reported=F => TRUE
 //mcdc:ignore SW-REQ-260820-8PMR: records_valid=F, schema_count_GE_0=T, schema_missing=T, schema_present=F, validate_command_invoked=T, validation_skipped=F, violations_reported=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
-// MCDC SW-REQ-260820-8PMR: records_valid=T, schema_count_GE_0=T, schema_missing=F, schema_present=T, validate_command_invoked=T, validation_skipped=F, violations_reported=F => TRUE
 //mcdc:ignore SW-REQ-260820-8PMR: records_valid=T, schema_count_GE_0=T, schema_missing=T, schema_present=T, validate_command_invoked=T, validation_skipped=F, violations_reported=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
-// MCDC SW-REQ-260820-8PMR: records_valid=T, schema_count_GE_0=T, schema_missing=T, schema_present=T, validate_command_invoked=T, validation_skipped=T, violations_reported=T => TRUE
 // MCDC SYS-REQ-260820-YWV4: records_valid=F, schema_count_GE_0=F, schema_missing=T, schema_present=F, validate_command_invoked=T, validation_skipped=F, violations_reported=F => TRUE
 // MCDC SYS-REQ-260820-YWV4: records_valid=F, schema_count_GE_0=T, schema_missing=F, schema_present=F, validate_command_invoked=T, validation_skipped=F, violations_reported=F => TRUE
 //mcdc:ignore SYS-REQ-260820-YWV4: records_valid=F, schema_count_GE_0=T, schema_missing=F, schema_present=T, validate_command_invoked=T, validation_skipped=F, violations_reported=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SYS-REQ-260820-YWV4: records_valid=F, schema_count_GE_0=T, schema_missing=F, schema_present=T, validate_command_invoked=T, validation_skipped=F, violations_reported=T => TRUE
-// MCDC SYS-REQ-260820-YWV4: records_valid=F, schema_count_GE_0=T, schema_missing=T, schema_present=F, validate_command_invoked=F, validation_skipped=F, violations_reported=F => TRUE
+// MCDC SYS-REQ-260820-YWV4: records_valid=F, schema_count_GE_0=T, schema_missing=T, schema_present=F, validate_command_invoked=F, validation_skipped=F, violations_reported=F => TRUE [no-action: SYS-REQ-260820-YWV4ActionCalls == 0]
 //mcdc:ignore SYS-REQ-260820-YWV4: records_valid=F, schema_count_GE_0=T, schema_missing=T, schema_present=F, validate_command_invoked=T, validation_skipped=F, violations_reported=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SYS-REQ-260820-YWV4: records_valid=T, schema_count_GE_0=T, schema_missing=F, schema_present=T, validate_command_invoked=T, validation_skipped=F, violations_reported=F => TRUE
 //mcdc:ignore SYS-REQ-260820-YWV4: records_valid=T, schema_count_GE_0=T, schema_missing=T, schema_present=T, validate_command_invoked=T, validation_skipped=F, violations_reported=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]

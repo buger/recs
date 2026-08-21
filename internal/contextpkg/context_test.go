@@ -9,14 +9,10 @@ import (
 
 // Verifies: SW-REQ-260820-V48V SYS-REQ-260820-0TQX
 // SW-REQ-260820-V48V:error_handling:negative
-// MCDC SW-REQ-260820-V48V: context_rejected=F, context_requested=F, related_records_assembled=F, relation_count_GE_0=T, relations_resolved=F, seed_record_loaded=F => TRUE
-// MCDC SW-REQ-260820-V48V: context_rejected=F, context_requested=T, related_records_assembled=F, relation_count_GE_0=F, relations_resolved=F, seed_record_loaded=F => TRUE
 //mcdc:ignore SW-REQ-260820-V48V: context_rejected=F, context_requested=T, related_records_assembled=F, relation_count_GE_0=T, relations_resolved=F, seed_record_loaded=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SW-REQ-260820-V48V: context_rejected=F, context_requested=T, related_records_assembled=F, relation_count_GE_0=T, relations_resolved=T, seed_record_loaded=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SW-REQ-260820-V48V: context_rejected=F, context_requested=T, related_records_assembled=T, relation_count_GE_0=T, relations_resolved=F, seed_record_loaded=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SW-REQ-260820-V48V: context_rejected=F, context_requested=T, related_records_assembled=T, relation_count_GE_0=T, relations_resolved=T, seed_record_loaded=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
-// MCDC SW-REQ-260820-V48V: context_rejected=F, context_requested=T, related_records_assembled=T, relation_count_GE_0=T, relations_resolved=T, seed_record_loaded=T => TRUE
-// MCDC SW-REQ-260820-V48V: context_rejected=T, context_requested=T, related_records_assembled=F, relation_count_GE_0=T, relations_resolved=F, seed_record_loaded=F => TRUE
 func TestAssembleIgnoresUnknownIDs(t *testing.T) {
 	seed := &record.Record{ID: "person_a", Type: "person", Fields: map[string]any{"id": "person_a", "company": "missing_co"}}
 	got := contextpkg.Assemble(seed, []*record.Record{seed})

@@ -19,6 +19,7 @@ variables:
     - record_mutation_requested
     - version_mismatch
     - conflict_reported
+    - parse_budget
 traces:
     satisfies:
         - SYS-REQ-260820-2SQZ
@@ -48,13 +49,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:05:42Z"
+        reviewed_at: "2026-08-21T09:18:47Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:fed8e0f1932e9c8977c5c169dbb6f6b3fcf07ac0e279b6a52a89cd7c1c553815
+        fingerprint: sha256:8ea4bbcdbabb8b2263ed279fcfc40b4eb0a54b08be1c8d98ed1db5279fd1db6e
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after adding the existing parse_budget guard already used by the parent patch contract.
+            rationale: Re-approve after listing honest not_modeled Go length predicates; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
@@ -80,24 +81,39 @@ verification:
               ref: CHG-260821-AHD2
               superseded_at: "2026-08-21T09:05:42Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after adding the existing parse_budget guard already used by the parent patch contract.
+              superseded_at: "2026-08-21T09:16:14Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after aligning variables lists with FRETish and withdrawing misplaced invariant_preservation hazard gradings; required behavior is unchanged.
+              superseded_at: "2026-08-21T09:18:47Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:03:49.61319Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: '8FKR now names global and command help outputs. Remaining pairs still share only arg_count or command_rejected across help versus remaining versus dispatch surfaces.'
+          reason: 'INT-REQ-260821-5BJJ on store_lock keeps its own contract (when record_mutation_requested the store_lock shall always satisfy (parse_budget >= 0 => (version_mismatch => conflict_reported))). This review is specific to ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4 and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:03:49.61319Z"
         - check: ambiguity
           issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'Reviewed all 91 pairs. Shared vars are complementary, not merged contracts: CLI pairs share arg_count as a parse budget across help, remaining commands, and store/query/board dispatch; serve pairs share the no-separate-DB layer and listen_port across record API, dashboard/gallery, remaining UI, and static UI; gallery outputs are the HTTP surface of EJVT plus the shared-app NHBY integration; board pairs share matcher_depth/column_list_len between view grouping and move; store pairs share parse_budget and write/conflict outcomes across init, create, patch, and the INT-REQ-260821-5BJJ conflict implication child.'
+          reason: 'INT-REQ-260821-5BJJ on store_lock keeps its own contract (when record_mutation_requested the store_lock shall always satisfy (parse_budget >= 0 => (version_mismatch => conflict_reported))). This review is specific to ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T08:58:56.356721Z"
+    not_modeled:
+        - predicate: len(fields)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs.Enum)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: agent:grok
     created_at: "2026-08-21T08:50:23Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:05:42Z"
+    last_modified_at: "2026-08-21T09:18:47Z"
 obligation_checklist:
     - concurrent
 obligation_hazards:

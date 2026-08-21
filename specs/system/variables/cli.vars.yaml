@@ -56,10 +56,6 @@ variables:
       type: bool
       direction: output
       description: Decide condition human output emitted.
-    - name: cli_command_dispatched
-      type: bool
-      direction: input
-      description: Decide condition cli command dispatched.
     - name: shared_record_model_used
       type: bool
       direction: output

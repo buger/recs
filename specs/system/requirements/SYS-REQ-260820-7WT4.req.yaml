@@ -45,13 +45,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T08:50:13Z"
+        reviewed_at: "2026-08-21T09:16:15Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:2d982d8f07c2b123a2f7b14e15c65e7421f6ee73f634494a08575c1b84ffb407
+        fingerprint: sha256:af4569c4c4bc0c3a65088492afc9af88b9aa9216b4216cfd9ded4cfee66e1867
         ai_generated: false
         motivation:
-            kind: chg
-            ref: CHG-260821-8Z1D
+            kind: unchanged
+            rationale: Re-review the current approved child set after later child reviews; parent required behavior and decomposition intent are unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -65,17 +65,22 @@ verification:
               rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
               superseded_at: "2026-08-21T08:50:13Z"
               superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-8Z1D
+              superseded_at: "2026-08-21T09:16:14Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after aligning variables lists with FRETish and withdrawing misplaced invariant_preservation hazard gradings; required behavior is unchanged.
+              superseded_at: "2026-08-21T09:16:15Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:09Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T08:50:13Z"
+    last_modified_at: "2026-08-21T09:16:15Z"
 obligation_checklist:
     - nominal
 obligation_hazards:
-    - class: invariant_preservation
-      worst_case: A status change relocates the file or drops id/type, breaking the Markdown-is-canonical invariant.
-      severity: medium
     - class: nominal
       worst_case: A valid status change is not persisted in frontmatter, so boards show a stale column.
       severity: low

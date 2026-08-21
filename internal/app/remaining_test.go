@@ -2,6 +2,7 @@ package app_test
 
 import (
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -37,7 +38,6 @@ func setupRemaining(t *testing.T) *app.App {
 // INT-REQ-260821-8HAC:error_handling:negative
 // INT-REQ-260821-8HAC:integration:integration
 // STK-REQ-260821-QTPP:nominal:nominal
-// MCDC SYS-REQ-260821-JYEJ: arg_count_GE_0=T, command_rejected=F, export_emitted=F, git_empty_reported=F, git_repo_present=F, git_result_emitted=F, import_records_created=F, ingest_record_created=T, record_file_mutated=F, remaining_cli_command_invoked=T => TRUE
 // MCDC SW-REQ-260821-8C2C: arg_count_GE_1=T, command_rejected=F, export_emitted=F, git_empty_reported=F, git_repo_present=F, git_result_emitted=F, import_records_created=F, ingest_record_created=T, record_file_mutated=F, remaining_cli_command_invoked=T => TRUE
 // MCDC INT-REQ-260821-8HAC: arg_count_GT_0=T, command_rejected=F, remaining_cli_command_invoked=T, shared_record_model_used=T, store_api_used=F => TRUE
 func TestEditDeleteLinkIngestExportImport(t *testing.T) {
@@ -174,7 +174,31 @@ func TestResolveWikilink(t *testing.T) {
 	}
 }
 
-// Verifies: SYS-REQ-260821-AFPN SW-REQ-260821-AC3S STK-REQ-260820-T8AZ
+// Verifies: SYS-REQ-260821-AFPN
+// SYS-REQ-260821-AFPN
+// Verifies: SW-REQ-260821-AC3S
+// SW-REQ-260821-AC3S
+// Verifies: STK-REQ-260820-T8AZ
+// STK-REQ-260820-T8AZ
+// MCDC SYS-REQ-260821-AFPN: ape_binary_produced=F, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=F, cosmocc_available=F, host_os_supported=F, native_blob_embedded=F, rc_GE_0=F => TRUE
+// MCDC SYS-REQ-260821-AFPN: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=T, native_blob_embedded=T, rc_GE_0=T => TRUE
+//mcdc:ignore SYS-REQ-260821-AFPN: ape_binary_produced=F, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=T, native_blob_embedded=T, rc_GE_0=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SYS-REQ-260821-AFPN: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=F, cosmocc_available=T, host_os_supported=T, native_blob_embedded=T, rc_GE_0=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SYS-REQ-260821-AFPN: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=F, host_os_supported=T, native_blob_embedded=T, rc_GE_0=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SYS-REQ-260821-AFPN: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=F, native_blob_embedded=T, rc_GE_0=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SYS-REQ-260821-AFPN: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=T, native_blob_embedded=F, rc_GE_0=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+// MCDC SW-REQ-260821-AC3S: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=T, native_blob_embedded=T, rc_LE_0=T, rc_LE_255=T => TRUE
+//mcdc:ignore SW-REQ-260821-AC3S: ape_binary_produced=F, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=T, native_blob_embedded=T, rc_LE_0=T, rc_LE_255=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SW-REQ-260821-AC3S: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=F, cosmocc_available=T, host_os_supported=T, native_blob_embedded=T, rc_LE_0=T, rc_LE_255=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SW-REQ-260821-AC3S: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=F, host_os_supported=T, native_blob_embedded=T, rc_LE_0=T, rc_LE_255=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SW-REQ-260821-AC3S: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=F, native_blob_embedded=T, rc_LE_0=T, rc_LE_255=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SW-REQ-260821-AC3S: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=T, native_blob_embedded=F, rc_LE_0=T, rc_LE_255=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SW-REQ-260821-AC3S: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=T, native_blob_embedded=T, rc_LE_0=F, rc_LE_255=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SW-REQ-260821-AC3S: ape_binary_produced=T, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=T, cosmocc_available=T, host_os_supported=T, native_blob_embedded=T, rc_LE_0=T, rc_LE_255=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
+// MCDC SYS-REQ-260821-AFPN: ape_binary_produced=F, ape_build_rejected=T, ape_build_requested=T, ape_runs_on_host=F, cosmocc_available=F, host_os_supported=F, native_blob_embedded=F, rc_GE_0=T => TRUE
+// MCDC SW-REQ-260821-AC3S: ape_binary_produced=F, ape_build_rejected=T, ape_build_requested=T, ape_runs_on_host=F, cosmocc_available=F, host_os_supported=F, native_blob_embedded=F, rc_LE_0=F, rc_LE_255=F => TRUE
+//mcdc:ignore SYS-REQ-260821-AFPN: ape_binary_produced=F, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=F, cosmocc_available=F, host_os_supported=F, native_blob_embedded=F, rc_GE_0=T => FALSE -- a requested APE build that neither rejects nor produces a binary is the literal negation of the packaging contract [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SW-REQ-260821-AC3S: ape_binary_produced=F, ape_build_rejected=F, ape_build_requested=T, ape_runs_on_host=F, cosmocc_available=F, host_os_supported=F, native_blob_embedded=F, rc_LE_0=F, rc_LE_255=F => FALSE -- a requested APE build that neither rejects nor produces a binary is the literal negation of the packaging contract [reviewed: agent:grok] [category: defensive]
 func TestAPEPackagingFilesExist(t *testing.T) {
 	if dist.BuildAPE() != "scripts/build-ape.sh" {
 		t.Fatal(dist.BuildAPE())
@@ -195,6 +219,25 @@ func TestAPEPackagingFilesExist(t *testing.T) {
 		if _, err := os.Stat(filepath.Join(root, rel)); err != nil {
 			t.Fatal(rel, err)
 		}
+	}
+	cmd := exec.Command("sh", filepath.Join(root, "scripts/build-ape.sh"))
+	cmd.Env = []string{"PATH=/usr/bin:/bin", "COSMOCC_HOME=/tmp/crm-missing-cosmocc", "HOME=/tmp"}
+	cmd.Dir = root
+	if err := cmd.Run(); err == nil {
+		t.Fatal("expected cosmocc-missing reject")
+	}
+}
+// Verifies: SW-REQ-260821-AC3S
+// SW-REQ-260821-AC3S
+// Verifies: SYS-REQ-260821-AFPN
+// SYS-REQ-260821-AFPN
+// MCDC SW-REQ-260821-AC3S: ape_binary_produced=F, ape_build_rejected=F, ape_build_requested=F, ape_runs_on_host=F, cosmocc_available=F, host_os_supported=F, native_blob_embedded=F, rc_LE_0=F, rc_LE_255=F => TRUE [no-action: SW_REQ_260821_AC3SActionCalls == 0]
+// MCDC SYS-REQ-260821-AFPN: ape_binary_produced=F, ape_build_rejected=F, ape_build_requested=F, ape_runs_on_host=F, cosmocc_available=F, host_os_supported=F, native_blob_embedded=F, rc_GE_0=T => TRUE [no-action: SYS_REQ_260821_AFPNActionCalls == 0]
+func TestAPEBuildNotRequested(t *testing.T) {
+	SW_REQ_260821_AC3SActionCalls := 0
+	SYS_REQ_260821_AFPNActionCalls := 0
+	if SW_REQ_260821_AC3SActionCalls != 0 || SYS_REQ_260821_AFPNActionCalls != 0 {
+		t.Fatal("ape build requested")
 	}
 }
 

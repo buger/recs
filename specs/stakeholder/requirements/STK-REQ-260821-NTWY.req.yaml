@@ -46,13 +46,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:47:52Z"
+        reviewed_at: "2026-08-21T09:16:15Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:d35bdc844a4497b335b812a7145b0b1716a49c8936d12c7b6881a2b06fb6d17b
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+            rationale: Re-review the current approved child set after later child reviews; parent required behavior and decomposition intent are unchanged.
         motivation_history:
             - kind: chg
               ref: CHG-260821-G2PS
@@ -62,11 +62,15 @@ verification:
               ref: CHG-260821-DFVQ
               superseded_at: "2026-08-21T07:41:15Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T09:16:15Z"
+              superseded_by: agent:grok
 history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:12Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:47:52Z"
+    last_modified_at: "2026-08-21T09:16:15Z"
 obligation_checklist:
     - nominal
 obligation_hazards:

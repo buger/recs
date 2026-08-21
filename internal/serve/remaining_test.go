@@ -19,7 +19,6 @@ import (
 // INT-REQ-260821-MRGW:nominal:nominal
 // INT-REQ-260821-MRGW:integration:integration
 // STK-REQ-260821-NTWY:nominal:nominal
-// MCDC SYS-REQ-260821-QF1J: attachment_served=F, board_filters_applied=F, listen_port_GT_0=T, record_editor_saved=F, record_view_rendered=F, remaining_ui_requested=T, search_page_shown=F, ui_request_rejected=F, wikilink_resolved=T => TRUE
 // MCDC SW-REQ-260821-82BA: attachment_served=F, board_filters_applied=F, listen_port_GE_1=T, listen_port_LE_65535=T, record_editor_saved=F, record_view_rendered=F, remaining_ui_requested=T, search_page_shown=F, ui_request_rejected=F, wikilink_resolved=T => TRUE
 // MCDC INT-REQ-260821-MRGW: attachment_served=F, board_filters_applied=F, http_api_requested=T, record_editor_saved=F, record_view_rendered=F, remaining_ui_requested=T, search_page_shown=F, shared_app_layer_used=T, shared_record_model_used=T, ui_request_rejected=F, wikilink_resolved=T => TRUE
 //mcdc:ignore SYS-REQ-260821-QF1J: attachment_served=F, board_filters_applied=F, listen_port_GT_0=T, record_editor_saved=F, record_view_rendered=F, remaining_ui_requested=T, search_page_shown=F, ui_request_rejected=F, wikilink_resolved=F => FALSE -- remaining UI without a rendered or rejected outcome is the literal negation of the remaining-UI contract [reviewed: agent:grok] [category: defensive]

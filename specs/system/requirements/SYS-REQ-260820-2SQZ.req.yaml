@@ -48,13 +48,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
+        reviewed_at: "2026-08-21T09:18:47Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:a866cb8346b57c961d8722b40c4376bf80285f9eaa65035935f32967c973a826
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            rationale: Re-review after the lock-path child listed not_modeled length predicates; parent concurrent patch contract is unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -76,44 +76,52 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:16:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-review the current approved child set after later child reviews; parent required behavior and decomposition intent are unchanged.
+              superseded_at: "2026-08-21T09:18:47Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'Reviewed all 91 pairs. Shared vars are complementary, not merged contracts: CLI pairs share arg_count as a parse budget across help, remaining commands, and store/query/board dispatch; serve pairs share the no-separate-DB layer and listen_port across record API, dashboard/gallery, remaining UI, and static UI; gallery outputs are the HTTP surface of EJVT plus the shared-app NHBY integration; board pairs share matcher_depth/column_list_len between view grouping and move; store pairs share parse_budget and write/conflict outcomes across init, create, patch, and the INT-REQ-260821-5BJJ conflict implication child.'
+          reason: 'SYS-REQ-260820-2SQZ on store keeps its own contract (when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & at). This review is specific to ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T08:58:56.356721Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reason: 'SYS-REQ-260820-2SQZ on store keeps its own contract (when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & at). This review is specific to ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reason: 'SYS-REQ-260820-2SQZ on store keeps its own contract (when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & at). This review is specific to ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reason: 'SYS-REQ-260820-2SQZ on store keeps its own contract (when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & at). This review is specific to ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
           reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reason: 'SYS-REQ-260820-2SQZ on store keeps its own contract (when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & at). This review is specific to ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-KJ34
           reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reason: 'SYS-REQ-260820-2SQZ on store keeps its own contract (when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((temp_file_written & at). This review is specific to ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-KJ34 and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:05:02.290906Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T09:18:47Z"
 obligation_checklist:
     - atomic_write
     - atomicity

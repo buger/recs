@@ -4,8 +4,11 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when record_status_changed the store shall always satisfy frontmatter_status_updated & frontmatter_updated & !folder_relocation_required
-description: The store shall update status inside frontmatter, write the frontmatter, and shall not relocate the record file.
+fretish: when record_status_changed the store shall always satisfy 
+    frontmatter_status_updated & frontmatter_updated & 
+    !folder_relocation_required
+description: The store shall update status inside frontmatter, write the 
+    frontmatter, and shall not relocate the record file.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -18,21 +21,22 @@ tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-7WT4
+      - SYS-REQ-260820-7WT4
     reviewed_at: "2026-08-21T07:46:46.225346Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:08ff819cffc98accb465aea89b1e3c5fbabc9b1833b79579e57f9f1a4a5a6900
+    reviewed_fingerprint: 
+        sha256:08ff819cffc98accb465aea89b1e3c5fbabc9b1833b79579e57f9f1a4a5a6900
     review_history:
-        - reviewed_at: "2026-08-21T07:46:46.225346Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: manual trace review via proof trace review
-          source: proof trace review --citation
-          citations:
-            - docs/phase1.md
-            - internal/store/store.go
-            - internal/store/store_test.go
-            - specs/system/requirements/SYS-REQ-260820-7WT4.req.yaml
+      - reviewed_at: "2026-08-21T07:46:46.225346Z"
+        reviewed_by: agent:grok
+        method: inspection
+        rationale: manual trace review via proof trace review
+        source: proof trace review --citation
+        citations:
+          - docs/phase1.md
+          - internal/store/store.go
+          - internal/store/store_test.go
+          - specs/system/requirements/SYS-REQ-260820-7WT4.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -41,98 +45,123 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-            - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:3c9f708c478d9c5fc4ef9d60a56b71782a5d8ada8bb1d5b660775dedfcd1281e
+          - system_owner
+        reviewed_at: "2026-08-21T09:16:14Z"
+        comment: Approved on behalf of Leonid Bugaev, explicit chat 
+            authorization 2026-08-21.
+        fingerprint: 
+            sha256:fd03c05043b5f2ff75df9b0b261f3888fdb52c2fbd9d7d168d93342fa34755ff
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after aligning variables lists with FRETish 
+                and withdrawing misplaced invariant_preservation hazard 
+                gradings; required behavior is unchanged.
         motivation_history:
-            - kind: unchanged
-              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
-              superseded_at: "2026-08-21T07:41:10Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
-              superseded_at: "2026-08-21T07:42:37Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
-              superseded_at: "2026-08-21T08:50:13Z"
-              superseded_by: agent:grok
-            - kind: chg
-              ref: CHG-260821-8Z1D
-              superseded_at: "2026-08-21T08:59:06Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
-              superseded_at: "2026-08-21T09:00:05Z"
-              superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest implemented Phase 1 requirements under explicit
+                owner authorization without changing their obligations.
+            superseded_at: "2026-08-21T07:41:10Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after listing honest not_modeled Go length 
+                predicates without changing required behavior.
+            superseded_at: "2026-08-21T07:42:37Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after adding [ki:len-guards] to honest 
+                not_modeled Go length predicates.
+            superseded_at: "2026-08-21T08:50:13Z"
+            superseded_by: agent:grok
+          - kind: chg
+            ref: CHG-260821-8Z1D
+            superseded_at: "2026-08-21T08:59:06Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-approve after recording complementary ambiguity 
+                reviews; required behavior and FRETish contracts are unchanged.
+            superseded_at: "2026-08-21T09:00:05Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-approve after complementary ambiguity reviews; 
+                required behavior and FRETish contracts are unchanged.
+            superseded_at: "2026-08-21T09:16:14Z"
+            superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-        - check: ambiguity
-          issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'SW-REQ-260820-9C5Z on store keeps its own contract (when record_status_changed
+            the store shall always satisfy frontmatter_status_updated & frontmatter_updated
+            & !folder_relocation_required). This review is specific to ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ
+        reviewer: agent:grok
+        reason: 'SW-REQ-260820-9C5Z on store keeps its own contract (when record_status_changed
+            the store shall always satisfy frontmatter_status_updated & frontmatter_updated
+            & !folder_relocation_required). This review is specific to ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
     not_modeled:
-        - predicate: len(fields) > 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(fields)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(fs) == 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(fs)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(fs.Enum) > 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(fs.Enum)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fields) > 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fields)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fs) == 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fs)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fs.Enum) > 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fs.Enum)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T09:16:14Z"
 obligation_checklist:
-    - nominal
+  - nominal
 obligation_hazards:
-    - class: invariant_preservation
-      worst_case: A status change relocates the file or drops id/type, breaking the Markdown-is-canonical invariant.
-      severity: medium
-    - class: nominal
-      worst_case: A valid status change is not persisted in frontmatter, so boards show a stale column.
-      severity: low
+  - class: nominal
+    worst_case: A valid status change is not persisted in frontmatter, so boards
+        show a stale column.
+    severity: low
 hazard_review:
     reviewed_at: "2026-08-20T19:40:37Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-        - category: scenario
-          disposition: reviewed
-          applied:
-            - nominal
-        - category: property
-          disposition: reviewed
-          applied:
-            - invariant_preservation
-        - category: domain
-          disposition: not_applicable
-          rationale: Status-change invariant is a property; file-path confinement is owned by create and patch.
-        - category: structural
-          disposition: not_applicable
-          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+      - category: scenario
+        disposition: reviewed
+        applied:
+          - nominal
+      - category: property
+        disposition: reviewed
+        applied:
+          - invariant_preservation
+      - category: domain
+        disposition: not_applicable
+        rationale: Status-change invariant is a property; file-path confinement 
+            is owned by create and patch.
+      - category: structural
+        disposition: not_applicable
+        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
+            memory ownership.
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:52Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:52Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

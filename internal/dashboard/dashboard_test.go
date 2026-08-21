@@ -24,7 +24,7 @@ import (
 // SW-REQ-260820-NA06:path_traversal_prevented:nominal
 // MCDC SYS-REQ-260820-456X: dashboard_rejected=F, dashboard_requested=T, layout_slot_count_GE_0=F, layout_slot_count_GT_4=F, layout_slot_count_LE_4=T, layout_slot_count_LT_0=F, placeholder_rendered=F, widget_projected=F, widget_rejected=F, yaml_source_used=F => TRUE
 // MCDC SW-REQ-260820-NA06: dashboard_file_loaded=T, dashboard_rejected=F, layout_slot_count_GE_0=T, layout_slot_count_LE_4=T, missing_source=F, placeholder_rendered=F, widget_projected=F, widget_rejected=F, widget_type_known=T, yaml_source_used=T => FALSE
-// MCDC SW-REQ-260820-NA06: dashboard_file_loaded=F, dashboard_rejected=F, layout_slot_count_GE_0=T, layout_slot_count_LE_4=T, missing_source=F, placeholder_rendered=F, widget_projected=F, widget_rejected=F, widget_type_known=F, yaml_source_used=F => TRUE
+// MCDC SW-REQ-260820-NA06: dashboard_file_loaded=F, dashboard_rejected=F, layout_slot_count_GE_0=T, layout_slot_count_LE_4=T, missing_source=F, placeholder_rendered=F, widget_projected=F, widget_rejected=F, widget_type_known=F, yaml_source_used=F => TRUE [no-action: SW-REQ-260820-NA06ActionCalls == 0]
 //mcdc:ignore SYS-REQ-260820-456X: dashboard_rejected=F, dashboard_requested=T, layout_slot_count_GE_0=F, layout_slot_count_GT_4=F, layout_slot_count_LE_4=F, layout_slot_count_LT_0=T, placeholder_rendered=F, widget_projected=F, widget_rejected=F, yaml_source_used=F => FALSE -- negative slot count is the literal negation of the 0-to-4 layout bound [reviewed: agent:grok] [category: defensive]
 func TestKnownTypeAndSlots(t *testing.T) {
 	for _, typ := range []string{"count", "list", "notes", "watch", "pipeline", "metrics", "board", "markdown", "placeholder", "COUNT"} {

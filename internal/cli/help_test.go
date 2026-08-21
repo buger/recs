@@ -20,8 +20,6 @@ import (
 // SW-REQ-260821-FCGM:error_handling:negative
 // INT-REQ-260821-BSH3:nominal:nominal
 // INT-REQ-260821-BSH3:integration:integration
-// MCDC SYS-REQ-260821-8FKR: agent_discovery_requested=T, arg_count_GE_0=T, command_help_emitted=F, command_rejected=F, global_help_emitted=T, structured_error_emitted=F => TRUE
-// MCDC SYS-REQ-260821-8FKR: agent_discovery_requested=T, arg_count_GE_0=T, command_help_emitted=F, command_rejected=F, global_help_emitted=F, structured_error_emitted=T => TRUE
 // MCDC SW-REQ-260821-FCGM: agent_discovery_requested=T, agent_sidecar_written=F, arg_count_GE_1=T, command_help_emitted=F, command_rejected=F, global_help_emitted=T, structured_error_emitted=F => TRUE
 // MCDC SW-REQ-260821-FCGM: agent_discovery_requested=T, agent_sidecar_written=F, arg_count_GE_1=T, command_help_emitted=F, command_rejected=F, global_help_emitted=F, structured_error_emitted=T => TRUE
 // MCDC INT-REQ-260821-BSH3: agent_discovery_requested=T, arg_count_GT_0=T, help_text_emitted=T, sidecar_file_required=F, structured_error_emitted=F => TRUE

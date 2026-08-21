@@ -6,40 +6,27 @@ results:
       artifact: internal/store/store_race_test.go
       command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
       status: pass
-      executed_at: "2026-08-21T09:06:16Z"
+      executed_at: "2026-08-21T09:14:34Z"
       freshness_hashes:
         internal/store/store.go: sha256:9c82bc31209aea9f59a92212608885b0e763e978424696223a525dbbfe26ee0a
-        internal/store/store_race_test.go: sha256:ec974a017eb9afebfed3af034a1c377aeb996481911030a8bc49d17f874a9d0c
+        internal/store/store_race_test.go: sha256:4b79f761bfbd169566552b95dd734c0bbf34e66ed583f3815c5556dd0ac75154
     - profile: race
       evidence_type: race
       requirement: SW-REQ-260820-Q3C4
       artifact: internal/store/store_race_test.go
       command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
       status: pass
-      executed_at: "2026-08-21T09:06:16Z"
+      executed_at: "2026-08-21T09:14:34Z"
       freshness_hashes:
         internal/store/store.go: sha256:9c82bc31209aea9f59a92212608885b0e763e978424696223a525dbbfe26ee0a
-        internal/store/store_race_test.go: sha256:ec974a017eb9afebfed3af034a1c377aeb996481911030a8bc49d17f874a9d0c
+        internal/store/store_race_test.go: sha256:4b79f761bfbd169566552b95dd734c0bbf34e66ed583f3815c5556dd0ac75154
     - profile: race
       evidence_type: race
       requirement: INT-REQ-260821-5BJJ
       artifact: internal/store/store_race_test.go
       command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
       status: pass
-      executed_at: "2026-08-21T09:06:16Z"
+      executed_at: "2026-08-21T09:14:34Z"
       freshness_hashes:
         internal/store/store.go: sha256:9c82bc31209aea9f59a92212608885b0e763e978424696223a525dbbfe26ee0a
-        internal/store/store_race_test.go: sha256:ec974a017eb9afebfed3af034a1c377aeb996481911030a8bc49d17f874a9d0c
-profile: race
-evidence_type: race
-requirements:
-    - SYS-REQ-260820-2SQZ
-    - SW-REQ-260820-Q3C4
-    - INT-REQ-260821-5BJJ
-artifact: internal/store/store_race_test.go
-command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
-status: pass
-executed_at: "2026-08-21T08:54:28Z"
-freshness_hashes:
-    internal/store/store.go: sha256:5c4488857c98147e3e56024ce91eae55ef8eebb7d365674336f747825a4c9350
-    internal/store/store_race_test.go: sha256:7b0730a9eb6a6180a642bd09728993729b07d6141e887a72c29e2c68febebe31
+        internal/store/store_race_test.go: sha256:4b79f761bfbd169566552b95dd734c0bbf34e66ed583f3815c5556dd0ac75154

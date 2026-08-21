@@ -40,10 +40,6 @@ variables:
       type: bool
       direction: output
       description: Decide condition move rejected.
-    - name: board_move_committed
-      type: bool
-      direction: input
-      description: Decide condition board move committed.
     - name: column_list_len
       type: int
       direction: output

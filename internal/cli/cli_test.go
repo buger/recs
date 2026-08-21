@@ -31,7 +31,7 @@ import (
 // SW-REQ-260820-D5WE:empty_input:nominal
 // SW-REQ-260820-D5WE:nominal:nominal
 // MCDC INT-REQ-260820-JC9M: arg_count_GT_0=F, board_api_used=F, cli_command_dispatched=T, query_api_used=F, shared_record_model_used=F, store_api_used=F => TRUE
-// MCDC INT-REQ-260820-JC9M: arg_count_GT_0=T, board_api_used=F, cli_command_dispatched=F, query_api_used=F, shared_record_model_used=F, store_api_used=F => TRUE
+// MCDC INT-REQ-260820-JC9M: arg_count_GT_0=T, board_api_used=F, cli_command_dispatched=F, query_api_used=F, shared_record_model_used=F, store_api_used=F => TRUE [no-action: INT-REQ-260820-JC9MActionCalls == 0]
 //mcdc:ignore INT-REQ-260820-JC9M: arg_count_GT_0=T, board_api_used=F, cli_command_dispatched=T, query_api_used=F, shared_record_model_used=F, store_api_used=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore INT-REQ-260820-JC9M: arg_count_GT_0=T, board_api_used=F, cli_command_dispatched=T, query_api_used=F, shared_record_model_used=T, store_api_used=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC INT-REQ-260820-JC9M: arg_count_GT_0=T, board_api_used=F, cli_command_dispatched=T, query_api_used=F, shared_record_model_used=T, store_api_used=T => TRUE
@@ -40,7 +40,7 @@ import (
 //mcdc:ignore INT-REQ-260820-JC9M: arg_count_GT_0=T, board_api_used=T, cli_command_dispatched=T, query_api_used=T, shared_record_model_used=F, store_api_used=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC INT-REQ-260820-JC9M: arg_count_GT_0=T, board_api_used=T, cli_command_dispatched=T, query_api_used=T, shared_record_model_used=T, store_api_used=T => TRUE
 // MCDC SW-REQ-260820-D5WE: arg_count_GE_1=F, blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=F => TRUE
-// MCDC SW-REQ-260820-D5WE: arg_count_GE_1=T, blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=F, triage_empty=F => TRUE
+// MCDC SW-REQ-260820-D5WE: arg_count_GE_1=T, blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=F, triage_empty=F => TRUE [no-action: SW-REQ-260820-D5WEActionCalls == 0]
 //mcdc:ignore SW-REQ-260820-D5WE: arg_count_GE_1=T, blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SW-REQ-260820-D5WE: arg_count_GE_1=T, blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=T => TRUE
 // MCDC SW-REQ-260820-D5WE: arg_count_GE_1=T, blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=T, triage_command_invoked=T, triage_empty=F => TRUE
@@ -48,26 +48,26 @@ import (
 // MCDC SW-REQ-260820-D5WE: arg_count_GE_1=T, blockers_listed=F, inbox_items_listed=T, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=F => TRUE
 // MCDC SW-REQ-260820-D5WE: arg_count_GE_1=T, blockers_listed=T, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=F => TRUE
 // MCDC SW-REQ-260820-YB5C: arg_count_GT_0=F, command_completed=T, human_output_emitted=T, json_flag_set=T, json_output_emitted=T => TRUE
-// MCDC SW-REQ-260820-YB5C: arg_count_GT_0=T, command_completed=F, human_output_emitted=T, json_flag_set=T, json_output_emitted=T => TRUE
+// MCDC SW-REQ-260820-YB5C: arg_count_GT_0=T, command_completed=F, human_output_emitted=T, json_flag_set=T, json_output_emitted=T => TRUE [no-action: SW-REQ-260820-YB5CActionCalls == 0]
 // MCDC SW-REQ-260820-YB5C: arg_count_GT_0=T, command_completed=T, human_output_emitted=F, json_flag_set=T, json_output_emitted=T => TRUE
 // MCDC SW-REQ-260820-YB5C: arg_count_GT_0=T, command_completed=T, human_output_emitted=T, json_flag_set=F, json_output_emitted=F => TRUE
 //mcdc:ignore SW-REQ-260820-YB5C: arg_count_GT_0=T, command_completed=T, human_output_emitted=T, json_flag_set=F, json_output_emitted=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SW-REQ-260820-YB5C: arg_count_GT_0=T, command_completed=T, human_output_emitted=T, json_flag_set=T, json_output_emitted=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SW-REQ-260820-YB5C: arg_count_GT_0=T, command_completed=T, human_output_emitted=T, json_flag_set=T, json_output_emitted=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SW-REQ-260820-ZKCV: actions_sorted=F, arg_count_GE_1=F, due_actions_collected=F, next_command_invoked=T, next_empty=F => TRUE
-// MCDC SW-REQ-260820-ZKCV: actions_sorted=F, arg_count_GE_1=T, due_actions_collected=F, next_command_invoked=F, next_empty=F => TRUE
+// MCDC SW-REQ-260820-ZKCV: actions_sorted=F, arg_count_GE_1=T, due_actions_collected=F, next_command_invoked=F, next_empty=F => TRUE [no-action: SW-REQ-260820-ZKCVActionCalls == 0]
 //mcdc:ignore SW-REQ-260820-ZKCV: actions_sorted=F, arg_count_GE_1=T, due_actions_collected=F, next_command_invoked=T, next_empty=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SW-REQ-260820-ZKCV: actions_sorted=F, arg_count_GE_1=T, due_actions_collected=F, next_command_invoked=T, next_empty=T => TRUE
 //mcdc:ignore SW-REQ-260820-ZKCV: actions_sorted=F, arg_count_GE_1=T, due_actions_collected=T, next_command_invoked=T, next_empty=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SW-REQ-260820-ZKCV: actions_sorted=T, arg_count_GE_1=T, due_actions_collected=F, next_command_invoked=T, next_empty=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SW-REQ-260820-ZKCV: actions_sorted=T, arg_count_GE_1=T, due_actions_collected=T, next_command_invoked=T, next_empty=F => TRUE
-// MCDC SYS-REQ-260820-5C9D: actions_sorted=F, due_actions_collected=F, next_command_invoked=F, next_empty=F => TRUE
+// MCDC SYS-REQ-260820-5C9D: actions_sorted=F, due_actions_collected=F, next_command_invoked=F, next_empty=F => TRUE [no-action: SYS-REQ-260820-5C9DActionCalls == 0]
 //mcdc:ignore SYS-REQ-260820-5C9D: actions_sorted=F, due_actions_collected=F, next_command_invoked=T, next_empty=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SYS-REQ-260820-5C9D: actions_sorted=F, due_actions_collected=F, next_command_invoked=T, next_empty=T => TRUE
 //mcdc:ignore SYS-REQ-260820-5C9D: actions_sorted=F, due_actions_collected=T, next_command_invoked=T, next_empty=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SYS-REQ-260820-5C9D: actions_sorted=T, due_actions_collected=F, next_command_invoked=T, next_empty=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SYS-REQ-260820-5C9D: actions_sorted=T, due_actions_collected=T, next_command_invoked=T, next_empty=F => TRUE
-// MCDC SYS-REQ-260820-DCG4: blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=F, triage_empty=F => TRUE
+// MCDC SYS-REQ-260820-DCG4: blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=F, triage_empty=F => TRUE [no-action: SYS-REQ-260820-DCG4ActionCalls == 0]
 //mcdc:ignore SYS-REQ-260820-DCG4: blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SYS-REQ-260820-DCG4: blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=T => TRUE
 // MCDC SYS-REQ-260820-DCG4: blockers_listed=F, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=T, triage_command_invoked=T, triage_empty=F => TRUE
@@ -75,7 +75,7 @@ import (
 // MCDC SYS-REQ-260820-DCG4: blockers_listed=F, inbox_items_listed=T, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=F => TRUE
 // MCDC SYS-REQ-260820-DCG4: blockers_listed=T, inbox_items_listed=F, missing_metadata_listed=F, overdue_actions_listed=F, triage_command_invoked=T, triage_empty=F => TRUE
 // MCDC SYS-REQ-260820-PG9C: arg_count_GT_0=F, command_completed=T, human_output_emitted=F, json_flag_set=F, json_output_emitted=F => TRUE
-// MCDC SYS-REQ-260820-PG9C: arg_count_GT_0=T, command_completed=F, human_output_emitted=F, json_flag_set=F, json_output_emitted=F => TRUE
+// MCDC SYS-REQ-260820-PG9C: arg_count_GT_0=T, command_completed=F, human_output_emitted=F, json_flag_set=F, json_output_emitted=F => TRUE [no-action: SYS-REQ-260820-PG9CActionCalls == 0]
 //mcdc:ignore SYS-REQ-260820-PG9C: arg_count_GT_0=T, command_completed=T, human_output_emitted=F, json_flag_set=F, json_output_emitted=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SYS-REQ-260820-PG9C: arg_count_GT_0=T, command_completed=T, human_output_emitted=T, json_flag_set=F, json_output_emitted=F => TRUE
 //mcdc:ignore SYS-REQ-260820-PG9C: arg_count_GT_0=T, command_completed=T, human_output_emitted=T, json_flag_set=T, json_output_emitted=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
@@ -127,7 +127,7 @@ func TestCLIJSONAndTriage(t *testing.T) {
 // SYS-REQ-260820-9W1S:csrf_protection:nominal
 // SW-REQ-260820-8ZS7:csrf_protection:nominal
 // INT-REQ-260820-AHKR:csrf_protection:nominal
-// MCDC INT-REQ-260820-AHKR: http_api_requested=F, separate_database_used=F, shared_app_layer_used=F, shared_record_model_used=F => TRUE
+// MCDC INT-REQ-260820-AHKR: http_api_requested=F, separate_database_used=F, shared_app_layer_used=F, shared_record_model_used=F => TRUE [no-action: INT-REQ-260820-AHKRActionCalls == 0]
 //mcdc:ignore INT-REQ-260820-AHKR: http_api_requested=T, separate_database_used=F, shared_app_layer_used=F, shared_record_model_used=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore INT-REQ-260820-AHKR: http_api_requested=T, separate_database_used=F, shared_app_layer_used=F, shared_record_model_used=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore INT-REQ-260820-AHKR: http_api_requested=T, separate_database_used=F, shared_app_layer_used=T, shared_record_model_used=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
@@ -142,17 +142,12 @@ func TestCLIJSONAndTriage(t *testing.T) {
 // MCDC SW-REQ-260820-8ZS7: custom_port_selected=T, default_port_selected=F, http_bound_localhost=T, listen_port_GT_0=T, separate_database_used=F, serve_command_invoked=T, shared_app_layer_used=T, shared_record_model_used=T, static_ui_served=T => TRUE
 // MCDC SW-REQ-260820-8ZS7: custom_port_selected=T, default_port_selected=T, http_bound_localhost=T, listen_port_GT_0=F, separate_database_used=T, serve_command_invoked=T, shared_app_layer_used=T, shared_record_model_used=T, static_ui_served=T => TRUE
 // MCDC SW-REQ-260820-8ZS7: custom_port_selected=T, default_port_selected=T, http_bound_localhost=T, listen_port_GT_0=T, separate_database_used=F, serve_command_invoked=T, shared_app_layer_used=T, shared_record_model_used=T, static_ui_served=T => TRUE
-// MCDC SW-REQ-260820-8ZS7: custom_port_selected=T, default_port_selected=T, http_bound_localhost=T, listen_port_GT_0=T, separate_database_used=T, serve_command_invoked=F, shared_app_layer_used=T, shared_record_model_used=T, static_ui_served=T => TRUE
+// MCDC SW-REQ-260820-8ZS7: custom_port_selected=T, default_port_selected=T, http_bound_localhost=T, listen_port_GT_0=T, separate_database_used=T, serve_command_invoked=F, shared_app_layer_used=T, shared_record_model_used=T, static_ui_served=T => TRUE [no-action: SW-REQ-260820-8ZS7ActionCalls == 0]
 //mcdc:ignore SW-REQ-260820-8ZS7: custom_port_selected=T, default_port_selected=T, http_bound_localhost=T, listen_port_GT_0=T, separate_database_used=T, serve_command_invoked=T, shared_app_layer_used=T, shared_record_model_used=T, static_ui_served=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
-// MCDC SYS-REQ-260820-9W1S: custom_port_selected=F, default_port_selected=F, http_bound_localhost=F, listen_port_GT_0=F, serve_command_invoked=T, static_ui_served=F => TRUE
-// MCDC SYS-REQ-260820-9W1S: custom_port_selected=F, default_port_selected=F, http_bound_localhost=F, listen_port_GT_0=T, serve_command_invoked=F, static_ui_served=F => TRUE
 //mcdc:ignore SYS-REQ-260820-9W1S: custom_port_selected=F, default_port_selected=F, http_bound_localhost=F, listen_port_GT_0=T, serve_command_invoked=T, static_ui_served=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SYS-REQ-260820-9W1S: custom_port_selected=F, default_port_selected=F, http_bound_localhost=T, listen_port_GT_0=T, serve_command_invoked=T, static_ui_served=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
-// MCDC SYS-REQ-260820-9W1S: custom_port_selected=F, default_port_selected=T, http_bound_localhost=T, listen_port_GT_0=T, serve_command_invoked=T, static_ui_served=T => TRUE
-// MCDC SYS-REQ-260820-9W1S: custom_port_selected=T, default_port_selected=F, http_bound_localhost=T, listen_port_GT_0=T, serve_command_invoked=T, static_ui_served=T => TRUE
 //mcdc:ignore SYS-REQ-260820-9W1S: custom_port_selected=T, default_port_selected=T, http_bound_localhost=F, listen_port_GT_0=T, serve_command_invoked=T, static_ui_served=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SYS-REQ-260820-9W1S: custom_port_selected=T, default_port_selected=T, http_bound_localhost=T, listen_port_GT_0=T, serve_command_invoked=T, static_ui_served=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
-// MCDC SYS-REQ-260820-9W1S: custom_port_selected=T, default_port_selected=T, http_bound_localhost=T, listen_port_GT_0=T, serve_command_invoked=T, static_ui_served=T => TRUE
 func TestServeUsesAppLayer(t *testing.T) {
 	root := t.TempDir()
 	a := app.OpenOrCWD(root)
@@ -328,7 +323,7 @@ func TestServeRejectsOversizedBody(t *testing.T) {
 // Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR
 // SYS-REQ-260820-4628:path_traversal_prevented:negative
 // SW-REQ-260820-NBGR:path_traversal_prevented:negative
-// MCDC SW-REQ-260820-NBGR: board_rejected=F, board_requested=F, column_field_projected=F, column_list_len_GT_0=F, column_list_len_LE_64=F, matcher_applied=F, matcher_depth_GE_0=T, records_grouped=F => TRUE
+// MCDC SW-REQ-260820-NBGR: board_rejected=F, board_requested=F, column_field_projected=F, column_list_len_GT_0=F, column_list_len_LE_64=F, matcher_applied=F, matcher_depth_GE_0=T, records_grouped=F => TRUE [no-action: SW-REQ-260820-NBGRActionCalls == 0]
 // MCDC SW-REQ-260820-NBGR: board_rejected=F, board_requested=T, column_field_projected=F, column_list_len_GT_0=F, column_list_len_LE_64=F, matcher_applied=F, matcher_depth_GE_0=F, records_grouped=F => TRUE
 //mcdc:ignore SW-REQ-260820-NBGR: board_rejected=F, board_requested=T, column_field_projected=F, column_list_len_GT_0=F, column_list_len_LE_64=F, matcher_applied=F, matcher_depth_GE_0=T, records_grouped=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SW-REQ-260820-NBGR: board_rejected=F, board_requested=T, column_field_projected=F, column_list_len_GT_0=T, column_list_len_LE_64=T, matcher_applied=F, matcher_depth_GE_0=T, records_grouped=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
@@ -340,7 +335,7 @@ func TestServeRejectsOversizedBody(t *testing.T) {
 //mcdc:ignore SW-REQ-260820-NBGR: board_rejected=T, board_requested=T, column_field_projected=T, column_list_len_GT_0=F, column_list_len_LE_64=T, matcher_applied=T, matcher_depth_GE_0=T, records_grouped=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SW-REQ-260820-NBGR: board_rejected=T, board_requested=T, column_field_projected=T, column_list_len_GT_0=T, column_list_len_LE_64=F, matcher_applied=T, matcher_depth_GE_0=T, records_grouped=T => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 // MCDC SW-REQ-260820-NBGR: board_rejected=T, board_requested=T, column_field_projected=T, column_list_len_GT_0=T, column_list_len_LE_64=T, matcher_applied=T, matcher_depth_GE_0=T, records_grouped=T => TRUE
-// MCDC SYS-REQ-260820-4628: board_rejected=F, board_requested=F, column_field_projected=F, column_list_len_GT_0=F, matcher_applied=F, matcher_depth_GE_0=T, records_grouped=F => TRUE
+// MCDC SYS-REQ-260820-4628: board_rejected=F, board_requested=F, column_field_projected=F, column_list_len_GT_0=F, matcher_applied=F, matcher_depth_GE_0=T, records_grouped=F => TRUE [no-action: SYS-REQ-260820-4628ActionCalls == 0]
 // MCDC SYS-REQ-260820-4628: board_rejected=F, board_requested=T, column_field_projected=F, column_list_len_GT_0=F, matcher_applied=F, matcher_depth_GE_0=F, records_grouped=F => TRUE
 //mcdc:ignore SYS-REQ-260820-4628: board_rejected=F, board_requested=T, column_field_projected=F, column_list_len_GT_0=F, matcher_applied=F, matcher_depth_GE_0=T, records_grouped=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]
 //mcdc:ignore SYS-REQ-260820-4628: board_rejected=F, board_requested=T, column_field_projected=F, column_list_len_GT_0=T, matcher_applied=F, matcher_depth_GE_0=T, records_grouped=F => FALSE -- correct implementation never produces this guarantee-violation assignment [reviewed: agent:grok] [category: defensive]

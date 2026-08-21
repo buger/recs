@@ -19,3 +19,6 @@ variables:
       range:
         max: 1e+06
         min: 0
+no_interface:
+    declared: true
+    reason: store_lock is the in-process mutex path inside store; CLI and store INT-REQs already own the operator-facing App.Patch boundary.

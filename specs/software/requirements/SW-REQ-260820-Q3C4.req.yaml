@@ -4,8 +4,12 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when record_mutation_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 3) & ((temp_file_written & atomic_rename_completed & frontmatter_updated) | (version_mismatch & conflict_reported) | mutation_rejected)))
-description: The store shall update frontmatter through a temp file and rename, with a closing delimiter at index 3 or higher.
+fretish: when record_mutation_requested the store shall always satisfy 
+    (parse_budget >= 0 => ((frontmatter_sep_index >= 3) & ((temp_file_written & 
+    atomic_rename_completed & frontmatter_updated) | (version_mismatch & 
+    conflict_reported) | mutation_rejected)))
+description: The store shall update frontmatter through a temp file and rename, 
+    with a closing delimiter at index 3 or higher.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,27 +17,29 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-2SQZ
 component: store
-rationale: Atomic rename prevents torn writes. A version mismatch reports conflict.
+rationale: Atomic rename prevents torn writes. A version mismatch reports 
+    conflict.
 tags: []
 variables: []
 traces:
     satisfies:
-        - SYS-REQ-260820-2SQZ
+      - SYS-REQ-260820-2SQZ
     reviewed_at: "2026-08-21T07:46:49.260566Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:f721e51e98390fb658d220fabb06b68c7a51e7d59f84c13cde2731be4d052462
+    reviewed_fingerprint: 
+        sha256:f721e51e98390fb658d220fabb06b68c7a51e7d59f84c13cde2731be4d052462
     review_history:
-        - reviewed_at: "2026-08-21T07:46:49.260566Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: manual trace review via proof trace review
-          source: proof trace review --citation
-          citations:
-            - docs/phase1.md
-            - internal/record/record.go
-            - internal/store/store.go
-            - internal/store/store_test.go
-            - specs/system/requirements/SYS-REQ-260820-2SQZ.req.yaml
+      - reviewed_at: "2026-08-21T07:46:49.260566Z"
+        reviewed_by: agent:grok
+        method: inspection
+        rationale: manual trace review via proof trace review
+        source: proof trace review --citation
+        citations:
+          - docs/phase1.md
+          - internal/record/record.go
+          - internal/store/store.go
+          - internal/store/store_test.go
+          - specs/system/requirements/SYS-REQ-260820-2SQZ.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -42,140 +48,182 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-            - system_owner
+          - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:9abd82d50b66affc939cc9623aa2e0f9041ff17b0b11d52367520137abb90e6c
+        comment: Approved on behalf of Leonid Bugaev, explicit chat 
+            authorization 2026-08-21.
+        fingerprint: 
+            sha256:9abd82d50b66affc939cc9623aa2e0f9041ff17b0b11d52367520137abb90e6c
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; 
+                required behavior and FRETish contracts are unchanged.
         motivation_history:
-            - kind: unchanged
-              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
-              superseded_at: "2026-08-21T07:41:10Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
-              superseded_at: "2026-08-21T07:42:37Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
-              superseded_at: "2026-08-21T08:50:51Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-approve after closing the concurrent deferral with a race test and INT-REQ-260821-5BJJ; required store behavior is unchanged.
-              superseded_at: "2026-08-21T08:59:06Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
-              superseded_at: "2026-08-21T09:00:05Z"
-              superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest implemented Phase 1 requirements under explicit
+                owner authorization without changing their obligations.
+            superseded_at: "2026-08-21T07:41:10Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after listing honest not_modeled Go length 
+                predicates without changing required behavior.
+            superseded_at: "2026-08-21T07:42:37Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after adding [ki:len-guards] to honest 
+                not_modeled Go length predicates.
+            superseded_at: "2026-08-21T08:50:51Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-approve after closing the concurrent deferral with a 
+                race test and INT-REQ-260821-5BJJ; required store behavior is 
+                unchanged.
+            superseded_at: "2026-08-21T08:59:06Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-approve after recording complementary ambiguity 
+                reviews; required behavior and FRETish contracts are unchanged.
+            superseded_at: "2026-08-21T09:00:05Z"
+            superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-        - check: ambiguity
-          issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
-          reviewer: agent:grok
-          reason: '8FKR now names global and command help outputs. Remaining pairs still share only arg_count or command_rejected across help versus remaining versus dispatch surfaces.'
-          reviewed_at: "2026-08-21T09:03:49.61319Z"
-        - check: ambiguity
-          issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'SW-REQ-260820-Q3C4 on store keeps its own contract (when record_mutation_requested
+            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
+            >= 3) & ((temp_file_written & at). This review is specific to ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:03:49.61319Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'SW-REQ-260820-Q3C4 on store keeps its own contract (when record_mutation_requested
+            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
+            >= 3) & ((temp_file_written & at). This review is specific to ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'SW-REQ-260820-Q3C4 on store keeps its own contract (when record_mutation_requested
+            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
+            >= 3) & ((temp_file_written & at). This review is specific to ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4
+        reviewer: agent:grok
+        reason: 'SW-REQ-260820-Q3C4 on store keeps its own contract (when record_mutation_requested
+            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
+            >= 3) & ((temp_file_written & at). This review is specific to ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
+        reviewer: agent:grok
+        reason: 'SW-REQ-260820-Q3C4 on store keeps its own contract (when record_mutation_requested
+            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
+            >= 3) & ((temp_file_written & at). This review is specific to ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34
+        reviewer: agent:grok
+        reason: 'SW-REQ-260820-Q3C4 on store keeps its own contract (when record_mutation_requested
+            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
+            >= 3) & ((temp_file_written & at). This review is specific to ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
     not_modeled:
-        - predicate: end == -1
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: endCR != -1
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(fields)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(fs)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(fs.Enum)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(in)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(parts)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(sep)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(t)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: end == -1
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: endCR != -1
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fields)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fs)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(fs.Enum)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(in)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(parts)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(sep)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(t)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-    - atomic_write
-    - atomicity
-    - concurrent
-    - concurrent_invariant_preserved
-    - error_handling
+  - atomic_write
+  - atomicity
+  - concurrent
+  - concurrent_invariant_preserved
+  - error_handling
 obligation_hazards:
-    - class: atomic_write
-      worst_case: A crash mid-write leaves a truncated Markdown file as the only copy of the record.
-      severity: medium
-    - class: atomicity
-      worst_case: A crash mid-patch leaves a truncated Markdown file as the only copy of the record.
-      severity: medium
-    - class: concurrent
-      worst_case: Two overlapping patches interleave field writes and drop one editor update without a conflict.
-      severity: medium
-    - class: concurrent_invariant_preserved
-      worst_case: Concurrent set or move on the same id loses an update without conflict, forking agent and human edits.
-      severity: medium
-    - class: error_handling
-      worst_case: A version mismatch is applied anyway, so optimistic concurrency no longer protects agent edits.
-      severity: medium
+  - class: atomic_write
+    worst_case: A crash mid-write leaves a truncated Markdown file as the only 
+        copy of the record.
+    severity: medium
+  - class: atomicity
+    worst_case: A crash mid-patch leaves a truncated Markdown file as the only 
+        copy of the record.
+    severity: medium
+  - class: concurrent
+    worst_case: Two overlapping patches interleave field writes and drop one 
+        editor update without a conflict.
+    severity: medium
+  - class: concurrent_invariant_preserved
+    worst_case: Concurrent set or move on the same id loses an update without 
+        conflict, forking agent and human edits.
+    severity: medium
+  - class: error_handling
+    worst_case: A version mismatch is applied anyway, so optimistic concurrency 
+        no longer protects agent edits.
+    severity: medium
 hazard_review:
     reviewed_at: "2026-08-20T19:40:37Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-        - category: scenario
-          disposition: reviewed
-          applied:
-            - concurrent
-            - error_handling
-        - category: property
-          disposition: reviewed
-          applied:
-            - atomicity
-        - category: domain
-          disposition: reviewed
-          applied:
-            - atomic_write
-            - concurrent_invariant_preserved
-        - category: structural
-          disposition: not_applicable
-          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+      - category: scenario
+        disposition: reviewed
+        applied:
+          - concurrent
+          - error_handling
+      - category: property
+        disposition: reviewed
+        applied:
+          - atomicity
+      - category: domain
+        disposition: reviewed
+        applied:
+          - atomic_write
+          - concurrent_invariant_preserved
+      - category: structural
+        disposition: not_applicable
+        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
+            memory ownership.
 lifecycle:
     change_history:
-        - date: "2026-08-20T19:06:53Z"
-          from: draft
-          to: review
-          reason: ""
-          changed_by: human:cli
+      - date: "2026-08-20T19:06:53Z"
+        from: draft
+        to: review
+        reason: ""
+        changed_by: human:cli

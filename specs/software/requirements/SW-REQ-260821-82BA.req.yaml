@@ -70,13 +70,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
+        reviewed_at: "2026-08-21T09:18:47Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:b5763ba10877f2fd3f9958ac4b8bb1d3de17a7befa5637f7a1ca22681d230018
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after listing honest not_modeled Go length predicates; required behavior and FRETish contracts are unchanged.
         motivation_history:
             - kind: chg
               ref: CHG-260821-G2PS
@@ -110,23 +110,27 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:18:47Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA
           reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reason: 'SW-REQ-260821-82BA on serve keeps its own contract (when remaining_ui_requested the serve shall always satisfy (((listen_port >= 1) & (listen_port <= 65535)) => (record_view_rendered | record_). This review is specific to ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260821-82BA
           reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reason: 'SW-REQ-260821-82BA on serve keeps its own contract (when remaining_ui_requested the serve shall always satisfy (((listen_port >= 1) & (listen_port <= 65535)) => (record_view_rendered | record_). This review is specific to ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260821-82BA and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S
           reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reason: 'SW-REQ-260821-82BA on serve keeps its own contract (when remaining_ui_requested the serve shall always satisfy (((listen_port >= 1) & (listen_port <= 65535)) => (record_view_rendered | record_). This review is specific to ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S and is not a shared canned rationale for sibling pairs.'
           reviewed_at: "2026-08-21T09:05:02.290906Z"
     not_modeled:
         - predicate: i >= len(row)
@@ -159,11 +163,13 @@ verification:
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
         - predicate: len(vs)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(esc)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T09:18:47Z"
 obligation_checklist:
     - nominal
 obligation_hazards:

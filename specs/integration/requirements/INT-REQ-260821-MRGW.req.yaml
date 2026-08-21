@@ -4,8 +4,13 @@ status: approved
 priority: shall
 category: interface
 req_type: guarantee
-fretish: when remaining_ui_requested the serve shall always satisfy (http_api_requested => (shared_app_layer_used & shared_record_model_used & (record_view_rendered | record_editor_saved | search_page_shown | board_filters_applied | attachment_served | wikilink_resolved | ui_request_rejected)))
-description: The remaining HTTP record, search, board filter, and attachment routes shall use the shared application layer.
+fretish: when remaining_ui_requested the serve shall always satisfy 
+    (http_api_requested => (shared_app_layer_used & shared_record_model_used & 
+    (record_view_rendered | record_editor_saved | search_page_shown | 
+    board_filters_applied | attachment_served | wikilink_resolved | 
+    ui_request_rejected)))
+description: The remaining HTTP record, search, board filter, and attachment 
+    routes shall use the shared application layer.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,51 +18,53 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260821-QF1J
 component: serve
-rationale: The browser is not a second database. HTTP handlers shall call the same application layer as the CLI.
+rationale: The browser is not a second database. HTTP handlers shall call the 
+    same application layer as the CLI.
 tags: []
 variables:
-    - remaining_ui_requested
-    - http_api_requested
-    - shared_app_layer_used
-    - shared_record_model_used
-    - record_view_rendered
-    - record_editor_saved
-    - search_page_shown
-    - board_filters_applied
-    - attachment_served
-    - wikilink_resolved
-    - ui_request_rejected
+  - remaining_ui_requested
+  - http_api_requested
+  - shared_app_layer_used
+  - shared_record_model_used
+  - record_view_rendered
+  - record_editor_saved
+  - search_page_shown
+  - board_filters_applied
+  - attachment_served
+  - wikilink_resolved
+  - ui_request_rejected
 traces:
     satisfies:
-        - SYS-REQ-260821-QF1J
+      - SYS-REQ-260821-QF1J
     reviewed_at: "2026-08-21T07:46:43.030425Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:489d8f2459909327aca050fe1004f31260b307316a489f75ab8c7721784c70bd
+    reviewed_fingerprint: 
+        sha256:489d8f2459909327aca050fe1004f31260b307316a489f75ab8c7721784c70bd
     review_history:
-        - reviewed_at: "2026-08-21T06:37:20.426084Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: Evidence-cited review of remaining UI integration traces.
-          source: proof trace review --citation
-          citations:
-            - docs/phase1.md
-            - internal/app/remaining.go
-            - internal/serve/remaining_test.go
-            - internal/serve/serve.go
-        - reviewed_at: "2026-08-21T07:46:43.030425Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: manual trace review via proof trace review
-          source: proof trace review --citation
-          citations:
-            - docs/phase1.md
-            - internal/app/remaining.go
-            - internal/serve/remaining_test.go
-            - internal/serve/serve.go
-            - specs/system/requirements/SYS-REQ-260821-QF1J.req.yaml
+      - reviewed_at: "2026-08-21T06:37:20.426084Z"
+        reviewed_by: agent:grok
+        method: inspection
+        rationale: Evidence-cited review of remaining UI integration traces.
+        source: proof trace review --citation
+        citations:
+          - docs/phase1.md
+          - internal/app/remaining.go
+          - internal/serve/remaining_test.go
+          - internal/serve/serve.go
+      - reviewed_at: "2026-08-21T07:46:43.030425Z"
+        reviewed_by: agent:grok
+        method: inspection
+        rationale: manual trace review via proof trace review
+        source: proof trace review --citation
+        citations:
+          - docs/phase1.md
+          - internal/app/remaining.go
+          - internal/serve/remaining_test.go
+          - internal/serve/serve.go
+          - specs/system/requirements/SYS-REQ-260821-QF1J.req.yaml
     components:
-        - serve
-        - store
+      - serve
+      - store
 verification:
     assurance_level: E
     formalization_status: valid
@@ -66,132 +73,172 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-            - system_owner
+          - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:773dd955e35308b26a9f2f0c0e391c83f2f3877613e3ac1e339baecb4d33e0e3
+        comment: Approved on behalf of Leonid Bugaev, explicit chat 
+            authorization 2026-08-21.
+        fingerprint: 
+            sha256:773dd955e35308b26a9f2f0c0e391c83f2f3877613e3ac1e339baecb4d33e0e3
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; 
+                required behavior and FRETish contracts are unchanged.
         motivation_history:
-            - kind: chg
-              ref: CHG-260821-G2PS
-              superseded_at: "2026-08-21T07:30:30Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after adding satisfies links and acceptance-criteria derived_reqs without changing behavioral obligations.
-              superseded_at: "2026-08-21T07:33:39Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after adding obligation classes and not_modeled notes without changing the required behavior.
-              superseded_at: "2026-08-21T07:33:54Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after grading obligation worst-case prose without changing required behavior.
-              superseded_at: "2026-08-21T07:39:06Z"
-              superseded_by: agent:grok
-            - kind: chg
-              ref: CHG-260821-DFVQ
-              superseded_at: "2026-08-21T07:41:10Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
-              superseded_at: "2026-08-21T07:42:37Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
-              superseded_at: "2026-08-21T08:07:51Z"
-              superseded_by: agent:grok
-            - kind: chg
-              ref: CHG-260821-TZ9S
-              superseded_at: "2026-08-21T08:59:06Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
-              superseded_at: "2026-08-21T09:00:05Z"
-              superseded_by: agent:grok
+          - kind: chg
+            ref: CHG-260821-G2PS
+            superseded_at: "2026-08-21T07:30:30Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after adding satisfies links and 
+                acceptance-criteria derived_reqs without changing behavioral 
+                obligations.
+            superseded_at: "2026-08-21T07:33:39Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after adding obligation classes and not_modeled
+                notes without changing the required behavior.
+            superseded_at: "2026-08-21T07:33:54Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after grading obligation worst-case prose 
+                without changing required behavior.
+            superseded_at: "2026-08-21T07:39:06Z"
+            superseded_by: agent:grok
+          - kind: chg
+            ref: CHG-260821-DFVQ
+            superseded_at: "2026-08-21T07:41:10Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after listing honest not_modeled Go length 
+                predicates without changing required behavior.
+            superseded_at: "2026-08-21T07:42:37Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after adding [ki:len-guards] to honest 
+                not_modeled Go length predicates.
+            superseded_at: "2026-08-21T08:07:51Z"
+            superseded_by: agent:grok
+          - kind: chg
+            ref: CHG-260821-TZ9S
+            superseded_at: "2026-08-21T08:59:06Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-approve after recording complementary ambiguity 
+                reviews; required behavior and FRETish contracts are unchanged.
+            superseded_at: "2026-08-21T09:00:05Z"
+            superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-        - check: ambiguity
-          issue_key: ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260821-MRGW
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|serve|INT-REQ-260820-NHBY|INT-REQ-260821-MRGW
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260820-8ZS7
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260821-MRGW
+        reviewer: agent:grok
+        reason: 'INT-REQ-260821-MRGW on serve keeps its own contract (when remaining_ui_requested
+            the serve shall always satisfy (http_api_requested => (shared_app_layer_used
+            & shared_record_model_used & (recor). This review is specific to ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260821-MRGW
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|serve|INT-REQ-260820-NHBY|INT-REQ-260821-MRGW
+        reviewer: agent:grok
+        reason: 'INT-REQ-260821-MRGW on serve keeps its own contract (when remaining_ui_requested
+            the serve shall always satisfy (http_api_requested => (shared_app_layer_used
+            & shared_record_model_used & (recor). This review is specific to ambiguity|serve|INT-REQ-260820-NHBY|INT-REQ-260821-MRGW
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260820-8ZS7
+        reviewer: agent:grok
+        reason: 'INT-REQ-260821-MRGW on serve keeps its own contract (when remaining_ui_requested
+            the serve shall always satisfy (http_api_requested => (shared_app_layer_used
+            & shared_record_model_used & (recor). This review is specific to ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260820-8ZS7
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA
+        reviewer: agent:grok
+        reason: 'INT-REQ-260821-MRGW on serve keeps its own contract (when remaining_ui_requested
+            the serve shall always satisfy (http_api_requested => (shared_app_layer_used
+            & shared_record_model_used & (recor). This review is specific to ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
     not_modeled:
-        - predicate: i >= len(row)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(d.Widgets)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(line) > 3
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(line)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(recs)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rels)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(row)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rows) == 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rows)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rows[0])
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(sets) == 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(sets)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(vs) > 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(vs)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: i >= len(row)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(d.Widgets)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(line) > 3
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(line)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(recs)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rels)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(row)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rows) == 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rows)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rows[0])
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(sets) == 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(sets)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(vs) > 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(vs)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:41Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-    - nominal
+  - nominal
 obligation_hazards:
-    - class: nominal
-      worst_case: HTTP record routes bypass the shared app layer, so the UI diverges from the CLI.
-      severity: medium
+  - class: nominal
+    worst_case: HTTP record routes bypass the shared app layer, so the UI 
+        diverges from the CLI.
+    severity: medium
 hazard_review:
     reviewed_at: "2026-08-21T07:38:54Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-        - category: scenario
-          disposition: reviewed
-          applied:
-            - nominal
-        - category: property
-          disposition: not_applicable
-          rationale: This requirement is a CLI or HTTP contract, not a timing or concurrency property.
-        - category: domain
-          disposition: not_applicable
-          rationale: Filesystem and HTTP sinks are owned by store and serve children, not this obligation class.
-        - category: structural
-          disposition: not_applicable
-          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+      - category: scenario
+        disposition: reviewed
+        applied:
+          - nominal
+      - category: property
+        disposition: not_applicable
+        rationale: This requirement is a CLI or HTTP contract, not a timing or 
+            concurrency property.
+      - category: domain
+        disposition: not_applicable
+        rationale: Filesystem and HTTP sinks are owned by store and serve 
+            children, not this obligation class.
+      - category: structural
+        disposition: not_applicable
+        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
+            memory ownership.
 interface:
     caller: serve
     callee: store
@@ -199,15 +246,15 @@ interface:
     signature: HTTP.Records() -> App
     producer: serve
     consumer:
-        - store
+      - store
     owner: team:crm
     version: v1.0.0
     compatibility_policy: semver-lax
     risk_tier: 3
 lifecycle:
     change_history:
-        - date: "2026-08-21T06:29:48Z"
-          from: draft
-          to: review
-          reason: '[CHG-260821-G2PS] Implemented remaining CLI, UI, and APE surfaces'
-          changed_by: agent:grok
+      - date: "2026-08-21T06:29:48Z"
+        from: draft
+        to: review
+        reason: '[CHG-260821-G2PS] Implemented remaining CLI, UI, and APE surfaces'
+        changed_by: agent:grok

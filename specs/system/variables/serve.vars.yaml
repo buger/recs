@@ -20,10 +20,6 @@ variables:
       type: bool
       direction: output
       description: Decide condition static ui served.
-    - name: http_api_requested
-      type: bool
-      direction: input
-      description: Decide condition http api requested.
     - name: shared_app_layer_used
       type: bool
       direction: output
@@ -55,10 +51,6 @@ variables:
       type: bool
       direction: output
       description: Decide condition preview cards shown.
-    - name: dashboard_api_requested
-      type: bool
-      direction: input
-      description: Decide condition dashboard api requested.
     - name: remaining_ui_requested
       type: bool
       direction: input

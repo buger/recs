@@ -16,7 +16,6 @@ import (
 // SYS-REQ-260821-JYEJ:error_handling:negative
 // SW-REQ-260821-8C2C:nominal:nominal
 // INT-REQ-260821-8HAC:nominal:nominal
-// MCDC SYS-REQ-260821-JYEJ: arg_count_GE_0=T, command_rejected=F, export_emitted=F, git_empty_reported=F, git_repo_present=F, git_result_emitted=F, import_records_created=F, ingest_record_created=F, record_file_mutated=T, remaining_cli_command_invoked=T => TRUE
 // MCDC SW-REQ-260821-8C2C: arg_count_GE_1=T, command_rejected=F, export_emitted=F, git_empty_reported=F, git_repo_present=F, git_result_emitted=F, import_records_created=F, ingest_record_created=F, record_file_mutated=T, remaining_cli_command_invoked=T => TRUE
 // MCDC INT-REQ-260821-8HAC: arg_count_GT_0=T, command_rejected=F, remaining_cli_command_invoked=T, shared_record_model_used=F, store_api_used=T => TRUE
 //mcdc:ignore SYS-REQ-260821-JYEJ: arg_count_GE_0=T, command_rejected=F, export_emitted=F, git_empty_reported=F, git_repo_present=F, git_result_emitted=F, import_records_created=F, ingest_record_created=F, record_file_mutated=F, remaining_cli_command_invoked=T => FALSE -- a remaining command that neither mutates nor reports is the literal negation of the remaining-command contract [reviewed: agent:grok] [category: defensive]

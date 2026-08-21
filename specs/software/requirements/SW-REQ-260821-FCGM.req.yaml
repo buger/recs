@@ -4,8 +4,14 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when agent_discovery_requested the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted | command_help_emitted | structured_error_emitted | command_rejected) & !agent_sidecar_written))
-description: The CLI shall show a command list when the operator uses crm --help or crm help. The CLI shall show flags, examples, and the JSON shape when the operator uses crm help CMD or crm CMD --help. A failed JSON command shall give the fields ok, error, field, allowed, and message. The CLI shall not write AGENTS.md or SKILL.md.
+fretish: when agent_discovery_requested the cli shall always satisfy (arg_count 
+    >= 1 => ((global_help_emitted | command_help_emitted | 
+    structured_error_emitted | command_rejected) & !agent_sidecar_written))
+description: The CLI shall show a command list when the operator uses crm --help
+    or crm help. The CLI shall show flags, examples, and the JSON shape when the
+    operator uses crm help CMD or crm CMD --help. A failed JSON command shall 
+    give the fields ok, error, field, allowed, and message. The CLI shall not 
+    write AGENTS.md or SKILL.md.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,45 +19,48 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260821-8FKR
 component: cli
-rationale: Help and errors are the agent interface. Init shall not write sidecar files.
+rationale: Help and errors are the agent interface. Init shall not write sidecar
+    files.
 tags: []
 variables:
-    - agent_discovery_requested
-    - arg_count
-    - global_help_emitted
-    - command_help_emitted
-    - structured_error_emitted
-    - agent_sidecar_written
-    - command_rejected
+  - agent_discovery_requested
+  - arg_count
+  - global_help_emitted
+  - command_help_emitted
+  - structured_error_emitted
+  - agent_sidecar_written
+  - command_rejected
 traces:
     satisfies:
-        - SYS-REQ-260821-8FKR
+      - SYS-REQ-260821-8FKR
     reviewed_at: "2026-08-21T07:46:52.098699Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:3f1c46a73d79a33048b6487eadd43db42458eaf76e2739db9e33591184c40a1e
+    reviewed_fingerprint: 
+        sha256:3f1c46a73d79a33048b6487eadd43db42458eaf76e2739db9e33591184c40a1e
     review_history:
-        - reviewed_at: "2026-08-21T07:30:52.172156Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: Per-command help and structured JSON errors are implemented and tested.
-          source: proof trace review --citation
-          citations:
-            - docs/phase1.md
-            - internal/cli/cli.go
-            - internal/cli/help.go
-            - internal/cli/help_test.go
-            - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
-        - reviewed_at: "2026-08-21T07:46:52.098699Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: manual trace review via proof trace review
-          source: proof trace review --citation
-          citations:
-            - docs/phase1.md
-            - internal/cli/cli.go
-            - internal/cli/help.go
-            - internal/cli/help_test.go
-            - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
+      - reviewed_at: "2026-08-21T07:30:52.172156Z"
+        reviewed_by: agent:grok
+        method: inspection
+        rationale: Per-command help and structured JSON errors are implemented 
+            and tested.
+        source: proof trace review --citation
+        citations:
+          - docs/phase1.md
+          - internal/cli/cli.go
+          - internal/cli/help.go
+          - internal/cli/help_test.go
+          - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
+      - reviewed_at: "2026-08-21T07:46:52.098699Z"
+        reviewed_by: agent:grok
+        method: inspection
+        rationale: manual trace review via proof trace review
+        source: proof trace review --citation
+        citations:
+          - docs/phase1.md
+          - internal/cli/cli.go
+          - internal/cli/help.go
+          - internal/cli/help_test.go
+          - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -60,170 +69,231 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-            - system_owner
+          - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:dd7af75fbfa6ff5b9b0ac72daaebbcd013ff1dc1e5137c72a11b5d977c54cf39
+        comment: Approved on behalf of Leonid Bugaev, explicit chat 
+            authorization 2026-08-21.
+        fingerprint: 
+            sha256:dd7af75fbfa6ff5b9b0ac72daaebbcd013ff1dc1e5137c72a11b5d977c54cf39
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; 
+                required behavior and FRETish contracts are unchanged.
         motivation_history:
-            - kind: chg
-              ref: CHG-260821-DFVQ
-              superseded_at: "2026-08-21T07:41:10Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
-              superseded_at: "2026-08-21T07:42:37Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
-              superseded_at: "2026-08-21T07:45:31Z"
-              superseded_by: agent:grok
-            - kind: chg
-              ref: CHG-260821-DFVQ
-              superseded_at: "2026-08-21T08:59:06Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
-              superseded_at: "2026-08-21T09:00:05Z"
-              superseded_by: agent:grok
+          - kind: chg
+            ref: CHG-260821-DFVQ
+            superseded_at: "2026-08-21T07:41:10Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after listing honest not_modeled Go length 
+                predicates without changing required behavior.
+            superseded_at: "2026-08-21T07:42:37Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-attest after adding [ki:len-guards] to honest 
+                not_modeled Go length predicates.
+            superseded_at: "2026-08-21T07:45:31Z"
+            superseded_by: agent:grok
+          - kind: chg
+            ref: CHG-260821-DFVQ
+            superseded_at: "2026-08-21T08:59:06Z"
+            superseded_by: agent:grok
+          - kind: unchanged
+            rationale: Re-approve after recording complementary ambiguity 
+                reviews; required behavior and FRETish contracts are unchanged.
+            superseded_at: "2026-08-21T09:00:05Z"
+            superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-        - check: ambiguity
-          issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260821-FCGM
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260821-FCGM
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|cli|SW-REQ-260820-YB5C|SW-REQ-260821-FCGM
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|cli|SW-REQ-260820-ZKCV|SW-REQ-260821-FCGM
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|cli|SW-REQ-260821-8C2C|SW-REQ-260821-FCGM
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
-        - check: ambiguity
-          issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ
-          reviewer: agent:grok
-          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260821-FCGM
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260821-FCGM
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260821-FCGM
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260821-FCGM
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|SW-REQ-260820-YB5C|SW-REQ-260821-FCGM
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|SW-REQ-260820-YB5C|SW-REQ-260821-FCGM
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|SW-REQ-260820-ZKCV|SW-REQ-260821-FCGM
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|SW-REQ-260820-ZKCV|SW-REQ-260821-FCGM
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|SW-REQ-260821-8C2C|SW-REQ-260821-FCGM
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|SW-REQ-260821-8C2C|SW-REQ-260821-FCGM
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
+      - check: ambiguity
+        issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ
+        reviewer: agent:grok
+        reason: 'SW-REQ-260821-FCGM on cli keeps its own contract (when agent_discovery_requested
+            the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted
+            | command_help_emitted | structured_err). This review is specific to ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ
+            and is not a shared canned rationale for sibling pairs.'
+        reviewed_at: "2026-08-21T09:05:02.290906Z"
     not_modeled:
-        - predicate: i < len(args)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(args) == 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(args)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(c.Examples) > 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(c.Examples)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(c.Flags) > 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(c.Flags)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(cats)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(created)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(d.Widgets)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(filtered) == 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(filtered)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(ids)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(parts) >= 3
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(parts)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rest) < 2
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rest) < 3
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rest) == 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rest) >= 2
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rest)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(sets) > 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(sets)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(snap.Records)
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: port == 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: i < len(args)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(args) == 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(args)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(c.Examples) > 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(c.Examples)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(c.Flags) > 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(c.Flags)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(cats)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(created)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(d.Widgets)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(filtered) == 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(filtered)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(ids)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(parts) >= 3
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(parts)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rest) < 2
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rest) < 3
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rest) == 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rest) >= 2
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(rest)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(sets) > 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(sets)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: len(snap.Records)
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+      - predicate: port == 0
+        reason: Runtime Go length and equality guards are implementation detail;
+            FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: agent:grok
     created_at: "2026-08-21T07:22:51Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-    - error_handling
-    - nominal
+  - error_handling
+  - nominal
 obligation_hazards:
-    - class: error_handling
-      worst_case: An unknown command returns no allowed list, so agents retry blindly.
-      severity: medium
-    - class: nominal
-      worst_case: Per-command help omits flags or JSON shape, so agents call the wrong command.
-      severity: low
+  - class: error_handling
+    worst_case: An unknown command returns no allowed list, so agents retry 
+        blindly.
+    severity: medium
+  - class: nominal
+    worst_case: Per-command help omits flags or JSON shape, so agents call the 
+        wrong command.
+    severity: low
 hazard_review:
     reviewed_at: "2026-08-21T07:29:45Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-        - category: scenario
-          disposition: reviewed
-          applied:
-            - nominal
-            - error_handling
-        - category: property
-          disposition: not_applicable
-          rationale: CLI help is not a timing or concurrency property.
-        - category: domain
-          disposition: not_applicable
-          rationale: Help text does not own filesystem or HTTP domain sinks.
-        - category: structural
-          disposition: not_applicable
-          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+      - category: scenario
+        disposition: reviewed
+        applied:
+          - nominal
+          - error_handling
+      - category: property
+        disposition: not_applicable
+        rationale: CLI help is not a timing or concurrency property.
+      - category: domain
+        disposition: not_applicable
+        rationale: Help text does not own filesystem or HTTP domain sinks.
+      - category: structural
+        disposition: not_applicable
+        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
+            memory ownership.
 lifecycle:
     change_history:
-        - date: "2026-08-21T07:30:22Z"
-          from: draft
-          to: review
-          reason: '[CHG-260821-DFVQ] Help and structured errors are implemented and ready for approval.'
-          changed_by: agent:grok
+      - date: "2026-08-21T07:30:22Z"
+        from: draft
+        to: review
+        reason: '[CHG-260821-DFVQ] Help and structured errors are implemented and
+            ready for approval.'
+        changed_by: agent:grok

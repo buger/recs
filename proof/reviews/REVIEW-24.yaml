@@ -1,0 +1,11 @@
+id: REVIEW-24
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T09:16:02Z"
+subject: SW-REQ-260820-EJVT
+decision: approved
+comment: Re-read handleDashboards, handleDashboard, and handleGallery after the HTTP handler split. Gallery still gates on dashboards_present versus empty_gallery_shown, preview cards, static UI, and gallery_rejected; line 32 Handler is no longer the annotated surface.
+citations:
+    - internal/serve/serve.go:213@handleDashboards
+    - internal/serve/serve.go:256@handleDashboard
+    - internal/serve/serve.go:300@handleGallery
