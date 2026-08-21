@@ -40,7 +40,7 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:16:15Z"
+        reviewed_at: "2026-08-21T09:19:03Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:2ae15d6c90e84de104a82ba8598ee42a6f03c9afb90b3dc31834ad7a6bc24563
         ai_generated: false
@@ -68,7 +68,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T18:59:33Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:16:15Z"
+    last_modified_at: "2026-08-21T09:19:03Z"
 obligation_checklist:
     - boundary
     - empty_input
