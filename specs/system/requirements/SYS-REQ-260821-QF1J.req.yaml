@@ -1,0 +1,81 @@
+id: SYS-REQ-260821-QF1J
+version: 1
+status: approved
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when remaining_ui_requested the serve shall always satisfy (listen_port > 0 => (record_view_rendered | record_editor_saved | search_page_shown | board_filters_applied | attachment_served | wikilink_resolved | ui_request_rejected))
+description: The product shall serve a record view, a record editor, a search page, board filters, attachments, and wikilink resolution.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260821-NTWY
+component: serve
+rationale: The local UI is a projection of the same files. The HTTP layer shall use the shared application layer.
+tags: []
+variables:
+    - remaining_ui_requested
+    - listen_port
+    - record_view_rendered
+    - record_editor_saved
+    - search_page_shown
+    - board_filters_applied
+    - attachment_served
+    - wikilink_resolved
+    - ui_request_rejected
+traces:
+    satisfies:
+        - STK-REQ-260820-Y3Q4
+        - STK-REQ-260820-KAGT
+    reviewed_at: "2026-08-21T06:37:33.925688Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:0291ea737504422e647803b583b1fa67f6b9bfc02fa8727bce7c5fd165a4a2fc
+    review_history:
+        - reviewed_at: "2026-08-21T06:37:33.925688Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Evidence-cited review of remaining UI system traces.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/remaining.go
+            - internal/app/remaining_test.go
+            - internal/cli/remaining_test.go
+            - internal/markdown/markdown.go
+            - internal/markdown/markdown_test.go
+            - internal/serve/remaining_test.go
+            - internal/serve/serve.go
+            - internal/wikilink/wikilink.go
+            - internal/wikilink/wikilink_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-KAGT.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-Y3Q4.req.yaml
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: approved
+        reviewer: agent:grok
+        role: system_owner
+        roles:
+            - system_owner
+        reviewed_at: "2026-08-21T06:30:21Z"
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:f183bd669734c3a7a67587ff0c3d04176380e70068ba87659e67d2ce5a4565d0
+        ai_generated: false
+        motivation:
+            kind: chg
+            ref: CHG-260821-G2PS
+history:
+    created_by: agent:grok
+    created_at: "2026-08-21T06:17:22Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-21T06:30:21Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-21T06:29:48Z"
+          from: draft
+          to: review
+          reason: '[CHG-260821-G2PS] Implemented remaining CLI, UI, and APE surfaces'
+          changed_by: agent:grok

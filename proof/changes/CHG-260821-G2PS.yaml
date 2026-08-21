@@ -1,0 +1,52 @@
+id: CHG-260821-G2PS
+type: feature
+title: Complete remaining CRM spec surfaces
+intent: Add the remaining Phase 1 CLI commands, record web UI, wikilink display resolver, and a Cosmopolitan APE packaging path so the file-native CRM matches README sections 8, 17, 23, 33, 37, and 42 without building the section 47 exclusions.
+problem: Phase 1 still lacks edit/delete/link/ingest/export/import/git companion commands, a record view and editor, first-class search, board filter controls, attachment download, wikilink resolution, and an APE build.
+non_goals:
+    - No authentication or multi-user permissions
+    - No cloud sync
+    - No Gmail IMAP or Outlook provider integrations
+    - No plugin system, vector database, embeddings, or internal LLM
+    - No workflow engine, SQLite, or server deployment
+owner: Leonid Bugaev
+requirements:
+    - STK-REQ-260821-QTPP
+    - STK-REQ-260821-NTWY
+    - SYS-REQ-260821-JYEJ
+    - SYS-REQ-260821-QF1J
+    - SYS-REQ-260821-AFPN
+    - SW-REQ-260821-8C2C
+    - SW-REQ-260821-82BA
+    - SW-REQ-260821-AC3S
+    - INT-REQ-260821-8HAC
+    - INT-REQ-260821-MRGW
+affects:
+    - STK-REQ-260821-QTPP
+    - STK-REQ-260821-NTWY
+    - SYS-REQ-260821-JYEJ
+    - SYS-REQ-260821-QF1J
+    - SYS-REQ-260821-AFPN
+    - SW-REQ-260821-8C2C
+    - SW-REQ-260821-82BA
+    - SW-REQ-260821-AC3S
+    - INT-REQ-260821-8HAC
+    - INT-REQ-260821-MRGW
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: true
+    require_docs: true
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-21T06:16:16Z"
+      by: agent:grok
+      action: created
+    - at: "2026-08-21T06:29:38Z"
+      by: agent:grok
+      action: edit
+      detail: add-requirement,add-affects
+    - at: "2026-08-21T06:38:37Z"
+      by: agent:grok
+      action: edit
+      detail: set-status=active

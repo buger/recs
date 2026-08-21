@@ -59,6 +59,38 @@ variables:
       type: bool
       direction: input
       description: Decide condition dashboard api requested.
+    - name: remaining_ui_requested
+      type: bool
+      direction: input
+      description: Decide condition remaining UI surface requested.
+    - name: record_view_rendered
+      type: bool
+      direction: output
+      description: Decide condition record view rendered.
+    - name: record_editor_saved
+      type: bool
+      direction: output
+      description: Decide condition record editor saved.
+    - name: search_page_shown
+      type: bool
+      direction: output
+      description: Decide condition search page shown.
+    - name: board_filters_applied
+      type: bool
+      direction: output
+      description: Decide condition board filters applied.
+    - name: attachment_served
+      type: bool
+      direction: output
+      description: Decide condition attachment served.
+    - name: wikilink_resolved
+      type: bool
+      direction: output
+      description: Decide condition wikilink resolved.
+    - name: ui_request_rejected
+      type: bool
+      direction: output
+      description: Decide condition remaining UI request rejected.
 domain:
     mutex:
         - name: listen_port_mode

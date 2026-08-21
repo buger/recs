@@ -1,0 +1,66 @@
+id: INT-REQ-260821-8HAC
+version: 1
+status: approved
+priority: shall
+category: interface
+req_type: guarantee
+fretish: when remaining_cli_command_invoked the cli shall always satisfy (arg_count > 0 => ((store_api_used | shared_record_model_used) | command_rejected))
+description: The remaining CLI commands shall call the shared application layer for store mutations and interchange.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: SYS-REQ-260821-JYEJ
+component: cli
+rationale: CLI and HTTP must share one mutation path. The CLI shall not write record files beside the store.
+tags: []
+variables:
+    - remaining_cli_command_invoked
+    - arg_count
+    - store_api_used
+    - shared_record_model_used
+    - command_rejected
+traces:
+    reviewed_at: "2026-08-21T06:37:20.26085Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:fa865d2640cdadca80dcbaf4de92fd4e639a76385f3cf77b0133c425745885cc
+    review_history:
+        - reviewed_at: "2026-08-21T06:37:20.26085Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Evidence-cited review of remaining CLI integration traces.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/remaining.go
+            - internal/app/remaining_test.go
+            - internal/cli/remaining_test.go
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: approved
+        reviewer: agent:grok
+        role: system_owner
+        roles:
+            - system_owner
+        reviewed_at: "2026-08-21T06:30:21Z"
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:7aa2c6f03ee515d161c4db1efd8a4ccc9c85e2154489aa978d59133e8398b88c
+        ai_generated: false
+        motivation:
+            kind: chg
+            ref: CHG-260821-G2PS
+history:
+    created_by: agent:grok
+    created_at: "2026-08-21T06:17:41Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-21T06:30:21Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-21T06:29:48Z"
+          from: draft
+          to: review
+          reason: '[CHG-260821-G2PS] Implemented remaining CLI, UI, and APE surfaces'
+          changed_by: agent:grok

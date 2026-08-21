@@ -1,0 +1,72 @@
+id: SYS-REQ-260821-AFPN
+version: 1
+status: approved
+priority: shall
+category: functional
+req_type: guarantee
+fretish: when ape_build_requested the dist shall always satisfy ((cosmocc_available & host_os_supported & ape_binary_produced & native_blob_embedded & ape_runs_on_host) | ape_build_rejected)
+description: The product shall provide a Cosmopolitan APE build that embeds the native CRM binary.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: STK-REQ-260820-T8AZ
+component: dist
+rationale: A maintainer needs one file users can download and run. A true Go APE is not available, so the APE wraps the host binary.
+tags: []
+variables:
+    - ape_build_requested
+    - cosmocc_available
+    - host_os_supported
+    - ape_binary_produced
+    - native_blob_embedded
+    - ape_runs_on_host
+    - ape_build_rejected
+traces:
+    satisfies:
+        - STK-REQ-260820-T8AZ
+    reviewed_at: "2026-08-21T06:37:34.180386Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:ab76509e9943ca0b821ffbbf260f6deddfabc6d76d1236c0e7fce179953d435d
+    review_history:
+        - reviewed_at: "2026-08-21T06:37:34.180386Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Evidence-cited review of APE system traces.
+          source: proof trace review --citation
+          citations:
+            - ape/wrapper.c
+            - docs/distribution.md
+            - docs/phase1.md
+            - internal/app/remaining_test.go
+            - scripts/build-ape.sh
+            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: approved
+        reviewer: agent:grok
+        role: system_owner
+        roles:
+            - system_owner
+        reviewed_at: "2026-08-21T06:30:21Z"
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:43ae2a2a6f79dcc2fc19337c515757a33070151d244dfd391aebc05229e22636
+        ai_generated: false
+        motivation:
+            kind: chg
+            ref: CHG-260821-G2PS
+history:
+    created_by: agent:grok
+    created_at: "2026-08-21T06:17:22Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-21T06:30:21Z"
+lifecycle:
+    change_history:
+        - date: "2026-08-21T06:29:48Z"
+          from: draft
+          to: review
+          reason: '[CHG-260821-G2PS] Implemented remaining CLI, UI, and APE surfaces'
+          changed_by: agent:grok

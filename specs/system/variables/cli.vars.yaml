@@ -83,6 +83,42 @@ variables:
       range:
         max: 256
         min: 0
+    - name: remaining_cli_command_invoked
+      type: bool
+      direction: input
+      description: Decide condition remaining CLI command invoked.
+    - name: record_file_mutated
+      type: bool
+      direction: output
+      description: Decide condition record file mutated.
+    - name: git_repo_present
+      type: bool
+      direction: input
+      description: Decide condition git repository present.
+    - name: git_result_emitted
+      type: bool
+      direction: output
+      description: Decide condition git result emitted.
+    - name: git_empty_reported
+      type: bool
+      direction: output
+      description: Decide condition empty git result reported.
+    - name: ingest_record_created
+      type: bool
+      direction: output
+      description: Decide condition ingest created a record.
+    - name: export_emitted
+      type: bool
+      direction: output
+      description: Decide condition export emitted.
+    - name: import_records_created
+      type: bool
+      direction: output
+      description: Decide condition import created records.
+    - name: command_rejected
+      type: bool
+      direction: output
+      description: Decide condition remaining CLI command rejected.
 domain:
     mutex:
         - name: output_mode
