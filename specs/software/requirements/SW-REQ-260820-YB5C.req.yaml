@@ -5,7 +5,7 @@ priority: shall
 category: functional
 req_type: guarantee
 fretish: when command_completed the cli shall always satisfy (arg_count > 0 => ((json_flag_set & json_output_emitted & !human_output_emitted) | (!json_flag_set & human_output_emitted & !json_output_emitted)))
-description: The CLI shall emit JSON objects when --json is set and human text otherwise. Argument count shall stay at most 256.
+description: The CLI shall emit JSON objects when --json is set and human text otherwise. Argument count shall stay at most 256. An empty JSON collection shall be an empty array. A JSON timestamp shall use RFC3339.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-PG9C
 component: cli
-rationale: JSON keys stay stable for agents. Human output stays readable.
+rationale: JSON keys stay stable for agents. Empty lists and timestamps stay parseable.
 tags: []
 variables: []
 traces:
@@ -42,13 +42,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
+        reviewed_at: "2026-08-21T11:12:01Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:721a3e29c7dd0c57ce3f6b324fac314ae9285526a11f5ac88b5a744bc1543a35
+        fingerprint: sha256:7196780ab401dd162b2a6042744500c2f2ab5b9c5cae4c1b6c8002d171e4ccbb
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            kind: chg
+            ref: CHG-260821-72GQ
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -65,6 +65,10 @@ verification:
             - kind: unchanged
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
     gaps_reviewed_by: agent:grok
@@ -153,11 +157,15 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T11:12:01Z"
 obligation_checklist:
+    - boundary
     - determinism
     - nominal
 obligation_hazards:
+    - class: boundary
+      worst_case: An empty JSON collection is null, so agents cannot iterate actions or records.
+      severity: medium
     - class: determinism
       worst_case: The same CLI command with --json returns a different shape across runs, so agents cannot parse output.
       severity: medium

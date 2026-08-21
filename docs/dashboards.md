@@ -6,7 +6,7 @@ Dashboards are views. Canonical state stays in Markdown records and YAML configs
 
 ## Files
 
-`crm init` writes `dashboards/`:
+`recs init` writes `dashboards/`:
 
 - `prospects.yaml` — Prospect CRM metrics card
 - `workspace.yaml` — list, count, board, and notes
@@ -44,11 +44,11 @@ Widgets get data from `query:`, `source:`, or `board:`.
 ## Commands
 
 ```
-crm help dashboard
-crm dashboard
-crm dashboard workspace --json
-crm dashboard new myboard --name "My board"
-crm serve
+recs help dashboard
+recs dashboard
+recs dashboard workspace --json
+recs dashboard new myboard --name "My board"
+recs serve
 ```
 
 Open `http://localhost:7777`. The home view is the gallery. Boards stay at `#/boards`.

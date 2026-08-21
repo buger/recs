@@ -5,7 +5,7 @@ priority: shall
 category: functional
 req_type: guarantee
 fretish: when command_completed the cli shall always satisfy (arg_count > 0 => ((json_flag_set & json_output_emitted) | (!json_flag_set & human_output_emitted)))
-description: The product shall emit stable JSON when a command uses --json.
+description: The product shall emit stable JSON when a command uses --json. An empty JSON collection shall be an empty array. A JSON timestamp shall use RFC3339.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -45,13 +45,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
+        reviewed_at: "2026-08-21T11:13:00Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:c41a9ae4c3bf65b97ecc6babee7c3c60e58afdb1cf0fe57247b6b95f7796235b
+        fingerprint: sha256:2775840e224c58810973b9bbb93b07d4f5d3759293498a6601eb88034cd9ea39
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            kind: chg
+            ref: CHG-260821-72GQ
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -68,6 +68,10 @@ verification:
             - kind: unchanged
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
     gaps_reviewed_by: agent:grok
@@ -116,11 +120,15 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:09Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T11:13:00Z"
 obligation_checklist:
+    - boundary
     - determinism
     - nominal
 obligation_hazards:
+    - class: boundary
+      worst_case: An empty JSON collection is null, so agents cannot iterate actions or records.
+      severity: medium
     - class: determinism
       worst_case: The same CLI command with --json returns a different shape across runs, so agents cannot parse output.
       severity: medium

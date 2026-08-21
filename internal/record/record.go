@@ -122,6 +122,8 @@ func (r *Record) GetString(key string) string {
 	switch t := v.(type) {
 	case string:
 		return t
+	case time.Time:
+		return t.UTC().Format(time.RFC3339)
 	case fmt.Stringer:
 		return t.String()
 	default:
@@ -299,6 +301,8 @@ func TypeDir(typ string) string {
 		return "tasks"
 	case "note":
 		return "notes"
+	case "inbox":
+		return "inbox"
 	default:
 		if typ == "" {
 			return "misc"

@@ -3,7 +3,7 @@ package contextpkg
 import (
 	"strings"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 )
 
 type Bundle struct {

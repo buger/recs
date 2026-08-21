@@ -4,144 +4,51 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/static/vendor/tabler.min.css"/>
 <style>
-:root {
-  --bg: #eef1f4;
-  --card: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --soft: #f3f4f6;
-  --primary: #111827;
-  --orange: #f59e0b;
-  --orange-bg: #fff7ed;
-  --green: #059669;
-  --green-bg: #ecfdf5;
-  --red: #dc2626;
-  --red-bg: #fef2f2;
-  --blue: #2563eb;
-  --blue-bg: #eff6ff;
-  --radius: 16px;
-  --shadow: 0 1px 2px rgba(15,23,42,.05), 0 10px 28px rgba(15,23,42,.06);
-}
-* { box-sizing: border-box; }
-html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; }
-button, input, select { font: inherit; }
-a { color: inherit; }
-.topnav { display: flex; align-items: center; gap: 20px; padding: 18px 32px 0; }
-.brand { font-weight: 700; letter-spacing: -.02em; }
-.navlink { color: var(--muted); text-decoration: none; font-weight: 500; padding: 6px 0; border-bottom: 2px solid transparent; }
-.navlink.active { color: var(--text); border-bottom-color: var(--text); }
-.navlink:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
-  outline: 2px solid #93c5fd; outline-offset: 2px;
-}
-.page { padding: 20px 32px 48px; }
-.hero { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin: 18px 0 28px; min-height: 84px; }
-.hero h1 { margin: 0; font-size: 40px; letter-spacing: -.03em; }
-.hero p { margin: 8px 0 0; color: var(--muted); font-size: 16px; }
-.btn { border: 0; border-radius: 12px; padding: 10px 14px; cursor: pointer; font-weight: 600; }
-.btn-primary { background: var(--primary); color: #fff; }
-.btn-ghost { background: transparent; color: var(--text); }
-.btn-row { display: flex; gap: 8px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 22px; }
-.dash-card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; cursor: pointer; border: 1px solid transparent; min-height: 320px; }
-.dash-card:hover { border-color: #d1d5db; }
-.dash-card h2 { margin: 0; font-size: 22px; }
-.dash-card .count { color: var(--muted); margin: 4px 0 14px; font-size: 14px; }
-.preview { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; height: 210px; }
-.slot { background: var(--soft); border-radius: 12px; overflow: hidden; padding: 8px; font-size: 10px; color: var(--muted); }
-.slot.filled { background: #fff; border: 1px solid var(--line); color: var(--text); }
-.slot .st { font-weight: 700; font-size: 11px; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.mini-stat { font-size: 18px; font-weight: 800; }
-.toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
-.back { color: var(--muted); text-decoration: none; font-weight: 500; }
-.switcher { display: flex; gap: 6px; flex-wrap: wrap; }
-.pill-nav { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; cursor: pointer; color: var(--muted); }
-.pill-nav.on { background: var(--primary); color: #fff; border-color: var(--primary); }
-.widgets { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-.widget { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 18px 16px; min-height: 280px; position: relative; display: flex; flex-direction: column; }
-.widget.placeholder { background: #f3f4f6; box-shadow: none; }
-.widget h3 { margin: 0; font-size: 16px; }
-.widget .src { color: var(--muted); font-size: 12px; margin: 4px 0 10px; }
-.expand { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border: 0; background: transparent; color: #9ca3af; cursor: pointer; border-radius: 8px; }
-.expand:hover { background: var(--soft); color: var(--text); }
-.pills { display: flex; gap: 6px; flex-wrap: wrap; }
-.tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 2px 8px; font-size: 11px; font-weight: 600; background: var(--soft); color: #374151; text-transform: lowercase; }
-.tag.done, .tag.won, .tag.applied, .tag.complete, .tag.active { background: var(--green-bg); color: var(--green); }
-.tag.new, .tag.watch, .tag.high, .tag.preparing { background: var(--orange-bg); color: #c2410c; }
-.tag.queued, .tag.owner, .tag.waiting, .tag.researching { background: var(--blue-bg); color: var(--blue); }
-.tag.blocked, .tag.rejected, .tag.overdue { background: var(--red-bg); color: var(--red); }
-.item { padding: 8px 0; border-bottom: 1px solid var(--line); }
-.item:last-child { border-bottom: 0; }
-.item .t { font-weight: 600; }
-.item .b { color: var(--muted); font-size: 13px; margin-top: 2px; }
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.stat { background: var(--soft); border-radius: 12px; padding: 12px; }
-.stat b { display: block; font-size: 26px; letter-spacing: -.03em; }
-.stat span { color: var(--muted); font-size: 12px; }
-.bar { height: 6px; background: #e5e7eb; border-radius: 99px; overflow: hidden; margin-top: 8px; }
-.bar > i { display: block; height: 100%; background: linear-gradient(90deg, #fb923c, #34d399); }
-.remind { margin-top: 12px; color: #9a3412; font-size: 13px; }
-.md { font-size: 13px; line-height: 1.45; color: #374151; overflow: auto; }
-.md h1, .md h2, .md h3 { margin: 0 0 8px; }
-.board-mini { display: flex; gap: 8px; overflow: auto; }
-.board-mini .col { min-width: 110px; background: var(--soft); border-radius: 10px; padding: 8px; }
-.board-mini .card { background: #fff; border-radius: 8px; padding: 6px; margin-top: 6px; font-size: 12px; }
-.empty { color: var(--muted); padding: 48px 0; text-align: center; }
-.modal { position: fixed; inset: 0; background: rgba(17,24,39,.35); display: none; align-items: center; justify-content: center; padding: 24px; }
-.modal.show { display: flex; }
-.modal .sheet { background: #fff; border-radius: 20px; padding: 24px; width: min(460px, 100%); box-shadow: var(--shadow); }
-.modal h2 { margin: 0 0 16px; }
-label { display: block; font-size: 13px; font-weight: 600; margin: 12px 0 6px; }
-input, select { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: #fff; }
-.kanban { display: flex; gap: 12px; overflow-x: auto; align-items: flex-start; padding-bottom: 20px; }
-.kcol { min-width: 240px; background: #fff; border-radius: 14px; padding: 12px; box-shadow: var(--shadow); }
-.kcol h3 { margin: 0 0 10px; font-size: 14px; color: var(--muted); }
-.kcard { background: #f9fafb; border: 1px solid var(--line); border-radius: 10px; padding: 10px; margin-bottom: 8px; cursor: grab; }
-.kcard small { color: var(--muted); }
-.search { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; min-width: 200px; }
-.full { position: fixed; inset: 0; background: var(--bg); z-index: 20; padding: 24px 32px; overflow: auto; display: none; }
-.full.show { display: block; }
-@media (max-width: 800px) {
-  .grid, .widgets, .preview { grid-template-columns: 1fr; }
-  .page, .topnav { padding-left: 16px; padding-right: 16px; }
-  .hero h1 { font-size: 32px; }
-}
-
-.meta { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 20px; }
-.meta .kv { background:#fff; border:1px solid var(--line); border-radius:12px; padding:8px 10px; }
-.meta .k { color:var(--muted); font-size:11px; font-weight:600; text-transform:uppercase; }
-.meta .v { font-weight:600; }
-.prose { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; line-height:1.6; }
-.prose h1,.prose h2,.prose h3 { letter-spacing:-.02em; }
-.side { display:grid; grid-template-columns: 2fr 1fr; gap:18px; }
-.panel { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; }
-.panel h3 { margin:0 0 10px; font-size:14px; color:var(--muted); }
-.rel a { color:var(--blue); text-decoration:none; font-weight:600; }
-.attach { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--line); }
-.editor textarea { width:100%; min-height:280px; border:1px solid var(--line); border-radius:12px; padding:12px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
-.filters { display:flex; gap:8px; flex-wrap:wrap; align-items:end; }
-.filters label { margin:0; }
-.search-list .item { background:#fff; border-radius:12px; padding:12px 14px; margin-bottom:10px; box-shadow:var(--shadow); cursor:pointer; }
-.wikilink { color:var(--blue); text-decoration:none; font-weight:600; }
-.wikilink.missing { color:#9ca3af; border-bottom:1px dashed #d1d5db; }
-@media (max-width: 800px) { .side { grid-template-columns:1fr; } }
+  body { background: var(--tblr-bg-surface-secondary, #f3f4f6); }
+  .navbar-crm { background: #fff; border-bottom: 1px solid var(--tblr-border-color); }
+  .preview-slot { min-height: 92px; height: 100%; }
+  .preview-slot.empty { background: var(--tblr-bg-surface-secondary, #f3f4f6); border: 1px dashed var(--tblr-border-color); }
+  .widget-card { min-height: 260px; }
+  .widget-card.count-card { min-height: 220px; }
+  .widget-card.placeholder { min-height: 180px; box-shadow: none; background: var(--tblr-bg-surface-secondary, #f3f4f6); }
+  .count-hero { font-size: 3.25rem; font-weight: 700; letter-spacing: -.04em; line-height: 1; }
+  .kanban-scroll { overflow-x: auto; padding-bottom: .25rem; }
+  .kanban-col { min-width: 200px; max-width: 230px; flex: 0 0 200px; }
+  .dash-card { cursor: pointer; }
+  .dash-card:hover { border-color: var(--tblr-primary); }
+  .expand-btn { color: var(--tblr-secondary); }
+  .modal { background: rgba(17,24,39,.35); }
+  .modal.show { display: block; }
+  .full-sheet { position: fixed; inset: 0; background: var(--tblr-bg-surface-secondary, #f3f4f6); z-index: 1050; overflow: auto; display: none; padding: 1.5rem; }
+  .full-sheet.show { display: block; }
+  .prose { line-height: 1.65; }
+  .cursor-grab { cursor: grab; }
 </style>
 </head>
 <body>
-<nav class="topnav">
-  <div class="brand">File-native CRM</div>
-  <a class="navlink" id="nav-dash" href="#/">Dashboards</a>
-  <a class="navlink" id="nav-boards" href="#/boards">Boards</a>
-  <a class="navlink" id="nav-search" href="#/search">Search</a>
-</nav>
-<main class="page" id="app"></main>
-<div class="modal" id="modal"></div>
-<div class="full" id="full"></div>
+<div class="page">
+  <header class="navbar navbar-expand-md d-print-none navbar-crm">
+    <div class="container-xl">
+      <h1 class="navbar-brand navbar-brand-autodark mb-0">
+        <a href="#/">recs</a>
+      </h1>
+      <div class="navbar-nav flex-row">
+        <a class="nav-link" id="nav-dash" href="#/">Dashboards</a>
+        <a class="nav-link" id="nav-boards" href="#/boards">Boards</a>
+        <a class="nav-link" id="nav-search" href="#/search">Search</a>
+      </div>
+    </div>
+  </header>
+  <div class="page-wrapper">
+    <div class="page-body">
+      <div class="container-xl" id="app"></div>
+    </div>
+  </div>
+</div>
+<div class="modal modal-blur" id="modal" tabindex="-1"></div>
+<div class="full-sheet" id="full"></div>
 <script>
 const app = document.getElementById('app');
 const modal = document.getElementById('modal');
@@ -149,14 +56,21 @@ const full = document.getElementById('full');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pillClass = (p) => {
   const x = String(p||'').toLowerCase();
-  if (['done','won','applied','complete','active'].includes(x)) return 'done';
-  if (['new','watch','high','preparing'].includes(x)) return 'new';
-  if (['queued','waiting','researching'].includes(x)) return 'queued';
-  if (['blocked','rejected','overdue'].includes(x)) return 'blocked';
-  return '';
+  if (['done','won','applied','complete','active'].includes(x)) return 'bg-green-lt text-green';
+  if (['new','watch','high','preparing'].includes(x)) return 'bg-orange-lt text-orange';
+  if (['queued','waiting','researching','owner'].includes(x)) return 'bg-azure-lt text-azure';
+  if (['blocked','rejected','overdue'].includes(x)) return 'bg-red-lt text-red';
+  return 'bg-secondary-lt';
 };
-const pills = (arr) => (arr||[]).slice(0,4).map(p => `<span class="tag ${pillClass(p)}">${esc(p)}</span>`).join('');
-const expandBtn = (id) => `<button class="expand" title="Expand" data-expand="${esc(id)}"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>`;
+const pills = (arr) => (arr||[]).slice(0,4).map(p => `<span class="badge ${pillClass(p)}">${esc(p)}</span>`).join(' ');
+const expandBtn = (id) => `<button class="btn btn-icon btn-ghost-secondary btn-sm expand-btn" title="Expand" data-expand="${esc(id)}"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>`;
+const shortDate = (d) => {
+  if (!d) return '';
+  const s = String(d);
+  if (s.length >= 10 && s[4] === '-') return s.slice(0, 10);
+  return s;
+};
+const excerpt = (s) => String(s||'').replace(/\s+/g,' ').trim().slice(0, 120);
 
 function setNav(h) {
   document.getElementById('nav-dash').classList.toggle('active', h === '#/' || h.startsWith('#/d/'));
@@ -182,22 +96,32 @@ async function showGallery() {
   const j = await r.json();
   const list = j.dashboards || [];
   app.innerHTML = `
-    <div class="hero">
-      <div>
-        <h1>Dashboard</h1>
-        <p>Customize a theme and build your own dashboard.</p>
+    <div class="page-header d-print-none">
+      <div class="row align-items-center">
+        <div class="col">
+          <h2 class="page-title">Dashboard</h2>
+          <div class="text-secondary mt-1">Customize a theme and build your own dashboard.</div>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-primary" id="new-dash">+ New dashboard</button>
+        </div>
       </div>
-      <button class="btn btn-primary" id="new-dash">+ New dashboard</button>
     </div>
-    ${list.length ? `<div class="grid" id="cards"></div>` : `<div class="empty">No dashboards yet. Agents write YAML in dashboards/, or use + New dashboard.</div>`}
+    ${list.length ? `<div class="row row-cards" id="cards"></div>` : `<div class="empty"><p class="empty-title">No dashboards yet</p><p class="empty-subtitle text-secondary">Agents write YAML in dashboards/, or use + New dashboard.</p></div>`}
   `;
   document.getElementById('new-dash').onclick = openNew;
   const cards = document.getElementById('cards');
   if (!cards) return;
   for (const d of list) {
-    const el = document.createElement('article');
-    el.className = 'dash-card';
-    el.innerHTML = `<h2>${esc(d.name||d.id)}</h2><div class="count">${d.widgets||0} components</div><div class="preview" id="pv-${esc(d.id)}">${'<div class="slot"></div>'.repeat(4)}</div>`;
+    const el = document.createElement('div');
+    el.className = 'col-sm-12 col-lg-6';
+    el.innerHTML = `<div class="card dash-card h-100">
+      <div class="card-body">
+        <h3 class="card-title mb-1">${esc(d.name||d.id)}</h3>
+        <div class="text-secondary mb-3">${d.widgets||0} components</div>
+        <div class="row g-2" id="pv-${esc(d.id)}">${'<div class="col-6"><div class="preview-slot empty rounded"></div></div>'.repeat(4)}</div>
+      </div>
+    </div>`;
     el.onclick = () => { location.hash = '#/d/' + d.id; };
     cards.appendChild(el);
     fillPreview(d.id);
@@ -214,112 +138,170 @@ async function fillPreview(id) {
     box.innerHTML = '';
     for (let i=0;i<4;i++) {
       const w = widgets[i];
-      const slot = document.createElement('div');
-      slot.className = 'slot' + (w && !w.placeholder ? ' filled' : '');
+      const col = document.createElement('div');
+      col.className = 'col-6';
       if (w && !w.placeholder) {
-        slot.innerHTML = `<div class="st">${esc(w.title||w.type)}</div>` + miniWidget(w);
+        col.innerHTML = `<div class="card card-sm preview-slot"><div class="card-body p-2">
+          <div class="fw-bold text-truncate small mb-1">${esc(w.title||w.type)}</div>${miniWidget(w)}
+        </div></div>`;
+      } else {
+        col.innerHTML = `<div class="preview-slot empty rounded"></div>`;
       }
-      box.appendChild(slot);
+      box.appendChild(col);
     }
   } catch (e) {}
 }
 
 function miniWidget(w) {
   if (w.type === 'metrics' && w.stats) {
-    return w.stats.slice(0,2).map(s => `<div><span class="mini-stat">${esc(s.value)}</span> ${esc(s.label)}</div>`).join('');
+    return w.stats.slice(0,2).map(s => `<div class="small"><span class="fw-bold">${esc(s.value)}</span> <span class="text-secondary">${esc(s.label)}</span></div>`).join('');
   }
-  if (w.type === 'count') return `<div class="mini-stat">${esc(w.count||0)}</div>`;
-  if (w.items && w.items.length) return w.items.slice(0,3).map(it => `<div>${esc(it.title)}</div>`).join('');
-  if (w.board) return `<div>${esc(w.board.name||'board')}</div>`;
-  return `<div>${esc(w.meta||w.type)}</div>`;
+  if (w.type === 'count') return `<div class="h2 mb-0">${esc(w.count||0)}</div>`;
+  if (w.items && w.items.length) return w.items.slice(0,3).map(it => `<div class="text-truncate small">${esc(it.title)}</div>`).join('');
+  if (w.board) return `<div class="small text-secondary">${esc(w.board.name||'board')}</div>`;
+  return `<div class="small text-secondary">${esc(w.meta||w.type)}</div>`;
 }
 
 async function showDash(id) {
   const [projR, listR] = await Promise.all([fetch('/api/dashboards/'+encodeURIComponent(id)), fetch('/api/dashboards')]);
   const projJ = await projR.json();
   const listJ = await listR.json();
-  if (!projJ.ok) { app.innerHTML = `<div class="empty">Dashboard not found.</div>`; return; }
+  if (!projJ.ok) { app.innerHTML = `<div class="empty"><p class="empty-title">Dashboard not found.</p></div>`; return; }
   const d = projJ.dashboard;
   const list = listJ.dashboards || [];
   app.innerHTML = `
-    <div class="toolbar">
-      <a class="back" href="#/">← Gallery</a>
-      <div class="switcher">${list.map(x => `<button class="pill-nav ${x.id===d.id?'on':''}" data-id="${esc(x.id)}">${esc(x.name||x.id)}</button>`).join('')}</div>
+    <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
+      <a class="btn btn-ghost-secondary btn-sm" href="#/">← Gallery</a>
+      <ul class="nav nav-pills">${list.map(x => `<li class="nav-item"><button class="nav-link ${x.id===d.id?'active':''}" data-id="${esc(x.id)}">${esc(x.name||x.id)}</button></li>`).join('')}</ul>
     </div>
-    <div class="hero" style="min-height:auto;margin-top:8px">
-      <div><h1>${esc(d.name)}</h1><p>${esc(d.description||'File-native dashboard')}</p></div>
+    <div class="page-header pt-0">
+      <h2 class="page-title">${esc(d.name)}</h2>
+      <div class="text-secondary">${esc(d.description||'File-native dashboard')}</div>
     </div>
-    <div class="widgets" id="widgets"></div>
+    <div class="row row-cards" id="widgets"></div>
   `;
-  app.querySelectorAll('.pill-nav').forEach(b => b.onclick = () => location.hash = '#/d/' + b.dataset.id);
+  app.querySelectorAll('.nav-link[data-id]').forEach(b => b.onclick = () => location.hash = '#/d/' + b.dataset.id);
   const box = document.getElementById('widgets');
   (d.widgets||[]).forEach(w => box.appendChild(renderWidget(w)));
 }
 
+function statAccent(s) {
+  const l = String((s && s.label) || '').toLowerCase();
+  if (l.includes('overdue') || l.includes('blocked')) return 'bg-red-lt';
+  if (l.includes('due') || l.includes('waiting')) return 'bg-orange-lt';
+  if (l.includes('active') || l.includes('healthy') || l.includes('applied') || l.includes('won')) return 'bg-green-lt';
+  return 'bg-azure-lt';
+}
+
 function renderWidget(w, expanded) {
+  const col = document.createElement('div');
+  col.className = expanded ? '' : 'col-md-6';
   const el = document.createElement('section');
-  el.className = 'widget' + (w.placeholder ? ' placeholder' : '');
-  if (w.placeholder) return el;
+  el.className = 'card widget-card' + (w.placeholder ? ' placeholder' : '') + (w.type === 'count' ? ' count-card' : '');
+  if (w.placeholder) {
+    el.innerHTML = `<div class="card-body d-flex align-items-center justify-content-center text-secondary">Empty slot</div>`;
+    col.appendChild(el);
+    return col;
+  }
   el.innerHTML = `
-    ${expanded ? '' : expandBtn(w.id)}
-    <h3>${esc(w.title||w.type)}</h3>
-    <div class="src">${esc(w.source||'')}</div>
-    <div class="body"></div>
+    <div class="card-header">
+      <h3 class="card-title">${esc(w.title||w.type)}</h3>
+      ${expanded ? '' : `<div class="card-actions">${expandBtn(w.id)}</div>`}
+    </div>
+    <div class="card-body body"></div>
   `;
   const body = el.querySelector('.body');
   if (w.type === 'metrics') {
-    body.innerHTML = `<div class="stats">${(w.stats||[]).map(s => `<div class="stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join('')}</div>
-      ${(w.reminders||[]).map(x => `<div class="remind">${esc(x)}</div>`).join('')}`;
+    body.innerHTML = `<div class="row g-2">${(w.stats||[]).map(s => `<div class="col-6">
+        <div class="card card-sm ${statAccent(s)}"><div class="card-body py-3">
+          <div class="subheader">${esc(s.label)}</div>
+          <div class="h1 mb-0">${esc(s.value)}</div>
+        </div></div>
+      </div>`).join('')}</div>
+      ${(w.reminders||[]).length ? `<div class="list-group list-group-flush mt-3">${w.reminders.map(x => `<div class="list-group-item px-0">${esc(x)}</div>`).join('')}</div>` : ''}`;
   } else if (w.type === 'count') {
-    body.innerHTML = `<div class="stat"><b>${esc(w.count||0)}</b><span>${esc(w.meta||'records')}</span></div>`;
+    body.innerHTML = `<div class="d-flex flex-column justify-content-center h-100 py-3">
+      <div class="count-hero">${esc(w.count||0)}</div>
+      <div class="text-secondary mt-2">${esc(w.meta||w.title||'records')}</div>
+    </div>`;
   } else if (w.type === 'list') {
-    body.innerHTML = (w.groups||[]).map(g => `<div style="margin-bottom:10px"><div class="src" style="font-weight:600">${esc(g.name)}</div>${(g.items||[]).map(itemLine).join('')}</div>`).join('')
-      || (w.items||[]).map(itemLine).join('') || '<div class="src">No records</div>';
+    const groups = (w.groups||[]).map(g => `<div class="mb-3"><div class="subheader mb-1">${esc(g.name)}</div>
+      <div class="list-group list-group-flush">${(g.items||[]).map(it => itemLine(it)).join('')}</div></div>`).join('');
+    const items = (w.items||[]).map(it => itemLine(it)).join('');
+    body.innerHTML = groups || (items ? `<div class="list-group list-group-flush">${items}</div>` : '<div class="text-secondary">No records</div>');
   } else if (w.type === 'notes' || w.type === 'watch' || w.type === 'pipeline') {
-    body.innerHTML = (w.items||[]).map((it,i) => itemLine(it, w.type==='pipeline' ? (i+1)+'. ' : '')).join('') || '<div class="src">No records</div>';
-    if (w.type==='pipeline' && w.progress) body.innerHTML += `<div class="bar"><i style="width:${Math.round(w.progress*100)}%"></i></div>`;
+    const rows = (w.items||[]).map((it,i) => itemLine(it, w.type==='pipeline' ? (i+1)+'. ' : '')).join('');
+    body.innerHTML = rows ? `<div class="list-group list-group-flush">${rows}</div>` : '<div class="text-secondary">No records</div>';
+    if (w.type==='pipeline' && w.progress) body.innerHTML += `<div class="progress mt-3"><div class="progress-bar bg-green" style="width:${Math.round(w.progress*100)}%"></div></div>`;
   } else if (w.type === 'board' && w.board) {
-    body.innerHTML = `<div class="board-mini">${(w.board.columns||[]).map(c => `<div class="col"><strong>${esc(c.title)}</strong>${(c.records||[]).slice(0,4).map(r => `<div class="card">${esc(r.title)}</div>`).join('')}</div>`).join('')}</div>`;
+    body.innerHTML = `<div class="kanban-scroll d-flex gap-2">${(w.board.columns||[]).map(c => `<div class="kanban-col">
+      <div class="subheader mb-2">${esc(c.title)}</div>
+      ${(c.records||[]).slice(0,6).map(r => `<div class="card card-sm mb-2"><div class="card-body py-2 small">${esc(r.title)}</div></div>`).join('')}
+    </div>`).join('')}</div>`;
   } else if (w.type === 'markdown') {
-    body.innerHTML = `<div class="md">${w.html || esc(w.markdown||'')}</div>`;
+    body.innerHTML = `<div class="markdown prose">${w.html || esc(w.markdown||'')}</div>`;
   } else {
-    body.innerHTML = `<div class="src">${esc(w.error||w.meta||'')}</div>`;
+    body.innerHTML = `<div class="text-secondary">${esc(w.error||w.meta||'')}</div>`;
   }
   const btn = el.querySelector('[data-expand]');
   if (btn) btn.onclick = (e) => { e.stopPropagation(); openFull(w); };
-  return el;
+  col.appendChild(el);
+  return col;
 }
 function itemLine(it, prefix='') {
-  return `<div class="item"><div class="t">${esc(prefix)}${esc(it.title||it.id)}</div>
-    <div class="b">${esc(it.path||'')} ${esc(it.date||'')}</div>
-    <div class="pills">${pills(it.pills)}</div>
-    ${it.body ? `<div class="b">${esc(it.body)}</div>` : ''}</div>`;
+  const title = `${prefix||''}${it.title||it.id||''}`;
+  const when = shortDate(it.date);
+  const line = excerpt(it.body);
+  return `<div class="list-group-item px-0">
+    <div class="row align-items-center g-2">
+      <div class="col text-truncate">
+        <div class="fw-bold text-truncate">${esc(title)}</div>
+        ${line ? `<div class="text-secondary small text-truncate">${esc(line)}</div>` : ''}
+        ${when ? `<div class="text-secondary small">${esc(when)}</div>` : ''}
+      </div>
+      <div class="col-auto">${pills(it.pills)}</div>
+    </div>
+  </div>`;
 }
 function openFull(w) {
-  full.className = 'full show';
-  full.innerHTML = `<button class="btn btn-ghost" id="close-full">← Back</button>`;
-  const big = renderWidget(w, true);
-  big.style.minHeight = '70vh';
-  full.appendChild(big);
-  document.getElementById('close-full').onclick = () => { full.className = 'full'; full.innerHTML=''; };
+  full.className = 'full-sheet show';
+  full.innerHTML = `<div class="container-xl"><button class="btn btn-ghost-secondary mb-3" id="close-full">← Back</button><div id="full-body"></div></div>`;
+  document.getElementById('full-body').appendChild(renderWidget(w, true));
+  document.getElementById('close-full').onclick = () => { full.className = 'full-sheet'; full.innerHTML=''; };
 }
 
+function closeModal() {
+  modal.className = 'modal modal-blur';
+  modal.style.display = 'none';
+  modal.innerHTML = '';
+}
 function openNew() {
-  modal.className = 'modal show';
-  modal.innerHTML = `<form class="sheet" id="new-form">
-    <h2>New dashboard</h2>
-    <label>Name</label><input name="name" required placeholder="Prospect CRM"/>
-    <label>Id slug</label><input name="id" required placeholder="prospects"/>
-    <label>Layout</label><select name="layout"><option value="2x2">2x2</option><option value="1x2">1x2</option><option value="1x1">1x1</option></select>
-    <label>First widget type</label>
-    <select name="type"><option value="">None yet</option>
-      <option>count</option><option>list</option><option>notes</option><option>watch</option>
-      <option>pipeline</option><option>metrics</option><option>board</option><option>markdown</option></select>
-    <div class="btn-row" style="margin-top:18px;justify-content:flex-end">
-      <button type="button" class="btn btn-ghost" id="cancel">Cancel</button>
-      <button class="btn btn-primary" type="submit">Create YAML</button>
-    </div>
-  </form>`;
+  modal.className = 'modal modal-blur fade show';
+  modal.style.display = 'block';
+  modal.innerHTML = `<div class="modal-dialog modal-dialog-centered" role="document">
+    <form class="modal-content" id="new-form">
+      <div class="modal-header">
+        <h2 class="modal-title">New dashboard</h2>
+        <button type="button" class="btn-close" id="cancel-x" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3"><label class="form-label">Name</label><input class="form-control" name="name" required placeholder="Prospect CRM"/></div>
+        <div class="mb-3"><label class="form-label">Id slug</label><input class="form-control" name="id" required placeholder="prospects"/></div>
+        <div class="mb-3"><label class="form-label">Layout</label>
+          <select class="form-select" name="layout"><option value="2x2">2x2</option><option value="1x2">1x2</option><option value="1x1">1x1</option></select>
+        </div>
+        <div class="mb-0"><label class="form-label">First widget type</label>
+          <select class="form-select" name="type"><option value="">None yet</option>
+            <option>count</option><option>list</option><option>notes</option><option>watch</option>
+            <option>pipeline</option><option>metrics</option><option>board</option><option>markdown</option></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link link-secondary" id="cancel">Cancel</button>
+        <button class="btn btn-primary" type="submit">Create YAML</button>
+      </div>
+    </form>
+  </div>`;
   const form = document.getElementById('new-form');
   const name = form.elements.name;
   const id = form.elements.id;
@@ -327,7 +309,8 @@ function openNew() {
     if (!id.dataset.touched) id.value = name.value.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
   });
   id.addEventListener('input', () => id.dataset.touched = '1');
-  document.getElementById('cancel').onclick = () => { modal.className='modal'; };
+  document.getElementById('cancel').onclick = closeModal;
+  document.getElementById('cancel-x').onclick = closeModal;
   form.onsubmit = async (e) => {
     e.preventDefault();
     const body = {id: id.value, name: name.value, layout: form.elements.layout.value, widgets: []};
@@ -335,7 +318,7 @@ function openNew() {
     const r = await fetch('/api/dashboards', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
     const j = await r.json();
     if (!j.ok) { alert(j.error || 'create failed'); return; }
-    modal.className = 'modal';
+    closeModal();
     location.hash = '#/d/' + body.id;
     route();
   };
@@ -348,13 +331,15 @@ async function showBoards(id) {
   if (!id && boards[0]) id = boards[0].id;
   const params = new URLSearchParams((location.hash.split('?')[1] || ''));
   app.innerHTML = `
-    <div class="toolbar">
-      <strong>Boards</strong>
-      <select id="boards">${boards.map(b => `<option value="${esc(b.id)}" ${b.id===id?'selected':''}>${esc(b.name)}</option>`).join('')}</select>
-      <div class="filters" id="filters"></div>
-      <input class="search" id="q" placeholder="search and press enter"/>
+    <div class="page-header d-print-none">
+      <div class="row align-items-center g-2">
+        <div class="col-auto"><h2 class="page-title mb-0">Boards</h2></div>
+        <div class="col-auto"><select class="form-select" id="boards">${boards.map(b => `<option value="${esc(b.id)}" ${b.id===id?'selected':''}>${esc(b.name)}</option>`).join('')}</select></div>
+        <div class="col-auto" id="filters"></div>
+        <div class="col-auto ms-auto"><input class="form-control" id="q" placeholder="search and press enter"/></div>
+      </div>
     </div>
-    <div class="kanban" id="board"></div>`;
+    <div class="kanban-scroll d-flex gap-3 align-items-start" id="board"></div>`;
   const sel = document.getElementById('boards');
   sel.onchange = () => location.hash = '#/boards/' + sel.value;
   document.getElementById('q').addEventListener('keydown', e => {
@@ -368,9 +353,10 @@ async function showBoards(id) {
   const box = document.getElementById('filters');
   (bj.filter_controls || []).forEach(fc => {
     const wrap = document.createElement('label');
+    wrap.className = 'form-label mb-0';
     wrap.textContent = fc.field;
     const input = document.createElement('input');
-    input.className = 'search';
+    input.className = 'form-control';
     input.placeholder = fc.field;
     input.value = params.get(fc.field) || '';
     input.onchange = () => {
@@ -385,8 +371,8 @@ async function showBoards(id) {
   boardEl.innerHTML = '';
   (bj.columns||[]).forEach(col => {
     const d = document.createElement('div');
-    d.className = 'kcol';
-    d.innerHTML = `<h3>${esc(col.title)}</h3>`;
+    d.className = 'card kanban-col';
+    d.innerHTML = `<div class="card-header"><h3 class="card-title">${esc(col.title)}</h3></div><div class="card-body"></div>`;
     d.addEventListener('dragover', e => e.preventDefault());
     d.addEventListener('drop', async e => {
       e.preventDefault();
@@ -394,14 +380,15 @@ async function showBoards(id) {
       await fetch('/api/boards/' + id + '/move', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id: rid, column: col.id})});
       showBoards(id);
     });
+    const body = d.querySelector('.card-body');
     (col.records||[]).forEach(rec => {
       const c = document.createElement('div');
-      c.className = 'kcard';
+      c.className = 'card card-sm mb-2 cursor-grab';
       c.draggable = true;
-      c.innerHTML = `<div>${esc(rec.title||rec.id)}</div><small>${esc(rec.id)}</small>`;
+      c.innerHTML = `<div class="card-body py-2"><div class="fw-bold">${esc(rec.title||rec.id)}</div><div class="text-secondary small">${esc(rec.id)}</div></div>`;
       c.addEventListener('dragstart', e => e.dataTransfer.setData('id', rec.id));
       c.addEventListener('click', () => location.hash = '#/r/' + rec.id);
-      d.appendChild(c);
+      body.appendChild(c);
     });
     boardEl.appendChild(d);
   });
@@ -409,19 +396,20 @@ async function showBoards(id) {
 
 async function showSearch(q) {
   app.innerHTML = `
-    <div class="hero" style="min-height:auto">
-      <div><h1>Search</h1><p>Scan frontmatter, body, and filenames.</p></div>
+    <div class="page-header d-print-none">
+      <h2 class="page-title">Search</h2>
+      <div class="text-secondary">Scan frontmatter, body, and filenames.</div>
     </div>
-    <div class="toolbar"><input class="search" id="q" value="${esc(q)}" placeholder="search records" style="min-width:320px"/></div>
-    <div class="search-list" id="results"></div>`;
+    <div class="mb-3"><input class="form-control" id="q" value="${esc(q)}" placeholder="search records"/></div>
+    <div class="card"><div class="list-group list-group-flush" id="results"></div></div>`;
   const input = document.getElementById('q');
   const run = async (query) => {
     const sr = await fetch('/api/search?q=' + encodeURIComponent(query || ''));
     const sj = await sr.json();
     const recs = sj.records || [];
     document.getElementById('results').innerHTML = recs.length
-      ? recs.map(rec => `<div class="item" data-id="${esc(rec.id)}"><div class="t">${esc(rec.title||rec.id)}</div><div class="b">${esc(rec.type)} ${esc(rec.status||'')}</div></div>`).join('')
-      : '<div class="empty">No matches.</div>';
+      ? recs.map(rec => `<div class="list-group-item list-group-item-action item" data-id="${esc(rec.id)}"><div class="fw-bold">${esc(rec.title||rec.id)}</div><div class="text-secondary small">${esc(rec.type)} ${esc(rec.status||'')}</div></div>`).join('')
+      : '<div class="empty py-4"><p class="empty-title">No matches.</p></div>';
     document.querySelectorAll('#results .item').forEach(el => el.onclick = () => location.hash = '#/r/' + el.dataset.id);
   };
   input.addEventListener('keydown', e => {
@@ -431,27 +419,37 @@ async function showSearch(q) {
   await run(q);
 }
 
-function kv(k,v){ if(v===undefined||v===null||v==='') return ''; return `<div class="kv"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`; }
+function kv(k,v){ if(v===undefined||v===null||v==='') return ''; return `<div class="col-auto"><div class="datagrid-item"><div class="datagrid-title">${esc(k)}</div><div class="datagrid-content">${esc(v)}</div></div></div>`; }
 
 async function showRecord(id) {
   const r = await fetch('/api/records/' + encodeURIComponent(id));
   const j = await r.json();
-  if (!j.ok) { app.innerHTML = `<div class="empty">Record not found.</div>`; return; }
+  if (!j.ok) { app.innerHTML = `<div class="empty"><p class="empty-title">Record not found.</p></div>`; return; }
   const rec = j.record || {};
   const skip = new Set(['id','type','path','body','version','fields']);
   const extras = Object.keys(rec).filter(k => !skip.has(k) && typeof rec[k] !== 'object').slice(0,12);
   app.innerHTML = `
-    <div class="toolbar"><a class="back" href="#/search">← Search</a><button class="btn btn-primary" id="edit">Edit</button></div>
-    <div class="hero" style="min-height:auto;margin-top:8px">
-      <div><h1>${esc(rec.title||rec.name||rec.id)}</h1><p>${esc(rec.type)} · ${esc(rec.id)}</p></div>
+    <div class="d-flex align-items-center gap-2 mb-3">
+      <a class="btn btn-ghost-secondary btn-sm" href="#/search">← Search</a>
+      <button class="btn btn-primary btn-sm" id="edit">Edit</button>
     </div>
-    <div class="meta">${kv('status', rec.status)}${kv('owner', rec.owner)}${kv('priority', rec.priority)}${extras.map(k => kv(k, rec[k])).join('')}</div>
-    <div class="side">
-      <div class="prose">${j.html || rec.body || ''}</div>
-      <div>
-        <div class="panel rel"><h3>Relations</h3>${(j.relations||[]).map(x => `<div class="item"><a href="#/r/${esc(x.target)}">${esc(x.title||x.target)}</a><div class="b">${esc(x.type)}</div></div>`).join('') || '<div class="src">None</div>'}</div>
-        <div class="panel rel" style="margin-top:12px"><h3>Backlinks</h3>${(j.backlinks||[]).map(x => `<div class="item"><a href="#/r/${esc(x.target)}">${esc(x.title||x.target)}</a><div class="b">${esc(x.type)}</div></div>`).join('') || '<div class="src">None</div>'}</div>
-        <div class="panel" style="margin-top:12px"><h3>Attachments</h3>${(j.attachments||[]).map(x => `<div class="attach"><span>${esc(x.name||x.path)}</span><a href="/api/files/${esc(x.path)}">Download</a></div>`).join('') || '<div class="src">None</div>'}</div>
+    <div class="page-header pt-0">
+      <h2 class="page-title">${esc(rec.title||rec.name||rec.id)}</h2>
+      <div class="text-secondary">${esc(rec.type)} · ${esc(rec.id)}</div>
+    </div>
+    <div class="datagrid mb-4">${kv('status', rec.status)}${kv('owner', rec.owner)}${kv('priority', rec.priority)}${extras.map(k => kv(k, rec[k])).join('')}</div>
+    <div class="row row-cards">
+      <div class="col-lg-8"><div class="card"><div class="card-body prose markdown">${j.html || rec.body || ''}</div></div></div>
+      <div class="col-lg-4">
+        <div class="card mb-3"><div class="card-header"><h3 class="card-title">Relations</h3></div>
+          <div class="list-group list-group-flush">${(j.relations||[]).map(x => `<a class="list-group-item list-group-item-action" href="#/r/${esc(x.target)}"><div class="fw-bold">${esc(x.title||x.target)}</div><div class="text-secondary small">${esc(x.type)}</div></a>`).join('') || '<div class="list-group-item text-secondary">None</div>'}</div>
+        </div>
+        <div class="card mb-3"><div class="card-header"><h3 class="card-title">Backlinks</h3></div>
+          <div class="list-group list-group-flush">${(j.backlinks||[]).map(x => `<a class="list-group-item list-group-item-action" href="#/r/${esc(x.target)}"><div class="fw-bold">${esc(x.title||x.target)}</div><div class="text-secondary small">${esc(x.type)}</div></a>`).join('') || '<div class="list-group-item text-secondary">None</div>'}</div>
+        </div>
+        <div class="card"><div class="card-header"><h3 class="card-title">Attachments</h3></div>
+          <div class="list-group list-group-flush">${(j.attachments||[]).map(x => `<div class="list-group-item d-flex justify-content-between"><span>${esc(x.name||x.path)}</span><a href="/api/files/${esc(x.path)}">Download</a></div>`).join('') || '<div class="list-group-item text-secondary">None</div>'}</div>
+        </div>
       </div>
     </div>`;
   document.getElementById('edit').onclick = () => location.hash = '#/r/' + id + '/edit';
@@ -460,18 +458,21 @@ async function showRecord(id) {
 async function showEditor(id) {
   const r = await fetch('/api/records/' + encodeURIComponent(id));
   const j = await r.json();
-  if (!j.ok) { app.innerHTML = `<div class="empty">Record not found.</div>`; return; }
+  if (!j.ok) { app.innerHTML = `<div class="empty"><p class="empty-title">Record not found.</p></div>`; return; }
   const rec = j.record || {};
   app.innerHTML = `
-    <div class="toolbar"><a class="back" href="#/r/${esc(id)}">← Record</a><button class="btn btn-primary" id="save">Save</button></div>
-    <div class="hero" style="min-height:auto"><div><h1>Edit ${esc(rec.title||rec.id)}</h1></div></div>
-    <div class="panel editor">
-      <label>Title</label><input id="title" value="${esc(rec.title||rec.name||'')}"/>
-      <label>Status</label><input id="status" value="${esc(rec.status||'')}"/>
-      <label>Owner</label><input id="owner" value="${esc(rec.owner||'')}"/>
-      <label>Priority</label><input id="priority" value="${esc(rec.priority||'')}"/>
-      <label>Markdown body</label><textarea id="body">${esc(rec.body||'')}</textarea>
-    </div>`;
+    <div class="d-flex align-items-center gap-2 mb-3">
+      <a class="btn btn-ghost-secondary btn-sm" href="#/r/${esc(id)}">← Record</a>
+      <button class="btn btn-primary btn-sm" id="save">Save</button>
+    </div>
+    <div class="page-header pt-0"><h2 class="page-title">Edit ${esc(rec.title||rec.id)}</h2></div>
+    <div class="card"><div class="card-body">
+      <div class="mb-3"><label class="form-label">Title</label><input class="form-control" id="title" value="${esc(rec.title||rec.name||'')}"/></div>
+      <div class="mb-3"><label class="form-label">Status</label><input class="form-control" id="status" value="${esc(rec.status||'')}"/></div>
+      <div class="mb-3"><label class="form-label">Owner</label><input class="form-control" id="owner" value="${esc(rec.owner||'')}"/></div>
+      <div class="mb-3"><label class="form-label">Priority</label><input class="form-control" id="priority" value="${esc(rec.priority||'')}"/></div>
+      <div class="mb-0"><label class="form-label">Markdown body</label><textarea class="form-control" id="body" rows="12">${esc(rec.body||'')}</textarea></div>
+    </div></div>`;
   document.getElementById('save').onclick = async () => {
     const body = {
       title: document.getElementById('title').value,

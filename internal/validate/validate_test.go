@@ -3,7 +3,7 @@ package validate_test
 import (
 	"testing"
 
-	"crm/internal/app"
+	"github.com/buger/recs/internal/app"
 )
 
 // Verifies: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR

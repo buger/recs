@@ -5,7 +5,7 @@ priority: shall
 category: functional
 req_type: guarantee
 fretish: when agent_discovery_requested the cli shall always satisfy (arg_count >= 0 => ((global_help_emitted | command_help_emitted | structured_error_emitted | command_rejected) & !agent_sidecar_written))
-description: The product shall give a full command list in the help text. Each command shall have one purpose line. A failed JSON command shall give a structured error.
+description: The product shall give a full command list in the help text. Each command shall have one purpose line. A failed JSON command shall give a structured error with ok, error, message, and next. The product shall reject an unknown flag.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -62,13 +62,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:04:58Z"
+        reviewed_at: "2026-08-21T11:13:00Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:abca808653e45e983c08e59608dbad582192d39e10a63a6b21dd4ab9312e933f
+        fingerprint: sha256:3ad586d0ea543cb360f18bff5f54df9cf3a3fd6d0e0ed96ed24bf33552ec0cf2
         ai_generated: false
         motivation:
             kind: chg
-            ref: CHG-260821-AHD2
+            ref: CHG-260821-72GQ
         motivation_history:
             - kind: chg
               ref: CHG-260821-DFVQ
@@ -97,6 +97,10 @@ verification:
             - kind: chg
               ref: CHG-260821-NAWP
               superseded_at: "2026-08-21T09:04:58Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-AHD2
+              superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
     gaps_reviewed_by: agent:grok
@@ -145,13 +149,25 @@ history:
     created_by: agent:grok
     created_at: "2026-08-21T07:22:46Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:04:58Z"
+    last_modified_at: "2026-08-21T11:13:00Z"
 obligation_checklist:
+    - boundary
+    - empty_input
     - error_handling
+    - malformed_input
     - nominal
 obligation_hazards:
+    - class: boundary
+      worst_case: Empty next or triage prints no text, so agents treat a blank success as a hang.
+      severity: low
+    - class: empty_input
+      worst_case: A missing ingest file or empty search hangs or succeeds, so agents cannot recover.
+      severity: medium
     - class: error_handling
       worst_case: A failed JSON command returns unstructured text, so agents cannot parse the failure.
+      severity: medium
+    - class: malformed_input
+      worst_case: An unknown flag or junk --set is accepted as success, so agents persist corrupt work.
       severity: medium
     - class: nominal
       worst_case: A help command omits a live command, so agents cannot discover the next mutation.

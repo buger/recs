@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 )
 
 // Verifies: SW-REQ-260821-8C2C

@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"crm/internal/app"
-	"crm/internal/record"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/record"
 )
 
 func setup(t *testing.T) *app.App {

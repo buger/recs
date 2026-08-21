@@ -10,9 +10,9 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/app"
-	"crm/internal/cli"
-	"crm/internal/serve"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/cli"
+	"github.com/buger/recs/internal/serve"
 )
 
 // Verifies: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C INT-REQ-260820-JC9M SYS-REQ-260820-5C9D SW-REQ-260820-ZKCV SYS-REQ-260820-DCG4 SW-REQ-260820-D5WE

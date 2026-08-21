@@ -3,7 +3,7 @@ package query
 import (
 	"testing"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 )
 
 // Verifies: SYS-REQ-260820-ZTC3 SW-REQ-260820-6EVX

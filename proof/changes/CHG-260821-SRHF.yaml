@@ -1,0 +1,29 @@
+id: CHG-260821-SRHF
+type: docs
+title: Prepare recs as public OSS
+intent: 'Publish recs as MIT open source under github.com/buger/recs: rename the Go module, add LICENSE, CONTRIBUTING, and CI, and rewrite the README as a GitHub landing page. Keep crm.yaml and .crm/ as the workspace marker and cache.'
+problem: The module path is still crm, there is no LICENSE or CI, and the README is not a GitHub-quality landing page for a public repo.
+non_goals:
+    - Do not create a GitHub remote or commit
+    - Do not invent new requirements
+    - Do not add Gmail, cloud, auth, in-app model, skill files, or APE
+    - Do not migrate crm.yaml or .crm/
+context_docs:
+    - docs/product-notes.md
+owner: Leonid Bugaev
+requirements:
+    - STK-REQ-260820-KAGT
+    - STK-REQ-260820-V5ZD
+    - STK-REQ-260820-Y3Q4
+    - STK-REQ-260820-T8AZ
+    - SYS-REQ-260821-8FKR
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: true
+    require_docs: false
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-21T11:35:26Z"
+      by: agent:grok
+      action: created

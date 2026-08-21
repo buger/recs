@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/markdown"
+	"github.com/buger/recs/internal/markdown"
 )
 
 // Verifies: SYS-REQ-260821-QF1J SW-REQ-260821-82BA

@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 )
 
 // Verifies: SW-REQ-260820-EJVT

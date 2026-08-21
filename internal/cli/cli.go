@@ -8,13 +8,14 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
-	"crm/internal/app"
-	"crm/internal/board"
-	"crm/internal/dashboard"
-	"crm/internal/record"
-	"crm/internal/serve"
-	"crm/internal/store"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/board"
+	"github.com/buger/recs/internal/dashboard"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/serve"
+	"github.com/buger/recs/internal/store"
 )
 
 // Input is stdin for ingest; tests may replace it.
@@ -35,6 +36,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 	csvOut := false
 	relation := ""
 	helpFlag := false
+	var flagErr error
 	if len(args) == 0 {
 		return printGlobalHelp(stdout, false)
 	}
@@ -47,70 +49,117 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			mdOut = true
 		case a == "--help" || a == "-h":
 			helpFlag = true
+		case a == "--csv":
+			csvOut = true
 		case a == "--root" && i+1 < len(args):
 			i++
 			root = args[i]
+		case a == "--root":
+			flagErr = fmt.Errorf("usage: --root <dir>")
 		case strings.HasPrefix(a, "--root="):
 			root = strings.TrimPrefix(a, "--root=")
 		case a == "--port" && i+1 < len(args):
 			i++
 			port, _ = strconv.Atoi(args[i])
+		case a == "--port":
+			flagErr = fmt.Errorf("usage: --port <n>")
 		case strings.HasPrefix(a, "--port="):
 			port, _ = strconv.Atoi(strings.TrimPrefix(a, "--port="))
 		case a == "--set" && i+1 < len(args):
 			i++
-			k, v, ok := strings.Cut(args[i], "=")
-			if ok {
+			k, v, err := parseAssignment(args[i])
+			if err != nil {
+				flagErr = fmt.Errorf("malformed --set: %w", err)
+			} else {
+				sets[k] = v
+			}
+		case a == "--set":
+			flagErr = fmt.Errorf("malformed --set: missing value")
+		case strings.HasPrefix(a, "--set="):
+			k, v, err := parseAssignment(strings.TrimPrefix(a, "--set="))
+			if err != nil {
+				flagErr = fmt.Errorf("malformed --set: %w", err)
+			} else {
 				sets[k] = v
 			}
 		case a == "--filter" && i+1 < len(args):
 			i++
-			k, v, ok := strings.Cut(args[i], "=")
-			if ok {
+			k, v, err := parseAssignment(args[i])
+			if err != nil {
+				flagErr = fmt.Errorf("malformed --filter: %w", err)
+			} else {
 				filters[k] = v
 			}
+		case a == "--filter":
+			flagErr = fmt.Errorf("malformed --filter: missing value")
 		case a == "--if-version" && i+1 < len(args):
 			i++
 			ifVersion = args[i]
-		case a == "--csv":
-			csvOut = true
+		case a == "--if-version":
+			flagErr = fmt.Errorf("usage: --if-version <hash>")
 		case a == "--relation" && i+1 < len(args):
 			i++
 			relation = args[i]
+		case a == "--relation":
+			flagErr = fmt.Errorf("usage: --relation <type>")
 		case strings.HasPrefix(a, "--relation="):
 			relation = strings.TrimPrefix(a, "--relation=")
 		case a == "--type" && i+1 < len(args):
 			i++
 			typFilter = args[i]
+		case a == "--type":
+			flagErr = fmt.Errorf("usage: --type <type>")
 		case a == "--id" && i+1 < len(args):
 			i++
 			sets["id"] = args[i]
+		case a == "--id":
+			flagErr = fmt.Errorf("usage: --id <id>")
 		case a == "--title" && i+1 < len(args):
 			i++
 			sets["title"] = args[i]
+		case a == "--title":
+			flagErr = fmt.Errorf("usage: --title <text>")
 		case a == "--name" && i+1 < len(args):
 			i++
 			sets["name"] = args[i]
+		case a == "--name":
+			flagErr = fmt.Errorf("usage: --name <text>")
 		case a == "--body" && i+1 < len(args):
 			i++
 			sets["_body"] = args[i]
+		case a == "--body":
+			flagErr = fmt.Errorf("usage: --body <text>")
+		case a == "-":
+			filtered = append(filtered, a)
+		case strings.HasPrefix(a, "-"):
+			flagErr = &store.ChoiceError{
+				Code: "unknown_flag", Field: "flag", Value: a,
+				Allowed: knownFlags(),
+				Msg:     "unknown flag " + a,
+			}
 		default:
 			filtered = append(filtered, a)
 		}
 	}
-	if len(filtered) == 0 {
-		return printGlobalHelp(stdout, jsonOut)
+	cmd := ""
+	rest := []string{}
+	if len(filtered) > 0 {
+		cmd = filtered[0]
+		rest = filtered[1:]
 	}
-	cmd := filtered[0]
-	rest := filtered[1:]
-	if cmd == "help" {
-		if len(rest) == 0 {
+	if flagErr == nil {
+		if len(filtered) == 0 {
 			return printGlobalHelp(stdout, jsonOut)
 		}
-		return printCommandHelp(stdout, stderr, rest[0], jsonOut)
-	}
-	if helpFlag {
-		return printCommandHelp(stdout, stderr, cmd, jsonOut)
+		if cmd == "help" {
+			if len(rest) == 0 {
+				return printGlobalHelp(stdout, jsonOut)
+			}
+			return printCommandHelp(stdout, stderr, rest[0], jsonOut)
+		}
+		if helpFlag {
+			return printCommandHelp(stdout, stderr, cmd, jsonOut)
+		}
 	}
 	write := func(v any, human string) int {
 		if jsonOut {
@@ -134,6 +183,18 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		} else if errors.Is(err, store.ErrExists) {
 			code = "exists"
 		}
+		var choiceErr *store.ChoiceError
+		if errors.As(err, &choiceErr) {
+			code = choiceErr.Code
+			if jsonOut {
+				_ = json.NewEncoder(stdout).Encode(map[string]any{
+					"ok": false, "error": code, "field": choiceErr.Field,
+					"value": choiceErr.Value, "allowed": choiceErr.Allowed,
+					"message": err.Error(), "next": nextHint(cmd, err.Error()),
+				})
+				return 1
+			}
+		}
 		var enumErr *store.EnumError
 		if errors.As(err, &enumErr) {
 			code = "invalid_enum"
@@ -152,7 +213,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 				_ = json.NewEncoder(stdout).Encode(map[string]any{
 					"ok": false, "error": "conflict",
 					"expected_version": confErr.Expected, "current_version": confErr.Current,
-					"message": err.Error(), "next": "crm show " + strings.Join(rest, " "),
+					"message": err.Error(), "next": "recs show " + strings.Join(rest, " "),
 				})
 				return 1
 			}
@@ -167,6 +228,12 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			}
 			payload["allowed"] = commandNames()
 		}
+		if strings.Contains(err.Error(), "unknown operator") || strings.Contains(err.Error(), "invalid query") {
+			payload["error"] = "unknown_operator"
+			payload["field"] = "expr"
+			payload["value"] = strings.Join(rest, " ")
+			payload["allowed"] = []string{"=", "!=", "<", ">", "<=", ">=", "contains", "in"}
+		}
 		if n := nextHint(cmd, err.Error()); n != "" { //mcdc:ignore:defensive nextHint always returns a non-empty operator hint
 			payload["next"] = n
 		}
@@ -179,6 +246,13 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			}
 		}
 		return 1
+	}
+
+	if flagErr != nil {
+		if cmd == "" {
+			cmd = "help"
+		}
+		return fail(flagErr)
 	}
 
 	if _, ok := lookupCommand(cmd); !ok {
@@ -201,7 +275,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 	switch cmd {
 	case "create":
 		if len(rest) < 1 {
-			return fail(fmt.Errorf("usage: crm create <type>"))
+			return fail(fmt.Errorf("usage: recs create <type>"))
 		}
 		typ := rest[0]
 		id, _ := sets["id"].(string)
@@ -215,7 +289,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "record": public(rec)}, rec.ID+"\n")
 	case "show":
 		if len(rest) < 1 {
-			return fail(fmt.Errorf("usage: crm show <id>"))
+			return fail(fmt.Errorf("usage: recs show <id>"))
 		}
 		rec, err := a.Show(rest[0])
 		if err != nil {
@@ -230,6 +304,9 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "records": publicList(recs)}, listHuman(recs))
 	case "search":
 		q := strings.Join(rest, " ")
+		if strings.TrimSpace(q) == "" {
+			return fail(fmt.Errorf("usage: recs search <query>"))
+		}
 		recs, err := a.Search(q)
 		if err != nil {
 			return fail(err)
@@ -244,7 +321,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "records": publicList(recs)}, listHuman(recs))
 	case "set":
 		if len(rest) < 3 {
-			return fail(fmt.Errorf("usage: crm set <id> <field> <value>"))
+			return fail(fmt.Errorf("usage: recs set <id> <field> <value>"))
 		}
 		res, err := a.Set(rest[0], rest[1], strings.Join(rest[2:], " "))
 		if err != nil {
@@ -253,7 +330,10 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed, "version": res.Version}, res.Record.ID+"\n")
 	case "patch":
 		if len(rest) < 1 {
-			return fail(fmt.Errorf("usage: crm patch <id> --set k=v"))
+			return fail(fmt.Errorf("usage: recs patch <id> --set k=v"))
+		}
+		if len(sets) == 0 {
+			return fail(fmt.Errorf("usage: recs patch <id> --set k=v"))
 		}
 		res, err := a.Patch(rest[0], sets, nil, ifVersion)
 		if err != nil {
@@ -266,7 +346,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			if err != nil {
 				return fail(err)
 			}
-			var names []string
+			names := make([]string, 0)
 			var b strings.Builder
 			for _, bd := range boards {
 				names = append(names, bd.ID)
@@ -285,7 +365,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			if err != nil {
 				return fail(err)
 			}
-			var names []string
+			names := make([]string, 0)
 			var b strings.Builder
 			for _, d := range dashboards {
 				names = append(names, d.ID)
@@ -295,7 +375,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		}
 		if rest[0] == "new" {
 			if len(rest) < 2 {
-				return fail(fmt.Errorf("usage: crm dashboard new <id>"))
+				return fail(fmt.Errorf("usage: recs dashboard new <id>"))
 			}
 			id := rest[1]
 			name, _ := sets["name"].(string)
@@ -318,7 +398,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "dashboard": proj}, dashboardHuman(proj))
 	case "move":
 		if len(rest) < 3 {
-			return fail(fmt.Errorf("usage: crm move <id> <board> <column>"))
+			return fail(fmt.Errorf("usage: recs move <id> <board> <column>"))
 		}
 		rec, path, err := a.Move(rest[0], rest[1], rest[2])
 		if err != nil {
@@ -330,21 +410,35 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		if err != nil {
 			return fail(err)
 		}
+		if items == nil {
+			items = []app.NextAction{}
+		}
 		var b strings.Builder
 		for _, it := range items {
 			fmt.Fprintf(&b, "[%s] %s\n       %s\n", strings.ToUpper(it.Priority), it.Title, it.ID)
 		}
-		return write(map[string]any{"ok": true, "actions": items}, b.String())
+		human := b.String()
+		if human == "" {
+			human = "no next actions\n"
+		}
+		return write(map[string]any{"ok": true, "actions": items}, human)
 	case "triage":
 		items, err := a.Triage()
 		if err != nil {
 			return fail(err)
 		}
+		if items == nil {
+			items = []app.TriageItem{}
+		}
 		var b strings.Builder
 		for _, it := range items {
 			fmt.Fprintf(&b, "%s\t%s\t%s\n", it.Reason, it.ID, it.Title)
 		}
-		return write(map[string]any{"ok": true, "items": items}, b.String())
+		human := b.String()
+		if human == "" {
+			human = "no triage items\n"
+		}
+		return write(map[string]any{"ok": true, "items": items}, human)
 	case "validate":
 		res, err := a.Validate()
 		if err != nil {
@@ -379,7 +473,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "records": len(snap.Records)}, fmt.Sprintf("indexed %d records\n", len(snap.Records)))
 	case "context":
 		if len(rest) < 1 {
-			return fail(fmt.Errorf("usage: crm context <id>"))
+			return fail(fmt.Errorf("usage: recs context <id>"))
 		}
 		bundle, err := a.Context(rest[0])
 		if err != nil {
@@ -410,7 +504,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "records": publicList(recs)}, listHuman(recs))
 	case "edit":
 		if len(rest) < 1 {
-			return fail(fmt.Errorf("usage: crm edit <id> [--body ...] [--set k=v]"))
+			return fail(fmt.Errorf("usage: recs edit <id> [--body ...] [--set k=v]"))
 		}
 		body, hasBody := sets["_body"].(string)
 		delete(sets, "_body")
@@ -436,7 +530,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed, "version": res.Version}, res.Record.ID+"\n")
 	case "delete":
 		if len(rest) < 1 {
-			return fail(fmt.Errorf("usage: crm delete <id>"))
+			return fail(fmt.Errorf("usage: recs delete <id>"))
 		}
 		if err := a.Delete(rest[0]); err != nil {
 			return fail(err)
@@ -444,7 +538,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "record": rest[0]}, "deleted "+rest[0]+"\n")
 	case "link":
 		if len(rest) < 2 || relation == "" {
-			return fail(fmt.Errorf("usage: crm link <id> <target> --relation <type>"))
+			return fail(fmt.Errorf("usage: recs link <id> <target> --relation <type>"))
 		}
 		res, err := a.Link(rest[0], rest[1], relation)
 		if err != nil {
@@ -466,8 +560,10 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		}
 		var data []byte
 		var err error
-		if src == "" || src == "-" {
+		if src == "-" {
 			data, err = io.ReadAll(Input)
+		} else if src == "" {
+			return fail(fmt.Errorf("usage: recs ingest [email|record] [file|-]"))
 		} else {
 			data, err = os.ReadFile(src)
 		}
@@ -499,7 +595,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(map[string]any{"ok": true, "records": recs}, exportHuman(recs))
 	case "import":
 		if len(rest) < 1 {
-			return fail(fmt.Errorf("usage: crm import <file.csv> [--type <type>]"))
+			return fail(fmt.Errorf("usage: recs import <file.csv> [--type <type>]"))
 		}
 		f, err := os.Open(rest[0])
 		if err != nil {
@@ -529,7 +625,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		return write(res, gitHuman(res))
 	case "history":
 		if len(rest) < 1 {
-			return fail(fmt.Errorf("usage: crm history <id>"))
+			return fail(fmt.Errorf("usage: recs history <id>"))
 		}
 		res := a.History(rest[0])
 		if !res.OK {
@@ -553,7 +649,7 @@ func openApp(cmd, root string) (*app.App, error) {
 func public(rec *record.Record) map[string]any {
 	out := map[string]any{"id": rec.ID, "type": rec.Type, "path": rec.Path, "version": rec.Version()}
 	for k, v := range rec.Fields {
-		out[k] = v
+		out[k] = jsonValue(v)
 	}
 	out["body"] = rec.Body
 	return out
@@ -659,4 +755,28 @@ func gitHuman(res app.GitResult) string {
 		return strings.Join(res.History, "\n") + "\n"
 	}
 	return ""
+}
+
+// Implements: SW-REQ-260821-9737
+func parseAssignment(raw string) (string, string, error) {
+	k, v, ok := strings.Cut(raw, "=")
+	if !ok || k == "" {
+		return "", "", fmt.Errorf("missing = or empty key")
+	}
+	return k, v, nil
+}
+
+// Implements: SW-REQ-260821-AY8F
+func knownFlags() []string {
+	return []string{"--json", "--md", "--csv", "--help", "-h", "--root", "--port", "--set", "--filter", "--if-version", "--relation", "--type", "--id", "--title", "--name", "--body"}
+}
+
+// Implements: SW-REQ-260821-CR08 SYS-REQ-260820-PG9C
+func jsonValue(v any) any {
+	switch t := v.(type) {
+	case time.Time:
+		return t.UTC().Format(time.RFC3339)
+	default:
+		return v
+	}
 }

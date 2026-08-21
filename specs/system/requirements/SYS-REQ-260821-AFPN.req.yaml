@@ -1,6 +1,6 @@
 id: SYS-REQ-260821-AFPN
 version: 1
-status: approved
+status: retired
 priority: shall
 category: functional
 req_type: guarantee
@@ -65,13 +65,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:47:05Z"
+        reviewed_at: "2026-08-21T10:01:03Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:c738762d71e5422451f4e38b01505c103e654771a1d372fd3d81c5c3fcce212c
+        fingerprint: sha256:d2e56ec0a128aba7fcae0b097978ea31b06bfc695cc2abb0bb49ef10ea98f1d1
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+            rationale: Re-attest after adding obligation_hazards and hazard_review so APE packaging requirements clear spec_lint_hazard_consequence.
         motivation_history:
             - kind: chg
               ref: CHG-260821-G2PS
@@ -93,6 +93,10 @@ verification:
               rationale: Re-attest parent after children were reviewed so the plan of record stays current.
               superseded_at: "2026-08-21T07:47:05Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T10:00:58Z"
+              superseded_by: agent:qc-builder
     not_modeled:
         - predicate: rc == 0
           reason: FRETish uses ranged int rc with rc <= 0; equality token is not valid FRETish syntax.
@@ -100,11 +104,64 @@ history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:22Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:47:05Z"
+    last_modified_at: "2026-08-21T11:01:04Z"
+obligation_checklist:
+    - error_handling
+    - nominal
+obligation_hazards:
+    - class: error_handling
+      worst_case: If cosmocc is missing or the host is unsupported, a silent success ships a wrapper that cannot extract or run the native CRM blob.
+      severity: medium
+    - class: nominal
+      worst_case: A successful APE build embeds an empty or wrong native blob, so users download a file that does not run the CRM.
+      severity: low
+hazard_review:
+    reviewed_at: "2026-08-21T10:00:52Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - error_handling
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: APE packaging is a build-and-extract contract, not a timing or concurrency property.
+        - category: domain
+          disposition: not_applicable
+          rationale: APE packaging does not own filesystem CRM records or HTTP serve sinks.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
+    deprecated_by: CHG-260821-ZVB6
+    deprecated_at: "2026-08-21T11:00:57Z"
+    retired_by: CHG-260821-ZVB6
+    retired_at: "2026-08-21T11:01:04Z"
     change_history:
         - date: "2026-08-21T06:29:48Z"
           from: draft
           to: review
           reason: '[CHG-260821-G2PS] Implemented remaining CLI, UI, and APE surfaces'
+          changed_by: agent:grok
+        - date: "2026-08-21T10:00:58Z"
+          from: approved
+          to: approved
+          reason: 're-approve (prior: role="system_owner" reviewer="agent:grok" at=2026-08-21T07:47:05Z comment="Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.")'
+          changed_by: agent:qc-builder
+        - date: "2026-08-21T10:01:03Z"
+          from: approved
+          to: approved
+          reason: 're-approve (prior: role="system_owner" reviewer="agent:qc-builder" at=2026-08-21T10:00:58Z comment="Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.")'
+          changed_by: agent:grok
+        - date: "2026-08-21T11:00:57Z"
+          from: approved
+          to: deprecated
+          reason: Cosmopolitan APE packaging is not a real compile of crm and is being removed.
+          changed_by: agent:grok
+        - date: "2026-08-21T11:01:04Z"
+          from: deprecated
+          to: retired
+          reason: Cosmopolitan APE packaging is not a real compile of crm and is being removed.
           changed_by: agent:grok

@@ -3,7 +3,7 @@ package cli
 import (
 	"testing"
 
-	"crm/internal/app"
+	"github.com/buger/recs/internal/app"
 )
 
 // Verifies: SYS-REQ-260821-JYEJ

@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"crm/internal/board"
-	"crm/internal/dashboard"
-	"crm/internal/record"
+	"github.com/buger/recs/internal/board"
+	"github.com/buger/recs/internal/dashboard"
+	"github.com/buger/recs/internal/record"
 )
 
 func rec(id, typ string, fields map[string]any, body string) *record.Record {

@@ -46,13 +46,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
+        reviewed_at: "2026-08-21T11:13:00Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:02ab9dae9933f0c57b209b063b31626a19d3b06f7bddcd44cbc50a7949cc7fa9
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            kind: chg
+            ref: CHG-260821-72GQ
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -69,6 +69,10 @@ verification:
             - kind: unchanged
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T11:13:00Z"
               superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:23:46.533852Z"
     gaps_reviewed_by: agent:grok
@@ -87,7 +91,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T11:13:00Z"
 obligation_checklist:
     - determinism
     - malformed_input

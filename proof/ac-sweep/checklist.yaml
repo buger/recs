@@ -11,3 +11,12 @@ stks:
   - id: STK-REQ-260820-T8AZ
     status: done
     ac_count: 1
+  - id: STK-REQ-260820-4255
+    status: done
+    ac_count: 1
+  - id: STK-REQ-260821-NTWY
+    status: done
+    ac_count: 1
+  - id: STK-REQ-260821-QTPP
+    status: done
+    ac_count: 1

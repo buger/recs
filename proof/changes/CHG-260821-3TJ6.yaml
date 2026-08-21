@@ -1,0 +1,21 @@
+id: CHG-260821-3TJ6
+type: refactor
+title: Rename user-facing binary from crm to recs
+intent: 'Present the program as recs: move cmd/crm to cmd/recs, make help/usage the thing a human types, and replace README.md with a recs traction landing page. Keep module path crm, workspace file crm.yaml, and .crm/ cache.'
+problem: The binary, help, and README still brand the product as crm, which is the wrong name for traction and for what a human types.
+non_goals:
+    - Do not change the Go module path crm
+    - Do not migrate crm.yaml or .crm/ cache
+    - Do not invent new requirements for the rename
+    - Do not mass-rewrite proof spec ids
+owner: Leonid Bugaev
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: true
+    require_docs: false
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-21T11:25:12Z"
+      by: agent:grok
+      action: created

@@ -1,19 +1,11 @@
-# File-native CRM
-.PHONY: all test ape hello clean
+# File-native records
+.PHONY: all test clean
 
 all:
-	go build -o crm ./cmd/crm
+	go build -o recs ./cmd/recs
 
 test:
 	go test ./...
 
-# Cosmopolitan APE: wrapper + embedded host Go blob.
-# Requires cosmocc on PATH or in $$HOME/.local/cosmocc/bin.
-ape:
-	./scripts/build-ape.sh
-
-hello:
-	./scripts/build-ape.sh
-
 clean:
-	rm -rf crm crm.com .build
+	rm -rf recs crm

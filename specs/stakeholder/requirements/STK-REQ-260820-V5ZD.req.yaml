@@ -41,13 +41,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:18:54Z"
+        reviewed_at: "2026-08-21T11:13:00Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:f01c0098deda8ddab8b68d64602508d88a00d71c0174599a1c069536e6b3e787
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-review the current approved child set after later child reviews; parent required behavior and decomposition intent are unchanged.
+            kind: chg
+            ref: CHG-260821-72GQ
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -65,11 +65,15 @@ verification:
               rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
               superseded_at: "2026-08-21T09:16:15Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-review the current approved child set after later child reviews; parent required behavior and decomposition intent are unchanged.
+              superseded_at: "2026-08-21T11:12:01Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T18:59:33Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:18:54Z"
+    last_modified_at: "2026-08-21T11:13:00Z"
 obligation_checklist:
     - boundary
     - determinism
@@ -140,6 +144,11 @@ stakeholder:
             - SYS-REQ-260821-JYEJ
         - id: AC-002
           text: crm --help lists every command and a failed --json command returns an object with ok, error, and message.
+          verification_method: test
+          derived_reqs:
+            - SYS-REQ-260821-8FKR
+        - id: AC-003
+          text: An unknown flag or incomplete command fails with structured JSON that names the next recovery command.
           verification_method: test
           derived_reqs:
             - SYS-REQ-260821-8FKR

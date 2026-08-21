@@ -2,8 +2,10 @@
 .proof/
 
 /crm
-/crm.com
+/recs
 .build/
-/crm.aarch64.elf
-/crm.com.dbg
 /cover.out
+.DS_Store
+
+# Disposable workspace cache in fixtures
+testdata/**/.crm/

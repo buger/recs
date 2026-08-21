@@ -1,0 +1,24 @@
+id: CHG-260821-AEMM
+type: docs
+title: README matches the workspace product
+intent: Replace the original 50-section CRM brainstorm in README.md with a current product README. crm is a file-native workspace for records, boards, and dashboards; CRM is one shape, not the whole product.
+problem: README still reads as a Phase-1 CRM spec and understates records, boards, dashboards, help-as-prompt, sample workspace, and the local UI.
+non_goals:
+    - No binary rename
+    - No Gmail, cloud, or auth
+context_docs:
+    - docs/product-notes.md
+requirements:
+    - STK-REQ-260820-KAGT
+    - STK-REQ-260820-V5ZD
+    - STK-REQ-260820-Y3Q4
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: draft
+history:
+    - at: "2026-08-21T10:46:12Z"
+      by: agent:grok
+      action: created

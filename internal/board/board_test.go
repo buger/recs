@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 )
 
 func writeBoard(t *testing.T, root, name, body string) {

@@ -1,4 +1,4 @@
-module crm
+module github.com/buger/recs
 
 go 1.22
 

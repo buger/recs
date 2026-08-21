@@ -1,0 +1,74 @@
+id: SW-REQ-260821-CR08
+version: 1
+status: approved
+priority: shall
+category: functional
+req_type: guarantee
+fretish: ""
+description: The CLI shall emit each JSON timestamp in RFC3339 form.
+formalization_strategy: informal
+informal_verification:
+    method: test
+    evidence: internal/cli/dogfood_test.go
+    verified: true
+parent: SYS-REQ-260820-PG9C
+component: cli
+rationale: Go Time.String form is not a stable agent contract.
+tags: []
+variables: []
+traces:
+    satisfies:
+        - SYS-REQ-260820-PG9C
+verification:
+    assurance_level: E
+    formalization_status: none
+    review:
+        status: approved
+        reviewer: agent:grok
+        role: system_owner
+        roles:
+            - system_owner
+        reviewed_at: "2026-08-21T11:12:01Z"
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:c7e711ee92cf4ec23b61199e6a2b8ea781f16e402ae4e7c8312e2179c7fb1f71
+        ai_generated: false
+        motivation:
+            kind: chg
+            ref: CHG-260821-72GQ
+history:
+    created_by: agent:grok
+    created_at: "2026-08-21T11:01:21Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-21T11:12:01Z"
+obligation_checklist:
+    - determinism
+obligation_hazards:
+    - class: determinism
+      worst_case: A JSON timestamp uses Go Time.String form, so agents cannot parse dates across locales.
+      severity: medium
+hazard_review:
+    reviewed_at: "2026-08-21T11:02:59Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: not_applicable
+          rationale: Timestamp format is a determinism property, not an input scenario class.
+        - category: property
+          disposition: reviewed
+          applied:
+            - determinism
+          rationale: This requirement is a CLI contract, not a timing or concurrency property.
+        - category: domain
+          disposition: not_applicable
+          rationale: This requirement does not own filesystem or HTTP domain sinks.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+lifecycle:
+    change_history:
+        - date: "2026-08-21T11:11:30Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: agent:grok

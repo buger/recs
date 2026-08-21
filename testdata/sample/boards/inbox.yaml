@@ -1,0 +1,16 @@
+name: Inbox
+description: Unclassified and incoming records
+match:
+  any:
+    - status: inbox
+    - triage_status: new
+columns:
+  - id: inbox
+    title: Inbox
+  - id: classified
+    title: Classified
+    on_drop:
+      set:
+        status: active
+column:
+  field: status

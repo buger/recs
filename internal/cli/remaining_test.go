@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/cli"
+	"github.com/buger/recs/internal/cli"
 )
 
 // Verifies: SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C INT-REQ-260821-8HAC SYS-REQ-260821-QF1J
@@ -46,7 +46,7 @@ func TestRemainingCLICommands(t *testing.T) {
 	}
 	out := &bytes.Buffer{}
 	cli.Input = strings.NewReader(`{"subject":"Need help","from":{"email":"a@x.com"},"body":"blocked"}`)
-	if cli.Main([]string{"--root", root, "ingest", "email", "--json"}, out, out) != 0 {
+	if cli.Main([]string{"--root", root, "ingest", "email", "-", "--json"}, out, out) != 0 {
 		t.Fatal(out.String())
 	}
 	if !strings.Contains(out.String(), "email") {

@@ -14,8 +14,8 @@ import (
 
 	"gopkg.in/yaml.v3"
 
-	"crm/internal/defaults"
-	"crm/internal/record"
+	"github.com/buger/recs/internal/defaults"
+	"github.com/buger/recs/internal/record"
 )
 
 var (
@@ -82,7 +82,7 @@ func FindRoot(start string) (string, error) {
 		}
 		parent := filepath.Dir(dir)
 		if parent == dir {
-			return "", fmt.Errorf("crm.yaml not found from %s", start)
+			return "", fmt.Errorf("crm.yaml not found from %s; pass --root <dir>", start)
 		}
 		dir = parent
 	}
@@ -555,3 +555,22 @@ func expandNow(v any) any {
 	}
 	return v
 }
+
+
+// ChoiceError is an enumerable failure with an allowed set.
+// Implements: SW-REQ-260821-AY8F SW-REQ-260821-E5V8
+type ChoiceError struct {
+	Code    string
+	Field   string
+	Value   string
+	Allowed []string
+	Msg     string
+}
+
+func (e *ChoiceError) Error() string {
+	if e.Msg != "" {
+		return e.Msg
+	}
+	return e.Code
+}
+

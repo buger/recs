@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/serve"
+	"github.com/buger/recs/internal/serve"
 )
 
 // Verifies: SW-REQ-260821-82BA

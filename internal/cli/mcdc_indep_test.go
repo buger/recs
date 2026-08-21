@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/cli"
+	"github.com/buger/recs/internal/cli"
 )
 
 // Verifies: SW-REQ-260821-8C2C
@@ -63,9 +63,9 @@ func TestCLIMainIndependence(t *testing.T) {
 	}
 
 	cli.Input = strings.NewReader("From: a@b.com\nSubject: Hi\n\nBody\n")
-	_ = cli.Main([]string{"--root", root, "ingest", "email"}, out, errb)
+	_ = cli.Main([]string{"--root", root, "ingest", "email", "-"}, out, errb)
 	cli.Input = strings.NewReader("---\nid: note_in\ntype: note\ntitle: In\n---\nX\n")
-	_ = cli.Main([]string{"--root", root, "ingest", "record"}, out, errb)
+	_ = cli.Main([]string{"--root", root, "ingest", "record", "-"}, out, errb)
 	src := filepath.Join(root, "ing.md")
 	if err := os.WriteFile(src, []byte("---\ntype: note\ntitle: F\n---\nZ\n"), 0o644); err != nil {
 		t.Fatal(err)
@@ -146,7 +146,7 @@ func TestCLIMainLeftoverIndependence(t *testing.T) {
 	_ = cli.Main([]string{"--root", root, "link", "note_a", "note_a", "--relation"}, out, errb)
 	// ingest with no rest (reads stdin)
 	cli.Input = strings.NewReader(`{"type":"note","title":"from-stdin"}`)
-	_ = cli.Main([]string{"--root", root, "ingest"}, out, errb)
+	_ = cli.Main([]string{"--root", root, "ingest", "-"}, out, errb)
 	// help serve has empty JSON shape
 	if cli.Main([]string{"help", "serve"}, out, errb) != 0 {
 		t.Fatal("help serve")

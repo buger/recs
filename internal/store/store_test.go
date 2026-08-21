@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/app"
-	"crm/internal/record"
-	"crm/internal/store"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/store"
 )
 
 // Verifies: SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2

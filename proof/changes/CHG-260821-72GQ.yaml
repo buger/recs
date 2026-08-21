@@ -1,0 +1,57 @@
+id: CHG-260821-72GQ
+type: fix
+title: CLI errors and flags are a complete agent prompt
+intent: 'Dogfood by cold agents: help+errors must teach recovery. Close silent success and incomplete error envelopes.'
+problem: Unknown flags ignored; error JSON omits field/allowed; empty lists are null; ingest hangs; --set/query/search fail open.
+non_goals:
+    - No AGENTS.md or SKILL.md
+    - No Gmail/cloud/auth
+requirements:
+    - SYS-REQ-260821-8FKR
+    - SW-REQ-260821-FCGM
+    - INT-REQ-260821-BSH3
+    - STK-REQ-260820-V5ZD
+    - SYS-REQ-260820-PG9C
+    - SW-REQ-260820-YB5C
+    - SW-REQ-260820-6EVX
+    - SW-REQ-260821-AY8F
+    - SW-REQ-260821-MFR2
+    - SW-REQ-260821-9737
+    - SW-REQ-260821-9657
+    - SW-REQ-260821-CR08
+    - SW-REQ-260821-E5V8
+    - SW-REQ-260821-T9AY
+affects:
+    - SYS-REQ-260821-8FKR
+    - SW-REQ-260821-FCGM
+    - INT-REQ-260821-BSH3
+    - SYS-REQ-260820-PG9C
+    - SW-REQ-260820-YB5C
+    - SW-REQ-260820-6EVX
+    - STK-REQ-260820-V5ZD
+    - SW-REQ-260821-AY8F
+    - SW-REQ-260821-MFR2
+    - SW-REQ-260821-9737
+    - SW-REQ-260821-9657
+    - SW-REQ-260821-CR08
+    - SW-REQ-260821-E5V8
+    - SW-REQ-260821-T9AY
+    - SYS-REQ-260820-ZTC3
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: draft
+history:
+    - at: "2026-08-21T10:56:34Z"
+      by: agent:grok
+      action: created
+    - at: "2026-08-21T11:03:45Z"
+      by: agent:grok
+      action: edit
+      detail: add-requirement,add-affects
+    - at: "2026-08-21T11:13:01Z"
+      by: agent:grok
+      action: edit
+      detail: add-affects

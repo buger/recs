@@ -1,0 +1,23 @@
+id: CHG-260821-ZVB6
+type: deprecation
+title: Remove Cosmopolitan APE packaging
+intent: Ship only the native Go binary. Cosmopolitan was never a real compile of crm.
+problem: APE wrapper + hello.com + make ape implied a portable cosmocc product that does not exist.
+non_goals:
+    - Do not rewrite the Go app in C
+requirements:
+    - STK-REQ-260820-T8AZ
+    - SYS-REQ-260821-AFPN
+    - SW-REQ-260821-AC3S
+affects:
+    - STK-REQ-260820-T8AZ
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: draft
+history:
+    - at: "2026-08-21T10:59:30Z"
+      by: agent:grok
+      action: created

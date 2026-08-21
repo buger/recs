@@ -11,9 +11,9 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/app"
-	"crm/internal/cli"
-	"crm/internal/serve"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/cli"
+	"github.com/buger/recs/internal/serve"
 )
 
 // STK-REQ-260820-KAGT:AC-001:acceptance
@@ -111,8 +111,8 @@ func TestAcceptanceServeBoardsFromFiles(t *testing.T) {
 
 // STK-REQ-260820-T8AZ:AC-001:acceptance
 func TestAcceptanceOneBinaryServesUI(t *testing.T) {
-	bin := filepath.Join(t.TempDir(), "crm")
-	cmd := exec.Command("go", "build", "-o", bin, "./cmd/crm")
+	bin := filepath.Join(t.TempDir(), "recs")
+	cmd := exec.Command("go", "build", "-o", bin, "./cmd/recs")
 	cmd.Dir = filepath.Join("..", "..")
 	out, err := cmd.CombinedOutput()
 	if err != nil {

@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/app"
-	"crm/internal/serve"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/serve"
 )
 
 func setupApp(t *testing.T) *app.App {
@@ -192,6 +192,16 @@ func TestDashboardAPIAndUI(t *testing.T) {
 	}
 	if !strings.Contains(ui.Body.String(), "#/d/") || !strings.Contains(ui.Body.String(), "Dashboards") {
 		t.Fatal("gallery routing")
+	}
+	if !strings.Contains(ui.Body.String(), "tabler") || strings.Contains(ui.Body.String(), "fonts.googleapis.com") {
+		t.Fatal("tabler kit or runtime font CDN")
+	}
+	if strings.Contains(ui.Body.String(), ".map(itemLine)") {
+		t.Fatal("itemLine map prefix bug")
+	}
+	css := get("/static/vendor/tabler.min.css")
+	if css.Code != 200 || !strings.Contains(css.Body.String(), "Tabler") {
+		t.Fatal("vendor css", css.Code)
 	}
 	list := get("/api/dashboards")
 	if list.Code != 200 || !strings.Contains(list.Body.String(), "prospects") || !strings.Contains(list.Body.String(), "workspace") {

@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"strings"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 )
 
 var wikiRe = regexp.MustCompile(`\[\[([^\]|]+)(?:\|([^\]]+))?\]\]`)

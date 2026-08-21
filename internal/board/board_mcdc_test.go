@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 )
 
 // Verifies: SYS-REQ-260820-4628 SW-REQ-260820-NBGR

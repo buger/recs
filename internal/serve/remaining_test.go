@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/serve"
+	"github.com/buger/recs/internal/serve"
 )
 
 // Verifies: SYS-REQ-260821-QF1J SW-REQ-260821-82BA INT-REQ-260821-MRGW STK-REQ-260821-NTWY

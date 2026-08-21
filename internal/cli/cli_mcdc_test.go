@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"testing"
 
-	"crm/internal/cli"
+	"github.com/buger/recs/internal/cli"
 )
 
 // Verifies: SYS-REQ-260821-8FKR SW-REQ-260821-FCGM SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR

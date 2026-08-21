@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"crm/internal/cli"
+	"github.com/buger/recs/internal/cli"
 )
 
 // Verifies: SYS-REQ-260821-8FKR SW-REQ-260821-FCGM SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C
@@ -23,7 +23,7 @@ func TestCLIAllCommandsAndFlags(t *testing.T) {
 	if run(t, root, "init", "--json") != 0 {
 		t.Fatal("init")
 	}
-	if run(t, root, "--root="+root, "create", "grant", "--id", "grant_c", "--title", "C", "--name", "Cn", "--body", "body", "--set", "status=researching", "--set", "bad") != 0 {
+	if run(t, root, "--root="+root, "create", "grant", "--id", "grant_c", "--title", "C", "--name", "Cn", "--body", "body", "--set", "status=researching") != 0 {
 		t.Fatal("create")
 	}
 	if run(t, root, "show", "grant_c") != 0 || run(t, root, "show") == 0 {
@@ -47,7 +47,7 @@ func TestCLIAllCommandsAndFlags(t *testing.T) {
 	if run(t, root, "dashboard", "new") == 0 || run(t, root, "dashboard", "new", "extra", "--name", "Extra") != 0 {
 		t.Fatal("dashboard new")
 	}
-	if run(t, root, "board") != 0 || run(t, root, "board", "grants", "--filter", "status=applied", "--filter", "bad") != 0 {
+	if run(t, root, "board") != 0 || run(t, root, "board", "grants", "--filter", "status=applied") != 0 {
 		t.Fatal("board")
 	}
 	if run(t, root, "move", "grant_c", "grants", "researching") != 0 || run(t, root, "move", "x") == 0 {

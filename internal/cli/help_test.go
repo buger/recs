@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/cli"
+	"github.com/buger/recs/internal/cli"
 )
 
 // Verifies: SYS-REQ-260821-8FKR SW-REQ-260821-FCGM INT-REQ-260821-BSH3 STK-REQ-260820-V5ZD
@@ -33,7 +33,7 @@ func TestHelpIsTheAgentInterface(t *testing.T) {
 		t.Fatal("empty")
 	}
 	text := out.String()
-	if !strings.Contains(text, "crm help") || strings.Contains(text, "Write AGENTS.md") {
+	if !strings.Contains(text, "recs help") || strings.Contains(text, "Write AGENTS.md") {
 		t.Fatalf("global help: %s", text)
 	}
 	for _, name := range []string{"init", "create", "show", "list", "search", "query", "set", "patch", "board", "dashboard", "move", "next", "triage", "validate", "index", "context", "inbox", "serve", "edit", "delete", "link", "ingest", "export", "import", "diff", "changed", "history", "help"} {
@@ -44,7 +44,7 @@ func TestHelpIsTheAgentInterface(t *testing.T) {
 
 	out.Reset()
 	if cli.Main([]string{"--help"}, out, errb) != 0 || !strings.Contains(out.String(), "query") {
-		t.Fatal("crm --help")
+		t.Fatal("recs --help")
 	}
 	out.Reset()
 	if cli.Main([]string{"-h"}, out, errb) != 0 {
@@ -52,7 +52,7 @@ func TestHelpIsTheAgentInterface(t *testing.T) {
 	}
 	out.Reset()
 	if cli.Main([]string{"help"}, out, errb) != 0 || !strings.Contains(out.String(), "Commands:") {
-		t.Fatal("crm help")
+		t.Fatal("recs help")
 	}
 
 	out.Reset()
@@ -60,7 +60,7 @@ func TestHelpIsTheAgentInterface(t *testing.T) {
 		t.Fatal("help query")
 	}
 	q := out.String()
-	if !strings.Contains(q, "crm query") || !strings.Contains(q, "JSON shape") || !strings.Contains(q, "--json") {
+	if !strings.Contains(q, "recs query") || !strings.Contains(q, "JSON shape") || !strings.Contains(q, "--json") {
 		t.Fatalf("command help: %s", q)
 	}
 
@@ -104,7 +104,7 @@ func TestHelpIsTheAgentInterface(t *testing.T) {
 	if err := json.Unmarshal(out.Bytes(), &payload); err != nil {
 		t.Fatal(err)
 	}
-	if payload["ok"] != false || payload["error"] != "unknown_command" || payload["next"] != "crm --help" {
+	if payload["ok"] != false || payload["error"] != "unknown_command" || payload["next"] != "recs --help" {
 		t.Fatalf("unknown help json: %s", out.String())
 	}
 	if payload["field"] != "command" || payload["allowed"] == nil {
@@ -113,7 +113,7 @@ func TestHelpIsTheAgentInterface(t *testing.T) {
 
 	out.Reset()
 	errb.Reset()
-	if cli.Main([]string{"help", "nope"}, out, errb) != 1 || !strings.Contains(errb.String(), "next: crm --help") {
+	if cli.Main([]string{"help", "nope"}, out, errb) != 1 || !strings.Contains(errb.String(), "next: recs --help") {
 		t.Fatalf("unknown help human: %s", errb.String())
 	}
 
@@ -126,7 +126,7 @@ func TestHelpIsTheAgentInterface(t *testing.T) {
 	if err := json.Unmarshal(out.Bytes(), &payload); err != nil {
 		t.Fatal(err)
 	}
-	if payload["error"] != "unknown_command" || payload["next"] != "crm --help" {
+	if payload["error"] != "unknown_command" || payload["next"] != "recs --help" {
 		t.Fatalf("agent json: %s", out.String())
 	}
 	allowed, _ := payload["allowed"].([]any)
@@ -150,7 +150,7 @@ func TestHelpIsTheAgentInterface(t *testing.T) {
 	if err := json.Unmarshal(out.Bytes(), &payload); err != nil {
 		t.Fatal(err)
 	}
-	if payload["next"] != "crm help show" {
+	if payload["next"] != "recs help show" {
 		t.Fatalf("usage next: %s", out.String())
 	}
 	for _, name := range []string{"AGENTS.md", "SKILL.md"} {

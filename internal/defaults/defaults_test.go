@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"crm/internal/defaults"
+	"github.com/buger/recs/internal/defaults"
 )
 
 // Verifies: SYS-REQ-260820-KJ34 SW-REQ-260820-MQF2 SYS-REQ-260821-8FKR SW-REQ-260821-FCGM STK-REQ-260820-V5ZD

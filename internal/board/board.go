@@ -7,8 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"crm/internal/query"
-	"crm/internal/record"
+	"github.com/buger/recs/internal/query"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/store"
 	"gopkg.in/yaml.v3"
 )
 
@@ -111,7 +112,11 @@ func Load(root, name string) (*Board, error) {
 		}
 		return &b, nil
 	}
-	return nil, fmt.Errorf("board %s not found", name)
+	return nil, &store.ChoiceError{
+		Code: "unknown_board", Field: "board", Value: name,
+		Allowed: boardIDs(root),
+		Msg:     fmt.Sprintf("board %s not found", name),
+	}
 }
 
 // Implements: SYS-REQ-260820-4628
@@ -180,7 +185,11 @@ func (b *Board) Project(recs []*record.Record) *View {
 func (b *Board) ApplyMove(rec *record.Record, columnID string) error {
 	col, ok := b.ColumnByID(columnID)
 	if !ok {
-		return fmt.Errorf("unknown column %s", columnID)
+		return &store.ChoiceError{
+			Code: "unknown_column", Field: "column", Value: columnID,
+			Allowed: columnIDs(b),
+			Msg:     fmt.Sprintf("unknown column %s", columnID),
+		}
 	}
 	if col.OnDrop != nil {
 		for k, v := range col.OnDrop.Set {
@@ -323,4 +332,36 @@ func inList(got any, spec any) bool {
 		}
 	}
 	return false
+}
+
+// Implements: SW-REQ-260821-E5V8
+func boardIDs(root string) []string {
+	entries, err := os.ReadDir(filepath.Join(root, "boards"))
+	if err != nil {
+		return []string{}
+	}
+	out := make([]string, 0)
+	for _, e := range entries {
+		if e.IsDir() {
+			continue
+		}
+		name := e.Name()
+		if strings.HasSuffix(name, ".yaml") {
+			out = append(out, strings.TrimSuffix(name, ".yaml"))
+			continue
+		}
+		if strings.HasSuffix(name, ".yml") {
+			out = append(out, strings.TrimSuffix(name, ".yml"))
+		}
+	}
+	return out
+}
+
+// Implements: SW-REQ-260821-E5V8
+func columnIDs(b *Board) []string {
+	out := make([]string, 0)
+	for _, c := range b.Columns {
+		out = append(out, c.ID)
+	}
+	return out
 }

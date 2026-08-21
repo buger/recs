@@ -1,0 +1,26 @@
+id: inbox
+name: Inbox
+description: Incoming items and watches
+layout: 2x2
+theme: light
+widgets:
+  - id: incoming
+    type: list
+    title: Inbox
+    query: 'status=inbox'
+    group_by: status
+  - id: watch
+    type: watch
+    title: Needs a look
+    query: 'priority=high'
+    limit: 6
+  - id: next
+    type: list
+    title: Open tasks
+    query: 'type=task status=open'
+    group_by: priority
+  - id: customers
+    type: list
+    title: Customers
+    query: 'type=customer'
+    group_by: status

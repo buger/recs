@@ -1,0 +1,21 @@
+name: Onboarding
+description: Customer onboarding
+match:
+  type: onboarding
+columns:
+  - id: new
+    title: New
+  - id: kickoff
+    title: Kickoff
+  - id: integration
+    title: Integration
+  - id: validation
+    title: Validation
+  - id: production
+    title: Production
+  - id: complete
+    title: Complete
+  - id: blocked
+    title: Blocked
+column:
+  field: status

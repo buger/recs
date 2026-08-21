@@ -1,0 +1,26 @@
+id: CHG-260821-BGCB
+type: fix
+title: Dashboard UI restyle and list prefix bug
+intent: Serve embeds Tabler so dashboards look like a real kit; list titles no longer prefix the map index.
+problem: Custom CSS is flat and list .map(itemLine) prints 0 on titles.
+non_goals:
+    - No React
+    - No CDN at runtime
+requirements:
+    - SW-REQ-260820-EJVT
+    - INT-REQ-260820-NHBY
+    - SYS-REQ-260820-456X
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: draft
+history:
+    - at: "2026-08-21T10:38:29Z"
+      by: agent:qc-builder
+      action: created
+    - at: "2026-08-21T10:43:08Z"
+      by: agent:grok
+      action: edit
+      detail: add-requirement

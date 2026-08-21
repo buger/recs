@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
-	"crm/internal/app"
-	"crm/internal/board"
-	"crm/internal/dashboard"
-	"crm/internal/record"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/board"
+	"github.com/buger/recs/internal/dashboard"
+	"github.com/buger/recs/internal/record"
 )
 
 // Verifies: SYS-REQ-260820-456X SW-REQ-260820-NA06

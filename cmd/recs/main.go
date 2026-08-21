@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"crm/internal/cli"
+	"github.com/buger/recs/internal/cli"
 )
 
 // Implements: INT-REQ-260820-JC9M

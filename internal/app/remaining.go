@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"crm/internal/markdown"
-	"crm/internal/record"
-	"crm/internal/store"
-	"crm/internal/wikilink"
+	"github.com/buger/recs/internal/markdown"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/store"
+	"github.com/buger/recs/internal/wikilink"
 )
 
 type Relation struct {

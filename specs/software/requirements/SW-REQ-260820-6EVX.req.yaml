@@ -5,7 +5,7 @@ priority: shall
 category: functional
 req_type: guarantee
 fretish: when query_expression_received the query shall always satisfy (expr_len > 0 => ((clause_count > 0) & (clause_count <= expr_len) & (((operator_eq_applied | operator_cmp_applied | operator_contains_applied | operator_in_applied) & records_filtered) | query_rejected)))
-description: The query engine shall parse field operators, bound clause count by expression length, and filter records.
+description: The query engine shall parse field operators, bound clause count by expression length, and filter records. The query engine shall reject an unknown operator. The help for query shall list the operators = != < > <= >= contains in.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-ZTC3
 component: query
-rationale: Supported operators include equality, comparison, contains, and in.
+rationale: Supported operators include equality, comparison, contains, and in. An unknown operator shall not return a silent empty success.
 tags: []
 variables: []
 traces:
@@ -43,13 +43,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
+        reviewed_at: "2026-08-21T11:12:01Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:9da8f2ec5c6194ba5af9ea77b2538c494dae1d09a29a77aaf497e0886f683a62
+        fingerprint: sha256:b6bb8a1a9fd53fd5c71d6cd87a667c209e98167dfec4ef142485e8640683806b
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            kind: chg
+            ref: CHG-260821-72GQ
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -66,6 +66,10 @@ verification:
             - kind: unchanged
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:23:46.457775Z"
     gaps_reviewed_by: agent:grok
@@ -89,7 +93,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T11:12:01Z"
 obligation_checklist:
     - determinism
     - malformed_input

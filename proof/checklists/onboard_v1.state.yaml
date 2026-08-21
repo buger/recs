@@ -1,66 +1,189 @@
 checklist: onboard_v1
-updated_at: "2026-08-21T07:22:12Z"
+updated_at: "2026-08-21T10:05:16Z"
 steps:
     ac-sweep:
-        status: pending
-    annotations-heavy:
-        status: pending
-    coverage:
-        status: pending
-    debt-standing:
-        status: pending
-    hazard:
-        status: pending
-    history-mine:
-        status: pending
-    init:
-        status: not_applicable
-        confirmed_at: "2026-08-20T19:09:25Z"
+        status: confirmed
+        confirmed_at: "2026-08-21T09:59:07Z"
         confirmed_by: agent:grok
-        note: proof.yaml exists; commands set to go test ./... and go build -o crm ./cmd/crm
+        note: All 7 STKs have acceptance_review reviewed; 8 ACs witnessed; acceptance_witness_quality and spec_lint_acceptance_review_current green. Updated checklist.yaml to include 4255, NTWY, QTPP.
+        scope_key: go-package
+        check_results:
+            - id: acceptance_criteria_witnessed
+              status: pass
+              at: "2026-08-21T09:59:07Z"
+            - id: acceptance_witness_quality
+              status: pass
+              at: "2026-08-21T09:59:07Z"
+    annotations-heavy:
+        status: confirmed
+        confirmed_at: "2026-08-21T10:04:23Z"
+        confirmed_by: agent:grok
+        note: MC/DC 49 reqs / 490 rows / 0 uncovered; obligation evidence 166/57 covered; verify_passes, validate_passes, system_formalization_complete green. APE obligation triples added on TestAPEPackagingFilesExist during hazard re-run.
+        scope_key: go-package
+        check_results:
+            - id: annotation_validity
+              status: pass
+              at: "2026-08-21T10:04:23Z"
+            - id: obligation_witness_grounded
+              status: pass
+              at: "2026-08-21T10:04:23Z"
+    coverage:
+        status: confirmed
+        confirmed_at: "2026-08-21T10:04:38Z"
+        confirmed_by: agent:grok
+        note: code_mcdc 100/100, mcdc_coverage 490/0 uncovered, obligation_evidence 166/57, code_signal 0 unreviewed. Coverage measured and current.
+        scope_key: go-package
+        check_results:
+            - id: code_mcdc_coverage
+              status: pass
+              at: "2026-08-21T10:04:38Z"
+            - id: code_mcdc_measure
+              status: pass
+              at: "2026-08-21T10:04:38Z"
+    debt-standing:
+        status: confirmed
+        confirmed_at: "2026-08-21T10:05:16Z"
+        confirmed_by: agent:grok
+        note: 'Debt hygiene green: no active KIs/waivers, 5 residuals pass kill hygiene, pipeline exit checks 0/0. Handoff to continuous pipeline. go test ./... green.'
+        check_results:
+            - id: known_issues_reviewed
+              status: pass
+              at: "2026-08-21T10:05:16Z"
+            - id: waivers_reviewed
+              status: pass
+              at: "2026-08-21T10:05:16Z"
+    hazard:
+        status: confirmed
+        confirmed_at: "2026-08-21T10:01:07Z"
+        confirmed_by: agent:grok
+        note: 'Re-ran hazard for SYS-REQ-260821-AFPN and SW-REQ-260821-AC3S: added error_handling+nominal grades and hazard_review. spec_lint_hazard_consequence now no issues.'
+        scope_key: go-package
+        check_results:
+            - id: spec_lint_hazard_consequence
+              status: pass
+              at: "2026-08-21T10:01:07Z"
+    history-mine:
+        status: confirmed
+        confirmed_at: "2026-08-21T10:04:52Z"
+        confirmed_by: agent:grok
+        note: problem_reports_reviewed, change_evidence_complete, residual_kill_hygiene, obligation_evidence_complete, P0 vector checks all green. Existing CHG/DEFECT ledger current.
+        check_results:
+            - id: problem_reports_reviewed
+              status: pass
+              at: "2026-08-21T10:04:52Z"
+            - id: change_evidence_complete
+              status: pass
+              at: "2026-08-21T10:04:52Z"
+    init:
+        status: confirmed
+        confirmed_at: "2026-08-21T09:55:49Z"
+        confirmed_by: agent:grok
+        note: proof.yaml exists; commands set to go test ./... and go build -o crm ./cmd/crm. Verify test -f proof.yaml green.
         verify_result:
             exit_code: 0
             passed: true
-            at: "2026-08-20T19:09:25Z"
+            at: "2026-08-21T09:55:49Z"
         check_results:
             - id: validate_passes
               status: pass
-              at: "2026-08-20T19:09:25Z"
+              at: "2026-08-21T09:55:49Z"
             - id: role_prompt_hygiene
               status: pass
-              at: "2026-08-20T19:09:25Z"
+              at: "2026-08-21T09:55:49Z"
     research:
-        status: not_applicable
-        confirmed_at: "2026-08-20T19:09:29Z"
+        status: confirmed
+        confirmed_at: "2026-08-21T09:56:09Z"
         confirmed_by: agent:grok
-        note: 'Stakeholders: file_user, agent_operator, web_operator, maintainer. Components: store, query, board, cli, serve, validate, index, context.'
+        note: 'Stakeholders: file_user, agent_operator, web_operator, maintainer (7 STK-REQs). Components: store, query, board, cli, serve, validate, index, context, dashboard, markdown, record, wikilink. Onboard named audit checks green.'
     residual:
-        status: pending
-    skeleton:
-        status: not_applicable
-        confirmed_at: "2026-08-20T19:09:29Z"
+        status: confirmed
+        confirmed_at: "2026-08-21T10:03:57Z"
         confirmed_by: agent:grok
-        note: 'Four-layer skeleton: 4 STK, 15 SYS, 15 SW, 4 INT. Exit audit checks are green.'
+        note: 5 residuals pass residual_kill_hygiene; residual audit --strict green. Theme inventories dispositioned.
+        scope_key: go-package
+        check_results:
+            - id: residual_kill_hygiene
+              status: pass
+              at: "2026-08-21T10:03:57Z"
+    skeleton:
+        status: confirmed
+        confirmed_at: "2026-08-21T09:56:09Z"
+        confirmed_by: agent:grok
+        note: 'Four-layer skeleton present and complete: 7 STK, 20 SYS, 30 SW/INT, all levels connected. Onboard exit audit checks 0/0.'
         check_results:
             - id: l0_stakeholder_complete
               status: pass
-              at: "2026-08-20T19:09:29Z"
+              at: "2026-08-21T09:56:09Z"
             - id: l1_system_complete
               status: pass
-              at: "2026-08-20T19:09:29Z"
+              at: "2026-08-21T09:56:09Z"
             - id: l2_software_complete
               status: pass
-              at: "2026-08-20T19:09:29Z"
+              at: "2026-08-21T09:56:09Z"
             - id: levels_connected
               status: pass
-              at: "2026-08-20T19:09:29Z"
+              at: "2026-08-21T09:56:09Z"
     spec-review-1:
-        status: pending
+        status: confirmed
+        confirmed_at: "2026-08-21T09:56:42Z"
+        confirmed_by: agent:grok
+        note: 'Structure/ambiguity pass: ambiguity_reviewed 0 pairs, decomposition_reviewed 20/20, spec_lint_* clean (2 advisory hazard_consequence notices). No re-run needed.'
+        check_results:
+            - id: spec_lint_decomposition_adds_refinement
+              status: pass
+              at: "2026-08-21T09:56:42Z"
+            - id: spec_lint_formalization_quality
+              status: pass
+              at: "2026-08-21T09:56:42Z"
+            - id: solver_modeling_opportunity
+              status: pass
+              at: "2026-08-21T09:56:42Z"
+            - id: under_modeled_requirements_clean
+              status: pass
+              at: "2026-08-21T09:56:42Z"
     spec-review-2:
-        status: pending
+        status: confirmed
+        confirmed_at: "2026-08-21T09:56:44Z"
+        confirmed_by: agent:grok
+        note: 'Deep pass with graph: under_modeled_requirements_clean, formalization_quality, solver_modeling_opportunity, nonbool_inputs_constrained all green. 57 reqs.'
+        check_results:
+            - id: spec_lint_spec_conformance_review_grounded
+              status: pass
+              at: "2026-08-21T09:56:44Z"
+            - id: software_formalization_complete
+              status: pass
+              at: "2026-08-21T09:56:44Z"
     surface-matrix:
-        status: pending
+        status: confirmed
+        confirmed_at: "2026-08-21T09:57:55Z"
+        confirmed_by: agent:grok
+        note: 'Re-ran unbiased extract for package crm: 0 surfaces, 0 GAP, surface_coverage OK, acceptance_criteria_witnessed 8/7 STKs. Matrix current.'
+        scope_key: go-package
     traces-light:
-        status: pending
+        status: confirmed
+        confirmed_at: "2026-08-21T09:56:16Z"
+        confirmed_by: agent:grok
+        note: Implements/Documents traces present; documentation_coverage 100% (57/57); suspect_clean 0. Package go-package.
+        scope_key: go-package
+        check_results:
+            - id: annotation_validity
+              status: pass
+              at: "2026-08-21T09:56:16Z"
+            - id: orphan_code_clean
+              status: pass
+              at: "2026-08-21T09:56:16Z"
     variables:
-        status: pending
+        status: confirmed
+        confirmed_at: "2026-08-21T09:56:20Z"
+        confirmed_by: agent:grok
+        note: 'Requirement-first vars: 0 orphans, 15 non-bool inputs constrained across 16 formalized components, solver_modeling_opportunity clean.'
+        check_results:
+            - id: variable_orphans_clean
+              status: pass
+              at: "2026-08-21T09:56:20Z"
+            - id: variables_declared
+              status: pass
+              at: "2026-08-21T09:56:20Z"
+            - id: variable_drift
+              status: pass
+              at: "2026-08-21T09:56:20Z"

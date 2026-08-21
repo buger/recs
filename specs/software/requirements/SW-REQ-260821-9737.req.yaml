@@ -1,0 +1,78 @@
+id: SW-REQ-260821-9737
+version: 1
+status: approved
+priority: shall
+category: functional
+req_type: guarantee
+fretish: ""
+description: The CLI shall reject a --set value that lacks = or has an empty key. The CLI shall reject --set with no value. The CLI shall reject patch when --set and --body are absent. The CLI shall reject search when the query text is empty.
+formalization_strategy: informal
+informal_verification:
+    method: test
+    evidence: internal/cli/dogfood_test.go
+    verified: true
+parent: SYS-REQ-260821-8FKR
+component: cli
+rationale: Create, patch, and search must not succeed with junk or missing fields.
+tags: []
+variables: []
+traces:
+    satisfies:
+        - SYS-REQ-260821-8FKR
+verification:
+    assurance_level: E
+    formalization_status: none
+    review:
+        status: approved
+        reviewer: agent:grok
+        role: system_owner
+        roles:
+            - system_owner
+        reviewed_at: "2026-08-21T11:12:01Z"
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:99fd4bc01e4958d6fc29c5e338a6fba6c80e2990c4b80cea922c34edb3a1466e
+        ai_generated: false
+        motivation:
+            kind: chg
+            ref: CHG-260821-72GQ
+history:
+    created_by: agent:grok
+    created_at: "2026-08-21T11:00:37Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-21T11:12:01Z"
+obligation_checklist:
+    - empty_input
+    - malformed_input
+obligation_hazards:
+    - class: empty_input
+      worst_case: Patch or search with no fields returns ok true, so agents treat a no-op as success.
+      severity: medium
+    - class: malformed_input
+      worst_case: A malformed --set is stored as a junk field, so agents persist corrupt records.
+      severity: medium
+hazard_review:
+    reviewed_at: "2026-08-21T11:02:58Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - malformed_input
+            - empty_input
+        - category: property
+          disposition: not_applicable
+          rationale: This requirement is a CLI contract, not a timing or concurrency property.
+        - category: domain
+          disposition: not_applicable
+          rationale: This requirement does not own filesystem or HTTP domain sinks.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+lifecycle:
+    change_history:
+        - date: "2026-08-21T11:11:29Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: agent:grok

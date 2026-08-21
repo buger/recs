@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"crm/internal/record"
-	"crm/internal/validate"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/validate"
 )
 
 // Verifies: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR

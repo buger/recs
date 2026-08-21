@@ -11,9 +11,10 @@ import (
 	"strings"
 	"time"
 
-	"crm/internal/board"
-	"crm/internal/query"
-	"crm/internal/record"
+	"github.com/buger/recs/internal/board"
+	"github.com/buger/recs/internal/query"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/store"
 	"gopkg.in/yaml.v3"
 )
 
@@ -245,7 +246,11 @@ func Load(root, name string) (*Dashboard, error) {
 		}
 		return &d, nil
 	}
-	return nil, fmt.Errorf("dashboard %s not found", name)
+	return nil, &store.ChoiceError{
+		Code: "unknown_dashboard", Field: "dashboard", Value: name,
+		Allowed: dashboardIDs(root),
+		Msg:     fmt.Sprintf("dashboard %s not found", name),
+	}
 }
 
 // Create writes dashboards/<id>.yaml.
@@ -756,4 +761,27 @@ func renderMarkdown(src string) string {
 func inlineMD(s string) string {
 	re := regexp.MustCompile(`\*\*([^*]+)\*\*`)
 	return re.ReplaceAllString(s, "<strong>$1</strong>")
+}
+
+// Implements: SW-REQ-260821-E5V8
+func dashboardIDs(root string) []string {
+	entries, err := os.ReadDir(filepath.Join(root, "dashboards"))
+	if err != nil {
+		return []string{}
+	}
+	out := make([]string, 0)
+	for _, e := range entries {
+		if e.IsDir() {
+			continue
+		}
+		name := e.Name()
+		if strings.HasSuffix(name, ".yaml") {
+			out = append(out, strings.TrimSuffix(name, ".yaml"))
+			continue
+		}
+		if strings.HasSuffix(name, ".yml") {
+			out = append(out, strings.TrimSuffix(name, ".yml"))
+		}
+	}
+	return out
 }

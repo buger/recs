@@ -1,6 +1,6 @@
 # Surface coverage scorecard
 
-Generated: 2026-08-20T19:31:39Z
+Generated: 2026-08-21T09:57:50Z
 
 ## Scope (partial coverage supported)
 

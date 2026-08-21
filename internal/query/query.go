@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 )
 
 var clauseRe = regexp.MustCompile(`(?i)([A-Za-z0-9_.]+)\s*(!=|<=|>=|=|<|>|contains|in)\s*("[^"]+"|'[^']+'|\S+)`)
@@ -24,6 +24,9 @@ func Parse(expr string) ([]Clause, error) {
 	expr = strings.TrimSpace(expr)
 	if expr == "" {
 		return nil, fmt.Errorf("empty query")
+	}
+	if strings.Contains(expr, "==") {
+		return nil, fmt.Errorf("unknown operator %q", "==")
 	}
 	matches := clauseRe.FindAllStringSubmatch(expr, -1)
 	if len(matches) == 0 {
@@ -218,7 +221,7 @@ func Filter(recs []*record.Record, expr string) ([]*record.Record, error) {
 	if err != nil {
 		return nil, err
 	}
-	var out []*record.Record
+	out := make([]*record.Record, 0)
 	for _, rec := range recs {
 		if Match(rec, clauses) {
 			out = append(out, rec)

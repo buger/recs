@@ -1,7 +1,7 @@
 project:
-    name: crm
-    purpose: File-native Agent CRM with Markdown records, CLI, boards, and local serve
-    scope: Phase 1 file-native CRM verification
+    name: recs
+    purpose: File-native records workspace as a native Go binary with Markdown records, CLI, boards, and local serve
+    scope: File-native recs verification of the native Go binary
     specs:
         - path: specs/stakeholder
           prefix: STK-REQ
@@ -53,7 +53,7 @@ project:
         - review
         - formal
     commands:
-        build: go build -o crm ./cmd/crm
+        build: go build -o recs ./cmd/recs
         test: go test ./...
         tests:
             go:

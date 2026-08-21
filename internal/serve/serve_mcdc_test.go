@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"crm/internal/app"
-	"crm/internal/serve"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/serve"
 )
 
 // Verifies: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 SYS-REQ-260821-QF1J SW-REQ-260821-82BA

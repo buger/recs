@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"crm/internal/record"
-	"crm/internal/wikilink"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/wikilink"
 )
 
 // Verifies: SYS-REQ-260821-QF1J SW-REQ-260821-82BA

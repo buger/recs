@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"crm/internal/app"
+	"github.com/buger/recs/internal/app"
 )
 
 // Verifies: SYS-REQ-260820-Q8GR SW-REQ-260820-BNR7 INT-REQ-260820-2JKK SYS-REQ-260820-0TQX SW-REQ-260820-V48V

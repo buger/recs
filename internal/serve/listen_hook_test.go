@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"testing"
 
-	"crm/internal/app"
+	"github.com/buger/recs/internal/app"
 )
 
 // Verifies: SYS-REQ-260820-9W1S

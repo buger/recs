@@ -4,18 +4,19 @@ import (
 	"embed"
 	"encoding/json"
 	"errors"
+	"io/fs"
 	"net"
 	"net/http"
 	"strconv"
 	"strings"
 
-	"crm/internal/app"
-	"crm/internal/dashboard"
-	"crm/internal/record"
-	"crm/internal/store"
+	"github.com/buger/recs/internal/app"
+	"github.com/buger/recs/internal/dashboard"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/store"
 )
 
-//go:embed static/index.html
+//go:embed static
 var uiFS embed.FS
 
 // Listen serves the local HTTP API, dashboard gallery, and Kanban UI.
@@ -58,6 +59,8 @@ func Handler(a *app.App) http.Handler {
 	mux.HandleFunc("/api/search", func(w http.ResponseWriter, r *http.Request) {
 		handleSearch(a, w, r)
 	})
+	sub, _ := fs.Sub(uiFS, "static")
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.FS(sub))))
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		handleGallery(w, r)
 	})

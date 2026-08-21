@@ -8,14 +8,14 @@ import (
 	"strings"
 	"time"
 
-	"crm/internal/board"
-	"crm/internal/contextpkg"
-	"crm/internal/dashboard"
-	"crm/internal/index"
-	"crm/internal/query"
-	"crm/internal/record"
-	"crm/internal/store"
-	"crm/internal/validate"
+	"github.com/buger/recs/internal/board"
+	"github.com/buger/recs/internal/contextpkg"
+	"github.com/buger/recs/internal/dashboard"
+	"github.com/buger/recs/internal/index"
+	"github.com/buger/recs/internal/query"
+	"github.com/buger/recs/internal/record"
+	"github.com/buger/recs/internal/store"
+	"github.com/buger/recs/internal/validate"
 )
 
 // App is the shared application layer used by CLI and HTTP.
@@ -231,6 +231,9 @@ func (a *App) Next() ([]NextAction, error) {
 		}
 		return priorityRank(out[i].Priority) < priorityRank(out[j].Priority)
 	})
+	if out == nil {
+		out = []NextAction{}
+	}
 	return out, nil
 }
 
@@ -269,6 +272,9 @@ func (a *App) Triage() ([]TriageItem, error) {
 		if rec.GetString("health") == "at_risk" || len(record.StringSlice(rec.Get("blockers"))) > 0 {
 			out = append(out, TriageItem{ID: rec.ID, Reason: "blocker", Title: title})
 		}
+	}
+	if out == nil {
+		out = []TriageItem{}
 	}
 	return out, nil
 }

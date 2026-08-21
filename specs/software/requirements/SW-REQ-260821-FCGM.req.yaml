@@ -5,7 +5,7 @@ priority: shall
 category: functional
 req_type: guarantee
 fretish: when agent_discovery_requested the cli shall always satisfy (arg_count >= 1 => ((global_help_emitted | command_help_emitted | structured_error_emitted | command_rejected) & !agent_sidecar_written))
-description: The CLI shall show a command list when the operator uses crm --help or crm help. The CLI shall show flags, examples, and the JSON shape when the operator uses crm help CMD or crm CMD --help. A failed JSON command shall give the fields ok, error, field, allowed, and message. The CLI shall not write AGENTS.md or SKILL.md.
+description: The CLI shall show a command list when the operator uses crm --help or crm help. The CLI shall show flags, examples, and the JSON shape when the operator uses crm help CMD or crm CMD --help. Each command help page shall mention --root or shall state that global flags apply. The help for next shall name the fields that produce a row. The help for triage shall name the reasons inbox, overdue, blocker, and missing_metadata. The help for create shall state that record types are open-ended. The help for ingest shall show a minimal JSON example. The help for move shall use a placeholder id. A failed JSON command shall give the fields ok, error, message, and next. When a failure has an enumerable set, the JSON error shall give field, value, and allowed. The CLI shall not write AGENTS.md or SKILL.md.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260821-8FKR
 component: cli
-rationale: Help and errors are the agent interface. Init shall not write sidecar files.
+rationale: Help and errors are the agent interface. Init shall not write sidecar files. Command help must teach recovery without source.
 tags: []
 variables:
     - agent_discovery_requested
@@ -61,13 +61,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
+        reviewed_at: "2026-08-21T11:12:01Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:dd7af75fbfa6ff5b9b0ac72daaebbcd013ff1dc1e5137c72a11b5d977c54cf39
+        fingerprint: sha256:22a45bdaf91a32e36b74a8b3d2d0ca985a1e75d3c928632ab378ee300a811bd6
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            kind: chg
+            ref: CHG-260821-72GQ
         motivation_history:
             - kind: chg
               ref: CHG-260821-DFVQ
@@ -88,6 +88,10 @@ verification:
             - kind: unchanged
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
     gaps_reviewed_by: agent:grok
@@ -190,13 +194,17 @@ history:
     created_by: agent:grok
     created_at: "2026-08-21T07:22:51Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T11:12:01Z"
 obligation_checklist:
     - error_handling
+    - malformed_input
     - nominal
 obligation_hazards:
     - class: error_handling
       worst_case: An unknown command returns no allowed list, so agents retry blindly.
+      severity: medium
+    - class: malformed_input
+      worst_case: Help omits recovery facts and an enumerable error omits allowed, so agents retry blindly.
       severity: medium
     - class: nominal
       worst_case: Per-command help omits flags or JSON shape, so agents call the wrong command.

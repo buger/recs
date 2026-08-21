@@ -1,0 +1,23 @@
+id: grants
+name: Grants
+description: Grant pipeline
+layout: 2x2
+theme: light
+widgets:
+  - id: preparing
+    type: count
+    title: Grants preparing
+    query: 'type=grant status=preparing'
+  - id: applied
+    type: count
+    title: Grants applied
+    query: 'type=grant status=applied'
+  - id: board
+    type: board
+    title: Grants board
+    board: grants
+  - id: list
+    type: list
+    title: All grants
+    query: 'type=grant'
+    group_by: status

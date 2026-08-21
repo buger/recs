@@ -5,7 +5,7 @@ import (
 	"sync"
 	"testing"
 
-	"crm/internal/store"
+	"github.com/buger/recs/internal/store"
 )
 
 // Verifies: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4 INT-REQ-260821-5BJJ

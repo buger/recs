@@ -5,14 +5,14 @@ priority: shall
 category: functional
 req_type: guarantee
 fretish: ""
-description: The product shall ship as one local binary without a required server or database.
+description: The product shall ship as one local binary from go build. The product shall not require a server or a database.
 formalization_strategy: informal
 informal_verification:
     method: ""
     evidence: ""
     verified: false
 component: maintainer
-rationale: A maintainer builds and runs one binary. The product shall not require Node or a database.
+rationale: A maintainer builds one binary with go build. The product does not require Node, Cosmopolitan, or a database.
 tags: []
 variables: []
 references:
@@ -43,13 +43,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:18:54Z"
+        reviewed_at: "2026-08-21T11:00:51Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:33dde7a64cf4bbf68214da505da48c06bd256d44dca88656b5dc4222c4f1a2e4
+        fingerprint: sha256:1480c3f10facc7e630e19a208c21ff83b88cae5b40550cc7dcf35c8787399942
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-review the current approved child set after later child reviews; parent required behavior and decomposition intent are unchanged.
+            kind: chg
+            ref: CHG-260821-ZVB6
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -67,17 +67,21 @@ verification:
               rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
               superseded_at: "2026-08-21T09:16:15Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-review the current approved child set after later child reviews; parent required behavior and decomposition intent are unchanged.
+              superseded_at: "2026-08-21T11:00:51Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T18:59:33Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:18:54Z"
+    last_modified_at: "2026-08-21T11:00:51Z"
 obligation_checklist:
     - error_handling
     - nominal
 obligation_hazards:
     - class: error_handling
-      worst_case: A missing Cosmopolitan toolchain or bind failure is silent, so the maintainer ships a binary that cannot serve.
+      worst_case: A failed go build or bind failure is silent, so the maintainer ships a binary that cannot serve.
       severity: low
     - class: nominal
       worst_case: A successful go build still cannot run init or serve, so the one-binary promise is false.
@@ -97,7 +101,7 @@ hazard_review:
           rationale: Maintainer one-binary story does not declare algebraic properties.
         - category: domain
           disposition: not_applicable
-          rationale: APE packaging gap is tracked as KI-1; no extra domain class applies to the maintainer story.
+          rationale: The one-binary story is a go build. No extra domain class applies.
         - category: structural
           disposition: not_applicable
           rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
@@ -108,7 +112,7 @@ acceptance_review:
     notes: One go binary plus embedded UI. No Node or SQLite required.
 stakeholder:
     persona: maintainer
-    story: As a maintainer, I want one local binary so that I do not run Node or a database.
+    story: As a maintainer, I want one local binary from go build so that I do not run Node or a database.
     acceptance_criteria:
         - id: AC-001
           text: go build produces one crm binary that serves the local UI.
@@ -117,7 +121,6 @@ stakeholder:
             - SYS-REQ-260820-KJ34
             - SYS-REQ-260820-Q8GR
             - SYS-REQ-260820-9W1S
-            - SYS-REQ-260821-AFPN
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:52Z"

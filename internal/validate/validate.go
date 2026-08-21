@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"crm/internal/record"
+	"github.com/buger/recs/internal/record"
 	"gopkg.in/yaml.v3"
 )
 

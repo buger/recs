@@ -1,0 +1,25 @@
+name: Idea
+description: A feature, a design note, or a use we should cover
+title: "[idea] "
+labels: ["idea"]
+body:
+  - type: markdown
+    attributes:
+      value: We build the code. You can bring the idea. See CONTRIBUTING.md. Unsolicited PRs are closed.
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      placeholder: What should recs do, and for whom?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it matters
+      placeholder: The job this unlocks. What you do today instead.
+  - type: textarea
+    id: shape
+    attributes:
+      label: A shape, if you have one
+      placeholder: Sample record YAML, a query, a board column, a screenshot. Not a patch to merge.

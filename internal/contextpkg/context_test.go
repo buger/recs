@@ -3,8 +3,8 @@ package contextpkg_test
 import (
 	"testing"
 
-	"crm/internal/contextpkg"
-	"crm/internal/record"
+	"github.com/buger/recs/internal/contextpkg"
+	"github.com/buger/recs/internal/record"
 )
 
 // Verifies: SW-REQ-260820-V48V SYS-REQ-260820-0TQX
