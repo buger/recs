@@ -76,7 +76,7 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
+    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
@@ -87,28 +87,28 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-N02Y|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-KJ34
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"

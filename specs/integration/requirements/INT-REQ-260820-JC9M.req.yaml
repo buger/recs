@@ -81,54 +81,54 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
+    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|INT-REQ-260821-8HAC
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|INT-REQ-260821-BSH3
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-YB5C
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-ZKCV
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-8C2C
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-8FKR
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
     not_modeled:
         - predicate: 1 < len(args)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]

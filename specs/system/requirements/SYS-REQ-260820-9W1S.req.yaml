@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when serve_command_invoked the serve shall always satisfy (listen_port > 0 => (http_bound_localhost & (default_port_selected | custom_port_selected) & static_ui_served))
+fretish: when serve_command_invoked the serve shall always satisfy (listen_port > 0 => (http_bound_localhost & (default_port_selected | custom_port_selected) & static_ui_served & (gallery_rendered | preview_cards_shown | empty_gallery_shown | gallery_rejected)))
 description: The product shall serve a local HTTP API and Kanban UI on localhost.
 formalization_strategy: fretish
 informal_verification:
@@ -48,13 +48,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T09:00:05Z"
+        reviewed_at: "2026-08-21T09:04:58Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:84388ed3e0a27cfc60b3fdedd5f2088284f8f83d6ceec6e9881571257f1f130a
+        fingerprint: sha256:807b5b5e7c5877783a27850c40cdf47b2b805ecfeae5a8182774d7ff08af8898
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+            kind: chg
+            ref: CHG-260821-AHD2
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -72,29 +72,38 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:04:58Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
+          issue_key: ambiguity|serve|INT-REQ-260820-NHBY|SYS-REQ-260820-9W1S
+          reviewer: agent:grok
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
           issue_key: ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|serve|SYS-REQ-260820-9W1S|SYS-REQ-260821-QF1J
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T09:00:05Z"
+    last_modified_at: "2026-08-21T09:04:58Z"
 obligation_checklist:
     - auth_required
     - boundary

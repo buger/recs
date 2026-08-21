@@ -1,0 +1,19 @@
+id: CHG-260821-NAWP
+type: fix
+title: Replace leftover help_text_emitted with concrete help outputs
+intent: System help already distinguishes global and command help. Keep that split instead of an extra summary boolean.
+owner: agent:grok
+requirements:
+    - SYS-REQ-260821-8FKR
+affects:
+    - SYS-REQ-260821-8FKR
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-21T09:03:33Z"
+      by: agent:grok
+      action: created

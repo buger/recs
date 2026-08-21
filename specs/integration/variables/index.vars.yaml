@@ -1,1 +1,25 @@
-../../system/variables/index.vars.yaml
+component: index
+variables:
+    - name: index_rebuild_requested
+      type: bool
+      direction: input
+      description: An index rebuild was requested.
+    - name: record_count
+      type: int
+      direction: input
+      description: Number of store records scanned.
+      range:
+        min: 0
+        max: 100000
+    - name: store_records_scanned
+      type: bool
+      direction: output
+      description: The rebuild scanned store records.
+    - name: index_files_rewritten
+      type: bool
+      direction: output
+      description: Derived index files were rewritten.
+    - name: canonical_state_mutated
+      type: bool
+      direction: output
+      description: Canonical record files were mutated.

@@ -1,0 +1,21 @@
+component: store_lock
+variables:
+    - name: record_mutation_requested
+      type: bool
+      direction: input
+      description: A caller asked the store to patch the same record.
+    - name: version_mismatch
+      type: bool
+      direction: output
+      description: The caller version no longer matches the locked record.
+    - name: conflict_reported
+      type: bool
+      direction: output
+      description: The store reported an optimistic-concurrency conflict.
+    - name: parse_budget
+      type: int
+      direction: input
+      description: Maximum frontmatter scan budget in bytes.
+      range:
+        max: 1e+06
+        min: 0

@@ -16,10 +16,6 @@ variables:
       type: bool
       direction: output
       description: Decide condition store records scanned.
-    - name: index_files_rewritten
-      type: bool
-      direction: output
-      description: Decide condition index files rewritten.
     - name: canonical_state_mutated
       type: bool
       direction: output

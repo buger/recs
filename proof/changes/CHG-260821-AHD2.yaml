@@ -1,0 +1,27 @@
+id: CHG-260821-AHD2
+type: fix
+title: Fold leftover system outputs into existing serve, help, index, and CLI contracts
+intent: System FRETish should name the shared-app, gallery, index scan, and help-sidecar outcomes already implemented instead of leaving inherited outputs unconstrained.
+owner: agent:grok
+requirements:
+    - SYS-REQ-260820-Q8GR
+    - SYS-REQ-260821-8FKR
+    - SYS-REQ-260821-JYEJ
+    - SYS-REQ-260821-QF1J
+    - SYS-REQ-260820-9W1S
+affects:
+    - SYS-REQ-260820-Q8GR
+    - SYS-REQ-260821-8FKR
+    - SYS-REQ-260821-JYEJ
+    - SYS-REQ-260821-QF1J
+    - SYS-REQ-260820-9W1S
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-21T09:04:45Z"
+      by: agent:grok
+      action: created

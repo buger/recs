@@ -110,24 +110,24 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:00:14.991509Z"
+    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260821-82BA
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
         - check: ambiguity
           issue_key: ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S
           reviewer: agent:grok
-          reason: 'Cross-spec complementary pairs remain distinct contracts: shared layer/budget/matcher vars do not merge record API, dashboard gallery, remaining UI, CLI help, remaining commands, board view vs move, index rebuild vs rewrite, or the store conflict-implication child.'
-          reviewed_at: "2026-08-21T09:00:14.991509Z"
+          reason: 'After folding system gallery, shared-app, index scan, and help-sidecar outcomes, remaining pairs still share only budget or layer inputs across complementary command and UI surfaces.'
+          reviewed_at: "2026-08-21T09:05:02.290906Z"
     not_modeled:
         - predicate: i >= len(row)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]

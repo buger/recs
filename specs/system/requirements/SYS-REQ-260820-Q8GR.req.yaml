@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when index_rebuild_requested the index shall always satisfy (record_count >= 0 => (index_rebuilt_from_records & !index_is_canonical))
+fretish: when index_rebuild_requested the index shall always satisfy (record_count >= 0 => (index_rebuilt_from_records & store_records_scanned & !index_is_canonical & !canonical_state_mutated))
 description: The product shall rebuild a disposable derived index from record files.
 formalization_strategy: fretish
 informal_verification:
@@ -46,13 +46,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:47:05Z"
+        reviewed_at: "2026-08-21T09:04:58Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:e7bc9aa70aaa38664599c82ce458779012075089b9c57cf06997367ec0589d95
+        fingerprint: sha256:cd4235e1bc6173c84627dd8a3dad8be02605455e6c38ee1b3223d5c875ff7747
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+            kind: chg
+            ref: CHG-260821-AHD2
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -62,11 +62,15 @@ verification:
               rationale: Re-attest parent after children were reviewed so the plan of record stays current.
               superseded_at: "2026-08-21T07:47:05Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T09:04:58Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:47:05Z"
+    last_modified_at: "2026-08-21T09:04:58Z"
 obligation_checklist:
     - idempotency
     - nominal

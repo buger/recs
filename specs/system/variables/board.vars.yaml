@@ -44,14 +44,6 @@ variables:
       type: bool
       direction: input
       description: Decide condition board move committed.
-    - name: store_frontmatter_write_used
-      type: bool
-      direction: output
-      description: Decide condition store frontmatter write used.
-    - name: record_file_relocated
-      type: bool
-      direction: output
-      description: Decide condition record file relocated.
     - name: column_list_len
       type: int
       direction: output

@@ -1,1 +1,70 @@
-../../system/variables/serve.vars.yaml
+component: serve
+variables:
+    - name: http_api_requested
+      type: bool
+      direction: input
+      description: An HTTP API or UI request was received.
+    - name: dashboard_api_requested
+      type: bool
+      direction: input
+      description: A dashboard HTTP API or gallery request was received.
+    - name: remaining_ui_requested
+      type: bool
+      direction: input
+      description: A remaining UI request was received.
+    - name: shared_app_layer_used
+      type: bool
+      direction: output
+      description: The HTTP handler used the shared application layer.
+    - name: shared_record_model_used
+      type: bool
+      direction: output
+      description: The HTTP handler used the shared record model.
+    - name: separate_database_used
+      type: bool
+      direction: output
+      description: The HTTP handler used a separate database.
+    - name: gallery_rendered
+      type: bool
+      direction: output
+      description: The dashboard gallery was rendered.
+    - name: preview_cards_shown
+      type: bool
+      direction: output
+      description: Gallery preview cards were shown.
+    - name: empty_gallery_shown
+      type: bool
+      direction: output
+      description: An empty gallery was shown.
+    - name: gallery_rejected
+      type: bool
+      direction: output
+      description: The gallery request was rejected.
+    - name: record_view_rendered
+      type: bool
+      direction: output
+      description: A record view was rendered.
+    - name: record_editor_saved
+      type: bool
+      direction: output
+      description: The record editor saved through the app layer.
+    - name: search_page_shown
+      type: bool
+      direction: output
+      description: The search page was shown.
+    - name: board_filters_applied
+      type: bool
+      direction: output
+      description: Board filters were applied.
+    - name: attachment_served
+      type: bool
+      direction: output
+      description: An attachment was served.
+    - name: wikilink_resolved
+      type: bool
+      direction: output
+      description: A wikilink was resolved.
+    - name: ui_request_rejected
+      type: bool
+      direction: output
+      description: A remaining UI request was rejected.

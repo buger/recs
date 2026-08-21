@@ -1,1 +1,53 @@
-../../system/variables/cli.vars.yaml
+component: cli
+variables:
+    - name: cli_command_dispatched
+      type: bool
+      direction: input
+      description: A CLI command was dispatched.
+    - name: remaining_cli_command_invoked
+      type: bool
+      direction: input
+      description: A remaining CLI command was invoked.
+    - name: agent_discovery_requested
+      type: bool
+      direction: input
+      description: The operator asked for help or hit an unknown command.
+    - name: arg_count
+      type: int
+      direction: input
+      description: Number of CLI arguments.
+      range:
+        min: 0
+        max: 64
+    - name: store_api_used
+      type: bool
+      direction: output
+      description: The CLI called the shared store application API.
+    - name: query_api_used
+      type: bool
+      direction: output
+      description: The CLI called the shared query application API.
+    - name: board_api_used
+      type: bool
+      direction: output
+      description: The CLI called the shared board application API.
+    - name: shared_record_model_used
+      type: bool
+      direction: output
+      description: The CLI used the shared record model.
+    - name: command_rejected
+      type: bool
+      direction: output
+      description: The CLI rejected the command.
+    - name: help_text_emitted
+      type: bool
+      direction: output
+      description: The CLI emitted help text.
+    - name: structured_error_emitted
+      type: bool
+      direction: output
+      description: The CLI emitted a structured error.
+    - name: sidecar_file_required
+      type: bool
+      direction: output
+      description: Help or errors required a sidecar skill file.

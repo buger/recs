@@ -1,1 +1,28 @@
-../../system/variables/board.vars.yaml
+component: board
+variables:
+    - name: board_move_committed
+      type: bool
+      direction: input
+      description: A board move was committed through the store.
+    - name: matcher_depth
+      type: int
+      direction: input
+      description: Matcher nesting depth for the board move.
+      range:
+        min: 0
+        max: 16
+    - name: column_list_len
+      type: int
+      direction: output
+      description: Number of columns considered by the move.
+      range:
+        min: 0
+        max: 64
+    - name: store_frontmatter_write_used
+      type: bool
+      direction: output
+      description: The move wrote record frontmatter through the store.
+    - name: record_file_relocated
+      type: bool
+      direction: output
+      description: The move relocated the record file.
