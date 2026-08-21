@@ -6,3 +6,4 @@
 .build/
 /crm.aarch64.elf
 /crm.com.dbg
+/cover.out
