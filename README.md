@@ -12,7 +12,7 @@ One workspace for clients. Another for hiring. Another for a research beat. No a
 
 > **TL;DR** — `recs` is a file-native CRM for agents. Records are Markdown. The agent uses a deterministic CLI (`--help`, `--json`). You (or the agent) write unlimited YAML dashboards and boards on top. The local UI is a projection, not the database.
 
-![recs dashboard gallery](docs/images/gallery.png)
+![recs dashboard gallery](docs/images/gallery-dashboards.png)
 
 ## Why
 
@@ -61,7 +61,7 @@ Talked with [[Maya Chen]] about the catalog refresh.
 
 Boards are matcher views. Drag a card, `on_drop` writes frontmatter. Same engine as `recs move`.
 
-![recs pipeline board](docs/images/boards.png)
+![recs pipeline board](docs/images/board-pipeline.png)
 
 ```yaml
 name: Pipeline
