@@ -1,0 +1,23 @@
+id: pipeline
+name: Pipeline
+description: Clients and hiring
+layout: 2x2
+widgets:
+  - id: clients
+    type: list
+    title: Client pipeline
+    query: 'type=customer'
+    group_by: sales_stage
+  - id: hiring-count
+    type: count
+    title: In interview
+    query: 'type=candidate status=interview'
+  - id: hiring
+    type: board
+    title: Hiring
+    board: hiring
+  - id: watch
+    type: watch
+    title: Needs a look
+    query: 'priority=high'
+    limit: 6

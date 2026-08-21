@@ -1,9 +1,5 @@
 # Sample workspace
 
-Fixture workspace for local `recs serve` and integration tests.
-
-Not production data. Dates are relative to 2026-08-21.
-
-```
-go run ./cmd/recs serve --root testdata/sample
-```
+Fictional Northshore client / deal demo for screenshots and `recs serve --root testdata/sample`.
+Harbor Press, Kite Studio, and Northshore Robotics are invented. Every name is invented.
+Dates sit around 2026-08-21.

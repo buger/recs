@@ -1,7 +1,10 @@
-name: Sales
-description: Clients by stage
+name: Clients
+description: Studio pipeline
 match:
-  type: customer
+  type:
+    - customer
+    - lead
+    - deal
 columns:
   - id: new
     title: New
@@ -10,8 +13,8 @@ columns:
   - id: proposal
     title: Proposal
   - id: closed_won
-    title: Closed won
+    title: Retainer
   - id: closed_lost
-    title: Closed lost
+    title: Passed
 column:
   field: sales_stage

@@ -196,6 +196,9 @@ func TestDashboardAPIAndUI(t *testing.T) {
 	if !strings.Contains(ui.Body.String(), "tabler") || strings.Contains(ui.Body.String(), "fonts.googleapis.com") {
 		t.Fatal("tabler kit or runtime font CDN")
 	}
+	if !strings.Contains(ui.Body.String(), "theme-toggle") || !strings.Contains(ui.Body.String(), "data-theme") {
+		t.Fatal("theme toggle")
+	}
 	if strings.Contains(ui.Body.String(), ".map(itemLine)") {
 		t.Fatal("itemLine map prefix bug")
 	}

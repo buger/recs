@@ -1,7 +1,7 @@
-name: sample
+name: northshore
 default_port: 7777
 types:
-  grant:
+  deal:
     required:
       - title
       - status
@@ -9,18 +9,18 @@ types:
       status:
         type: string
         enum:
-          - discovered
-          - researching
-          - qualified
-          - preparing
-          - applied
-          - waiting
+          - lead
+          - talking
+          - proposal
           - won
-          - rejected
+          - lost
   person:
     required:
       - name
   company:
+    required:
+      - name
+  customer:
     required:
       - name
   task:
@@ -34,3 +34,10 @@ types:
           - open
           - done
           - cancelled
+  note:
+    required:
+      - title
+  onboarding:
+    required:
+      - title
+      - status

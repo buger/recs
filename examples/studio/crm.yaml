@@ -1,0 +1,52 @@
+name: nimbus
+default_port: 7777
+types:
+  person:
+    required:
+      - name
+  company:
+    required:
+      - name
+  customer:
+    required:
+      - name
+  retainer:
+    required:
+      - title
+      - status
+    fields:
+      status:
+        type: string
+        enum:
+          - drafting
+          - active
+          - paused
+          - ended
+  candidate:
+    required:
+      - name
+      - status
+    fields:
+      status:
+        type: string
+        enum:
+          - applied
+          - screening
+          - interview
+          - offer
+          - hired
+          - passed
+  task:
+    required:
+      - title
+      - status
+    fields:
+      status:
+        type: string
+        enum:
+          - open
+          - done
+          - cancelled
+  note:
+    required:
+      - title

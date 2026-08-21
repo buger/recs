@@ -1,0 +1,23 @@
+id: workspace
+name: Workspace
+description: Clients, retainers, notes
+layout: 2x2
+widgets:
+  - id: clients
+    type: list
+    title: Clients
+    query: 'type=customer'
+    group_by: sales_stage
+  - id: retainers
+    type: count
+    title: Active retainers
+    query: 'type=retainer status=active'
+  - id: board
+    type: board
+    title: Client board
+    board: pipeline
+  - id: notes
+    type: notes
+    title: Open questions
+    query: 'type=note'
+    limit: 4

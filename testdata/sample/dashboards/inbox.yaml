@@ -2,7 +2,6 @@ id: inbox
 name: Inbox
 description: Incoming items and watches
 layout: 2x2
-theme: light
 widgets:
   - id: incoming
     type: list
@@ -21,6 +20,6 @@ widgets:
     group_by: priority
   - id: customers
     type: list
-    title: Customers
+    title: Clients
     query: 'type=customer'
-    group_by: status
+    group_by: sales_stage

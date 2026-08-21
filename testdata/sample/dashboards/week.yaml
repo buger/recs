@@ -1,0 +1,36 @@
+id: week
+name: This week
+description: Metrics for the Northshore week
+layout: 2x2
+widgets:
+  - id: pulse
+    type: metrics
+    title: This week
+    query: 'type=customer'
+    stats:
+      - label: active clients
+        query: 'type=customer status=active'
+      - label: open deals
+        query: 'type=deal'
+      - label: in proposal
+        query: 'type=deal status=proposal'
+      - label: open tasks
+        query: 'type=task status=open'
+    reminder:
+      query: 'type=customer next_action.date<2026-08-21'
+      template: "{{name}} — follow-up was due {{next_action.date}}"
+  - id: tasks
+    type: list
+    title: Open tasks
+    query: 'type=task status=open'
+    group_by: priority
+  - id: notes
+    type: notes
+    title: Notes
+    query: 'type=note'
+    limit: 4
+  - id: deals
+    type: list
+    title: Deals
+    query: 'type=deal'
+    group_by: status

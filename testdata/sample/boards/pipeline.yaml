@@ -1,0 +1,33 @@
+name: Pipeline
+description: Deals by status
+match:
+  type: deal
+columns:
+  - id: lead
+    title: Lead
+  - id: talking
+    title: Talking
+  - id: proposal
+    title: Proposal
+    on_drop:
+      set:
+        status: proposal
+        proposed_at: $now
+  - id: won
+    title: Won
+    on_drop:
+      set:
+        status: won
+        won_at: $now
+  - id: lost
+    title: Lost
+column:
+  field: status
+
+filter_controls:
+  - field: owner
+    type: select
+  - field: tags
+    type: multiselect
+  - field: priority
+    type: select

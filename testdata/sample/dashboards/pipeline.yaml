@@ -1,0 +1,22 @@
+id: pipeline
+name: Pipeline
+description: Deals and the board
+layout: 2x2
+widgets:
+  - id: talking
+    type: count
+    title: Talking
+    query: 'type=deal status=talking'
+  - id: proposal
+    type: count
+    title: Proposal
+    query: 'type=deal status=proposal'
+  - id: board
+    type: board
+    title: Deal board
+    board: pipeline
+  - id: list
+    type: list
+    title: Deals
+    query: 'type=deal'
+    group_by: status

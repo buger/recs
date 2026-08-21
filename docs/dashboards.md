@@ -18,11 +18,10 @@ Add a dashboard by writing `dashboards/<id>.yaml`. Agents write YAML. There is n
 id: workspace
 name: Workspace
 layout: 2x2
-theme: light
 widgets:
-  - id: grants
+  - id: apps
     type: list
-    title: Grant pipeline
+    title: Application pipeline
     query: 'type=grant'
 ```
 
@@ -40,6 +39,8 @@ widgets:
 Widgets get data from `query:`, `source:`, or `board:`.
 
 `layout: 2x2` is the default. Missing slots render as empty placeholders.
+
+Theme is a UI toggle. Do not put `theme:` in dashboard YAML.
 
 ## Commands
 

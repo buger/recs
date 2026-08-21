@@ -1,0 +1,19 @@
+name: Hiring
+description: Studio seats
+match:
+  type: candidate
+columns:
+  - id: applied
+    title: Applied
+  - id: screening
+    title: Screening
+  - id: interview
+    title: Interview
+  - id: offer
+    title: Offer
+  - id: hired
+    title: Hired
+  - id: passed
+    title: Passed
+column:
+  field: status

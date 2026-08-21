@@ -1,23 +1,22 @@
 id: workspace
 name: Workspace
-description: Grants, onboarding, and notes
+description: Deals, onboarding, and notes
 layout: 2x2
-theme: light
 widgets:
-  - id: grants
+  - id: deals
     type: list
-    title: Grant pipeline
-    query: 'type=grant'
+    title: Deal pipeline
+    query: 'type=deal'
     group_by: status
     limit: 8
   - id: blocked
     type: count
     title: Blocked onboardings
     query: 'type=onboarding status=blocked'
-  - id: grants-board
+  - id: board
     type: board
-    title: Grants board
-    board: grants
+    title: Pipeline
+    board: pipeline
   - id: notes
     type: notes
     title: Open questions

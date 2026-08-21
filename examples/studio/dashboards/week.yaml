@@ -1,0 +1,35 @@
+id: week
+name: This week
+description: Studio week
+layout: 2x2
+widgets:
+  - id: pulse
+    type: metrics
+    title: This week
+    query: 'type=customer'
+    stats:
+      - label: active clients
+        query: 'type=customer status=active'
+      - label: open tasks
+        query: 'type=task status=open'
+      - label: interviews
+        query: 'type=candidate status=interview'
+      - label: inbox
+        query: 'status=inbox'
+    reminder:
+      query: 'type=task status=open due<2026-08-23'
+      template: "{{title}} — due {{due}}"
+  - id: tasks
+    type: list
+    title: Open tasks
+    query: 'type=task status=open'
+    group_by: priority
+  - id: notes
+    type: notes
+    title: Notes
+    query: 'type=note'
+    limit: 4
+  - id: hiring
+    type: pipeline
+    title: Hiring
+    query: 'type=candidate'
