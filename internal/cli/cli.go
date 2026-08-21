@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 	"strconv"
 	"strings"
 
@@ -15,6 +16,9 @@ import (
 	"crm/internal/serve"
 	"crm/internal/store"
 )
+
+// Input is stdin for ingest; tests may replace it.
+var Input io.Reader = os.Stdin
 
 // Main is the CLI entry.
 // Implements: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C INT-REQ-260820-JC9M
@@ -32,6 +36,8 @@ func Main(args []string, stdout, stderr io.Writer) int {
 	ifVersion := ""
 	typFilter := ""
 	mdOut := false
+	csvOut := false
+	relation := ""
 	for i := 0; i < len(args); i++ {
 		a := args[i]
 		switch {
@@ -67,6 +73,13 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		case a == "--if-version" && i+1 < len(args):
 			i++
 			ifVersion = args[i]
+		case a == "--csv":
+			csvOut = true
+		case a == "--relation" && i+1 < len(args):
+			i++
+			relation = args[i]
+		case strings.HasPrefix(a, "--relation="):
+			relation = strings.TrimPrefix(a, "--relation=")
 		case a == "--type" && i+1 < len(args):
 			i++
 			typFilter = args[i]
@@ -374,6 +387,134 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			return fail(err)
 		}
 		return write(map[string]any{"ok": true, "files": []string{"AGENTS.md", "SKILL.md"}}, "installed AGENTS.md and SKILL.md\n")
+	case "edit":
+		if len(rest) < 1 {
+			return fail(fmt.Errorf("usage: crm edit <id> [--body ...] [--set k=v]"))
+		}
+		body, hasBody := sets["_body"].(string)
+		delete(sets, "_body")
+		if hasBody || len(sets) > 0 {
+			var bp *string
+			if hasBody {
+				bp = &body
+			}
+			res, err := a.Edit(rest[0], sets, bp, ifVersion)
+			if err != nil {
+				return fail(err)
+			}
+			return write(map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed, "version": res.Version}, res.Record.ID+"\n")
+		}
+		editor := os.Getenv("EDITOR")
+		if editor == "" {
+			return fail(fmt.Errorf("set EDITOR or pass --body / --set"))
+		}
+		res, err := a.EditWithEditor(rest[0], editor)
+		if err != nil {
+			return fail(err)
+		}
+		return write(map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed, "version": res.Version}, res.Record.ID+"\n")
+	case "delete":
+		if len(rest) < 1 {
+			return fail(fmt.Errorf("usage: crm delete <id>"))
+		}
+		if err := a.Delete(rest[0]); err != nil {
+			return fail(err)
+		}
+		return write(map[string]any{"ok": true, "record": rest[0]}, "deleted "+rest[0]+"\n")
+	case "link":
+		if len(rest) < 2 || relation == "" {
+			return fail(fmt.Errorf("usage: crm link <id> <target> --relation <type>"))
+		}
+		res, err := a.Link(rest[0], rest[1], relation)
+		if err != nil {
+			return fail(err)
+		}
+		return write(map[string]any{"ok": true, "record": res.Record.ID, "relation": map[string]string{"type": relation, "target": rest[1]}, "version": res.Version}, rest[0]+" -> "+rest[1]+" ("+relation+")\n")
+	case "ingest":
+		kind := ""
+		src := ""
+		if len(rest) == 1 {
+			if rest[0] == "email" || rest[0] == "record" {
+				kind = rest[0]
+			} else {
+				src = rest[0]
+			}
+		} else if len(rest) >= 2 {
+			kind = rest[0]
+			src = rest[1]
+		}
+		var data []byte
+		var err error
+		if src == "" || src == "-" {
+			data, err = io.ReadAll(Input)
+		} else {
+			data, err = os.ReadFile(src)
+		}
+		if err != nil {
+			return fail(err)
+		}
+		rec, err := a.Ingest(kind, data)
+		if err != nil {
+			return fail(err)
+		}
+		return write(map[string]any{"ok": true, "record": public(rec)}, rec.ID+"\n")
+	case "export":
+		if csvOut {
+			text, err := a.ExportCSV()
+			if err != nil {
+				return fail(err)
+			}
+			if jsonOut {
+				_ = json.NewEncoder(stdout).Encode(map[string]any{"ok": true, "format": "csv", "csv": text})
+				return 0
+			}
+			fmt.Fprint(stdout, text)
+			return 0
+		}
+		recs, err := a.ExportJSON()
+		if err != nil {
+			return fail(err)
+		}
+		return write(map[string]any{"ok": true, "records": recs}, exportHuman(recs))
+	case "import":
+		if len(rest) < 1 {
+			return fail(fmt.Errorf("usage: crm import <file.csv> [--type <type>]"))
+		}
+		f, err := os.Open(rest[0])
+		if err != nil {
+			return fail(err)
+		}
+		defer f.Close()
+		created, err := a.ImportCSV(f, typFilter)
+		if err != nil {
+			return fail(err)
+		}
+		ids := make([]string, 0, len(created))
+		for _, rec := range created {
+			ids = append(ids, rec.ID)
+		}
+		return write(map[string]any{"ok": true, "records": ids, "count": len(ids)}, strings.Join(ids, "\n")+"\n")
+	case "diff":
+		res := a.Diff()
+		if !res.OK {
+			return fail(fmt.Errorf("%s", res.Message))
+		}
+		return write(res, gitHuman(res))
+	case "changed":
+		res := a.Changed()
+		if !res.OK {
+			return fail(fmt.Errorf("%s", res.Message))
+		}
+		return write(res, gitHuman(res))
+	case "history":
+		if len(rest) < 1 {
+			return fail(fmt.Errorf("usage: crm history <id>"))
+		}
+		res := a.History(rest[0])
+		if !res.OK {
+			return fail(fmt.Errorf("%s", res.Message))
+		}
+		return write(res, gitHuman(res))
 	default:
 		return fail(fmt.Errorf("unknown command %s", cmd))
 	}
@@ -495,13 +636,55 @@ Commands:
   inbox                List unclassified inbox records
   agent install        Write AGENTS.md and SKILL.md
   serve                Local HTTP UI on :7777
+  edit <id>            Edit body/frontmatter or open $EDITOR
+  delete <id>          Delete a record file
+  link <id> <target>   Write a canonical relation
+  ingest [email] [src] Create a record from provider-neutral JSON
+  export               Export records as JSON or CSV
+  import <file.csv>    Import records from CSV
+  diff                 Show git diff when a repo exists
+  changed              List git-changed workspace files
+  history <id>         Show git history for a record
 
 Flags:
   --json               Stable machine output
+  --csv                CSV export format
   --md                 Markdown context output
   --root <dir>         Workspace root
   --set k=v            Field assignment
+  --body text          Markdown body
+  --type <type>        Type filter or import default
+  --relation <type>    Relation type for link
   --filter k=v         Board filter
   --if-version <hash>  Optimistic concurrency
 `)
+}
+
+// Implements: SYS-REQ-260821-JYEJ
+func exportHuman(recs []map[string]any) string {
+	var b strings.Builder
+	for _, rec := range recs {
+		fmt.Fprintf(&b, "%v\t%v\t%v\n", rec["id"], rec["type"], rec["title"])
+	}
+	return b.String()
+}
+
+// Implements: SYS-REQ-260821-JYEJ
+func gitHuman(res app.GitResult) string {
+	if !res.Git {
+		if res.Message != "" {
+			return res.Message + "\n"
+		}
+		return ""
+	}
+	if res.Output != "" {
+		return res.Output
+	}
+	if len(res.Changed) > 0 {
+		return strings.Join(res.Changed, "\n") + "\n"
+	}
+	if len(res.History) > 0 {
+		return strings.Join(res.History, "\n") + "\n"
+	}
+	return ""
 }

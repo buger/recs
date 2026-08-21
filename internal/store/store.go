@@ -379,6 +379,12 @@ func (s *Store) Patch(id string, sets map[string]any, deletes []string, ifVersio
 		return nil, &ConflictError{Expected: ifVersion, Current: cur}
 	}
 	changed := map[string]map[string]any{}
+	if body, ok := sets["_body"]; ok {
+		from := rec.Body
+		rec.Body = fmt.Sprint(body)
+		changed["_body"] = map[string]any{"from": from, "to": rec.Body}
+		delete(sets, "_body")
+	}
 	for k, v := range sets {
 		v = expandNow(v)
 		from := rec.Get(k)
@@ -495,6 +501,31 @@ func (s *Store) lock(id string) (*fileLock, error) {
 		return nil, err
 	}
 	return &fileLock{f: f}, nil
+}
+
+
+// Delete removes the record file after a lock.
+// Implements: SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C
+func (s *Store) Delete(id string) error {
+	lock, err := s.lock(id)
+	if err != nil {
+		return err
+	}
+	defer lock.Close()
+	rec, err := s.Get(id)
+	if err != nil {
+		return err
+	}
+	if rec.Path == "" {
+		return fmt.Errorf("record path is empty")
+	}
+	if err := confinedToRoot(s.Root, rec.Path); err != nil {
+		return err
+	}
+	if err := os.Remove(rec.Path); err != nil {
+		return err
+	}
+	return nil
 }
 
 // Implements: SYS-REQ-260820-9J7C
