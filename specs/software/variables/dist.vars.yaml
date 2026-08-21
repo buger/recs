@@ -28,3 +28,14 @@ variables:
       type: bool
       direction: output
       description: Decide condition APE build rejected.
+    - name: rc
+      type: int
+      direction: input
+      description: APE wrapper process exit code.
+      range:
+        max: 255
+        min: 0
+
+no_interface:
+    declared: true
+    reason: This component is an internal library called only through the shared app layer; CLI and serve INT-REQs already own the operator-facing boundary.

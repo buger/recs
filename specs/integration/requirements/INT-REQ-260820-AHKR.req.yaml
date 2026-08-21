@@ -21,6 +21,25 @@ traces:
         - SYS-REQ-260820-9W1S
         - SYS-REQ-260820-9J7C
         - SYS-REQ-260820-BVBE
+    reviewed_at: "2026-08-21T07:46:41.030372Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:20344e90755fc239d1fd6e2927dca932825f167317b48d0d55070d52c0f022d8
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:41.030372Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli_test.go
+            - internal/serve/serve.go
+            - specs/system/requirements/SYS-REQ-260820-9J7C.req.yaml
+            - specs/system/requirements/SYS-REQ-260820-9W1S.req.yaml
+            - specs/system/requirements/SYS-REQ-260820-BVBE.req.yaml
+    components:
+        - serve
+        - cli
 verification:
     assurance_level: E
     formalization_status: valid
@@ -30,18 +49,23 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:39:06Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:569dd43360721f562ce7778394cd3a0a45e9b5adf7e5f408fafb48f45a04cb74
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            kind: chg
+            ref: CHG-260821-DFVQ
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:39:06Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:32Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:39:06Z"
 obligation_checklist:
     - csrf_protection
     - nominal
@@ -71,6 +95,18 @@ hazard_review:
         - category: structural
           disposition: not_applicable
           rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+interface:
+    caller: serve
+    callee: cli
+    type: function_call
+    signature: HTTP.API() -> App
+    producer: serve
+    consumer:
+        - cli
+    owner: team:crm
+    version: v1.0.0
+    compatibility_policy: semver-lax
+    risk_tier: 3
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:51Z"

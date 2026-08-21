@@ -1,0 +1,11 @@
+id: REVIEW-23
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T07:45:21Z"
+subject: SW-REQ-260820-NA06
+decision: approved
+comment: Dashboard YAML load uses yaml_source_used and rejects traversal paths as dashboard_rejected while known widgets project into at most four slots.
+citations:
+    - internal/dashboard/dashboard.go:145@KnownType
+    - internal/dashboard/dashboard.go:187@LoadAll
+    - internal/dashboard/dashboard_test.go:25@TestKnownTypeAndSlots

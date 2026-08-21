@@ -1,66 +1,58 @@
-id: SW-REQ-260821-82BA
+id: INT-REQ-260821-BSH3
 version: 1
 status: approved
 priority: shall
-category: functional
+category: interface
 req_type: guarantee
-fretish: when remaining_ui_requested the serve shall always satisfy (((listen_port >= 1) & (listen_port <= 65535)) => (record_view_rendered | record_editor_saved | search_page_shown | board_filters_applied | attachment_served | wikilink_resolved | ui_request_rejected))
-description: The serve package shall render records, save editor patches, show search results, apply board filters, serve attachments, and resolve wikilinks.
+fretish: when agent_discovery_requested the cli shall always satisfy (arg_count > 0 => ((help_text_emitted | structured_error_emitted) & !sidecar_file_required))
+description: Help text and structured errors shall come from the binary. The CLI shall not read AGENTS.md or SKILL.md to build help or errors.
 formalization_strategy: fretish
 informal_verification:
     method: ""
     evidence: ""
     verified: false
-parent: SYS-REQ-260821-QF1J
-component: serve
-rationale: The browser is a view of the filesystem. The HTTP handlers shall call the shared application layer.
+parent: SYS-REQ-260821-8FKR
+component: cli
+rationale: An agent shall operate the CRM from help and errors alone.
 tags: []
 variables:
-    - remaining_ui_requested
-    - listen_port
-    - record_view_rendered
-    - record_editor_saved
-    - search_page_shown
-    - board_filters_applied
-    - attachment_served
-    - wikilink_resolved
-    - ui_request_rejected
+    - agent_discovery_requested
+    - arg_count
+    - help_text_emitted
+    - structured_error_emitted
+    - sidecar_file_required
 traces:
     satisfies:
-        - SYS-REQ-260821-QF1J
-    reviewed_at: "2026-08-21T07:46:50.897543Z"
+        - SYS-REQ-260821-8FKR
+    reviewed_at: "2026-08-21T07:46:42.728478Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:650160abf68adbf2a29803c8f0f5d04878259a30aa0e8b1877d14b8d28fb281e
+    reviewed_fingerprint: sha256:d759693b8ed2c9537c49a609c551c220862f8ebb4809c8402729f74bf1d6de27
     review_history:
-        - reviewed_at: "2026-08-21T06:37:19.851143Z"
+        - reviewed_at: "2026-08-21T07:30:52.368845Z"
           reviewed_by: agent:grok
           method: inspection
-          rationale: Evidence-cited review of remaining UI software traces.
+          rationale: Help and errors come from the binary without sidecar files.
           source: proof trace review --citation
           citations:
             - docs/phase1.md
-            - internal/app/remaining.go
-            - internal/markdown/markdown.go
-            - internal/markdown/markdown_test.go
-            - internal/serve/remaining_test.go
-            - internal/serve/serve.go
-            - internal/wikilink/wikilink.go
-            - internal/wikilink/wikilink_test.go
-        - reviewed_at: "2026-08-21T07:46:50.897543Z"
+            - internal/cli/cli.go
+            - internal/cli/help.go
+            - internal/cli/help_test.go
+            - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
+        - reviewed_at: "2026-08-21T07:46:42.728478Z"
           reviewed_by: agent:grok
           method: inspection
           rationale: manual trace review via proof trace review
           source: proof trace review --citation
           citations:
             - docs/phase1.md
-            - internal/app/remaining.go
-            - internal/markdown/markdown.go
-            - internal/markdown/markdown_test.go
-            - internal/serve/remaining_test.go
-            - internal/serve/serve.go
-            - internal/wikilink/wikilink.go
-            - internal/wikilink/wikilink_test.go
-            - specs/system/requirements/SYS-REQ-260821-QF1J.req.yaml
+            - internal/cli/cli.go
+            - internal/cli/help.go
+            - internal/cli/help_test.go
+            - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
+    components:
+        - cli
+        - cli
 verification:
     assurance_level: E
     formalization_status: valid
@@ -72,28 +64,12 @@ verification:
             - system_owner
         reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:b5763ba10877f2fd3f9958ac4b8bb1d3de17a7befa5637f7a1ca22681d230018
+        fingerprint: sha256:e15db196d55f46b312527dc1553b20c38979c7079e1563213b172206fb4d5ee9
         ai_generated: false
         motivation:
             kind: unchanged
             rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
         motivation_history:
-            - kind: chg
-              ref: CHG-260821-G2PS
-              superseded_at: "2026-08-21T07:30:30Z"
-              superseded_by: agent:grok
-            - kind: chg
-              ref: CHG-260821-DFVQ
-              superseded_at: "2026-08-21T07:33:39Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after adding obligation classes and not_modeled notes without changing the required behavior.
-              superseded_at: "2026-08-21T07:33:54Z"
-              superseded_by: agent:grok
-            - kind: unchanged
-              rationale: Re-attest after grading obligation worst-case prose without changing required behavior.
-              superseded_at: "2026-08-21T07:39:06Z"
-              superseded_by: agent:grok
             - kind: chg
               ref: CHG-260821-DFVQ
               superseded_at: "2026-08-21T07:41:10Z"
@@ -103,49 +79,59 @@ verification:
               superseded_at: "2026-08-21T07:42:37Z"
               superseded_by: agent:grok
     not_modeled:
-        - predicate: i >= len(row)
+        - predicate: 1 < len(args)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: i < len(args)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(args)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(c.Examples)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(c.Flags)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(cats)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(created)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
         - predicate: len(d.Widgets)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(line)
+        - predicate: len(filtered)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(parts) < 2
+        - predicate: len(ids)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(parts) >= 3
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
         - predicate: len(parts)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(recs)
+        - predicate: len(rest) < 1
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rels)
+        - predicate: len(rest) < 2
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(row)
+        - predicate: len(rest) < 3
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rows) == 0
+        - predicate: len(rest) == 1
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rows)
+        - predicate: len(rest) >= 2
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(rows[0])
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(sets) == 0
+        - predicate: len(rest)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
         - predicate: len(sets)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(vs) > 0
-          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
-        - predicate: len(vs)
+        - predicate: len(snap.Records)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: agent:grok
-    created_at: "2026-08-21T06:17:31Z"
+    created_at: "2026-08-21T07:22:55Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:42:38Z"
+    last_modified_at: "2026-08-21T07:42:37Z"
 obligation_checklist:
     - nominal
 obligation_hazards:
     - class: nominal
-      worst_case: The record view omits a field, so the operator edits the wrong file.
-      severity: low
+      worst_case: Help or errors read AGENTS.md, so a missing sidecar file blocks agent discovery.
+      severity: medium
 hazard_review:
-    reviewed_at: "2026-08-21T07:38:54Z"
+    reviewed_at: "2026-08-21T07:29:46Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
@@ -155,17 +141,29 @@ hazard_review:
             - nominal
         - category: property
           disposition: not_applicable
-          rationale: This requirement is a CLI or HTTP contract, not a timing or concurrency property.
+          rationale: Help does not own a timing or concurrency property.
         - category: domain
           disposition: not_applicable
-          rationale: Filesystem and HTTP sinks are owned by store and serve children, not this obligation class.
+          rationale: Help and errors come from the binary, not a filesystem sidecar.
         - category: structural
           disposition: not_applicable
           rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+interface:
+    caller: cli
+    callee: cli
+    type: function_call
+    signature: CLI.Help() -> (text, json)
+    producer: cli
+    consumer:
+        - cli
+    owner: team:crm
+    version: v1.0.0
+    compatibility_policy: semver-lax
+    risk_tier: 3
 lifecycle:
     change_history:
-        - date: "2026-08-21T06:29:48Z"
+        - date: "2026-08-21T07:30:22Z"
           from: draft
           to: review
-          reason: '[CHG-260821-G2PS] Implemented remaining CLI, UI, and APE surfaces'
+          reason: '[CHG-260821-DFVQ] Help and structured errors are implemented and ready for approval.'
           changed_by: agent:grok

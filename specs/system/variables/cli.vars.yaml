@@ -119,6 +119,34 @@ variables:
       type: bool
       direction: output
       description: Decide condition remaining CLI command rejected.
+    - name: agent_discovery_requested
+      type: bool
+      direction: input
+      description: Decide condition the operator asked for help or a failed JSON command needs a structured error.
+    - name: help_text_emitted
+      type: bool
+      direction: output
+      description: Decide condition the CLI wrote help text.
+    - name: structured_error_emitted
+      type: bool
+      direction: output
+      description: Decide condition the CLI wrote a structured JSON error.
+    - name: global_help_emitted
+      type: bool
+      direction: output
+      description: Decide condition the CLI wrote the full command list.
+    - name: command_help_emitted
+      type: bool
+      direction: output
+      description: Decide condition the CLI wrote help for one command.
+    - name: agent_sidecar_written
+      type: bool
+      direction: output
+      description: Decide condition the CLI wrote AGENTS.md or SKILL.md.
+    - name: sidecar_file_required
+      type: bool
+      direction: output
+      description: Decide condition help or errors need AGENTS.md or SKILL.md.
 domain:
     mutex:
         - name: output_mode

@@ -1,0 +1,11 @@
+id: REVIEW-20
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T07:33:39Z"
+subject: SW-REQ-260820-NA06
+decision: approved
+comment: KnownType accepts a widget type. SlotCount bounds the layout. Project fills widgets or placeholders. FRETish uses layout_slot_count and widget_type_known.
+citations:
+    - internal/dashboard/dashboard.go:146@KnownType
+    - internal/dashboard/dashboard.go:157@SlotCount
+    - internal/dashboard/dashboard.go:288@Project

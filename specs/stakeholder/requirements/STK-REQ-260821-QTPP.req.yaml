@@ -16,9 +16,9 @@ rationale: An agent needs deterministic file mutations. The CLI shall return sta
 tags: []
 variables: []
 traces:
-    reviewed_at: "2026-08-21T06:37:19.338344Z"
+    reviewed_at: "2026-08-21T07:46:03.555944Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:a7b6c75b44ac643b9ae20e60f342d30a3a515056548e2401f89da43f546a2455
+    reviewed_fingerprint: sha256:8b4a1d6f9d56210ae43c4a006a6d44ecd05b1e1a235966de5bf8b58a904a7dbc
     review_history:
         - reviewed_at: "2026-08-21T06:37:19.338344Z"
           reviewed_by: agent:grok
@@ -28,6 +28,15 @@ traces:
           citations:
             - docs/phase1.md
             - internal/app/remaining_test.go
+        - reviewed_at: "2026-08-21T07:46:03.555944Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/remaining_test.go
+            - internal/cli/acceptance_test.go
 verification:
     assurance_level: E
     formalization_status: none
@@ -37,18 +46,69 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:21Z"
+        reviewed_at: "2026-08-21T07:47:52Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:98595ce6085b335eda66bda8b5f525435e8eeb7468292e365a594e24151cb764
+        fingerprint: sha256:9d601c2762414c2d651b4d0eaea6b06cf08f2b25dfc70dc61184e558b854ea5f
         ai_generated: false
         motivation:
-            kind: chg
-            ref: CHG-260821-G2PS
+            kind: unchanged
+            rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+        motivation_history:
+            - kind: chg
+              ref: CHG-260821-G2PS
+              superseded_at: "2026-08-21T07:30:22Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
 history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:03Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:21Z"
+    last_modified_at: "2026-08-21T07:47:52Z"
+obligation_checklist:
+    - nominal
+    - error_handling
+obligation_hazards:
+    - class: error_handling
+      worst_case: A failed mutation is emitted as a generic crash, so agents retry blindly and lose data.
+      severity: medium
+    - class: nominal
+      worst_case: A mutation command returns unstructured text, so agents cannot parse the failure and overwrite work.
+      severity: medium
+hazard_review:
+    reviewed_at: "2026-08-21T07:38:56Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: This requirement is a CLI or HTTP contract, not a timing or concurrency property.
+        - category: domain
+          disposition: not_applicable
+          rationale: Filesystem and HTTP sinks are owned by store and serve children, not this obligation class.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+acceptance_review:
+    reviewed_at: "2026-08-21T07:35:00Z"
+    reviewed_by: agent:grok
+    disposition: reviewed
+    notes: Acceptance criteria are witnessed by remaining CLI and UI tests.
+stakeholder:
+    persona: agent_operator
+    story: As an agent_operator, I want CLI mutations so that I can edit records without a sidecar file.
+    acceptance_criteria:
+        - id: AC-001
+          text: crm edit, delete, link, ingest, export, and import succeed or return structured JSON errors.
+          verification_method: test
+          derived_reqs:
+            - SYS-REQ-260821-JYEJ
 lifecycle:
     change_history:
         - date: "2026-08-21T06:29:48Z"

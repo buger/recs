@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when context_requested the context shall always satisfy (relation_count >= 0 => ((seed_record_loaded & relations_resolved & related_records_assembled) | context_rejected))
+fretish: when context_requested the context shall always satisfy (((relation_count >= 0) & (relation_count <= 256)) => ((seed_record_loaded & relations_resolved & related_records_assembled) | context_rejected))
 description: The context component shall load a seed record, resolve at most 256 related ids, and assemble related records.
 formalization_strategy: fretish
 informal_verification:
@@ -19,6 +19,21 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-0TQX
+    reviewed_at: "2026-08-21T07:46:49.618072Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:1d9dc4b4c77a2ced9234352f5c5de40dedd7eb2ca4b576ed0068da4da8c831e5
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:49.618072Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/contextpkg/context.go
+            - internal/contextpkg/context_test.go
+            - internal/index/index_test.go
+            - specs/system/requirements/SYS-REQ-260820-0TQX.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -28,18 +43,23 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:30:30Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:17da89cf5152c1ca71ade429c9c55d47d9defab5a55b32bbf2d6a2e32a2ac42e
+        fingerprint: sha256:cc0ce93f3b8c5e8a2aa18ebe8cc86638d1bbb3910dd638cc97e3edf5dba9a4b4
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            kind: chg
+            ref: CHG-260821-DFVQ
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:30:30Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:30:30Z"
 obligation_checklist:
     - error_handling
     - nominal

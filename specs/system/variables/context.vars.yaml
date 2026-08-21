@@ -27,3 +27,6 @@ variables:
       range:
         max: 256
         min: 0
+no_interface:
+    declared: true
+    reason: This component is an internal library called only through the shared app layer; CLI and serve INT-REQs already own the operator-facing boundary.

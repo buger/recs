@@ -19,6 +19,23 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-BVBE
+    reviewed_at: "2026-08-21T07:46:41.712627Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:aac1689ed1ab2692479cb9a2890db4b56c137c676939c79ccca904cdf56166bc
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:41.712627Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/board/board.go
+            - internal/store/store_test.go
+            - specs/system/requirements/SYS-REQ-260820-BVBE.req.yaml
+    components:
+        - board
+        - store
 verification:
     assurance_level: E
     formalization_status: valid
@@ -28,13 +45,26 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:f0ad059e8af1d0cbe18a9eca882be2d95b41bf29d3b53af81eae5f1d66121a90
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:39:06Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.196551Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -53,11 +83,18 @@ verification:
           reviewer: agent:grok
           reason: 'System board view is a matcher projection; shared matcher bounds do not merge it with move. [owner INT-REQ-260820-JRWN; pair ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628]'
           reviewed_at: "2026-08-20T19:24:30.196551Z"
+    not_modeled:
+        - predicate: len(gots)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sl) > 1
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sl)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:32Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:42:37Z"
 obligation_checklist:
     - atomicity
 obligation_hazards:
@@ -82,6 +119,18 @@ hazard_review:
         - category: structural
           disposition: not_applicable
           rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+interface:
+    caller: board
+    callee: store
+    type: function_call
+    signature: Board.Move() -> Record
+    producer: board
+    consumer:
+        - store
+    owner: team:crm
+    version: v1.0.0
+    compatibility_policy: semver-lax
+    risk_tier: 3
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:52Z"

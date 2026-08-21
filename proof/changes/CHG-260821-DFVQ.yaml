@@ -1,0 +1,44 @@
+id: CHG-260821-DFVQ
+type: feature
+title: Help and errors are the agent interface
+intent: Remove SKILL/AGENTS sidecar files. Agents discover crm through help and structured errors.
+problem: Agents were taught by AGENTS.md, SKILL.md, and crm agent install. Those sidecar files are not the interface. Help text and structured JSON errors must be complete enough that an agent can operate the CRM without a skill file.
+non_goals:
+    - No Gmail, cloud sync, or authentication
+    - Do not ship AGENTS.md, SKILL.md, or crm agent install
+owner: Leonid Bugaev
+requirements:
+    - SYS-REQ-260821-8FKR
+    - SW-REQ-260821-FCGM
+    - INT-REQ-260821-BSH3
+affects:
+    - SYS-REQ-260821-8FKR
+    - SW-REQ-260821-FCGM
+    - INT-REQ-260821-BSH3
+    - SW-REQ-260820-8PMR
+    - SW-REQ-260820-V48V
+    - SW-REQ-260821-82BA
+    - SW-REQ-260821-AC3S
+    - SYS-REQ-260821-AFPN
+    - SW-REQ-260820-NA06
+    - STK-REQ-260820-V5ZD
+    - STK-REQ-260821-QTPP
+    - STK-REQ-260821-NTWY
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: draft
+history:
+    - at: "2026-08-21T07:22:38Z"
+      by: agent:grok
+      action: created
+    - at: "2026-08-21T07:23:56Z"
+      by: agent:grok
+      action: edit
+      detail: add-requirement,add-affects
+    - at: "2026-08-21T07:30:30Z"
+      by: agent:grok
+      action: edit
+      detail: add-affects

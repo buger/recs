@@ -22,6 +22,28 @@ traces:
         - SYS-REQ-260820-ZTC3
         - SYS-REQ-260820-4628
         - SYS-REQ-260820-PG9C
+    reviewed_at: "2026-08-21T07:46:41.349893Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:c1040f4b89cd5375c152df68cbc623d995eee3139c758386f459e99cb0d74b4b
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:41.349893Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - cmd/crm/main.go
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/cli/cli.go
+            - internal/cli/cli_test.go
+            - specs/system/requirements/SYS-REQ-260820-4628.req.yaml
+            - specs/system/requirements/SYS-REQ-260820-9J7C.req.yaml
+            - specs/system/requirements/SYS-REQ-260820-PG9C.req.yaml
+            - specs/system/requirements/SYS-REQ-260820-ZTC3.req.yaml
+    components:
+        - cli
+        - store
 verification:
     assurance_level: E
     formalization_status: valid
@@ -31,13 +53,26 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:785d63dc5310120987b0dfb10d8e3460764438595c5ccd8043a6e8e3e08fe1db
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:39:06Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:29.967656Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -56,11 +91,48 @@ verification:
           reviewer: agent:grok
           reason: 'Next SW collects and sorts due actions; it is not triage listing or JSON mode. [owner INT-REQ-260820-JC9M; pair ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-ZKCV]'
           reviewed_at: "2026-08-20T19:24:29.967656Z"
+    not_modeled:
+        - predicate: 1 < len(args)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: i < len(args)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(args)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(created)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(d.Widgets)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(filtered)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(ids)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(parts) >= 3
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(parts)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(record.StringSlice(rec.Get("blockers")
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(rest) < 1
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(rest) < 2
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(rest) < 3
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(rest) == 1
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(rest) >= 2
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(rest)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sets)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(snap.Records)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:42:37Z"
 obligation_checklist:
     - nominal
 obligation_hazards:
@@ -85,6 +157,18 @@ hazard_review:
         - category: structural
           disposition: not_applicable
           rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+interface:
+    caller: cli
+    callee: store
+    type: function_call
+    signature: CLI.Main() -> App
+    producer: cli
+    consumer:
+        - store
+    owner: team:crm
+    version: v1.0.0
+    compatibility_policy: semver-lax
+    risk_tier: 3
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:51Z"

@@ -19,6 +19,20 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-7WT4
+    reviewed_at: "2026-08-21T07:46:46.225346Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:08ff819cffc98accb465aea89b1e3c5fbabc9b1833b79579e57f9f1a4a5a6900
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:46.225346Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/store/store.go
+            - internal/store/store_test.go
+            - specs/system/requirements/SYS-REQ-260820-7WT4.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -28,13 +42,22 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:08b17c13d1c11fa0c5065255b8a108cb4c70f7db3e7ef63fb42e290862c742b9
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.050143Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -48,11 +71,24 @@ verification:
           reviewer: agent:grok
           reason: 'System patch requires atomic rename or conflict; shared parse_budget does not merge it with create or init. [owner SW-REQ-260820-9C5Z; pair ambiguity|store|SW-REQ-260820-9C5Z|SYS-REQ-260820-2SQZ]'
           reviewed_at: "2026-08-20T19:24:30.050143Z"
+    not_modeled:
+        - predicate: len(fields) > 0
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fields)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs) == 0
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs.Enum) > 0
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs.Enum)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:42:38Z"
 obligation_checklist:
     - invariant_preservation
     - nominal

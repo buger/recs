@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-V5ZD
 component: validate
-rationale: Schemas are optional. Missing schemas skip checks. Present schemas report violations.
+rationale: Schemas are optional. Missing schemas skip checks. Present schemas report violations. Refined by SW-REQ-260820-8PMR.
 tags: []
 variables: []
 references:
@@ -22,6 +22,21 @@ references:
 traces:
     satisfies:
         - STK-REQ-260820-V5ZD
+    reviewed_at: "2026-08-21T07:46:57.178858Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:0fda4334a4ece93e2bc3fdffa06ba040caa4b3133d773344406b4727b024c5f1
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:57.178858Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/validate/validate.go
+            - internal/validate/validate_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-V5ZD.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -31,18 +46,27 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:952a91cdf4cf7017ad0972bfec47ce37dba484c7c4630b4c98dab639e51fcb0c
+        fingerprint: sha256:144951e6eab4efe97e6d88ea7b257da7b43f77c02870f89c6a7096e77591eb05
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:39:14Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - boundary
     - empty_input

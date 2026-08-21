@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-KAGT
 component: store
-rationale: Folder moves break links and create Git churn. Status lives in metadata.
+rationale: Folder moves break links and create Git churn. Status lives in metadata. Refined by SW-REQ-260820-9C5Z.
 tags: []
 variables: []
 references:
@@ -22,6 +22,20 @@ references:
 traces:
     satisfies:
         - STK-REQ-260820-KAGT
+    reviewed_at: "2026-08-21T07:46:54.170758Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:4088657d56d175b07261560e8e3f7ea8c0b4e50429fccb3d9586d607517f137a
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:54.170758Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/store/store.go
+            - internal/store/store_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-KAGT.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -31,18 +45,27 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:f68f3222b85859c0875544cdf555129074eb488c7bd215e6777ea8c56175e813
+        fingerprint: sha256:b9bcb87d7d07ec91653b763a20d54f5f100a1dc897f5eb6fbfd2c4d4f08bc491
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:09Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - invariant_preservation
     - nominal

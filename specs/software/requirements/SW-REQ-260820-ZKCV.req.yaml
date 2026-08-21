@@ -19,6 +19,20 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-5C9D
+    reviewed_at: "2026-08-21T07:46:50.580206Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:0898f9a2bdbb2d0d4c5ed03b4a6aa234cd0caa91f30cc9752303fd9fead81df8
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:50.580206Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/cli/cli_test.go
+            - specs/system/requirements/SYS-REQ-260820-5C9D.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -28,13 +42,22 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:ffb7d30bc6ee675c983bdb2fc83058d49317705fd2ccc4bcc519763aa6594f1f
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.597544Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -58,11 +81,14 @@ verification:
           reviewer: agent:grok
           reason: 'System JSON mode is the machine output contract; shared arg_count does not merge it with next or triage. [owner SW-REQ-260820-ZKCV; pair ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260820-PG9C]'
           reviewed_at: "2026-08-20T19:24:30.597544Z"
+    not_modeled:
+        - predicate: len(record.StringSlice(rec.Get("blockers")
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:30Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:42:38Z"
 obligation_checklist:
     - empty_input
     - nominal

@@ -4,7 +4,7 @@ reviewer: agent:grok
 reviewed_at: "2026-08-20T19:27:58Z"
 subject: SW-REQ-260820-YB5C
 decision: approved
-comment: Main scans args for --json and then write() encodes a JSON object or the human string. arg_count is len(args); 256 is a model ceiling. --json on list/show/triage/next is covered by TestCLIJSONAndTriage.
+comment: Main scans args for --json and then write() encodes a JSON object or the human string. arg_count is len(args). --json on list/show/triage/next is covered by TestCLIJSONAndTriage.
 citations:
     - internal/cli/cli.go:20@Main
     - internal/cli/cli_test.go:19@TestCLIJSONAndTriage

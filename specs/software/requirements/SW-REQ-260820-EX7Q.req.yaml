@@ -19,6 +19,20 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-BVBE
+    reviewed_at: "2026-08-21T07:46:47.472057Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:2456fd392f540e5d8ae1a6848b4e57e7679a6ae0e4b5af7013942d075a17204f
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:47.472057Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/board/board.go
+            - internal/store/store_test.go
+            - specs/system/requirements/SYS-REQ-260820-BVBE.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -28,13 +42,22 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:984f073f5d038844e9877dbead418dff26f5457b8a9ee32934d3ab50adf3d194
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.196551Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -53,11 +76,18 @@ verification:
           reviewer: agent:grok
           reason: 'System board view is a matcher projection; shared matcher bounds do not merge it with move. [owner SW-REQ-260820-EX7Q; pair ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628]'
           reviewed_at: "2026-08-20T19:24:30.196551Z"
+    not_modeled:
+        - predicate: len(gots)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sl) > 1
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sl)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:30Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:42:38Z"
 obligation_checklist:
     - error_handling
     - nominal

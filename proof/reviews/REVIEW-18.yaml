@@ -1,0 +1,10 @@
+id: REVIEW-18
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T07:33:39Z"
+subject: SW-REQ-260821-82BA
+decision: approved
+comment: Handler serves record view, editor, search, and board routes. View assembles one record for the UI. FRETish uses remaining_ui_requested and listen_port >= 1.
+citations:
+    - internal/serve/serve.go:32@Handler
+    - internal/app/remaining.go:452@View

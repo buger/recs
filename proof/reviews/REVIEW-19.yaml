@@ -1,0 +1,10 @@
+id: REVIEW-19
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T07:33:39Z"
+subject: SW-REQ-260821-AC3S
+decision: approved
+comment: BuildAPE returns the wrapper script path. The FRETish success path requires rc <= 0 with cosmocc_available and ape_binary_produced.
+citations:
+    - ape/wrapper.c:1
+    - internal/app/remaining_test.go:164@TestAPEPackagingFilesExist

@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-KAGT
 component: store
-rationale: A workspace needs crm.yaml, records, boards, inbox, attachments, templates, and derived cache directories.
+rationale: A workspace needs crm.yaml, records, boards, inbox, attachments, templates, and derived cache directories. Refined by SW-REQ-260820-MQF2.
 tags: []
 variables: []
 references:
@@ -23,6 +23,23 @@ traces:
     satisfies:
         - STK-REQ-260820-T8AZ
         - STK-REQ-260820-KAGT
+    reviewed_at: "2026-08-21T07:46:56.179727Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:f8cb72e29841946a915e638ca2c6d8ed32a4cab016cbde4469b2335186710df4
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:56.179727Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/defaults/embed.go
+            - internal/store/store.go
+            - internal/store/store_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-KAGT.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -32,13 +49,22 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:0bca2fad07e58111c2cf562e7397b01ad9084b49b0deeab5f7ff751b88ce5a49
+        fingerprint: sha256:ce37027c6c0222f3064cb0ede1cc1d7229637af1de3d0321476e79dd68c10d78
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -66,7 +92,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:07Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - empty_input
     - error_handling

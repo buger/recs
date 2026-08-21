@@ -1,0 +1,400 @@
+schema_version: 1
+branch: main
+generated_at: "2026-08-21T07:45:23Z"
+reviews:
+    - requirement: INT-REQ-260820-JC9M
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:c1040f4b89cd5375c152df68cbc623d995eee3139c758386f459e99cb0d74b4b
+      approval_fingerprint: sha256:785d63dc5310120987b0dfb10d8e3460764438595c5ccd8043a6e8e3e08fe1db
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: INT-REQ-260820-JC9M
+      artifact: internal/cli/cli.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:c1040f4b89cd5375c152df68cbc623d995eee3139c758386f459e99cb0d74b4b
+      approval_fingerprint: sha256:785d63dc5310120987b0dfb10d8e3460764438595c5ccd8043a6e8e3e08fe1db
+      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: INT-REQ-260820-NHBY
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:12066aa67d3c3d125daf72c9c50ec730a8a14c4b1dec8330c595f6e299b640e3
+      approval_fingerprint: sha256:cac58ab190d2ad646e50ff8c259397ec980b47463269469fca0553d8c047e834
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: INT-REQ-260821-BSH3
+      artifact: internal/cli/cli.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:d759693b8ed2c9537c49a609c551c220862f8ebb4809c8402729f74bf1d6de27
+      approval_fingerprint: sha256:e15db196d55f46b312527dc1553b20c38979c7079e1563213b172206fb4d5ee9
+      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: INT-REQ-260821-BSH3
+      artifact: internal/cli/help.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:d759693b8ed2c9537c49a609c551c220862f8ebb4809c8402729f74bf1d6de27
+      approval_fingerprint: sha256:e15db196d55f46b312527dc1553b20c38979c7079e1563213b172206fb4d5ee9
+      artifact_fingerprint: sha256:daaae7f55e1bd4dd1e8da450a2ba93cb94745ad0a1c748d763e3f3508908c2c5
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-6EVX
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:a14cba78a469fb850b9d29ab75b9dcb7ea50f396e04854dc9b9948824b1fa28f
+      approval_fingerprint: sha256:9da8f2ec5c6194ba5af9ea77b2538c494dae1d09a29a77aaf497e0886f683a62
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-D5WE
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:5f9ec294c75c3aac789ad383d0942e27f513b2b398d1868ce07e96a80d0c338c
+      approval_fingerprint: sha256:cb986e3f694a25e6da4cf9291e507e6779df8cba5e969f2c99baecd6af0df6f0
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-MQF2
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:658654f1236691894601ca4fe14fe93cf881485655b5af3b37e5c0f707f0a762
+      approval_fingerprint: sha256:b5e573d7cb72629ddf9ffb426101d43e96f77de1bdfd68c141e205df49c48fa5
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-N02Y
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:6e7c8c93b8d64bf7f028593294bc13759596eccf9a10960ff9a76304f1f3968c
+      approval_fingerprint: sha256:f1428172a40e55b7a98fa3da462cd4f91203f5990177672742bfc461167027d8
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-NA06
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:97dae40588bdaa983422d5aec8c38c54fe0b4c7cd5c5f284b33b124e2b8369fe
+      approval_fingerprint: sha256:2d9096abd76dddf3af58344f505f855b5e6525509163c06a582c87bf6b571f5d
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-NBGR
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:eee17b7ee5ce31a0fa308e6f02bd25b877daca5646fb1b303478a412f9a0b527
+      approval_fingerprint: sha256:a94ce32d25c2ae99fcb1e1678b10fedef9225ed9810b44a6c6b5ff85a89bffea
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-X37F
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:19d2a5c45ebdd21ed50fc9855c5fe7b5948edcb0ec62d0f918ac8b876b945c8a
+      approval_fingerprint: sha256:0a37e8918c457e6f6319959ff821947a8bd7ef9493efecf763b6dfe88c199cab
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-YB5C
+      artifact: internal/cli/cli.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:03b94ea566302fa2d93a345f7fe1bab2395a3f9d1e55bf32b98ed6c5f9531d4a
+      approval_fingerprint: sha256:721a3e29c7dd0c57ce3f6b324fac314ae9285526a11f5ac88b5a744bc1543a35
+      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-ZKCV
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:0898f9a2bdbb2d0d4c5ed03b4a6aa234cd0caa91f30cc9752303fd9fead81df8
+      approval_fingerprint: sha256:ffb7d30bc6ee675c983bdb2fc83058d49317705fd2ccc4bcc519763aa6594f1f
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260821-FCGM
+      artifact: internal/cli/cli.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:3f1c46a73d79a33048b6487eadd43db42458eaf76e2739db9e33591184c40a1e
+      approval_fingerprint: sha256:dd7af75fbfa6ff5b9b0ac72daaebbcd013ff1dc1e5137c72a11b5d977c54cf39
+      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260821-FCGM
+      artifact: internal/cli/help.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:3f1c46a73d79a33048b6487eadd43db42458eaf76e2739db9e33591184c40a1e
+      approval_fingerprint: sha256:dd7af75fbfa6ff5b9b0ac72daaebbcd013ff1dc1e5137c72a11b5d977c54cf39
+      artifact_fingerprint: sha256:daaae7f55e1bd4dd1e8da450a2ba93cb94745ad0a1c748d763e3f3508908c2c5
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-0TQX
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:6ef3355be2b2fcb3b2dc6f803623411144e5a943e3e2b1f740b140c015c2ca5b
+      approval_fingerprint: sha256:ad13d090a361de0e6d077e88d53140f7dfe194945bd42f176fa1605830b03df3
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-2SQZ
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:44f2d2f439e5ea9323b714580a791870fffc6c47ad594d4c634c22dd1a525e17
+      approval_fingerprint: sha256:78b1adcc5a6719716495d93304c592298bbaf74603ec6a1578b1cde22142d03a
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-456X
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:438705951f0d2aa764850292c3bccf063baa0a727043c6322fb56146997e8121
+      approval_fingerprint: sha256:938a517797263a4c29708d4844e70c4ef2c98f30b577cfad784799e0b77d9405
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-4628
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:1921bb0bc1c80f96313d102fe08efd8b1a7f80e01c82b4c68f64ba3a426b0ff2
+      approval_fingerprint: sha256:5a42f9f9fe317036008ca5c2ff9fba0e12e941a828df433b1feb43f2e861648b
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-5C9D
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:3253ff652f9755748c6b553b20273978ead2570147e48d27d3a9abe70ed97724
+      approval_fingerprint: sha256:9dbe722e272d93f68eab99ea60628628822dc8a588bd4290fd705f842edba19f
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-9J7C
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:72b9d0df4ad9b587dc51fdaccc3648d5f7f237ddc4119721e2ad01d9cd5296a1
+      approval_fingerprint: sha256:20de6da20d87eda58c7d7bc4b666af4de30e0d7a77a037a0f158b8f24dee1aa7
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-BVBE
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:72903a21a43dc15913fbae2657a2b76569b588827ce6cba1b4e6cc8bb2bbc227
+      approval_fingerprint: sha256:b6035b2d1f0df4bae0aaf08f05721f158270a1025828272d78b8b998e92a447b
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-DCG4
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:173d82bcf32a99c1133df5932de2a2d20c59d1e0d810ba1fe4070eda22fb9f8f
+      approval_fingerprint: sha256:5faac7e08a49ccec486671e89539f2a812736c0394c0680af87a76d09a09f932
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-HJPH
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:b7848e33ff8f02890eb5a61491d2941cdd682d055cafe589cc0722b9c51cc0e1
+      approval_fingerprint: sha256:ba9a438695e5efc7ab03f473f82805614e79fe328dd1e9dbcc0c10811eae8e05
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-KJ34
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:f8cb72e29841946a915e638ca2c6d8ed32a4cab016cbde4469b2335186710df4
+      approval_fingerprint: sha256:0bca2fad07e58111c2cf562e7397b01ad9084b49b0deeab5f7ff751b88ce5a49
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-KJ34
+      artifact: internal/defaults/embed.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:f8cb72e29841946a915e638ca2c6d8ed32a4cab016cbde4469b2335186710df4
+      approval_fingerprint: sha256:0bca2fad07e58111c2cf562e7397b01ad9084b49b0deeab5f7ff751b88ce5a49
+      artifact_fingerprint: sha256:0e2e45e481b111005acbe473731137fe3cfb0f266ffc433d35b94a43d321dced
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-PG9C
+      artifact: internal/cli/cli.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:03df4e4ea26c8e449bab76f346de818ae92d3cf92199f8777f96b2b456a9ce51
+      approval_fingerprint: sha256:dd10436f85d393c1760ae9e655c0793331b85a7aa9d1ff93bb178ee609677cd3
+      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-Q8GR
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:4dd11ef04c6a5dfe9553cdc11bb39b0941782912a5fa18fab66f7ec684d1a0c5
+      approval_fingerprint: sha256:2254fc63a4c44c0f4b963e5ec6d7edddc1ad95dfff56b529d4252a778e5f51ac
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-YWV4
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:0fda4334a4ece93e2bc3fdffa06ba040caa4b3133d773344406b4727b024c5f1
+      approval_fingerprint: sha256:952a91cdf4cf7017ad0972bfec47ce37dba484c7c4630b4c98dab639e51fcb0c
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-ZTC3
+      artifact: internal/app/app.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:e3006e9e3d56c20692235d05bad2218488e2130ecde5655c431e339155dcdabe
+      approval_fingerprint: sha256:d45b35d92f2a365c2d3b1e47a762156dddf9fe009730b6e64d3d46d735d96ea4
+      artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260821-8FKR
+      artifact: internal/cli/cli.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:5c1f2bf3e3d9c7ed94da3aa13df749d2482e7be8c0f689712db9ecb2219c2d1b
+      approval_fingerprint: sha256:689e73ee45a3cad1030569a57294ed6501a2975f64fb9b71d3f5bc69912e721b
+      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
+      reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260821-8FKR
+      artifact: internal/cli/help.go
+      decision: no-authored-change
+      change_type: feature
+      change_ref: CHG-260821-DFVQ
+      reviewer: buger
+      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      base: HEAD~1
+      requirement_fingerprint: sha256:5c1f2bf3e3d9c7ed94da3aa13df749d2482e7be8c0f689712db9ecb2219c2d1b
+      approval_fingerprint: sha256:689e73ee45a3cad1030569a57294ed6501a2975f64fb9b71d3f5bc69912e721b
+      artifact_fingerprint: sha256:daaae7f55e1bd4dd1e8da450a2ba93cb94745ad0a1c748d763e3f3508908c2c5
+      reviewed_at: "2026-08-21T07:45:23Z"

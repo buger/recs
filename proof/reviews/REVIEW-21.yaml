@@ -1,0 +1,10 @@
+id: REVIEW-21
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T07:33:39Z"
+subject: SW-REQ-260820-EJVT
+decision: approved
+comment: Handler serves the dashboard gallery and widget view from YAML files. Tests cover the API and UI routes. FRETish matches the dashboard request path.
+citations:
+    - internal/serve/serve.go:32@Handler
+    - internal/serve/serve_test.go:165@TestDashboardAPIAndUI

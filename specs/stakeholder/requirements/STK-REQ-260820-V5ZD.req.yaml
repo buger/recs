@@ -1,4 +1,3 @@
-# derived: SYS-REQ-260821-JYEJ
 id: STK-REQ-260820-V5ZD
 version: 1
 status: approved
@@ -19,7 +18,20 @@ variables: []
 references:
     - type: document
       id: README.md
-traces: {}
+traces:
+    reviewed_at: "2026-08-21T07:46:02.741417Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:98e0e38ccfa392b70d37e297cb592fcb769ffa3cb569997e5598140a39a0ca84
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:02.741417Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/acceptance_test.go
+            - internal/cli/help_test.go
 verification:
     assurance_level: E
     formalization_status: none
@@ -29,18 +41,31 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:f01c0098deda8ddab8b68d64602508d88a00d71c0174599a1c069536e6b3e787
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:30:22Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:39:14Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T18:59:33Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - boundary
     - determinism
@@ -108,6 +133,12 @@ stakeholder:
             - SYS-REQ-260820-YWV4
             - SYS-REQ-260820-0TQX
             - SYS-REQ-260820-PG9C
+            - SYS-REQ-260821-JYEJ
+        - id: AC-002
+          text: crm --help lists every command and a failed --json command returns an object with ok, error, and message.
+          verification_method: test
+          derived_reqs:
+            - SYS-REQ-260821-8FKR
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:52Z"

@@ -22,9 +22,11 @@ variables:
     - shared_record_model_used
     - command_rejected
 traces:
-    reviewed_at: "2026-08-21T06:37:20.26085Z"
+    satisfies:
+        - SYS-REQ-260821-JYEJ
+    reviewed_at: "2026-08-21T07:46:42.424252Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:fa865d2640cdadca80dcbaf4de92fd4e639a76385f3cf77b0133c425745885cc
+    reviewed_fingerprint: sha256:1fdb9f00c28cd4c8f313264b06f7e8166e8c57776e928262678e5233d66c9182
     review_history:
         - reviewed_at: "2026-08-21T06:37:20.26085Z"
           reviewed_by: agent:grok
@@ -36,6 +38,20 @@ traces:
             - internal/app/remaining.go
             - internal/app/remaining_test.go
             - internal/cli/remaining_test.go
+        - reviewed_at: "2026-08-21T07:46:42.424252Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/remaining.go
+            - internal/app/remaining_test.go
+            - internal/cli/remaining_test.go
+            - specs/system/requirements/SYS-REQ-260821-JYEJ.req.yaml
+    components:
+        - cli
+        - store
 verification:
     assurance_level: E
     formalization_status: valid
@@ -45,18 +61,100 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:21Z"
+        reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:7aa2c6f03ee515d161c4db1efd8a4ccc9c85e2154489aa978d59133e8398b88c
+        fingerprint: sha256:87beaf9693744067ace3b97727e8ebbf5d2eddcd2ac9bc178efb15a1e7e09a9c
         ai_generated: false
         motivation:
-            kind: chg
-            ref: CHG-260821-G2PS
+            kind: unchanged
+            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+        motivation_history:
+            - kind: chg
+              ref: CHG-260821-G2PS
+              superseded_at: "2026-08-21T07:30:30Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding satisfies links and acceptance-criteria derived_reqs without changing behavioral obligations.
+              superseded_at: "2026-08-21T07:33:39Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding obligation classes and not_modeled notes without changing the required behavior.
+              superseded_at: "2026-08-21T07:33:54Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after grading obligation worst-case prose without changing required behavior.
+              superseded_at: "2026-08-21T07:39:06Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+    not_modeled:
+        - predicate: i >= len(row)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(line) > 3
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(line)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(recs)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(rels)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(row)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(rows)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sets)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:41Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:21Z"
+    last_modified_at: "2026-08-21T07:42:37Z"
+obligation_checklist:
+    - error_handling
+    - nominal
+obligation_hazards:
+    - class: error_handling
+      worst_case: A shared mutation error is not returned to both surfaces, so one client retries blindly.
+      severity: medium
+    - class: nominal
+      worst_case: CLI and HTTP write different files, so agents and the UI diverge.
+      severity: medium
+hazard_review:
+    reviewed_at: "2026-08-21T07:38:53Z"
+    reviewed_by: agent:grok
+    reviewed_against_catalog_version: 1.9.1
+    categories:
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: This requirement is a CLI or HTTP contract, not a timing or concurrency property.
+        - category: domain
+          disposition: not_applicable
+          rationale: Filesystem and HTTP sinks are owned by store and serve children, not this obligation class.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+interface:
+    caller: cli
+    callee: store
+    type: function_call
+    signature: CLI.Remaining() -> App
+    producer: cli
+    consumer:
+        - store
+    owner: team:crm
+    version: v1.0.0
+    compatibility_policy: semver-lax
+    risk_tier: 3
 lifecycle:
     change_history:
         - date: "2026-08-21T06:29:48Z"

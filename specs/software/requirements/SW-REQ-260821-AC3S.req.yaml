@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when ape_build_requested the dist shall always satisfy ((cosmocc_available & host_os_supported & ape_binary_produced & native_blob_embedded & ape_runs_on_host) | ape_build_rejected)
+fretish: when ape_build_requested the dist shall always satisfy ((((rc <= 0) & (rc <= 255)) & cosmocc_available & host_os_supported & ape_binary_produced & native_blob_embedded & ape_runs_on_host) | ape_build_rejected)
 description: The APE build shall embed the host Go binary in a Cosmopolitan wrapper when cosmocc is present.
 formalization_strategy: fretish
 informal_verification:
@@ -23,10 +23,13 @@ variables:
     - native_blob_embedded
     - ape_runs_on_host
     - ape_build_rejected
+    - rc
 traces:
-    reviewed_at: "2026-08-21T06:37:20.089243Z"
+    satisfies:
+        - SYS-REQ-260821-AFPN
+    reviewed_at: "2026-08-21T07:46:51.728747Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:3ab6ed6b6bb6e8bb8e973eca21125a67a3fcc8c4e3a0145136444127ab410e42
+    reviewed_fingerprint: sha256:b7a9eae63c0e79ac923aa169121b288c0e787c73e233e7fe9d475facef0ad400
     review_history:
         - reviewed_at: "2026-08-21T06:37:20.089243Z"
           reviewed_by: agent:grok
@@ -38,6 +41,18 @@ traces:
             - docs/distribution.md
             - docs/phase1.md
             - internal/app/remaining_test.go
+        - reviewed_at: "2026-08-21T07:46:51.728747Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - ape/hello.c
+            - ape/wrapper.c
+            - docs/distribution.md
+            - docs/phase1.md
+            - internal/app/remaining_test.go
+            - specs/system/requirements/SYS-REQ-260821-AFPN.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -47,18 +62,34 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:21Z"
+        reviewed_at: "2026-08-21T07:39:06Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:78a90730962ad8fcaae93d385920829f7569ecea44f8dd238e5492aa3baddcb9
+        fingerprint: sha256:886985f6ab19d5a548b24b9bb8df7f7c33b56a6a76b7cf4f4067cfd4d46b32f8
         ai_generated: false
         motivation:
             kind: chg
-            ref: CHG-260821-G2PS
+            ref: CHG-260821-DFVQ
+        motivation_history:
+            - kind: chg
+              ref: CHG-260821-G2PS
+              superseded_at: "2026-08-21T07:30:30Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:33:39Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding obligation classes and not_modeled notes without changing the required behavior.
+              superseded_at: "2026-08-21T07:35:12Z"
+              superseded_by: agent:grok
+    not_modeled:
+        - predicate: rc == 0
+          reason: FRETish uses ranged int rc with rc <= 0; equality token is not valid FRETish syntax.
 history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:21Z"
+    last_modified_at: "2026-08-21T07:39:07Z"
 lifecycle:
     change_history:
         - date: "2026-08-21T06:29:48Z"

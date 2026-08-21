@@ -1,81 +1,20 @@
 checklist: onboard_v1
-updated_at: "2026-08-20T20:16:17Z"
+updated_at: "2026-08-21T07:22:12Z"
 steps:
     ac-sweep:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:33:32Z"
-        confirmed_by: agent:grok
-        note: 'All 4 STKs stamped acceptance_review=reviewed. Dedicated cli acceptance tests witness AC-001. Force checks pass: acceptance_criteria_witnessed, acceptance_witness_quality, spec_lint_acceptance_review_current.'
-        scope_key: crm
-        check_results:
-            - id: acceptance_criteria_witnessed
-              status: pass
-              at: "2026-08-20T19:33:32Z"
-            - id: acceptance_witness_quality
-              status: pass
-              at: "2026-08-20T19:33:32Z"
+        status: pending
     annotations-heavy:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:45:58Z"
-        confirmed_by: agent:grok
-        note: Triple-form obligation evidence on existing tests; obligation_witness_grounded pass (107 grounded, 22 coverage-cleared). Honest deferrals remain for invariant_preservation lemmas and concurrent race-lane profiles.
-        scope_key: crm
-        check_results:
-            - id: annotation_validity
-              status: pass
-              at: "2026-08-20T19:45:58Z"
-            - id: obligation_witness_grounded
-              status: pass
-              at: "2026-08-20T19:45:58Z"
+        status: pending
     coverage:
-        status: confirmed
-        confirmed_at: "2026-08-20T20:15:10Z"
-        confirmed_by: agent:grok
-        note: 'code_mcdc_coverage PASS: 375/375 decisions, 440/440 conditions, 0 incomplete functions (23 classified defensive ignores). mcdc_coverage PASS. mcdc_ignore_classified PASS. go test ./... green. Honest debt unchanged: 4 deferred obligations + 4 nominal exemptions.'
-        scope_key: crm
-        check_results:
-            - id: code_mcdc_coverage
-              status: pass
-              at: "2026-08-20T20:15:10Z"
-            - id: code_mcdc_measure
-              status: pass
-              at: "2026-08-20T20:15:10Z"
+        status: pending
     debt-standing:
-        status: confirmed
-        confirmed_at: "2026-08-20T20:16:17Z"
-        confirmed_by: agent:grok
-        note: 'Handoff to continuous pipeline. Standing honest debt (left in place): 4 deferred obligations (invariant_preservation lemmas on SYS-REQ-260820-7WT4/SW-REQ-260820-9C5Z; concurrent race-lane on SYS-REQ-260820-2SQZ/SW-REQ-260820-Q3C4) and 4 reviewer-stamped nominal exemptions. KI-1 Cosmopolitan APE packaging remains open/low/ship_with_known_issue. 5 residuals closed. code_mcdc_coverage 100% decisions/conditions. process_checklist should now be complete.'
-        check_results:
-            - id: known_issues_reviewed
-              status: pass
-              at: "2026-08-20T20:16:17Z"
-            - id: waivers_reviewed
-              status: pass
-              at: "2026-08-20T20:16:17Z"
+        status: pending
     hazard:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:41:28Z"
-        confirmed_by: agent:grok
-        note: 'Worst-case-first sweep on store/query/board/cli/serve/validate/index/context. Confirmed-novel: path traversal via id/type/board name, concurrent write without nested-lock split, unbounded HTTP body, localhost CSRF via Origin. Fixed in code+tests. Catalog ACCEPT with worst_case on file/CLI/HTTP classes (no DeFi). spec_lint_hazard_consequence and obligation_decomposition_complete green. Unfiled per sweep: report-only, no KI auto-file.'
-        scope_key: crm
-        check_results:
-            - id: spec_lint_hazard_consequence
-              status: pass
-              at: "2026-08-20T19:41:28Z"
+        status: pending
     history-mine:
-        status: confirmed
-        confirmed_at: "2026-08-20T20:15:56Z"
-        confirmed_by: agent:grok
-        note: 'Mined git log through ef8e9a1. Product behavior changes: ac26d14 (inbox/agent/templates/enum JSON — feature, existing CHG-260820-BVSR) and a6adf86 (path confinement, HTTP body bound, Origin CSRF — already residualized L-CRM-01..05 and obligation-hardened). Later commits are tests/specs/coverage, not new defects. problem_reports_reviewed PASS (no open DEFECT stubs fabricated). change_evidence_complete PASS. residual_kill_hygiene PASS (5). No P0 vectors.'
-        check_results:
-            - id: problem_reports_reviewed
-              status: pass
-              at: "2026-08-20T20:15:56Z"
-            - id: change_evidence_complete
-              status: pass
-              at: "2026-08-20T20:15:56Z"
+        status: pending
     init:
-        status: confirmed
+        status: not_applicable
         confirmed_at: "2026-08-20T19:09:25Z"
         confirmed_by: agent:grok
         note: proof.yaml exists; commands set to go test ./... and go build -o crm ./cmd/crm
@@ -91,22 +30,14 @@ steps:
               status: pass
               at: "2026-08-20T19:09:25Z"
     research:
-        status: confirmed
+        status: not_applicable
         confirmed_at: "2026-08-20T19:09:29Z"
         confirmed_by: agent:grok
         note: 'Stakeholders: file_user, agent_operator, web_operator, maintainer. Components: store, query, board, cli, serve, validate, index, context.'
     residual:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:42:33Z"
-        confirmed_by: agent:grok
-        note: 'Dispositioned five closed residuals with samples: fail-closed malformed YAML, loopback-unauthenticated serve, query ReDoS false positive, create-then-validate enum policy, local CLI path leak. residual_kill_hygiene pass. Confirmed-novel hazards were fixed in code, not parked.'
-        scope_key: crm
-        check_results:
-            - id: residual_kill_hygiene
-              status: pass
-              at: "2026-08-20T19:42:33Z"
+        status: pending
     skeleton:
-        status: confirmed
+        status: not_applicable
         confirmed_at: "2026-08-20T19:09:29Z"
         confirmed_by: agent:grok
         note: 'Four-layer skeleton: 4 STK, 15 SYS, 15 SW, 4 INT. Exit audit checks are green.'
@@ -124,65 +55,12 @@ steps:
               status: pass
               at: "2026-08-20T19:09:29Z"
     spec-review-1:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:23:38Z"
-        confirmed_by: agent:grok
-        note: SW children strengthened with bounds/conjuncts; STK obligations declared; ambiguity reviewed with unique reasons; exit audit 36/36 pass.
-        check_results:
-            - id: spec_lint_decomposition_adds_refinement
-              status: pass
-              at: "2026-08-20T19:23:38Z"
-            - id: spec_lint_formalization_quality
-              status: pass
-              at: "2026-08-20T19:23:38Z"
-            - id: solver_modeling_opportunity
-              status: pass
-              at: "2026-08-20T19:23:38Z"
-            - id: under_modeled_requirements_clean
-              status: pass
-              at: "2026-08-20T19:23:38Z"
+        status: pending
     spec-review-2:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:28:53Z"
-        confirmed_by: agent:grok
-        check_results:
-            - id: spec_lint_spec_conformance_review_grounded
-              status: pass
-              at: "2026-08-20T19:28:53Z"
-            - id: software_formalization_complete
-              status: pass
-              at: "2026-08-20T19:28:53Z"
+        status: pending
     surface-matrix:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:31:49Z"
-        confirmed_by: agent:grok
-        note: 'Cold unbiased extract for package crm: 0 surfaces, dual_surface_gap=0. packages.yaml prefixes cmd/crm + internal. surface_coverage pass. acceptance_criteria_witnessed logged (4 STK AC-001 missing e2e acceptance witnesses; deferred to ac-sweep).'
-        scope_key: crm
+        status: pending
     traces-light:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:10:24Z"
-        confirmed_by: agent:grok
-        note: Implements/Verifies/Documents autolinked; orphan_code_clean is clean.
-        scope_key: go-package
-        check_results:
-            - id: annotation_validity
-              status: pass
-              at: "2026-08-20T19:10:24Z"
-            - id: orphan_code_clean
-              status: pass
-              at: "2026-08-20T19:10:24Z"
+        status: pending
     variables:
-        status: confirmed
-        confirmed_at: "2026-08-20T19:11:25Z"
-        confirmed_by: agent:grok
-        note: Requirement-first variables; variable_orphans_clean, variables_declared, and nonbool_inputs_constrained pass.
-        check_results:
-            - id: variable_orphans_clean
-              status: pass
-              at: "2026-08-20T19:11:25Z"
-            - id: variables_declared
-              status: pass
-              at: "2026-08-20T19:11:25Z"
-            - id: variable_drift
-              status: pass
-              at: "2026-08-20T19:11:25Z"
+        status: pending

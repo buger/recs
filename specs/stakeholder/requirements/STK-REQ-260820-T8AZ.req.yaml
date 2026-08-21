@@ -1,4 +1,3 @@
-# derived: SYS-REQ-260821-AFPN
 id: STK-REQ-260820-T8AZ
 version: 1
 status: approved
@@ -19,7 +18,22 @@ variables: []
 references:
     - type: document
       id: README.md
-traces: {}
+traces:
+    reviewed_at: "2026-08-21T07:46:02.407047Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:28008b57a24903439999001ad32a2d474f0daae599e1ec578e920b09ee5e53b4
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:02.407047Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/distribution.md
+            - docs/phase1.md
+            - internal/app/remaining_test.go
+            - internal/cli/acceptance_test.go
+            - internal/store/store_test.go
 verification:
     assurance_level: E
     formalization_status: none
@@ -29,18 +43,31 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:33dde7a64cf4bbf68214da505da48c06bd256d44dca88656b5dc4222c4f1a2e4
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:30:30Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding satisfies links and acceptance-criteria derived_reqs without changing behavioral obligations.
+              superseded_at: "2026-08-21T07:39:14Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T18:59:33Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - error_handling
     - nominal
@@ -86,6 +113,7 @@ stakeholder:
             - SYS-REQ-260820-KJ34
             - SYS-REQ-260820-Q8GR
             - SYS-REQ-260820-9W1S
+            - SYS-REQ-260821-AFPN
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:52Z"

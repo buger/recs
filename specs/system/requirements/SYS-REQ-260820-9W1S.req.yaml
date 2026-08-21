@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-Y3Q4
 component: serve
-rationale: The default port is 7777. The UI uses no Node runtime and no database.
+rationale: The default port is 7777. The UI uses no Node runtime and no database. Refined by INT-REQ-260820-AHKR, SW-REQ-260820-8ZS7.
 tags: []
 variables: []
 references:
@@ -23,6 +23,22 @@ traces:
     satisfies:
         - STK-REQ-260820-T8AZ
         - STK-REQ-260820-Y3Q4
+    reviewed_at: "2026-08-21T07:46:54.888895Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:1d957ca3154e732ef3dcd59f25e20eed5669e3165b5f19597028cc82047d5994
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:54.888895Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli_test.go
+            - internal/serve/serve.go
+            - internal/store/store_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-Y3Q4.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -32,18 +48,27 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:7925434415017a99290b395055109b2c62170f51000748295dbb831975cddf2f
+        fingerprint: sha256:84388ed3e0a27cfc60b3fdedd5f2088284f8f83d6ceec6e9881571257f1f130a
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - auth_required
     - boundary

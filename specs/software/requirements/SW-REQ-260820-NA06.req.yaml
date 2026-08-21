@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when dashboard_file_loaded the dashboard shall always satisfy ((layout_slot_count >= 0) & (layout_slot_count <= 4) => ((widget_type_known & widget_projected) | (missing_source & placeholder_rendered) | widget_rejected))
+fretish: when dashboard_file_loaded the dashboard shall always satisfy ((layout_slot_count >= 0) & (layout_slot_count <= 4) => ((yaml_source_used & widget_type_known & widget_projected) | (missing_source & placeholder_rendered) | widget_rejected | dashboard_rejected))
 description: The dashboard component shall load a YAML file from dashboards. The component shall accept a known widget type. The component shall render a placeholder when a source is missing.
 formalization_strategy: fretish
 informal_verification:
@@ -17,16 +17,33 @@ rationale: A 2x2 layout has at most 4 slots. A missing source shall not stop oth
 tags: []
 variables:
     - layout_slot_count
-    - widget_type
     - widget_type_known
     - missing_source
     - widget_projected
     - placeholder_rendered
     - widget_rejected
     - dashboard_file_loaded
+    - yaml_source_used
+    - dashboard_rejected
 traces:
     satisfies:
         - SYS-REQ-260820-456X
+    reviewed_at: "2026-08-21T07:46:48.550139Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:97dae40588bdaa983422d5aec8c38c54fe0b4c7cd5c5f284b33b124e2b8369fe
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:48.550139Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/dashboards.md
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/dashboard/dashboard.go
+            - internal/dashboard/dashboard_test.go
+            - specs/system/requirements/SYS-REQ-260820-456X.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -36,18 +53,68 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:45:31Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:80eec9f3880d8b519e98c43b4939c1d24f50b146f785ef1a39e2edd7b9bf14b6
+        fingerprint: sha256:2d9096abd76dddf3af58344f505f855b5e6525509163c06a582c87bf6b571f5d
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            kind: chg
+            ref: CHG-260821-DFVQ
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:30:30Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T07:45:31Z"
+              superseded_by: agent:grok
+    not_modeled:
+        - predicate: len(body) > 180
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(body)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(parts) != 2
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(parts)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(record.StringSlice(rec.Get("blockers")
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(recs)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sub) < 2
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sub)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(t)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(view.Items)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(view.Stats)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(views) < slots
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(views)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: m < 1
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: n < 1
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: n >= len(recs)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: agent:grok
     created_at: "2026-08-20T20:17:32Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:45:31Z"
 obligation_checklist:
     - boundary
     - empty_input

@@ -1,0 +1,11 @@
+id: REVIEW-17
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T07:33:39Z"
+subject: SW-REQ-260821-8C2C
+decision: approved
+comment: Delete, Edit, and Ingest mutate records through the store. FRETish uses remaining_cli_command_invoked and arg_count >= 1. Failed mutations return command_rejected.
+citations:
+    - internal/app/remaining.go:52@Delete
+    - internal/app/remaining.go:58@Edit
+    - internal/app/remaining.go:190@Ingest

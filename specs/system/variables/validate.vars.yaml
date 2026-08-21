@@ -38,3 +38,6 @@ domain:
             - schema_missing
             - schema_present
           reason: A type schema is either missing or present.
+no_interface:
+    declared: true
+    reason: This component is an internal library called only through the shared app layer; CLI and serve INT-REQs already own the operator-facing boundary.

@@ -19,6 +19,23 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-Q8GR
+    reviewed_at: "2026-08-21T07:46:40.695907Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:47f3da5615d2bdf4e8b4e0086d5e4ec6ee4bad59f9029abf90898dd5a3a7f948
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:40.695907Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/index/index.go
+            - internal/index/index_test.go
+            - specs/system/requirements/SYS-REQ-260820-Q8GR.req.yaml
+    components:
+        - index
+        - store
 verification:
     assurance_level: E
     formalization_status: valid
@@ -28,13 +45,18 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:39:06Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:6abb2e16e37df5d51e0bd7fdc7422f1640f0cd8cfc87a6feb2aa658b6a84da9e
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            kind: chg
+            ref: CHG-260821-DFVQ
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:39:06Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:29.061156Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -47,7 +69,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:32Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:39:06Z"
 obligation_checklist:
     - idempotency
 obligation_hazards:
@@ -72,6 +94,18 @@ hazard_review:
         - category: structural
           disposition: not_applicable
           rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+interface:
+    caller: index
+    callee: store
+    type: function_call
+    signature: Index.Rebuild() -> (snapshot, error)
+    producer: index
+    consumer:
+        - store
+    owner: team:crm
+    version: v1.0.0
+    compatibility_policy: semver-lax
+    risk_tier: 3
 lifecycle:
     change_history:
         - date: "2026-08-20T19:06:51Z"

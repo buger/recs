@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-V5ZD
 component: store
-rationale: Deterministic field writes reduce malformed YAML. Atomic rename protects concurrent editors.
+rationale: Deterministic field writes reduce malformed YAML. Atomic rename protects concurrent editors. Refined by SW-REQ-260820-Q3C4.
 tags: []
 variables: []
 references:
@@ -22,6 +22,23 @@ references:
 traces:
     satisfies:
         - STK-REQ-260820-V5ZD
+    reviewed_at: "2026-08-21T07:46:52.759214Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:44f2d2f439e5ea9323b714580a791870fffc6c47ad594d4c634c22dd1a525e17
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:52.759214Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/cli/cli_test.go
+            - internal/record/record.go
+            - internal/store/store.go
+            - internal/store/store_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-V5ZD.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -31,13 +48,22 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:78b1adcc5a6719716495d93304c592298bbaf74603ec6a1578b1cde22142d03a
+        fingerprint: sha256:a866cb8346b57c961d8722b40c4376bf80285f9eaa65035935f32967c973a826
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -70,7 +96,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - atomic_write
     - atomicity

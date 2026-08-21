@@ -1,0 +1,10 @@
+id: REVIEW-22
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T07:45:21Z"
+subject: SW-REQ-260821-FCGM
+decision: approved
+comment: Per-command help and structured JSON errors implement global_help_emitted, command_help_emitted, structured_error_emitted, and command_rejected without writing sidecar files.
+citations:
+    - internal/cli/help.go:21@commandCatalog
+    - internal/cli/help_test.go:22@TestHelpIsTheAgentInterface

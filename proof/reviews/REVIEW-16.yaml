@@ -1,0 +1,11 @@
+id: REVIEW-16
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T07:33:39Z"
+subject: SW-REQ-260821-FCGM
+decision: approved
+comment: commandCatalog lists every command. Main routes help and --help before openApp and rejects unknown commands with structured JSON. FRETish uses agent_discovery_requested and arg_count >= 1. Help does not write sidecar files.
+citations:
+    - internal/cli/help.go:22@commandCatalog
+    - internal/cli/cli.go:25@Main
+    - internal/cli/help_test.go:22@TestHelpIsTheAgentInterface

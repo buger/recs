@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when validate_command_invoked the validate shall always satisfy (schema_count >= 0 => ((schema_missing => validation_skipped) & (schema_present => (records_valid | violations_reported))))
+fretish: when validate_command_invoked the validate shall always satisfy (((schema_count >= 0) & (schema_count <= 64)) => ((schema_missing => validation_skipped) & (schema_present => (records_valid | violations_reported))))
 description: The validate component shall skip checks when no schema exists and report violations when a schema exists. Schema count shall stay at most 64.
 formalization_strategy: fretish
 informal_verification:
@@ -19,6 +19,20 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-YWV4
+    reviewed_at: "2026-08-21T07:46:45.572365Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:1e8a43a53d7e98fcb6df871a137dec2a166058a1d2b25d467aac4dc9ae861efc
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:45.572365Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/validate/validate.go
+            - internal/validate/validate_test.go
+            - specs/system/requirements/SYS-REQ-260820-YWV4.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -28,18 +42,36 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:87bc044fcdde7d9d33085ac45b4caae45406d53dd5206e72b5c030278afc218e
+        fingerprint: sha256:9dcb5484d1846c8006663468100d63fd482a43a39ebf7995032902eb7b8556d9
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:30:30Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+    not_modeled:
+        - predicate: len(cfg.Types)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs.Enum)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:30Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:42:37Z"
 obligation_checklist:
     - boundary
     - empty_input

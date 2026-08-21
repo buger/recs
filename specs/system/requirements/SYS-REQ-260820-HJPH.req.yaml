@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-V5ZD
 component: query
-rationale: Full-text search scans files. Search shall not require a derived index.
+rationale: Full-text search scans files. Search shall not require a derived index. Refined by SW-REQ-260820-X37F.
 tags: []
 variables: []
 references:
@@ -23,6 +23,22 @@ traces:
     satisfies:
         - STK-REQ-260820-KAGT
         - STK-REQ-260820-V5ZD
+    reviewed_at: "2026-08-21T07:46:55.840855Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:b7848e33ff8f02890eb5a61491d2941cdd682d055cafe589cc0722b9c51cc0e1
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:55.840855Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/query/query_test.go
+            - internal/query/search.go
+            - specs/stakeholder/requirements/STK-REQ-260820-KAGT.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-V5ZD.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -32,13 +48,22 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:ba9a438695e5efc7ab03f473f82805614e79fe328dd1e9dbcc0c10811eae8e05
+        fingerprint: sha256:b4458ad8e568e137a5c63f44a2b9a5e70653b98d42ce875b34a8b30c3f114779
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.676683Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -56,7 +81,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - empty_input
     - nominal

@@ -55,6 +55,10 @@ project:
     commands:
         build: go build -o crm ./cmd/crm
         test: go test ./...
+        tests:
+            go:
+                language: go
+                command: go test ./...
         lint: go vet ./...
     verification_scope:
         include:
@@ -91,6 +95,7 @@ project:
                   language: go
                   scope: ./...
                   test_packages: ./...
+                  test_command: go
         property_fixtures_exist:
             enabled: true
         flip_fixtures_exist:
@@ -113,5 +118,7 @@ project:
             - path: docs/
               type: manual
         threshold: 80
+    checklists:
+        active: none
     trace_policy:
         mode: source_native

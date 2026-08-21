@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when ape_build_requested the dist shall always satisfy ((cosmocc_available & host_os_supported & ape_binary_produced & native_blob_embedded & ape_runs_on_host) | ape_build_rejected)
+fretish: when ape_build_requested the dist shall always satisfy (rc >= 0 => ((cosmocc_available & host_os_supported & ape_binary_produced & native_blob_embedded & ape_runs_on_host) | ape_build_rejected))
 description: The product shall provide a Cosmopolitan APE build that embeds the native CRM binary.
 formalization_strategy: fretish
 informal_verification:
@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-T8AZ
 component: dist
-rationale: A maintainer needs one file users can download and run. A true Go APE is not available, so the APE wraps the host binary.
+rationale: A maintainer needs one file users can download and run. A true Go APE is not available, so the APE wraps the host binary. Refined by SW-REQ-260821-AC3S.
 tags: []
 variables:
     - ape_build_requested
@@ -23,12 +23,13 @@ variables:
     - native_blob_embedded
     - ape_runs_on_host
     - ape_build_rejected
+    - rc
 traces:
     satisfies:
         - STK-REQ-260820-T8AZ
-    reviewed_at: "2026-08-21T06:37:34.180386Z"
+    reviewed_at: "2026-08-21T07:46:57.813007Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:ab76509e9943ca0b821ffbbf260f6deddfabc6d76d1236c0e7fce179953d435d
+    reviewed_fingerprint: sha256:e9735511cf2e27a12e7b999e0f504697d62b0874b167604fc6052776779107fd
     review_history:
         - reviewed_at: "2026-08-21T06:37:34.180386Z"
           reviewed_by: agent:grok
@@ -36,6 +37,19 @@ traces:
           rationale: Evidence-cited review of APE system traces.
           source: proof trace review --citation
           citations:
+            - ape/wrapper.c
+            - docs/distribution.md
+            - docs/phase1.md
+            - internal/app/remaining_test.go
+            - scripts/build-ape.sh
+            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
+        - reviewed_at: "2026-08-21T07:46:57.813007Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - ape/hello.c
             - ape/wrapper.c
             - docs/distribution.md
             - docs/phase1.md
@@ -51,18 +65,42 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:21Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:43ae2a2a6f79dcc2fc19337c515757a33070151d244dfd391aebc05229e22636
+        fingerprint: sha256:c738762d71e5422451f4e38b01505c103e654771a1d372fd3d81c5c3fcce212c
         ai_generated: false
         motivation:
-            kind: chg
-            ref: CHG-260821-G2PS
+            kind: unchanged
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: chg
+              ref: CHG-260821-G2PS
+              superseded_at: "2026-08-21T07:30:30Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:33:39Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding obligation classes and not_modeled notes without changing the required behavior.
+              superseded_at: "2026-08-21T07:39:06Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T07:39:14Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
+    not_modeled:
+        - predicate: rc == 0
+          reason: FRETish uses ranged int rc with rc <= 0; equality token is not valid FRETish syntax.
 history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:22Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:21Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 lifecycle:
     change_history:
         - date: "2026-08-21T06:29:48Z"

@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-T8AZ
 component: index
-rationale: The index accelerates later queries. Canonical state stays in Markdown files.
+rationale: The index accelerates later queries. Canonical state stays in Markdown files. Refined by INT-REQ-260820-2JKK, SW-REQ-260820-BNR7.
 tags: []
 variables: []
 references:
@@ -22,6 +22,21 @@ references:
 traces:
     satisfies:
         - STK-REQ-260820-T8AZ
+    reviewed_at: "2026-08-21T07:46:56.842474Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:4dd11ef04c6a5dfe9553cdc11bb39b0941782912a5fa18fab66f7ec684d1a0c5
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:56.842474Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/index/index.go
+            - internal/index/index_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -31,18 +46,27 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:47:05Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:2254fc63a4c44c0f4b963e5ec6d7edddc1ad95dfff56b529d4252a778e5f51ac
+        fingerprint: sha256:e7bc9aa70aaa38664599c82ce458779012075089b9c57cf06997367ec0589d95
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:36Z"
+    last_modified_at: "2026-08-21T07:47:05Z"
 obligation_checklist:
     - idempotency
     - nominal

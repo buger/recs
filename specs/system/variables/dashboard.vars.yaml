@@ -47,6 +47,8 @@ variables:
       type: enum
       direction: input
       description: Widget type enum for a dashboard slot.
+      proof_auxiliary: true
+      proof_auxiliary_reason: FRETish uses widget_type_known; the raw enum token is not a solver input.
       values:
         - count
         - list

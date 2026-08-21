@@ -19,6 +19,21 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-ZTC3
+    reviewed_at: "2026-08-21T07:46:45.221019Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:a14cba78a469fb850b9d29ab75b9dcb7ea50f396e04854dc9b9948824b1fa28f
+    review_history:
+        - reviewed_at: "2026-08-21T07:46:45.221019Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/query/query.go
+            - internal/query/query_test.go
+            - specs/system/requirements/SYS-REQ-260820-ZTC3.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -28,13 +43,22 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T06:30:35Z"
+        reviewed_at: "2026-08-21T07:42:37Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:9da8f2ec5c6194ba5af9ea77b2538c494dae1d09a29a77aaf497e0886f683a62
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+        motivation_history:
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.43733Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -48,11 +72,16 @@ verification:
           reviewer: agent:grok
           reason: 'System search scans frontmatter, body, and filename; shared expr_len does not merge it with query operators. [owner SW-REQ-260820-6EVX; pair ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH]'
           reviewed_at: "2026-08-20T19:24:30.43733Z"
+    not_modeled:
+        - predicate: len(matches)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(record.StringSlice(rec.Get("blockers")
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T06:30:35Z"
+    last_modified_at: "2026-08-21T07:42:37Z"
 obligation_checklist:
     - determinism
     - malformed_input
