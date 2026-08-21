@@ -37,6 +37,9 @@ func setupRemaining(t *testing.T) *app.App {
 // INT-REQ-260821-8HAC:error_handling:negative
 // INT-REQ-260821-8HAC:integration:integration
 // STK-REQ-260821-QTPP:nominal:nominal
+// MCDC SYS-REQ-260821-JYEJ: arg_count_GE_0=T, command_rejected=F, export_emitted=F, git_empty_reported=F, git_repo_present=F, git_result_emitted=F, import_records_created=F, ingest_record_created=T, record_file_mutated=F, remaining_cli_command_invoked=T => TRUE
+// MCDC SW-REQ-260821-8C2C: arg_count_GE_1=T, command_rejected=F, export_emitted=F, git_empty_reported=F, git_repo_present=F, git_result_emitted=F, import_records_created=F, ingest_record_created=T, record_file_mutated=F, remaining_cli_command_invoked=T => TRUE
+// MCDC INT-REQ-260821-8HAC: arg_count_GT_0=T, command_rejected=F, remaining_cli_command_invoked=T, shared_record_model_used=T, store_api_used=F => TRUE
 func TestEditDeleteLinkIngestExportImport(t *testing.T) {
 	a := setupRemaining(t)
 	body := "new body"

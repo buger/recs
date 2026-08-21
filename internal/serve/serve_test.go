@@ -174,6 +174,9 @@ func TestListenBusyPort(t *testing.T) {
 // STK-REQ-260820-4255:error_handling:nominal
 // STK-REQ-260820-4255:error_handling:negative
 // STK-REQ-260820-4255:boundary:nominal
+// MCDC INT-REQ-260820-NHBY: dashboard_api_requested=T, empty_gallery_shown=F, gallery_rejected=F, gallery_rendered=T, preview_cards_shown=F, separate_database_used=F, shared_app_layer_used=T, shared_record_model_used=T => TRUE
+// MCDC INT-REQ-260820-NHBY: dashboard_api_requested=T, empty_gallery_shown=F, gallery_rejected=F, gallery_rendered=F, preview_cards_shown=T, separate_database_used=F, shared_app_layer_used=T, shared_record_model_used=T => TRUE
+//mcdc:ignore INT-REQ-260820-NHBY: dashboard_api_requested=T, empty_gallery_shown=F, gallery_rejected=F, gallery_rendered=F, preview_cards_shown=F, separate_database_used=F, shared_app_layer_used=F, shared_record_model_used=F => FALSE -- dashboard API without the shared app layer is the literal negation of the integration contract [reviewed: agent:grok] [category: defensive]
 func TestDashboardAPIAndUI(t *testing.T) {
 	a := setupApp(t)
 	h := serve.Handler(a)

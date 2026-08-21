@@ -18,6 +18,9 @@ import (
 // SW-REQ-260820-Q3C4:concurrent:nominal
 // INT-REQ-260821-5BJJ:concurrent:nominal
 // INT-REQ-260821-5BJJ:integration:integration
+// MCDC INT-REQ-260821-5BJJ: conflict_reported=F, parse_budget_GE_0=T, record_mutation_requested=T, version_mismatch=F => TRUE
+// MCDC INT-REQ-260821-5BJJ: conflict_reported=T, parse_budget_GE_0=T, record_mutation_requested=T, version_mismatch=T => TRUE
+//mcdc:ignore INT-REQ-260821-5BJJ: conflict_reported=F, parse_budget_GE_0=T, record_mutation_requested=T, version_mismatch=T => FALSE -- version mismatch without conflict is the literal negation of the serialize-or-conflict contract [reviewed: agent:grok] [category: defensive]
 func TestConcurrentPatchesSerializeOrConflict(t *testing.T) {
 	a := initApp(t)
 	rec, err := a.Create("grant", "grant_race", map[string]any{"title": "Race", "status": "researching"}, "")

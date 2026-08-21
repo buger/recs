@@ -316,7 +316,7 @@ func (s *Store) Write(rec *record.Record) error {
 	return s.writeLocked(rec)
 }
 
-// Implements: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4 SYS-REQ-260820-9J7C INT-REQ-260821-5BJJ
+// Implements: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4 SYS-REQ-260820-9J7C
 func (s *Store) writeLocked(rec *record.Record) error {
 	if rec.Path == "" {
 		return fmt.Errorf("record path is empty")
@@ -366,7 +366,7 @@ type PatchResult struct {
 }
 
 // Patch applies field updates with optional optimistic concurrency.
-// Implements: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4 INT-REQ-260821-5BJJ
+// Implements: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4
 func (s *Store) Patch(id string, sets map[string]any, deletes []string, ifVersion string) (*PatchResult, error) {
 	lock, err := s.lock(id)
 	if err != nil {

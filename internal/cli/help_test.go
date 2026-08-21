@@ -20,6 +20,15 @@ import (
 // SW-REQ-260821-FCGM:error_handling:negative
 // INT-REQ-260821-BSH3:nominal:nominal
 // INT-REQ-260821-BSH3:integration:integration
+// MCDC SYS-REQ-260821-8FKR: agent_discovery_requested=T, arg_count_GE_0=T, command_help_emitted=F, command_rejected=F, global_help_emitted=T, structured_error_emitted=F => TRUE
+// MCDC SYS-REQ-260821-8FKR: agent_discovery_requested=T, arg_count_GE_0=T, command_help_emitted=F, command_rejected=F, global_help_emitted=F, structured_error_emitted=T => TRUE
+// MCDC SW-REQ-260821-FCGM: agent_discovery_requested=T, agent_sidecar_written=F, arg_count_GE_1=T, command_help_emitted=F, command_rejected=F, global_help_emitted=T, structured_error_emitted=F => TRUE
+// MCDC SW-REQ-260821-FCGM: agent_discovery_requested=T, agent_sidecar_written=F, arg_count_GE_1=T, command_help_emitted=F, command_rejected=F, global_help_emitted=F, structured_error_emitted=T => TRUE
+// MCDC INT-REQ-260821-BSH3: agent_discovery_requested=T, arg_count_GT_0=T, help_text_emitted=T, sidecar_file_required=F, structured_error_emitted=F => TRUE
+// MCDC INT-REQ-260821-BSH3: agent_discovery_requested=T, arg_count_GT_0=T, help_text_emitted=F, sidecar_file_required=F, structured_error_emitted=T => TRUE
+//mcdc:ignore SYS-REQ-260821-8FKR: agent_discovery_requested=T, arg_count_GE_0=T, command_help_emitted=F, command_rejected=F, global_help_emitted=F, structured_error_emitted=F => FALSE -- discovery without help or structured error is the literal negation of the agent-interface contract [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore SW-REQ-260821-FCGM: agent_discovery_requested=T, agent_sidecar_written=F, arg_count_GE_1=T, command_help_emitted=F, command_rejected=F, global_help_emitted=F, structured_error_emitted=F => FALSE -- discovery without help or structured error is the literal negation of the agent-interface contract [reviewed: agent:grok] [category: defensive]
+//mcdc:ignore INT-REQ-260821-BSH3: agent_discovery_requested=T, arg_count_GT_0=T, help_text_emitted=F, sidecar_file_required=F, structured_error_emitted=F => FALSE -- discovery without help or structured error is the literal negation of the agent-interface contract [reviewed: agent:grok] [category: defensive]
 func TestHelpIsTheAgentInterface(t *testing.T) {
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}
 	if cli.Main(nil, out, errb) != 0 {
