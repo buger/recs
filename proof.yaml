@@ -54,12 +54,12 @@ project:
         - formal
     commands:
         build: go build -o crm ./cmd/crm
-        test: go test ./... -coverprofile=cover.out
+        test: go test ./...
         tests:
             go:
                 language: go
-                command: go test ./... -coverprofile=cover.out
-                mcdc_command: go test ./... -coverprofile=cover.out
+                command: go test ./...
+                mcdc_command: ./scripts/test-cover.sh
         lint: go vet ./...
     verification_scope:
         include:
