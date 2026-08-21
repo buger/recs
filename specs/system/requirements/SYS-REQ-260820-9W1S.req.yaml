@@ -4,12 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when serve_command_invoked the serve shall always satisfy (listen_port 
-    > 0 => (http_bound_localhost & (default_port_selected | 
-    custom_port_selected) & static_ui_served & (gallery_rendered | 
-    preview_cards_shown | empty_gallery_shown | gallery_rejected)))
-description: The product shall serve a local HTTP API and Kanban UI on 
-    localhost.
+fretish: when serve_command_invoked the serve shall always satisfy (listen_port > 0 => (http_bound_localhost & (default_port_selected | custom_port_selected) & static_ui_served & (gallery_rendered | preview_cards_shown | empty_gallery_shown | gallery_rejected)))
+description: The product shall serve a local HTTP API and Kanban UI on localhost.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -17,34 +13,49 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-Y3Q4
 component: serve
-rationale: The default port is 7777. The UI uses no Node runtime and no 
-    database. Refined by INT-REQ-260820-AHKR, SW-REQ-260820-8ZS7.
+rationale: The default port is 7777. The UI uses no Node runtime and no database. Refined by INT-REQ-260820-AHKR, SW-REQ-260820-8ZS7.
 tags: []
 variables: []
 references:
-  - type: document
-    id: README.md
+    - type: document
+      id: README.md
 traces:
     satisfies:
-      - STK-REQ-260820-T8AZ
-      - STK-REQ-260820-Y3Q4
-    reviewed_at: "2026-08-21T07:46:54.888895Z"
+        - STK-REQ-260820-T8AZ
+        - STK-REQ-260820-Y3Q4
+    reviewed_at: "2026-08-21T09:20:22.601246Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:1d957ca3154e732ef3dcd59f25e20eed5669e3165b5f19597028cc82047d5994
+    reviewed_fingerprint: sha256:c143521a4e922d266b39af11b560ac1d90765bc23e52d13a0433b05ab5345486
     review_history:
-      - reviewed_at: "2026-08-21T07:46:54.888895Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/phase1.md
-          - internal/cli/cli_test.go
-          - internal/serve/serve.go
-          - internal/store/store_test.go
-          - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
-          - specs/stakeholder/requirements/STK-REQ-260820-Y3Q4.req.yaml
+        - reviewed_at: "2026-08-21T07:46:54.888895Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli_test.go
+            - internal/serve/serve.go
+            - internal/store/store_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-Y3Q4.req.yaml
+        - reviewed_at: "2026-08-21T09:20:22.601246Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Re-reviewed SYS-REQ-260820-9W1S traces after spec metadata restamps; cited targets still name this requirement.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli_mcdc_test.go
+            - internal/cli/cli_test.go
+            - internal/serve/mcdc_leftover_test.go
+            - internal/serve/mcdc_noaction_test.go
+            - internal/serve/serve.go
+            - internal/serve/serve_mcdc_test.go
+            - internal/serve/serve_test.go
+            - internal/store/store_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-Y3Q4.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -53,154 +64,121 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:04:58Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:807b5b5e7c5877783a27850c40cdf47b2b805ecfeae5a8182774d7ff08af8898
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:807b5b5e7c5877783a27850c40cdf47b2b805ecfeae5a8182774d7ff08af8898
         ai_generated: false
         motivation:
             kind: chg
             ref: CHG-260821-AHD2
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:41:15Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest parent after children were reviewed so the plan
-                of record stays current.
-            superseded_at: "2026-08-21T07:47:05Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so 
-                satisfies citations stay current.
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:04:58Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:04:58Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:43.189952Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|serve|INT-REQ-260820-NHBY|SYS-REQ-260820-9W1S
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-9W1S on serve keeps its own contract (when serve_command_invoked
-            the serve shall always satisfy (listen_port > 0 => (http_bound_localhost
-            & (default_port_selected | custom_port_s). This review is specific to
-            ambiguity|serve|INT-REQ-260820-NHBY|SYS-REQ-260820-9W1S and is not a shared
-            canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-9W1S on serve keeps its own contract (when serve_command_invoked
-            the serve shall always satisfy (listen_port > 0 => (http_bound_localhost
-            & (default_port_selected | custom_port_s). This review is specific to
-            ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S and is not a shared
-            canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-9W1S on serve keeps its own contract (when serve_command_invoked
-            the serve shall always satisfy (listen_port > 0 => (http_bound_localhost
-            & (default_port_selected | custom_port_s). This review is specific to
-            ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S and is not a shared
-            canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|serve|SYS-REQ-260820-9W1S|SYS-REQ-260821-QF1J
-        reviewer: agent:grok
-        reason: SYS-REQ-260820-9W1S on serve keeps its own contract (when 
-            serve_command_invoked the serve shall always satisfy (listen_port > 
-            0 => (http_bound_localhost & (default_port_selected | 
-            custom_port_s). This review is specific to 
-            ambiguity|serve|SYS-REQ-260820-9W1S|SYS-REQ-260821-QF1J and is not a
-            shared canned rationale for sibling pairs.
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|INT-REQ-260820-NHBY|SYS-REQ-260820-9W1S
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-9W1S for ambiguity|serve|INT-REQ-260820-NHBY|SYS-REQ-260820-9W1S: SYS-REQ-260820-9W1S (system HTTP listen parent for the single serve process) is complementary to INT-REQ-260820-NHBY (dashboard gallery HTTP integration through the shared app layer) on the serve ambiguity finding. This rationale is not copied onto INT-REQ-260820-NHBY or any parent.'
+          reviewed_at: "2026-08-21T09:23:43.076071Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-9W1S for ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S: SYS-REQ-260820-9W1S (system HTTP listen parent for the single serve process) is complementary to SW-REQ-260820-EJVT (software dashboard gallery renderer hosted by serve) on the serve ambiguity finding. This rationale is not copied onto SW-REQ-260820-EJVT or any parent.'
+          reviewed_at: "2026-08-21T09:23:43.076071Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-9W1S for ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S: SYS-REQ-260820-9W1S (system HTTP listen parent for the single serve process) is complementary to SW-REQ-260821-82BA (software remaining-UI outcomes (view, editor, search, filters, attachments, wikilinks)) on the serve ambiguity finding. This rationale is not copied onto SW-REQ-260821-82BA or any parent.'
+          reviewed_at: "2026-08-21T09:23:43.076071Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|SYS-REQ-260820-9W1S|SYS-REQ-260821-QF1J
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-9W1S for ambiguity|serve|SYS-REQ-260820-9W1S|SYS-REQ-260821-QF1J: SYS-REQ-260820-9W1S (system HTTP listen parent for the single serve process) is complementary to SYS-REQ-260821-QF1J (system remaining-UI parent that also forbids a separate browser database) on the serve ambiguity finding. This rationale is not copied onto SYS-REQ-260821-QF1J or any parent.'
+          reviewed_at: "2026-08-21T09:23:43.189952Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:04:58Z"
 obligation_checklist:
-  - auth_required
-  - boundary
-  - csrf_protection
-  - error_handling
-  - input_size_bounded
-  - nominal
-  - path_traversal_prevented
+    - auth_required
+    - boundary
+    - csrf_protection
+    - error_handling
+    - input_size_bounded
+    - nominal
+    - path_traversal_prevented
 obligation_hazards:
-  - class: auth_required
-    worst_case: Callers assume serve is authenticated while any local process 
-        can mutate the workspace over loopback.
-    severity: low
-  - class: boundary
-    worst_case: A missing board or empty column set is shown as a server crash, 
-        so the local Kanban is unusable.
-    severity: low
-  - class: csrf_protection
-    worst_case: A visited webpage posts to 127.0.0.1 and creates or moves 
-        records without the operator intending it.
-    severity: medium
-  - class: error_handling
-    worst_case: An HTTP mutation failure is returned as 200 ok, so the UI 
-        believes the file changed.
-    severity: medium
-  - class: input_size_bounded
-    worst_case: An unbounded HTTP body exhausts memory and takes down the local 
-        serve process.
-    severity: medium
-  - class: nominal
-    worst_case: A valid localhost request does not read or write through the 
-        same app layer as the CLI.
-    severity: low
-  - class: path_traversal_prevented
-    worst_case: An HTTP create id or type writes a Markdown file outside the 
-        workspace root via the local API.
-    severity: medium
+    - class: auth_required
+      worst_case: Callers assume serve is authenticated while any local process can mutate the workspace over loopback.
+      severity: low
+    - class: boundary
+      worst_case: A missing board or empty column set is shown as a server crash, so the local Kanban is unusable.
+      severity: low
+    - class: csrf_protection
+      worst_case: A visited webpage posts to 127.0.0.1 and creates or moves records without the operator intending it.
+      severity: medium
+    - class: error_handling
+      worst_case: An HTTP mutation failure is returned as 200 ok, so the UI believes the file changed.
+      severity: medium
+    - class: input_size_bounded
+      worst_case: An unbounded HTTP body exhausts memory and takes down the local serve process.
+      severity: medium
+    - class: nominal
+      worst_case: A valid localhost request does not read or write through the same app layer as the CLI.
+      severity: low
+    - class: path_traversal_prevented
+      worst_case: An HTTP create id or type writes a Markdown file outside the workspace root via the local API.
+      severity: medium
 hazard_review:
     reviewed_at: "2026-08-20T19:40:47Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: reviewed
-        applied:
-          - error_handling
-          - nominal
-          - boundary
-      - category: property
-        disposition: not_applicable
-        rationale: Serve is an HTTP adapter; algebraic write properties live on 
-            store mutations.
-      - category: domain
-        disposition: reviewed
-        applied:
-          - path_traversal_prevented
-          - input_size_bounded
-          - csrf_protection
-          - auth_required
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - error_handling
+            - nominal
+            - boundary
+        - category: property
+          disposition: not_applicable
+          rationale: Serve is an HTTP adapter; algebraic write properties live on store mutations.
+        - category: domain
+          disposition: reviewed
+          applied:
+            - path_traversal_prevented
+            - input_size_bounded
+            - csrf_protection
+            - auth_required
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:54Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

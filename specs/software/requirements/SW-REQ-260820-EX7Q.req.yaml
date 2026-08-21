@@ -4,11 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when move_requested the board shall always satisfy (matcher_depth >= 0 
-    => ((column_list_len > 0) & (column_list_len <= 64) & ((column_known & 
-    frontmatter_field_updated & file_path_unchanged) | move_rejected)))
-description: The board component shall apply on_drop sets or the column field, 
-    keep the file path, and accept at most 64 columns.
+fretish: when move_requested the board shall always satisfy (matcher_depth >= 0 => ((column_list_len > 0) & (column_list_len <= 64) & ((column_known & frontmatter_field_updated & file_path_unchanged) | move_rejected)))
+description: The board component shall apply on_drop sets or the column field, keep the file path, and accept at most 64 columns.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -21,22 +18,21 @@ tags: []
 variables: []
 traces:
     satisfies:
-      - SYS-REQ-260820-BVBE
+        - SYS-REQ-260820-BVBE
     reviewed_at: "2026-08-21T07:46:47.472057Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:2456fd392f540e5d8ae1a6848b4e57e7679a6ae0e4b5af7013942d075a17204f
+    reviewed_fingerprint: sha256:2456fd392f540e5d8ae1a6848b4e57e7679a6ae0e4b5af7013942d075a17204f
     review_history:
-      - reviewed_at: "2026-08-21T07:46:47.472057Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/phase1.md
-          - internal/board/board.go
-          - internal/store/store_test.go
-          - specs/system/requirements/SYS-REQ-260820-BVBE.req.yaml
+        - reviewed_at: "2026-08-21T07:46:47.472057Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/board/board.go
+            - internal/store/store_test.go
+            - specs/system/requirements/SYS-REQ-260820-BVBE.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -45,121 +41,94 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:984f073f5d038844e9877dbead418dff26f5457b8a9ee32934d3ab50adf3d194
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:984f073f5d038844e9877dbead418dff26f5457b8a9ee32934d3ab50adf3d194
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:41:10Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after listing honest not_modeled Go length 
-                predicates without changing required behavior.
-            superseded_at: "2026-08-21T07:42:37Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest 
-                not_modeled Go length predicates.
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:46.964082Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-EX7Q on board keeps its own contract (when move_requested
-            the board shall always satisfy (matcher_depth >= 0 => ((column_list_len
-            > 0) & (column_list_len <= 64) & ((column_known ). This review is specific
-            to ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-EX7Q on board keeps its own contract (when move_requested
-            the board shall always satisfy (matcher_depth >= 0 => ((column_list_len
-            > 0) & (column_list_len <= 64) & ((column_known ). This review is specific
-            to ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-EX7Q on board keeps its own contract (when move_requested
-            the board shall always satisfy (matcher_depth >= 0 => ((column_list_len
-            > 0) & (column_list_len <= 64) & ((column_known ). This review is specific
-            to ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628 and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-EX7Q for ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q: SW-REQ-260820-EX7Q (software board filter encoding) is complementary to INT-REQ-260820-JRWN (board integration that saved views read the shared record model) on the board ambiguity finding. This rationale is not copied onto INT-REQ-260820-JRWN or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.799192Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-EX7Q for ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR: SW-REQ-260820-EX7Q (software board filter encoding) is complementary to SW-REQ-260820-NBGR (software board saved-view apply path) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-NBGR or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.799192Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-EX7Q for ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628: SW-REQ-260820-EX7Q (software board filter encoding) is complementary to SYS-REQ-260820-4628 (system board parent for filter encoding) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-4628 or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.964082Z"
     not_modeled:
-      - predicate: len(gots)
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
-      - predicate: len(sl) > 1
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
-      - predicate: len(sl)
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(gots)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sl) > 1
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(sl)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:30Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-  - error_handling
-  - nominal
+    - error_handling
+    - nominal
 obligation_hazards:
-  - class: error_handling
-    worst_case: An unknown column is applied as a raw field write, corrupting 
-        status without a clear error.
-    severity: medium
-  - class: nominal
-    worst_case: A valid move updates the file path instead of frontmatter, 
-        breaking the board-is-a-view rule.
-    severity: low
+    - class: error_handling
+      worst_case: An unknown column is applied as a raw field write, corrupting status without a clear error.
+      severity: medium
+    - class: nominal
+      worst_case: A valid move updates the file path instead of frontmatter, breaking the board-is-a-view rule.
+      severity: low
 hazard_review:
     reviewed_at: "2026-08-20T19:40:41Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: reviewed
-        applied:
-          - error_handling
-          - nominal
-      - category: property
-        disposition: not_applicable
-        rationale: Move atomicity is owned by the integration requirement and 
-            store write path.
-      - category: domain
-        disposition: not_applicable
-        rationale: Move updates frontmatter through the store write path that 
-            already carries atomic_write.
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - error_handling
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: Move atomicity is owned by the integration requirement and store write path.
+        - category: domain
+          disposition: not_applicable
+          rationale: Move updates frontmatter through the store write path that already carries atomic_write.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:53Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:53Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

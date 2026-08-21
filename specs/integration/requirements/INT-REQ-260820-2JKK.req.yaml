@@ -4,11 +4,8 @@ status: approved
 priority: shall
 category: interface
 req_type: guarantee
-fretish: when index_rebuild_requested the index shall always satisfy 
-    (record_count >= 0 => (store_records_scanned & index_files_rewritten & 
-    !canonical_state_mutated))
-description: Index rebuild shall scan store records, rewrite derived files, and 
-    leave canonical records unchanged.
+fretish: when index_rebuild_requested the index shall always satisfy (record_count >= 0 => (store_records_scanned & index_files_rewritten & !canonical_state_mutated))
+description: Index rebuild shall scan store records, rewrite derived files, and leave canonical records unchanged.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -16,31 +13,29 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-Q8GR
 component: index
-rationale: The index is disposable cache. Canonical Markdown files stay the 
-    source of truth.
+rationale: The index is disposable cache. Canonical Markdown files stay the source of truth.
 tags: []
 variables: []
 traces:
     satisfies:
-      - SYS-REQ-260820-Q8GR
+        - SYS-REQ-260820-Q8GR
     reviewed_at: "2026-08-21T07:46:40.695907Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:47f3da5615d2bdf4e8b4e0086d5e4ec6ee4bad59f9029abf90898dd5a3a7f948
+    reviewed_fingerprint: sha256:47f3da5615d2bdf4e8b4e0086d5e4ec6ee4bad59f9029abf90898dd5a3a7f948
     review_history:
-      - reviewed_at: "2026-08-21T07:46:40.695907Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/phase1.md
-          - internal/index/index.go
-          - internal/index/index_test.go
-          - specs/system/requirements/SYS-REQ-260820-Q8GR.req.yaml
+        - reviewed_at: "2026-08-21T07:46:40.695907Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/index/index.go
+            - internal/index/index_test.go
+            - specs/system/requirements/SYS-REQ-260820-Q8GR.req.yaml
     components:
-      - index
-      - store
+        - index
+        - store
 verification:
     assurance_level: E
     formalization_status: valid
@@ -49,76 +44,64 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:6abb2e16e37df5d51e0bd7fdc7422f1640f0cd8cfc87a6feb2aa658b6a84da9e
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:6abb2e16e37df5d51e0bd7fdc7422f1640f0cd8cfc87a6feb2aa658b6a84da9e
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:39:06Z"
-            superseded_by: agent:grok
-          - kind: chg
-            ref: CHG-260821-DFVQ
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:17:28.446485Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:39:06Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-DFVQ
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:42.298214Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7
-        reviewer: agent:grok
-        reason: 'INT-REQ-260820-2JKK on index keeps its own contract (when index_rebuild_requested
-            the index shall always satisfy (record_count >= 0 => (store_records_scanned
-            & index_files_rewritten & !canonica). This review is specific to ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7
-            and is not a shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:17:28.446485Z"
+        - check: ambiguity
+          issue_key: ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7
+          reviewer: agent:grok
+          reason: 'Recorded only on INT-REQ-260820-2JKK for ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7: INT-REQ-260820-2JKK (index rebuild interface that rewrites disposable derived files without mutating canonical Markdown) is complementary to SW-REQ-260820-BNR7 (software 100000-row record_count envelope on index rebuild) on the index ambiguity finding. This rationale is not copied onto SW-REQ-260820-BNR7 or any parent.'
+          reviewed_at: "2026-08-21T09:23:42.298214Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:32Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-  - idempotency
+    - idempotency
 obligation_hazards:
-  - class: idempotency
-    worst_case: Rebuilding the disposable index twice produces a different 
-        snapshot, so agents cache stale derived state.
-    severity: medium
+    - class: idempotency
+      worst_case: Rebuilding the disposable index twice produces a different snapshot, so agents cache stale derived state.
+      severity: medium
 hazard_review:
     reviewed_at: "2026-08-20T19:40:46Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: not_applicable
-        rationale: Index integration is an idempotency property over derived 
-            files.
-      - category: property
-        disposition: reviewed
-        applied:
-          - idempotency
-      - category: domain
-        disposition: not_applicable
-        rationale: Index writes disposable derived JSON under .crm; canonical 
-            Markdown path hazards live on store.
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: not_applicable
+          rationale: Index integration is an idempotency property over derived files.
+        - category: property
+          disposition: reviewed
+          applied:
+            - idempotency
+        - category: domain
+          disposition: not_applicable
+          rationale: Index writes disposable derived JSON under .crm; canonical Markdown path hazards live on store.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 interface:
     caller: index
     callee: store
@@ -126,15 +109,15 @@ interface:
     signature: Index.Rebuild() -> (snapshot, error)
     producer: index
     consumer:
-      - store
+        - store
     owner: team:crm
     version: v1.0.0
     compatibility_policy: semver-lax
     risk_tier: 3
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:51Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:51Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

@@ -4,12 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when record_create_requested the store shall always satisfy 
-    (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((record_id_assigned &
-    record_type_stored & frontmatter_written & markdown_body_written) | 
-    create_rejected)))
-description: The product shall create, show, and list records that keep a stable
-    id and an open type.
+fretish: when record_create_requested the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index >= 0) & ((record_id_assigned & record_type_stored & frontmatter_written & markdown_body_written) | create_rejected)))
+description: The product shall create, show, and list records that keep a stable id and an open type.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -17,37 +13,34 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-KAGT
 component: store
-rationale: Records are Markdown files with YAML frontmatter. Types stay 
-    open-ended. Refined by INT-REQ-260820-AHKR, INT-REQ-260820-JC9M, 
-    SW-REQ-260820-N02Y.
+rationale: Records are Markdown files with YAML frontmatter. Types stay open-ended. Refined by INT-REQ-260820-AHKR, INT-REQ-260820-JC9M, SW-REQ-260820-N02Y.
 tags: []
 variables: []
 references:
-  - type: document
-    id: README.md
+    - type: document
+      id: README.md
 traces:
     satisfies:
-      - STK-REQ-260820-V5ZD
-      - STK-REQ-260820-KAGT
+        - STK-REQ-260820-V5ZD
+        - STK-REQ-260820-KAGT
     reviewed_at: "2026-08-21T07:46:54.488156Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:72b9d0df4ad9b587dc51fdaccc3648d5f7f237ddc4119721e2ad01d9cd5296a1
+    reviewed_fingerprint: sha256:72b9d0df4ad9b587dc51fdaccc3648d5f7f237ddc4119721e2ad01d9cd5296a1
     review_history:
-      - reviewed_at: "2026-08-21T07:46:54.488156Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/phase1.md
-          - internal/app/app.go
-          - internal/cli/cli_test.go
-          - internal/record/record.go
-          - internal/store/store.go
-          - internal/store/store_test.go
-          - specs/stakeholder/requirements/STK-REQ-260820-KAGT.req.yaml
-          - specs/stakeholder/requirements/STK-REQ-260820-V5ZD.req.yaml
+        - reviewed_at: "2026-08-21T07:46:54.488156Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/cli/cli_test.go
+            - internal/record/record.go
+            - internal/store/store.go
+            - internal/store/store_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-KAGT.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-V5ZD.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -56,161 +49,129 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:04440920b0f4d95e5d58e4825723f24270de7f12ebc91e31c25ad9647ce71445
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:04440920b0f4d95e5d58e4825723f24270de7f12ebc91e31c25ad9647ce71445
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:41:15Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest parent after children were reviewed so the plan
-                of record stays current.
-            superseded_at: "2026-08-21T07:47:05Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so 
-                satisfies citations stay current.
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:46.170065Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-9J7C on store keeps its own contract (when record_create_requested
-            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
-            >= 0) & ((record_id_assigned & rec). This review is specific to ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
-            and is not a shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-9J7C on store keeps its own contract (when record_create_requested
-            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
-            >= 0) & ((record_id_assigned & rec). This review is specific to ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
-            and is not a shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-9J7C on store keeps its own contract (when record_create_requested
-            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
-            >= 0) & ((record_id_assigned & rec). This review is specific to ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
-            and is not a shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-9J7C on store keeps its own contract (when record_create_requested
-            the store shall always satisfy (parse_budget >= 0 => ((frontmatter_sep_index
-            >= 0) & ((record_id_assigned & rec). This review is specific to ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34
-            and is not a shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-MQF2 or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.059359Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-Q3C4 or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.059359Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SYS-REQ-260820-2SQZ (system concurrent mutation parent for the Markdown store) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-2SQZ or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.059359Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SYS-REQ-260820-KJ34 (system store parent that over-budget parses fail closed) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-KJ34 or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.170065Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-  - boundary
-  - empty_input
-  - error_handling
-  - malformed_input
-  - malformed_recovers_or_errors_loudly
-  - nominal
-  - path_traversal_prevented
-  - untrusted_input_bounded
+    - boundary
+    - empty_input
+    - error_handling
+    - malformed_input
+    - malformed_recovers_or_errors_loudly
+    - nominal
+    - path_traversal_prevented
+    - untrusted_input_bounded
 obligation_hazards:
-  - class: boundary
-    worst_case: A record at a type or filename boundary is rejected as 
-        unreadable, so a human cannot keep editing Markdown without the binary.
-    severity: low
-  - class: empty_input
-    worst_case: An empty workspace or missing records directory is treated as a 
-        hard crash, so init and list cannot recover from a new folder.
-    severity: low
-  - class: error_handling
-    worst_case: A failed write is reported as success, so the human edits the 
-        wrong file and loses notes.
-    severity: medium
-  - class: malformed_input
-    worst_case: Malformed frontmatter is treated as a valid record, so search 
-        and boards operate on corrupt canonical files.
-    severity: medium
-  - class: malformed_recovers_or_errors_loudly
-    worst_case: A truncated frontmatter file is silently skipped, hiding 
-        corruption from list, search, and validate.
-    severity: medium
-  - class: nominal
-    worst_case: A valid create or show returns the wrong id or omits required 
-        type, so agents address the wrong file.
-    severity: low
-  - class: path_traversal_prevented
-    worst_case: An attacker-supplied record id or type writes a Markdown file 
-        outside the workspace root.
-    severity: medium
-  - class: untrusted_input_bounded
-    worst_case: Hostile YAML constructs an unbounded object graph and exhausts 
-        memory during frontmatter parse.
-    severity: medium
+    - class: boundary
+      worst_case: A record at a type or filename boundary is rejected as unreadable, so a human cannot keep editing Markdown without the binary.
+      severity: low
+    - class: empty_input
+      worst_case: An empty workspace or missing records directory is treated as a hard crash, so init and list cannot recover from a new folder.
+      severity: low
+    - class: error_handling
+      worst_case: A failed write is reported as success, so the human edits the wrong file and loses notes.
+      severity: medium
+    - class: malformed_input
+      worst_case: Malformed frontmatter is treated as a valid record, so search and boards operate on corrupt canonical files.
+      severity: medium
+    - class: malformed_recovers_or_errors_loudly
+      worst_case: A truncated frontmatter file is silently skipped, hiding corruption from list, search, and validate.
+      severity: medium
+    - class: nominal
+      worst_case: A valid create or show returns the wrong id or omits required type, so agents address the wrong file.
+      severity: low
+    - class: path_traversal_prevented
+      worst_case: An attacker-supplied record id or type writes a Markdown file outside the workspace root.
+      severity: medium
+    - class: untrusted_input_bounded
+      worst_case: Hostile YAML constructs an unbounded object graph and exhausts memory during frontmatter parse.
+      severity: medium
 hazard_review:
     reviewed_at: "2026-08-20T19:40:35Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: reviewed
-        applied:
-          - empty_input
-          - malformed_input
-          - nominal
-          - boundary
-          - error_handling
-      - category: property
-        disposition: not_applicable
-        rationale: Create/show/list properties for atomic write live on the 
-            patch requirement.
-      - category: domain
-        disposition: reviewed
-        applied:
-          - path_traversal_prevented
-          - malformed_recovers_or_errors_loudly
-          - untrusted_input_bounded
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - empty_input
+            - malformed_input
+            - nominal
+            - boundary
+            - error_handling
+        - category: property
+          disposition: not_applicable
+          rationale: Create/show/list properties for atomic write live on the patch requirement.
+        - category: domain
+          disposition: reviewed
+          applied:
+            - path_traversal_prevented
+            - malformed_recovers_or_errors_loudly
+            - untrusted_input_bounded
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 nominal_evidence_exemptions:
-  - obligation_class: error_handling
-    reason: FRETish models only rejection of invalid create or parse inputs; 
-        happy-path create is witnessed by the nominal obligation, not by 
-        error_handling.
-    reviewer: agent:grok
-  - obligation_class: malformed_input
-    reason: FRETish models only loud failure on malformed frontmatter; valid 
-        records are witnessed by the nominal obligation on the same requirement.
-    reviewer: agent:grok
+    - obligation_class: error_handling
+      reason: FRETish models only rejection of invalid create or parse inputs; happy-path create is witnessed by the nominal obligation, not by error_handling.
+      reviewer: agent:grok
+    - obligation_class: malformed_input
+      reason: FRETish models only loud failure on malformed frontmatter; valid records are witnessed by the nominal obligation on the same requirement.
+      reviewer: agent:grok
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:54Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

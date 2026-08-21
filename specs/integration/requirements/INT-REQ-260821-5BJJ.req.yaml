@@ -23,9 +23,9 @@ variables:
 traces:
     satisfies:
         - SYS-REQ-260820-2SQZ
-    reviewed_at: "2026-08-21T09:00:39.754292Z"
+    reviewed_at: "2026-08-21T09:20:20.474209Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:084b0b5bfdcbfe90fc70331e93f7b09a6c2863b5010568801b30b95c2d86c8db
+    reviewed_fingerprint: sha256:a932b9a929d00a059c73979093ee94e23e61b2c2d32366c88fbc7f45915a11f1
     review_history:
         - reviewed_at: "2026-08-21T09:00:39.754292Z"
           reviewed_by: agent:grok
@@ -34,6 +34,18 @@ traces:
           source: proof trace review --citation
           citations:
             - docs/phase1.md
+            - internal/store/store.go
+            - internal/store/store_race_test.go
+            - specs/system/requirements/SYS-REQ-260820-2SQZ.req.yaml
+        - reviewed_at: "2026-08-21T09:20:20.474209Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Re-reviewed INT-REQ-260821-5BJJ traces after spec metadata restamps; cited targets still name this requirement.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/store/mcdc_leftover_test.go
+            - internal/store/mcdc_noaction_test.go
             - internal/store/store.go
             - internal/store/store_race_test.go
             - specs/system/requirements/SYS-REQ-260820-2SQZ.req.yaml
@@ -95,12 +107,12 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'INT-REQ-260821-5BJJ on store_lock keeps its own contract (when record_mutation_requested the store_lock shall always satisfy (parse_budget >= 0 => (version_mismatch => conflict_reported))). This review is specific to ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4 and is not a shared canned rationale for sibling pairs.'
+          reason: 'Recorded only on INT-REQ-260821-5BJJ for ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4: INT-REQ-260821-5BJJ (store_lock integration: version mismatch under a non-negative parse budget reports conflict) is complementary to SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-Q3C4 or any parent.'
           reviewed_at: "2026-08-21T09:03:49.61319Z"
         - check: ambiguity
           issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'INT-REQ-260821-5BJJ on store_lock keeps its own contract (when record_mutation_requested the store_lock shall always satisfy (parse_budget >= 0 => (version_mismatch => conflict_reported))). This review is specific to ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ and is not a shared canned rationale for sibling pairs.'
+          reason: 'Recorded only on INT-REQ-260821-5BJJ for ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ: INT-REQ-260821-5BJJ (store_lock integration: version mismatch under a non-negative parse budget reports conflict) is complementary to SYS-REQ-260820-2SQZ (system concurrent mutation parent for the Markdown store) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-2SQZ or any parent.'
           reviewed_at: "2026-08-21T08:58:56.356721Z"
     not_modeled:
         - predicate: len(fields)
@@ -138,6 +150,7 @@ hazard_review:
         - category: structural
           disposition: not_applicable
           rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
+verification_state: passing
 interface:
     caller: cli
     callee: store
@@ -157,3 +170,8 @@ lifecycle:
           to: review
           reason: ""
           changed_by: agent:grok
+        - date: "2026-08-21T09:20:46Z"
+          from: verification=not_started
+          to: verification=passing
+          reason: auto-derived [not_started→passing] signals=1; evidence_profile:race:internal/store/store_race_test.go=passing
+          changed_by: agent:auto-derive

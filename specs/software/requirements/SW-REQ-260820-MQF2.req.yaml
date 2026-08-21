@@ -4,12 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when init_command_invoked the store shall always satisfy (parse_budget 
-    >= 0 => (workspace_dir_count >= 8 & crm_yaml_written & records_dir_created &
-    boards_dir_created & inbox_dir_created & attachments_dir_created & 
-    templates_dir_created & derived_dirs_created))
-description: The store shall write crm.yaml and at least eight workspace 
-    directories during init.
+fretish: when init_command_invoked the store shall always satisfy (parse_budget >= 0 => (workspace_dir_count >= 8 & crm_yaml_written & records_dir_created & boards_dir_created & inbox_dir_created & attachments_dir_created & templates_dir_created & derived_dirs_created))
+description: The store shall write crm.yaml and at least eight workspace directories during init.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -17,29 +13,27 @@ informal_verification:
     verified: false
 parent: SYS-REQ-260820-KJ34
 component: store
-rationale: Init creates the editable workspace. Derived .crm directories stay 
-    rebuildable.
+rationale: Init creates the editable workspace. Derived .crm directories stay rebuildable.
 tags: []
 variables: []
 traces:
     satisfies:
-      - SYS-REQ-260820-KJ34
+        - SYS-REQ-260820-KJ34
     reviewed_at: "2026-08-21T07:46:47.785834Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:658654f1236691894601ca4fe14fe93cf881485655b5af3b37e5c0f707f0a762
+    reviewed_fingerprint: sha256:658654f1236691894601ca4fe14fe93cf881485655b5af3b37e5c0f707f0a762
     review_history:
-      - reviewed_at: "2026-08-21T07:46:47.785834Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/phase1.md
-          - internal/app/app.go
-          - internal/store/store.go
-          - internal/store/store_test.go
-          - specs/system/requirements/SYS-REQ-260820-KJ34.req.yaml
+        - reviewed_at: "2026-08-21T07:46:47.785834Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/store/store.go
+            - internal/store/store_test.go
+            - specs/system/requirements/SYS-REQ-260820-KJ34.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -48,138 +42,105 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:b5e573d7cb72629ddf9ffb426101d43e96f77de1bdfd68c141e205df49c48fa5
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:b5e573d7cb72629ddf9ffb426101d43e96f77de1bdfd68c141e205df49c48fa5
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:41:10Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after listing honest not_modeled Go length 
-                predicates without changing required behavior.
-            superseded_at: "2026-08-21T07:42:37Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest 
-                not_modeled Go length predicates.
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:46.059359Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-MQF2 on store keeps its own contract (when init_command_invoked
-            the store shall always satisfy (parse_budget >= 0 => (workspace_dir_count
-            >= 8 & crm_yaml_written & records_dir_cr). This review is specific to
-            ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y and is not a shared
-            canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-MQF2 on store keeps its own contract (when init_command_invoked
-            the store shall always satisfy (parse_budget >= 0 => (workspace_dir_count
-            >= 8 & crm_yaml_written & records_dir_cr). This review is specific to
-            ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4 and is not a shared
-            canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-MQF2 on store keeps its own contract (when init_command_invoked
-            the store shall always satisfy (parse_budget >= 0 => (workspace_dir_count
-            >= 8 & crm_yaml_written & records_dir_cr). This review is specific to
-            ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ and is not a shared
-            canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-MQF2 on store keeps its own contract (when init_command_invoked
-            the store shall always satisfy (parse_budget >= 0 => (workspace_dir_count
-            >= 8 & crm_yaml_written & records_dir_cr). This review is specific to
-            ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C and is not a shared
-            canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-MQF2 for ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-N02Y: SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) is complementary to SW-REQ-260820-N02Y (software frontmatter separator scan bounded by parse_budget) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-N02Y or any parent.'
+          reviewed_at: "2026-08-21T09:23:45.946706Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-MQF2 for ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4: SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) is complementary to SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-Q3C4 or any parent.'
+          reviewed_at: "2026-08-21T09:23:45.837188Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-MQF2 for ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-2SQZ: SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) is complementary to SYS-REQ-260820-2SQZ (system concurrent mutation parent for the Markdown store) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-2SQZ or any parent.'
+          reviewed_at: "2026-08-21T09:23:45.837188Z"
+        - check: ambiguity
+          issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-MQF2 for ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C: SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) is complementary to SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-9J7C or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.059359Z"
     not_modeled:
-      - predicate: len(fields)
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
-      - predicate: len(fs)
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
-      - predicate: len(fs.Enum)
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
-      - predicate: len(record.StringSlice(rec.Get("blockers")
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fields)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(fs.Enum)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(record.StringSlice(rec.Get("blockers")
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-  - empty_input
-  - error_handling
-  - nominal
+    - empty_input
+    - error_handling
+    - nominal
 obligation_hazards:
-  - class: empty_input
-    worst_case: Init with an empty root refuses to create the workspace, so a 
-        new folder cannot become a CRM.
-    severity: low
-  - class: error_handling
-    worst_case: Init with an unusable root is reported as success, so the 
-        maintainer thinks a workspace exists.
-    severity: low
-  - class: nominal
-    worst_case: Init succeeds without writing crm.yaml or required directories, 
-        so later commands cannot find the workspace.
-    severity: low
+    - class: empty_input
+      worst_case: Init with an empty root refuses to create the workspace, so a new folder cannot become a CRM.
+      severity: low
+    - class: error_handling
+      worst_case: Init with an unusable root is reported as success, so the maintainer thinks a workspace exists.
+      severity: low
+    - class: nominal
+      worst_case: Init succeeds without writing crm.yaml or required directories, so later commands cannot find the workspace.
+      severity: low
 hazard_review:
     reviewed_at: "2026-08-20T19:40:35Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: reviewed
-        applied:
-          - empty_input
-          - nominal
-      - category: property
-        disposition: not_applicable
-        rationale: Init is a one-shot workspace create; algebraic properties 
-            belong to mutation and index reqs.
-      - category: domain
-        disposition: not_applicable
-        rationale: Init writes known defaults; path and parse hazards are owned 
-            by create and patch reqs.
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - empty_input
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: Init is a one-shot workspace create; algebraic properties belong to mutation and index reqs.
+        - category: domain
+          disposition: not_applicable
+          rationale: Init writes known defaults; path and parse hazards are owned by create and patch reqs.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:53Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:53Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

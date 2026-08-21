@@ -22,9 +22,9 @@ references:
 traces:
     satisfies:
         - STK-REQ-260820-T8AZ
-    reviewed_at: "2026-08-21T07:46:56.842474Z"
+    reviewed_at: "2026-08-21T09:20:23.170419Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:4dd11ef04c6a5dfe9553cdc11bb39b0941782912a5fa18fab66f7ec684d1a0c5
+    reviewed_fingerprint: sha256:0ca5648d870d2f030230e00ee23fe1b62c778707fee6bc854ab2295e23d39e3e
     review_history:
         - reviewed_at: "2026-08-21T07:46:56.842474Z"
           reviewed_by: agent:grok
@@ -36,6 +36,21 @@ traces:
             - internal/app/app.go
             - internal/index/index.go
             - internal/index/index_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
+        - reviewed_at: "2026-08-21T09:20:23.170419Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Re-reviewed SYS-REQ-260820-Q8GR traces after spec metadata restamps; cited targets still name this requirement.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/index/index.go
+            - internal/index/index_mcdc_test.go
+            - internal/index/index_more_test.go
+            - internal/index/index_test.go
+            - internal/index/mcdc_leftover_test.go
+            - internal/index/mcdc_noaction_test.go
             - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
 verification:
     assurance_level: E

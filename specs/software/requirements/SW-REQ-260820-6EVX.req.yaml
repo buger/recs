@@ -4,12 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when query_expression_received the query shall always satisfy (expr_len
-    > 0 => ((clause_count > 0) & (clause_count <= expr_len) & 
-    (((operator_eq_applied | operator_cmp_applied | operator_contains_applied | 
-    operator_in_applied) & records_filtered) | query_rejected)))
-description: The query engine shall parse field operators, bound clause count by
-    expression length, and filter records.
+fretish: when query_expression_received the query shall always satisfy (expr_len > 0 => ((clause_count > 0) & (clause_count <= expr_len) & (((operator_eq_applied | operator_cmp_applied | operator_contains_applied | operator_in_applied) & records_filtered) | query_rejected)))
+description: The query engine shall parse field operators, bound clause count by expression length, and filter records.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -22,23 +18,22 @@ tags: []
 variables: []
 traces:
     satisfies:
-      - SYS-REQ-260820-ZTC3
+        - SYS-REQ-260820-ZTC3
     reviewed_at: "2026-08-21T07:46:45.221019Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:a14cba78a469fb850b9d29ab75b9dcb7ea50f396e04854dc9b9948824b1fa28f
+    reviewed_fingerprint: sha256:a14cba78a469fb850b9d29ab75b9dcb7ea50f396e04854dc9b9948824b1fa28f
     review_history:
-      - reviewed_at: "2026-08-21T07:46:45.221019Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/phase1.md
-          - internal/app/app.go
-          - internal/query/query.go
-          - internal/query/query_test.go
-          - specs/system/requirements/SYS-REQ-260820-ZTC3.req.yaml
+        - reviewed_at: "2026-08-21T07:46:45.221019Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/query/query.go
+            - internal/query/query_test.go
+            - specs/system/requirements/SYS-REQ-260820-ZTC3.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -47,106 +42,87 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:9da8f2ec5c6194ba5af9ea77b2538c494dae1d09a29a77aaf497e0886f683a62
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:9da8f2ec5c6194ba5af9ea77b2538c494dae1d09a29a77aaf497e0886f683a62
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:41:10Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after listing honest not_modeled Go length 
-                predicates without changing required behavior.
-            superseded_at: "2026-08-21T07:42:37Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest 
-                not_modeled Go length predicates.
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:46.457775Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-6EVX on query keeps its own contract (when query_expression_received
-            the query shall always satisfy (expr_len > 0 => ((clause_count > 0) &
-            (clause_count <= expr_len) & (((operato). This review is specific to ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F
-            and is not a shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-6EVX on query keeps its own contract (when query_expression_received
-            the query shall always satisfy (expr_len > 0 => ((clause_count > 0) &
-            (clause_count <= expr_len) & (((operato). This review is specific to ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH
-            and is not a shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
+          issue_key: ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-6EVX for ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F: SW-REQ-260820-6EVX (software query compilation of a filter expression) is complementary to SW-REQ-260820-X37F (software query evaluation against loaded records) on the query ambiguity finding. This rationale is not copied onto SW-REQ-260820-X37F or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.383594Z"
+        - check: ambiguity
+          issue_key: ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-6EVX for ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH: SW-REQ-260820-6EVX (software query compilation of a filter expression) is complementary to SYS-REQ-260820-HJPH (system query parent for compiling a filter) on the query ambiguity finding. This rationale is not copied onto SYS-REQ-260820-HJPH or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.457775Z"
     not_modeled:
-      - predicate: len(matches)
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
-      - predicate: len(record.StringSlice(rec.Get("blockers")
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(matches)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(record.StringSlice(rec.Get("blockers")
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-  - determinism
-  - malformed_input
+    - determinism
+    - malformed_input
 obligation_hazards:
-  - class: determinism
-    worst_case: The same query expression returns a different record set across 
-        runs, so agents cannot trust filters.
-    severity: medium
-  - class: malformed_input
-    worst_case: An invalid query is treated as match-all, exposing or mutating 
-        every record.
-    severity: medium
+    - class: determinism
+      worst_case: The same query expression returns a different record set across runs, so agents cannot trust filters.
+      severity: medium
+    - class: malformed_input
+      worst_case: An invalid query is treated as match-all, exposing or mutating every record.
+      severity: medium
 hazard_review:
     reviewed_at: "2026-08-20T19:40:38Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: reviewed
-        applied:
-          - malformed_input
-      - category: property
-        disposition: reviewed
-        applied:
-          - determinism
-      - category: domain
-        disposition: not_applicable
-        rationale: Query is an in-memory predicate over already-parsed records; 
-            no filesystem or HTTP sink.
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - malformed_input
+        - category: property
+          disposition: reviewed
+          applied:
+            - determinism
+        - category: domain
+          disposition: not_applicable
+          rationale: Query is an in-memory predicate over already-parsed records; no filesystem or HTTP sink.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:52Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:52Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

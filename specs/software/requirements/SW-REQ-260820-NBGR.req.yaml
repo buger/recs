@@ -4,11 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when board_requested the board shall always satisfy (matcher_depth >= 0
-    => ((column_list_len > 0) & (column_list_len <= 64) & ((matcher_applied & 
-    column_field_projected & records_grouped) | board_rejected)))
-description: The board component shall match records, group them by the column 
-    field, and accept at most 64 columns.
+fretish: when board_requested the board shall always satisfy (matcher_depth >= 0 => ((column_list_len > 0) & (column_list_len <= 64) & ((matcher_applied & column_field_projected & records_grouped) | board_rejected)))
+description: The board component shall match records, group them by the column field, and accept at most 64 columns.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -21,24 +18,23 @@ tags: []
 variables: []
 traces:
     satisfies:
-      - SYS-REQ-260820-4628
+        - SYS-REQ-260820-4628
     reviewed_at: "2026-08-21T07:46:48.905625Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:eee17b7ee5ce31a0fa308e6f02bd25b877daca5646fb1b303478a412f9a0b527
+    reviewed_fingerprint: sha256:eee17b7ee5ce31a0fa308e6f02bd25b877daca5646fb1b303478a412f9a0b527
     review_history:
-      - reviewed_at: "2026-08-21T07:46:48.905625Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/phase1.md
-          - internal/app/app.go
-          - internal/board/board.go
-          - internal/cli/cli_test.go
-          - internal/store/store_test.go
-          - specs/system/requirements/SYS-REQ-260820-4628.req.yaml
+        - reviewed_at: "2026-08-21T07:46:48.905625Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/board/board.go
+            - internal/cli/cli_test.go
+            - internal/store/store_test.go
+            - specs/system/requirements/SYS-REQ-260820-4628.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -47,120 +43,95 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:a94ce32d25c2ae99fcb1e1678b10fedef9225ed9810b44a6c6b5ff85a89bffea
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:a94ce32d25c2ae99fcb1e1678b10fedef9225ed9810b44a6c6b5ff85a89bffea
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:41:10Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after listing honest not_modeled Go length 
-                predicates without changing required behavior.
-            superseded_at: "2026-08-21T07:42:37Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest 
-                not_modeled Go length predicates.
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:46.889326Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-NBGR on board keeps its own contract (when board_requested
-            the board shall always satisfy (matcher_depth >= 0 => ((column_list_len
-            > 0) & (column_list_len <= 64) & ((matcher_appl). This review is specific
-            to ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-NBGR on board keeps its own contract (when board_requested
-            the board shall always satisfy (matcher_depth >= 0 => ((column_list_len
-            > 0) & (column_list_len <= 64) & ((matcher_appl). This review is specific
-            to ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-NBGR on board keeps its own contract (when board_requested
-            the board shall always satisfy (matcher_depth >= 0 => ((column_list_len
-            > 0) & (column_list_len <= 64) & ((matcher_appl). This review is specific
-            to ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-NBGR for ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR: SW-REQ-260820-NBGR (software board saved-view apply path) is complementary to INT-REQ-260820-JRWN (board integration that saved views read the shared record model) on the board ambiguity finding. This rationale is not copied onto INT-REQ-260820-JRWN or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.706247Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-NBGR for ambiguity|board|SW-REQ-260820-EX7Q|SW-REQ-260820-NBGR: SW-REQ-260820-NBGR (software board saved-view apply path) is complementary to SW-REQ-260820-EX7Q (software board filter encoding) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-EX7Q or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.799192Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-NBGR for ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE: SW-REQ-260820-NBGR (software board saved-view apply path) is complementary to SYS-REQ-260820-BVBE (system board parent for saved views) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-BVBE or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.889326Z"
     not_modeled:
-      - predicate: len(record.StringSlice(rec.Get("blockers")
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(record.StringSlice(rec.Get("blockers")
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:30Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-  - empty_input
-  - nominal
-  - path_traversal_prevented
+    - empty_input
+    - nominal
+    - path_traversal_prevented
 obligation_hazards:
-  - class: empty_input
-    worst_case: A board with no matching records is reported as a missing board 
-        error, blocking the Kanban view.
-    severity: low
-  - class: nominal
-    worst_case: A valid board request omits a matching record, so the file and 
-        UI disagree.
-    severity: low
-  - class: path_traversal_prevented
-    worst_case: An attacker-supplied board name reads a YAML file outside 
-        boards/ and treats it as a Kanban definition.
-    severity: medium
+    - class: empty_input
+      worst_case: A board with no matching records is reported as a missing board error, blocking the Kanban view.
+      severity: low
+    - class: nominal
+      worst_case: A valid board request omits a matching record, so the file and UI disagree.
+      severity: low
+    - class: path_traversal_prevented
+      worst_case: An attacker-supplied board name reads a YAML file outside boards/ and treats it as a Kanban definition.
+      severity: medium
 hazard_review:
     reviewed_at: "2026-08-20T19:40:40Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: reviewed
-        applied:
-          - empty_input
-          - nominal
-      - category: property
-        disposition: not_applicable
-        rationale: Board projection is a view; atomic write properties live on 
-            move and patch.
-      - category: domain
-        disposition: reviewed
-        applied:
-          - path_traversal_prevented
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - empty_input
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: Board projection is a view; atomic write properties live on move and patch.
+        - category: domain
+          disposition: reviewed
+          applied:
+            - path_traversal_prevented
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:53Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:53Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli

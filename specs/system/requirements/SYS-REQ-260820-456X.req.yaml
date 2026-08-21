@@ -28,9 +28,9 @@ traces:
         - STK-REQ-260820-Y3Q4
         - STK-REQ-260820-KAGT
         - STK-REQ-260820-4255
-    reviewed_at: "2026-08-21T07:46:53.13815Z"
+    reviewed_at: "2026-08-21T09:20:22.009631Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:438705951f0d2aa764850292c3bccf063baa0a727043c6322fb56146997e8121
+    reviewed_fingerprint: sha256:8f8a384d8273998daccf18d0d9dc5a7487b3acc2fd0152a1d31bc45f5446624f
     review_history:
         - reviewed_at: "2026-08-21T07:46:53.13815Z"
           reviewed_by: agent:grok
@@ -44,6 +44,25 @@ traces:
             - internal/cli/cli.go
             - internal/dashboard/dashboard.go
             - internal/dashboard/dashboard_test.go
+            - internal/serve/serve.go
+            - internal/serve/serve_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-4255.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-KAGT.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-Y3Q4.req.yaml
+        - reviewed_at: "2026-08-21T09:20:22.009631Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Re-reviewed SYS-REQ-260820-456X traces after spec metadata restamps; cited targets still name this requirement.
+          source: proof trace review --citation
+          citations:
+            - docs/dashboards.md
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/cli/cli.go
+            - internal/dashboard/dashboard.go
+            - internal/dashboard/dashboard_test.go
+            - internal/dashboard/mcdc_leftover_test.go
+            - internal/dashboard/mcdc_noaction_test.go
             - internal/serve/serve.go
             - internal/serve/serve_test.go
             - specs/stakeholder/requirements/STK-REQ-260820-4255.req.yaml

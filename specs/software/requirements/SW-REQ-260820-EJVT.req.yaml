@@ -4,13 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when gallery_requested the serve shall always satisfy 
-    ((dashboards_present => (gallery_rendered & preview_cards_shown & 
-    static_ui_served)) | (!dashboards_present => (empty_gallery_shown & 
-    static_ui_served)) | gallery_rejected)
-description: The serve component shall show a dashboard gallery. The gallery 
-    shall show a live preview for each dashboard. The serve component shall open
-    one dashboard in a widget grid.
+fretish: when gallery_requested the serve shall always satisfy ((dashboards_present => (gallery_rendered & preview_cards_shown & static_ui_served)) | (!dashboards_present => (empty_gallery_shown & static_ui_served)) | gallery_rejected)
+description: The serve component shall show a dashboard gallery. The gallery shall show a live preview for each dashboard. The serve component shall open one dashboard in a widget grid.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -21,32 +16,42 @@ component: serve
 rationale: The gallery is the home view. The Kanban view stays available.
 tags: []
 variables:
-  - gallery_requested
-  - dashboards_present
-  - gallery_rendered
-  - preview_cards_shown
-  - static_ui_served
-  - empty_gallery_shown
-  - gallery_rejected
+    - gallery_requested
+    - dashboards_present
+    - gallery_rendered
+    - preview_cards_shown
+    - static_ui_served
+    - empty_gallery_shown
+    - gallery_rejected
 traces:
     satisfies:
-      - SYS-REQ-260820-456X
-    reviewed_at: "2026-08-21T07:46:47.137518Z"
+        - SYS-REQ-260820-456X
+    reviewed_at: "2026-08-21T09:20:21.623133Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:43c298c5cd5869ca80ead8aef74820ec8d8bb47c286f94e60a6cec748dc03c05
+    reviewed_fingerprint: sha256:3826b07375ef2b3e7a4a8ea4ccb2096af9152a2a5830ed74671e18a4b06bc560
     review_history:
-      - reviewed_at: "2026-08-21T07:46:47.137518Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/dashboards.md
-          - docs/phase1.md
-          - internal/serve/serve.go
-          - internal/serve/serve_test.go
-          - specs/system/requirements/SYS-REQ-260820-456X.req.yaml
+        - reviewed_at: "2026-08-21T07:46:47.137518Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/dashboards.md
+            - docs/phase1.md
+            - internal/serve/serve.go
+            - internal/serve/serve_test.go
+            - specs/system/requirements/SYS-REQ-260820-456X.req.yaml
+        - reviewed_at: "2026-08-21T09:20:21.623133Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Re-reviewed SW-REQ-260820-EJVT traces after spec metadata restamps; cited targets still name this requirement.
+          source: proof trace review --citation
+          citations:
+            - docs/dashboards.md
+            - docs/phase1.md
+            - internal/serve/serve.go
+            - internal/serve/serve_test.go
+            - specs/system/requirements/SYS-REQ-260820-456X.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -55,131 +60,103 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:d40f87132d7abb1f34ae2333aa4ad425d22b4edd011fd4cec52163aff51a263a
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:d40f87132d7abb1f34ae2333aa4ad425d22b4edd011fd4cec52163aff51a263a
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:41:10Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after listing honest not_modeled Go length 
-                predicates without changing required behavior.
-            superseded_at: "2026-08-21T07:42:37Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest 
-                not_modeled Go length predicates.
-            superseded_at: "2026-08-21T08:07:51Z"
-            superseded_by: agent:grok
-          - kind: chg
-            ref: CHG-260821-TZ9S
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:10Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
+              superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:07:51Z"
+              superseded_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-TZ9S
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:43.076071Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|serve|INT-REQ-260820-NHBY|SW-REQ-260820-EJVT
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-EJVT on serve keeps its own contract (when gallery_requested
-            the serve shall always satisfy ((dashboards_present => (gallery_rendered
-            & preview_cards_shown & static_ui_served)) |). This review is specific
-            to ambiguity|serve|INT-REQ-260820-NHBY|SW-REQ-260820-EJVT and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260820-EJVT
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-EJVT on serve keeps its own contract (when gallery_requested
-            the serve shall always satisfy ((dashboards_present => (gallery_rendered
-            & preview_cards_shown & static_ui_served)) |). This review is specific
-            to ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260820-EJVT and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S
-        reviewer: agent:grok
-        reason: 'SW-REQ-260820-EJVT on serve keeps its own contract (when gallery_requested
-            the serve shall always satisfy ((dashboards_present => (gallery_rendered
-            & preview_cards_shown & static_ui_served)) |). This review is specific
-            to ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|INT-REQ-260820-NHBY|SW-REQ-260820-EJVT
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-EJVT for ambiguity|serve|INT-REQ-260820-NHBY|SW-REQ-260820-EJVT: SW-REQ-260820-EJVT (software dashboard gallery renderer hosted by serve) is complementary to INT-REQ-260820-NHBY (dashboard gallery HTTP integration through the shared app layer) on the serve ambiguity finding. This rationale is not copied onto INT-REQ-260820-NHBY or any parent.'
+          reviewed_at: "2026-08-21T09:23:42.884784Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260820-EJVT
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-EJVT for ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260820-EJVT: SW-REQ-260820-EJVT (software dashboard gallery renderer hosted by serve) is complementary to SW-REQ-260820-8ZS7 (software HTTP listen/bind on listen_port) on the serve ambiguity finding. This rationale is not copied onto SW-REQ-260820-8ZS7 or any parent.'
+          reviewed_at: "2026-08-21T09:23:42.884784Z"
+        - check: ambiguity
+          issue_key: ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S
+          reviewer: agent:grok
+          reason: 'Recorded only on SW-REQ-260820-EJVT for ambiguity|serve|SW-REQ-260820-EJVT|SYS-REQ-260820-9W1S: SW-REQ-260820-EJVT (software dashboard gallery renderer hosted by serve) is complementary to SYS-REQ-260820-9W1S (system HTTP listen parent for the single serve process) on the serve ambiguity finding. This rationale is not copied onto SYS-REQ-260820-9W1S or any parent.'
+          reviewed_at: "2026-08-21T09:23:43.076071Z"
     not_modeled:
-      - predicate: len(d.Widgets)
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
-      - predicate: len(vs) > 0
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
-      - predicate: len(vs)
-        reason: Runtime Go length and equality guards are implementation detail;
-            FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(d.Widgets)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(vs) > 0
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
+        - predicate: len(vs)
+          reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]
 history:
     created_by: agent:grok
     created_at: "2026-08-20T20:17:33Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-  - boundary
-  - error_handling
-  - nominal
+    - boundary
+    - error_handling
+    - nominal
 obligation_hazards:
-  - class: boundary
-    worst_case: An empty dashboard list is shown as a crash instead of an empty 
-        gallery state.
-    severity: low
-  - class: error_handling
-    worst_case: A failed dashboard preview is shown as a server crash, so the 
-        home page is unusable.
-    severity: medium
-  - class: nominal
-    worst_case: A valid gallery request does not show live previews for each 
-        dashboard file.
-    severity: low
+    - class: boundary
+      worst_case: An empty dashboard list is shown as a crash instead of an empty gallery state.
+      severity: low
+    - class: error_handling
+      worst_case: A failed dashboard preview is shown as a server crash, so the home page is unusable.
+      severity: medium
+    - class: nominal
+      worst_case: A valid gallery request does not show live previews for each dashboard file.
+      severity: low
 hazard_review:
     reviewed_at: "2026-08-20T20:28:57Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: reviewed
-        applied:
-          - nominal
-          - error_handling
-          - boundary
-      - category: property
-        disposition: not_applicable
-        rationale: Gallery UI is a projection. Algebraic write properties live 
-            on store mutations.
-      - category: domain
-        disposition: not_applicable
-        rationale: HTTP domain classes are owned by the existing serve system 
-            requirement.
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - nominal
+            - error_handling
+            - boundary
+        - category: property
+          disposition: not_applicable
+          rationale: Gallery UI is a projection. Algebraic write properties live on store mutations.
+        - category: domain
+          disposition: not_applicable
+          rationale: HTTP domain classes are owned by the existing serve system requirement.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T20:29:20Z"
-        from: draft
-        to: review
-        reason: File-native dashboard specs ready for review
-        changed_by: agent:grok
+        - date: "2026-08-20T20:29:20Z"
+          from: draft
+          to: review
+          reason: File-native dashboard specs ready for review
+          changed_by: agent:grok

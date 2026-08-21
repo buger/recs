@@ -114,24 +114,24 @@ verification:
               rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:18:47Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+    gaps_reviewed_at: "2026-08-21T09:23:43.076071Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA
           reviewer: agent:grok
-          reason: 'SW-REQ-260821-82BA on serve keeps its own contract (when remaining_ui_requested the serve shall always satisfy (((listen_port >= 1) & (listen_port <= 65535)) => (record_view_rendered | record_). This review is specific to ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA and is not a shared canned rationale for sibling pairs.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
+          reason: 'Recorded only on SW-REQ-260821-82BA for ambiguity|serve|INT-REQ-260821-MRGW|SW-REQ-260821-82BA: SW-REQ-260821-82BA (software remaining-UI outcomes (view, editor, search, filters, attachments, wikilinks)) is complementary to INT-REQ-260821-MRGW (remaining-UI HTTP integration for record/search/board/attachment/wikilink handlers) on the serve ambiguity finding. This rationale is not copied onto INT-REQ-260821-MRGW or any parent.'
+          reviewed_at: "2026-08-21T09:23:42.981839Z"
         - check: ambiguity
           issue_key: ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260821-82BA
           reviewer: agent:grok
-          reason: 'SW-REQ-260821-82BA on serve keeps its own contract (when remaining_ui_requested the serve shall always satisfy (((listen_port >= 1) & (listen_port <= 65535)) => (record_view_rendered | record_). This review is specific to ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260821-82BA and is not a shared canned rationale for sibling pairs.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
+          reason: 'Recorded only on SW-REQ-260821-82BA for ambiguity|serve|SW-REQ-260820-8ZS7|SW-REQ-260821-82BA: SW-REQ-260821-82BA (software remaining-UI outcomes (view, editor, search, filters, attachments, wikilinks)) is complementary to SW-REQ-260820-8ZS7 (software HTTP listen/bind on listen_port) on the serve ambiguity finding. This rationale is not copied onto SW-REQ-260820-8ZS7 or any parent.'
+          reviewed_at: "2026-08-21T09:23:42.981839Z"
         - check: ambiguity
           issue_key: ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S
           reviewer: agent:grok
-          reason: 'SW-REQ-260821-82BA on serve keeps its own contract (when remaining_ui_requested the serve shall always satisfy (((listen_port >= 1) & (listen_port <= 65535)) => (record_view_rendered | record_). This review is specific to ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S and is not a shared canned rationale for sibling pairs.'
-          reviewed_at: "2026-08-21T09:05:02.290906Z"
+          reason: 'Recorded only on SW-REQ-260821-82BA for ambiguity|serve|SW-REQ-260821-82BA|SYS-REQ-260820-9W1S: SW-REQ-260821-82BA (software remaining-UI outcomes (view, editor, search, filters, attachments, wikilinks)) is complementary to SYS-REQ-260820-9W1S (system HTTP listen parent for the single serve process) on the serve ambiguity finding. This rationale is not copied onto SYS-REQ-260820-9W1S or any parent.'
+          reviewed_at: "2026-08-21T09:23:43.076071Z"
     not_modeled:
         - predicate: i >= len(row)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]

@@ -4,11 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when move_requested the board shall always satisfy (matcher_depth >= 0 
-    => ((column_list_len > 0) & ((column_known & frontmatter_field_updated & 
-    file_path_unchanged) | move_rejected)))
-description: The product shall move a record by changing frontmatter, not by 
-    moving the file.
+fretish: when move_requested the board shall always satisfy (matcher_depth >= 0 => ((column_list_len > 0) & ((column_known & frontmatter_field_updated & file_path_unchanged) | move_rejected)))
+description: The product shall move a record by changing frontmatter, not by moving the file.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -16,35 +13,32 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-V5ZD
 component: board
-rationale: A move updates the column field or on_drop sets. The file path stays 
-    stable. Refined by INT-REQ-260820-AHKR, INT-REQ-260820-JRWN, 
-    SW-REQ-260820-EX7Q.
+rationale: A move updates the column field or on_drop sets. The file path stays stable. Refined by INT-REQ-260820-AHKR, INT-REQ-260820-JRWN, SW-REQ-260820-EX7Q.
 tags: []
 variables: []
 references:
-  - type: document
-    id: README.md
+    - type: document
+      id: README.md
 traces:
     satisfies:
-      - STK-REQ-260820-Y3Q4
-      - STK-REQ-260820-V5ZD
+        - STK-REQ-260820-Y3Q4
+        - STK-REQ-260820-V5ZD
     reviewed_at: "2026-08-21T07:46:55.209665Z"
     reviewed_by: agent:grok
-    reviewed_fingerprint: 
-        sha256:72903a21a43dc15913fbae2657a2b76569b588827ce6cba1b4e6cc8bb2bbc227
+    reviewed_fingerprint: sha256:72903a21a43dc15913fbae2657a2b76569b588827ce6cba1b4e6cc8bb2bbc227
     review_history:
-      - reviewed_at: "2026-08-21T07:46:55.209665Z"
-        reviewed_by: agent:grok
-        method: inspection
-        rationale: manual trace review via proof trace review
-        source: proof trace review --citation
-        citations:
-          - docs/phase1.md
-          - internal/app/app.go
-          - internal/board/board.go
-          - internal/store/store_test.go
-          - specs/stakeholder/requirements/STK-REQ-260820-V5ZD.req.yaml
-          - specs/stakeholder/requirements/STK-REQ-260820-Y3Q4.req.yaml
+        - reviewed_at: "2026-08-21T07:46:55.209665Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: manual trace review via proof trace review
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/app/app.go
+            - internal/board/board.go
+            - internal/store/store_test.go
+            - specs/stakeholder/requirements/STK-REQ-260820-V5ZD.req.yaml
+            - specs/stakeholder/requirements/STK-REQ-260820-Y3Q4.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -53,102 +47,82 @@ verification:
         reviewer: agent:grok
         role: system_owner
         roles:
-          - system_owner
+            - system_owner
         reviewed_at: "2026-08-21T09:00:05Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat 
-            authorization 2026-08-21.
-        fingerprint: 
-            sha256:56c509b7e39894b62641fc1a1396c646a1653c74b1db602610b4e5d8b53e1cc8
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:56c509b7e39894b62641fc1a1396c646a1653c74b1db602610b4e5d8b53e1cc8
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-approve after complementary ambiguity reviews; 
-                required behavior and FRETish contracts are unchanged.
+            rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
         motivation_history:
-          - kind: unchanged
-            rationale: Re-attest implemented Phase 1 requirements under explicit
-                owner authorization without changing their obligations.
-            superseded_at: "2026-08-21T07:41:15Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest parent after children were reviewed so the plan
-                of record stays current.
-            superseded_at: "2026-08-21T07:47:05Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so 
-                satisfies citations stay current.
-            superseded_at: "2026-08-21T08:59:06Z"
-            superseded_by: agent:grok
-          - kind: unchanged
-            rationale: Re-approve after recording complementary ambiguity 
-                reviews; required behavior and FRETish contracts are unchanged.
-            superseded_at: "2026-08-21T09:00:05Z"
-            superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:05:02.290906Z"
+            - kind: unchanged
+              rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
+              superseded_at: "2026-08-21T07:41:15Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest parent after children were reviewed so the plan of record stays current.
+              superseded_at: "2026-08-21T07:47:05Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T08:59:06Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
+              superseded_at: "2026-08-21T09:00:05Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T09:23:46.964082Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
-      - check: ambiguity
-        issue_key: ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-BVBE on board keeps its own contract (when move_requested
-            the board shall always satisfy (matcher_depth >= 0 => ((column_list_len
-            > 0) & ((column_known & frontmatter_field_update). This review is specific
-            to ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE and is not a
-            shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
-      - check: ambiguity
-        issue_key: ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE
-        reviewer: agent:grok
-        reason: 'SYS-REQ-260820-BVBE on board keeps its own contract (when move_requested
-            the board shall always satisfy (matcher_depth >= 0 => ((column_list_len
-            > 0) & ((column_known & frontmatter_field_update). This review is specific
-            to ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE and is not
-            a shared canned rationale for sibling pairs.'
-        reviewed_at: "2026-08-21T09:05:02.290906Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-BVBE for ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE: SYS-REQ-260820-BVBE (system board parent for saved views) is complementary to SW-REQ-260820-NBGR (software board saved-view apply path) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-NBGR or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.889326Z"
+        - check: ambiguity
+          issue_key: ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE
+          reviewer: agent:grok
+          reason: 'Recorded only on SYS-REQ-260820-BVBE for ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE: SYS-REQ-260820-BVBE (system board parent for saved views) is complementary to SYS-REQ-260820-4628 (system board parent for filter encoding) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-4628 or any parent.'
+          reviewed_at: "2026-08-21T09:23:46.964082Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"
     last_modified_by: agent:grok
     last_modified_at: "2026-08-21T09:00:05Z"
 obligation_checklist:
-  - error_handling
-  - nominal
+    - error_handling
+    - nominal
 obligation_hazards:
-  - class: error_handling
-    worst_case: An unknown column is applied as a raw field write, corrupting 
-        status without a clear error.
-    severity: medium
-  - class: nominal
-    worst_case: A valid move updates the file path instead of frontmatter, 
-        breaking the board-is-a-view rule.
-    severity: low
+    - class: error_handling
+      worst_case: An unknown column is applied as a raw field write, corrupting status without a clear error.
+      severity: medium
+    - class: nominal
+      worst_case: A valid move updates the file path instead of frontmatter, breaking the board-is-a-view rule.
+      severity: low
 hazard_review:
     reviewed_at: "2026-08-20T19:40:40Z"
     reviewed_by: agent:grok
     reviewed_against_catalog_version: 1.9.1
     categories:
-      - category: scenario
-        disposition: reviewed
-        applied:
-          - error_handling
-          - nominal
-      - category: property
-        disposition: not_applicable
-        rationale: Move atomicity is owned by the integration requirement and 
-            store write path.
-      - category: domain
-        disposition: not_applicable
-        rationale: Move updates frontmatter through the store write path that 
-            already carries atomic_write.
-      - category: structural
-        disposition: not_applicable
-        rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C 
-            memory ownership.
+        - category: scenario
+          disposition: reviewed
+          applied:
+            - error_handling
+            - nominal
+        - category: property
+          disposition: not_applicable
+          rationale: Move atomicity is owned by the integration requirement and store write path.
+        - category: domain
+          disposition: not_applicable
+          rationale: Move updates frontmatter through the store write path that already carries atomic_write.
+        - category: structural
+          disposition: not_applicable
+          rationale: Go Markdown CRM has no unsafe pointer arithmetic or manual C memory ownership.
 lifecycle:
     change_history:
-      - date: "2026-08-20T19:06:54Z"
-        from: draft
-        to: review
-        reason: ""
-        changed_by: human:cli
+        - date: "2026-08-20T19:06:54Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: human:cli
