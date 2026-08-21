@@ -111,6 +111,25 @@ input, select { width: 100%; border: 1px solid var(--line); border-radius: 10px;
   .page, .topnav { padding-left: 16px; padding-right: 16px; }
   .hero h1 { font-size: 32px; }
 }
+
+.meta { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 20px; }
+.meta .kv { background:#fff; border:1px solid var(--line); border-radius:12px; padding:8px 10px; }
+.meta .k { color:var(--muted); font-size:11px; font-weight:600; text-transform:uppercase; }
+.meta .v { font-weight:600; }
+.prose { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; line-height:1.6; }
+.prose h1,.prose h2,.prose h3 { letter-spacing:-.02em; }
+.side { display:grid; grid-template-columns: 2fr 1fr; gap:18px; }
+.panel { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; }
+.panel h3 { margin:0 0 10px; font-size:14px; color:var(--muted); }
+.rel a { color:var(--blue); text-decoration:none; font-weight:600; }
+.attach { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--line); }
+.editor textarea { width:100%; min-height:280px; border:1px solid var(--line); border-radius:12px; padding:12px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+.filters { display:flex; gap:8px; flex-wrap:wrap; align-items:end; }
+.filters label { margin:0; }
+.search-list .item { background:#fff; border-radius:12px; padding:12px 14px; margin-bottom:10px; box-shadow:var(--shadow); cursor:pointer; }
+.wikilink { color:var(--blue); text-decoration:none; font-weight:600; }
+.wikilink.missing { color:#9ca3af; border-bottom:1px dashed #d1d5db; }
+@media (max-width: 800px) { .side { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -118,6 +137,7 @@ input, select { width: 100%; border: 1px solid var(--line); border-radius: 10px;
   <div class="brand">File-native CRM</div>
   <a class="navlink" id="nav-dash" href="#/">Dashboards</a>
   <a class="navlink" id="nav-boards" href="#/boards">Boards</a>
+  <a class="navlink" id="nav-search" href="#/search">Search</a>
 </nav>
 <main class="page" id="app"></main>
 <div class="modal" id="modal"></div>
@@ -138,11 +158,21 @@ const pillClass = (p) => {
 const pills = (arr) => (arr||[]).slice(0,4).map(p => `<span class="tag ${pillClass(p)}">${esc(p)}</span>`).join('');
 const expandBtn = (id) => `<button class="expand" title="Expand" data-expand="${esc(id)}"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>`;
 
+function setNav(h) {
+  document.getElementById('nav-dash').classList.toggle('active', h === '#/' || h.startsWith('#/d/'));
+  document.getElementById('nav-boards').classList.toggle('active', h.startsWith('#/boards'));
+  document.getElementById('nav-search').classList.toggle('active', h.startsWith('#/search'));
+}
 function route() {
   const h = location.hash || '#/';
-  document.getElementById('nav-dash').classList.toggle('active', !h.startsWith('#/boards'));
-  document.getElementById('nav-boards').classList.toggle('active', h.startsWith('#/boards'));
+  setNav(h);
   if (h.startsWith('#/boards')) return showBoards(h.replace('#/boards','').replace(/^\//,''));
+  if (h.startsWith('#/search')) return showSearch(new URLSearchParams(h.split('?')[1] || '').get('q') || '');
+  if (h.startsWith('#/r/')) {
+    const rest = h.slice(4);
+    if (rest.endsWith('/edit')) return showEditor(rest.replace(/\/edit$/, ''));
+    return showRecord(rest);
+  }
   if (h.startsWith('#/d/')) return showDash(h.slice(4));
   return showGallery();
 }
@@ -316,24 +346,41 @@ async function showBoards(id) {
   const j = await r.json();
   const boards = j.boards || [];
   if (!id && boards[0]) id = boards[0].id;
+  const params = new URLSearchParams((location.hash.split('?')[1] || ''));
   app.innerHTML = `
     <div class="toolbar">
       <strong>Boards</strong>
       <select id="boards">${boards.map(b => `<option value="${esc(b.id)}" ${b.id===id?'selected':''}>${esc(b.name)}</option>`).join('')}</select>
-      <input class="search" id="q" placeholder="search"/>
+      <div class="filters" id="filters"></div>
+      <input class="search" id="q" placeholder="search and press enter"/>
     </div>
     <div class="kanban" id="board"></div>`;
   const sel = document.getElementById('boards');
   sel.onchange = () => location.hash = '#/boards/' + sel.value;
-  document.getElementById('q').addEventListener('keydown', async e => {
+  document.getElementById('q').addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
-    const sr = await fetch('/api/search?q=' + encodeURIComponent(e.target.value));
-    const sj = await sr.json();
-    document.getElementById('board').innerHTML = `<div class="kcol"><h3>Search</h3>${(sj.records||[]).map(rec => `<div class="kcard"><div>${esc(rec.title)}</div><small>${esc(rec.id)}</small></div>`).join('')}</div>`;
+    location.hash = '#/search?q=' + encodeURIComponent(e.target.value);
   });
   if (!id) return;
-  const br = await fetch('/api/boards/' + encodeURIComponent(id));
+  const qs = params.toString() ? ('?' + params.toString()) : '';
+  const br = await fetch('/api/boards/' + encodeURIComponent(id) + qs);
   const bj = await br.json();
+  const box = document.getElementById('filters');
+  (bj.filter_controls || []).forEach(fc => {
+    const wrap = document.createElement('label');
+    wrap.textContent = fc.field;
+    const input = document.createElement('input');
+    input.className = 'search';
+    input.placeholder = fc.field;
+    input.value = params.get(fc.field) || '';
+    input.onchange = () => {
+      if (input.value) params.set(fc.field, input.value); else params.delete(fc.field);
+      const q = params.toString();
+      location.hash = '#/boards/' + id + (q ? '?' + q : '');
+    };
+    wrap.appendChild(input);
+    box.appendChild(wrap);
+  });
   const boardEl = document.getElementById('board');
   boardEl.innerHTML = '';
   (bj.columns||[]).forEach(col => {
@@ -353,10 +400,92 @@ async function showBoards(id) {
       c.draggable = true;
       c.innerHTML = `<div>${esc(rec.title||rec.id)}</div><small>${esc(rec.id)}</small>`;
       c.addEventListener('dragstart', e => e.dataTransfer.setData('id', rec.id));
+      c.addEventListener('click', () => location.hash = '#/r/' + rec.id);
       d.appendChild(c);
     });
     boardEl.appendChild(d);
   });
+}
+
+async function showSearch(q) {
+  app.innerHTML = `
+    <div class="hero" style="min-height:auto">
+      <div><h1>Search</h1><p>Scan frontmatter, body, and filenames.</p></div>
+    </div>
+    <div class="toolbar"><input class="search" id="q" value="${esc(q)}" placeholder="search records" style="min-width:320px"/></div>
+    <div class="search-list" id="results"></div>`;
+  const input = document.getElementById('q');
+  const run = async (query) => {
+    const sr = await fetch('/api/search?q=' + encodeURIComponent(query || ''));
+    const sj = await sr.json();
+    const recs = sj.records || [];
+    document.getElementById('results').innerHTML = recs.length
+      ? recs.map(rec => `<div class="item" data-id="${esc(rec.id)}"><div class="t">${esc(rec.title||rec.id)}</div><div class="b">${esc(rec.type)} ${esc(rec.status||'')}</div></div>`).join('')
+      : '<div class="empty">No matches.</div>';
+    document.querySelectorAll('#results .item').forEach(el => el.onclick = () => location.hash = '#/r/' + el.dataset.id);
+  };
+  input.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    location.hash = '#/search?q=' + encodeURIComponent(input.value);
+  });
+  await run(q);
+}
+
+function kv(k,v){ if(v===undefined||v===null||v==='') return ''; return `<div class="kv"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`; }
+
+async function showRecord(id) {
+  const r = await fetch('/api/records/' + encodeURIComponent(id));
+  const j = await r.json();
+  if (!j.ok) { app.innerHTML = `<div class="empty">Record not found.</div>`; return; }
+  const rec = j.record || {};
+  const skip = new Set(['id','type','path','body','version','fields']);
+  const extras = Object.keys(rec).filter(k => !skip.has(k) && typeof rec[k] !== 'object').slice(0,12);
+  app.innerHTML = `
+    <div class="toolbar"><a class="back" href="#/search">← Search</a><button class="btn btn-primary" id="edit">Edit</button></div>
+    <div class="hero" style="min-height:auto;margin-top:8px">
+      <div><h1>${esc(rec.title||rec.name||rec.id)}</h1><p>${esc(rec.type)} · ${esc(rec.id)}</p></div>
+    </div>
+    <div class="meta">${kv('status', rec.status)}${kv('owner', rec.owner)}${kv('priority', rec.priority)}${extras.map(k => kv(k, rec[k])).join('')}</div>
+    <div class="side">
+      <div class="prose">${j.html || rec.body || ''}</div>
+      <div>
+        <div class="panel rel"><h3>Relations</h3>${(j.relations||[]).map(x => `<div class="item"><a href="#/r/${esc(x.target)}">${esc(x.title||x.target)}</a><div class="b">${esc(x.type)}</div></div>`).join('') || '<div class="src">None</div>'}</div>
+        <div class="panel rel" style="margin-top:12px"><h3>Backlinks</h3>${(j.backlinks||[]).map(x => `<div class="item"><a href="#/r/${esc(x.target)}">${esc(x.title||x.target)}</a><div class="b">${esc(x.type)}</div></div>`).join('') || '<div class="src">None</div>'}</div>
+        <div class="panel" style="margin-top:12px"><h3>Attachments</h3>${(j.attachments||[]).map(x => `<div class="attach"><span>${esc(x.name||x.path)}</span><a href="/api/files/${esc(x.path)}">Download</a></div>`).join('') || '<div class="src">None</div>'}</div>
+      </div>
+    </div>`;
+  document.getElementById('edit').onclick = () => location.hash = '#/r/' + id + '/edit';
+}
+
+async function showEditor(id) {
+  const r = await fetch('/api/records/' + encodeURIComponent(id));
+  const j = await r.json();
+  if (!j.ok) { app.innerHTML = `<div class="empty">Record not found.</div>`; return; }
+  const rec = j.record || {};
+  app.innerHTML = `
+    <div class="toolbar"><a class="back" href="#/r/${esc(id)}">← Record</a><button class="btn btn-primary" id="save">Save</button></div>
+    <div class="hero" style="min-height:auto"><div><h1>Edit ${esc(rec.title||rec.id)}</h1></div></div>
+    <div class="panel editor">
+      <label>Title</label><input id="title" value="${esc(rec.title||rec.name||'')}"/>
+      <label>Status</label><input id="status" value="${esc(rec.status||'')}"/>
+      <label>Owner</label><input id="owner" value="${esc(rec.owner||'')}"/>
+      <label>Priority</label><input id="priority" value="${esc(rec.priority||'')}"/>
+      <label>Markdown body</label><textarea id="body">${esc(rec.body||'')}</textarea>
+    </div>`;
+  document.getElementById('save').onclick = async () => {
+    const body = {
+      title: document.getElementById('title').value,
+      status: document.getElementById('status').value,
+      owner: document.getElementById('owner').value,
+      priority: document.getElementById('priority').value,
+      body: document.getElementById('body').value,
+      _if_version: rec.version
+    };
+    const resp = await fetch('/api/records/' + encodeURIComponent(id), {method:'PATCH', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+    const out = await resp.json();
+    if (!out.ok) { alert(out.error || 'save failed'); return; }
+    location.hash = '#/r/' + id;
+  };
 }
 
 window.addEventListener('hashchange', route);

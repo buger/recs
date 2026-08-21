@@ -27,3 +27,11 @@ columns:
     title: Rejected
 column:
   field: status
+
+filter_controls:
+  - field: owner
+    type: select
+  - field: tags
+    type: multiselect
+  - field: priority
+    type: select

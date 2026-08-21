@@ -28,7 +28,7 @@ func Listen(a *app.App, port int) error {
 	return http.Serve(ln, Handler(a))
 }
 
-// Implements: SYS-REQ-260820-9W1S SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY
+// Implements: SYS-REQ-260820-9W1S SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY SYS-REQ-260821-QF1J SW-REQ-260821-82BA INT-REQ-260821-MRGW
 func Handler(a *app.App) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/records", func(w http.ResponseWriter, r *http.Request) {
@@ -71,12 +71,16 @@ func Handler(a *app.App) http.Handler {
 		}
 		switch r.Method {
 		case http.MethodGet:
-			rec, err := a.Show(id)
+			view, err := a.View(id)
 			if err != nil {
 				writeErr(w, 404, err)
 				return
 			}
-			writeJSON(w, 200, map[string]any{"ok": true, "record": public(rec)})
+			writeJSON(w, 200, map[string]any{
+				"ok": true, "record": view.Public, "html": view.HTML,
+				"relations": view.Relations, "backlinks": view.Backlinks,
+				"attachments": view.Attachments,
+			})
 		case http.MethodPatch:
 			var body map[string]any
 			if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
@@ -85,6 +89,21 @@ func Handler(a *app.App) http.Handler {
 			}
 			ifv, _ := body["_if_version"].(string)
 			delete(body, "_if_version")
+			var bp *string
+			if raw, ok := body["body"]; ok {
+				s := fmtSprint(raw)
+				bp = &s
+				delete(body, "body")
+			}
+			if bp != nil {
+				res, err := a.Edit(id, body, bp, ifv)
+				if err != nil {
+					writeErr(w, 409, err)
+					return
+				}
+				writeJSON(w, 200, map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed})
+				return
+			}
 			res, err := a.Patch(id, body, nil, ifv)
 			if err != nil {
 				writeErr(w, 409, err)
@@ -132,7 +151,13 @@ func Handler(a *app.App) http.Handler {
 			w.WriteHeader(405)
 			return
 		}
-		view, err := a.Board(rest, map[string]string{})
+		filters := map[string]string{}
+		for k, vs := range r.URL.Query() {
+			if k != "" && len(vs) > 0 && vs[0] != "" {
+				filters[k] = vs[0]
+			}
+		}
+		view, err := a.Board(rest, filters)
 		if err != nil {
 			writeErr(w, 404, err)
 			return
@@ -141,7 +166,11 @@ func Handler(a *app.App) http.Handler {
 		for _, c := range view.Columns {
 			cols = append(cols, map[string]any{"id": c.Column.ID, "title": c.Column.Title, "records": summaries(c.Records)})
 		}
-		writeJSON(w, 200, map[string]any{"ok": true, "board": view.Board.ID, "name": view.Board.Name, "columns": cols})
+		controls := []map[string]string{}
+		for _, fc := range view.Board.FilterControls {
+			controls = append(controls, map[string]string{"field": fc.Field, "type": fc.Type})
+		}
+		writeJSON(w, 200, map[string]any{"ok": true, "board": view.Board.ID, "name": view.Board.Name, "columns": cols, "filter_controls": controls, "filters": filters})
 	})
 	mux.HandleFunc("/api/dashboards", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
@@ -200,6 +229,19 @@ func Handler(a *app.App) http.Handler {
 			return
 		}
 		writeJSON(w, 200, map[string]any{"ok": true, "dashboard": proj})
+	})
+	mux.HandleFunc("/api/files/", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet && r.Method != http.MethodHead {
+			w.WriteHeader(405)
+			return
+		}
+		rel := strings.TrimPrefix(r.URL.Path, "/api/files/")
+		path, err := a.AttachmentFile(rel)
+		if err != nil {
+			writeErr(w, 404, err)
+			return
+		}
+		http.ServeFile(w, r, path)
 	})
 	mux.HandleFunc("/api/search", func(w http.ResponseWriter, r *http.Request) {
 		recs, err := a.Search(r.URL.Query().Get("q"))
@@ -279,3 +321,18 @@ func writeErr(w http.ResponseWriter, code int, err error) {
 	}
 	writeJSON(w, code, payload)
 }
+
+func fmtSprint(v any) string {
+	if v == nil {
+		return ""
+	}
+	if s, ok := v.(string); ok {
+		return s
+	}
+	b, err := json.Marshal(v)
+	if err != nil {
+		return ""
+	}
+	return string(b)
+}
+

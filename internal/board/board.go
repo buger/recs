@@ -20,7 +20,13 @@ type Board struct {
 	Match       any            `yaml:"match"`
 	Columns     []Column       `yaml:"columns"`
 	Column      ColumnConfig   `yaml:"column"`
-	Filters     map[string]any `yaml:"filters"`
+	Filters        map[string]any  `yaml:"filters"`
+	FilterControls []FilterControl `yaml:"filter_controls"`
+}
+
+type FilterControl struct {
+	Field string `yaml:"field"`
+	Type  string `yaml:"type"`
 }
 
 type ColumnConfig struct {
