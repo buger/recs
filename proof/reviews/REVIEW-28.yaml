@@ -1,0 +1,14 @@
+id: REVIEW-28
+kind: spec_conformance
+reviewer: agent:grok
+reviewed_at: "2026-08-21T09:18:41Z"
+subject: SW-REQ-260821-82BA
+decision: approved
+comment: Re-read the remaining UI handlers after the HTTP split. Records, record view or patch, boards, files, and search still implement the remaining_ui_requested outcomes; the old Handler citation has drifted.
+citations:
+    - internal/serve/serve.go:64@handleRecords
+    - internal/serve/serve.go:98@handleRecord
+    - internal/serve/serve.go:151@handleBoards
+    - internal/serve/serve.go:165@handleBoard
+    - internal/serve/serve.go:275@handleFiles
+    - internal/serve/serve.go:290@handleSearch
