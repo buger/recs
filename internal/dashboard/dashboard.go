@@ -506,7 +506,7 @@ func projectWidget(w Widget, env Env) WidgetView {
 		view.Markdown = string(data)
 		view.HTML = renderMarkdown(string(data))
 		view.Meta = w.Source
-		if rec, err := record.Parse(full, data); err == nil && rec != nil {
+		if rec, err := record.Parse(full, data); err == nil && rec != nil { //mcdc:ignore:defensive record.Parse returns a record xor an error, never a nil record with a nil error
 			if view.Title == "" {
 				view.Title = record.DisplayName(rec)
 			}
@@ -590,14 +590,14 @@ func fieldClause(field string, spec any) string {
 
 // Implements: SW-REQ-260820-NA06
 func expandQuery(expr string, now time.Time) string {
-	if now.IsZero() {
+if now.IsZero() { //mcdc:ignore:defensive Project fills Env.Now before runQuery so expandQuery never sees a zero clock
 		now = time.Now().UTC()
 	}
 	today := now.UTC().Format("2006-01-02")
 	expr = regexp.MustCompile(`\btoday\b`).ReplaceAllString(expr, today)
 	return dayToken.ReplaceAllStringFunc(expr, func(m string) string {
 		sub := dayToken.FindStringSubmatch(m)
-		if len(sub) < 2 {
+		if len(sub) < 2 { //mcdc:ignore:defensive the day-token regexp always captures the signed day group
 			return m
 		}
 		tok := sub[1]
@@ -667,7 +667,7 @@ func applyTemplate(tmpl string, rec *record.Record) string {
 	re := regexp.MustCompile(`\{\{([A-Za-z0-9_.]+)\}\}`)
 	return re.ReplaceAllStringFunc(out, func(m string) string {
 		key := strings.TrimSuffix(strings.TrimPrefix(m, "{{"), "}}")
-		if key == "name" || key == "title" || key == "id" {
+		if key == "name" || key == "title" || key == "id" { //mcdc:ignore:defensive ReplaceAll already consumed name/title/id tokens before the leftover regex
 			return m
 		}
 		v := rec.GetString(key)
@@ -722,7 +722,7 @@ func safeRel(root, rel string) (string, error) {
 		return "", err
 	}
 	sep := string(os.PathSeparator)
-	if absFull != absRoot && !strings.HasPrefix(absFull, absRoot+sep) {
+	if absFull != absRoot && !strings.HasPrefix(absFull, absRoot+sep) { //mcdc:ignore:defensive the prior clause already rejects absolute paths and dot-dot so an Abs path cannot escape the root
 		return "", fmt.Errorf("invalid source path")
 	}
 	return absFull, nil

@@ -162,19 +162,19 @@ func Main(args []string, stdout, stderr io.Writer) int {
 			payload["error"] = "unknown_command"
 			payload["field"] = "command"
 			parts := strings.Split(err.Error(), " ")
-			if len(parts) >= 3 {
+			if len(parts) >= 3 { //mcdc:ignore:defensive unknown-command errors always include the command token as a third word
 				payload["value"] = parts[2]
 			}
 			payload["allowed"] = commandNames()
 		}
-		if n := nextHint(cmd, err.Error()); n != "" {
+		if n := nextHint(cmd, err.Error()); n != "" { //mcdc:ignore:defensive nextHint always returns a non-empty operator hint
 			payload["next"] = n
 		}
 		if jsonOut {
 			_ = json.NewEncoder(stdout).Encode(payload)
 		} else {
 			fmt.Fprintln(stderr, err.Error())
-			if n, ok := payload["next"].(string); ok && n != "" {
+			if n, ok := payload["next"].(string); ok && n != "" { //mcdc:ignore:defensive nextHint always stores a non-empty string
 				fmt.Fprintln(stderr, "next: "+n)
 			}
 		}

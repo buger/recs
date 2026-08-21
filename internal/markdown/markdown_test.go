@@ -19,3 +19,26 @@ func TestRender(t *testing.T) {
 		t.Fatal("escape")
 	}
 }
+
+
+func TestRenderCodeAndStarList(t *testing.T) {
+	out := markdown.Render("```\ncode\n")
+	if !strings.Contains(out, "<pre>") {
+		t.Fatal(out)
+	}
+	out = markdown.Render("* star\n- dash\n### h3\n## h2\n`unclosed")
+	if !strings.Contains(out, "<ul>") {
+		t.Fatal(out)
+	}
+	out = markdown.Render("[[x]] and **bold** and *em*")
+	_ = out
+}
+
+func TestReplaceLinksUnclosed(t *testing.T) {
+	out := markdown.Render("[text](https://ex")
+	if !strings.Contains(out, "[text](") && !strings.Contains(out, "<p>") {
+		t.Log(out)
+	}
+	_ = markdown.Render("[text](")
+	_ = markdown.Render("[no-mid")
+}

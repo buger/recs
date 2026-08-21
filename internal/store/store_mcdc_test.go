@@ -387,3 +387,48 @@ func TestCreateGetLoadError(t *testing.T) {
 	}
 	t.Logf("create err: %v", err)
 }
+
+// Verifies: SYS-REQ-260820-7WT4
+// SYS-REQ-260820-7WT4
+func TestDeleteLockAndRemoveErrors(t *testing.T) {
+	s := &Store{Root: t.TempDir()}
+	if err := s.Init(); err != nil {
+		t.Fatal(err)
+	}
+	rec := &record.Record{ID: "note_del", Type: "note", Fields: map[string]any{"title": "D"}, Body: "b"}
+	if err := s.Create(rec); err != nil {
+		t.Fatal(err)
+	}
+	locks := filepath.Join(s.Root, ".crm", "runtime", "locks")
+	if err := os.Chmod(locks, 0); err == nil {
+		t.Cleanup(func() { _ = os.Chmod(locks, 0o755) })
+		_ = s.Delete("note_del")
+	}
+	_ = os.Chmod(locks, 0o755)
+	got, err := s.Get("note_del")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chmod(filepath.Dir(got.Path), 0o555); err == nil {
+		t.Cleanup(func() { _ = os.Chmod(filepath.Dir(got.Path), 0o755) })
+		_ = s.Delete("note_del")
+	}
+	_ = os.Chmod(filepath.Dir(got.Path), 0o755)
+}
+
+func TestInitWriteWorkspaceDenied(t *testing.T) {
+	s := &Store{Root: t.TempDir()}
+	if err := s.Init(); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Remove(filepath.Join(s.Root, "crm.yaml")); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chmod(s.Root, 0o555); err != nil {
+		t.Fatal(err)
+	}
+	t.Cleanup(func() { _ = os.Chmod(s.Root, 0o755) })
+	if err := s.Init(); err == nil {
+		t.Fatal("expected writeworkspace fail")
+	}
+}

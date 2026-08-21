@@ -6,9 +6,9 @@ results:
       artifact: internal/store/store_race_test.go
       command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
       status: pass
-      executed_at: "2026-08-21T09:14:34Z"
+      executed_at: "2026-08-21T09:40:52Z"
       freshness_hashes:
-        internal/store/store.go: sha256:9c82bc31209aea9f59a92212608885b0e763e978424696223a525dbbfe26ee0a
+        internal/store/store.go: sha256:38ae4eb55d53728a46919b747eab8b039219e5cd41b2eb8437b3a3c5eece66f6
         internal/store/store_race_test.go: sha256:4b79f761bfbd169566552b95dd734c0bbf34e66ed583f3815c5556dd0ac75154
     - profile: race
       evidence_type: race
@@ -16,9 +16,9 @@ results:
       artifact: internal/store/store_race_test.go
       command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
       status: pass
-      executed_at: "2026-08-21T09:14:34Z"
+      executed_at: "2026-08-21T09:40:52Z"
       freshness_hashes:
-        internal/store/store.go: sha256:9c82bc31209aea9f59a92212608885b0e763e978424696223a525dbbfe26ee0a
+        internal/store/store.go: sha256:38ae4eb55d53728a46919b747eab8b039219e5cd41b2eb8437b3a3c5eece66f6
         internal/store/store_race_test.go: sha256:4b79f761bfbd169566552b95dd734c0bbf34e66ed583f3815c5556dd0ac75154
     - profile: race
       evidence_type: race
@@ -26,7 +26,7 @@ results:
       artifact: internal/store/store_race_test.go
       command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
       status: pass
-      executed_at: "2026-08-21T09:14:34Z"
+      executed_at: "2026-08-21T09:40:52Z"
       freshness_hashes:
-        internal/store/store.go: sha256:9c82bc31209aea9f59a92212608885b0e763e978424696223a525dbbfe26ee0a
+        internal/store/store.go: sha256:38ae4eb55d53728a46919b747eab8b039219e5cd41b2eb8437b3a3c5eece66f6
         internal/store/store_race_test.go: sha256:4b79f761bfbd169566552b95dd734c0bbf34e66ed583f3815c5556dd0ac75154

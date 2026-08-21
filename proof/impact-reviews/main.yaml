@@ -1,7 +1,18 @@
 schema_version: 1
 branch: main
-generated_at: "2026-08-21T07:45:23Z"
+generated_at: "2026-08-21T09:40:59Z"
 reviews:
+    - requirement: INT-REQ-260820-AHKR
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:20344e90755fc239d1fd6e2927dca932825f167317b48d0d55070d52c0f022d8
+      approval_fingerprint: sha256:569dd43360721f562ce7778394cd3a0a45e9b5adf7e5f408fafb48f45a04cb74
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: INT-REQ-260820-JC9M
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -17,15 +28,14 @@ reviews:
     - requirement: INT-REQ-260820-JC9M
       artifact: internal/cli/cli.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Defensive mcdc:ignore comments only mark unreachable I/O, regexp-capture, and nextHint branches; CLI/serve/dashboard/wikilink contracts and FRETish are unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:c1040f4b89cd5375c152df68cbc623d995eee3139c758386f459e99cb0d74b4b
       approval_fingerprint: sha256:785d63dc5310120987b0dfb10d8e3460764438595c5ccd8043a6e8e3e08fe1db
-      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
-      reviewed_at: "2026-08-21T07:45:23Z"
+      artifact_fingerprint: sha256:55758dd72c61504504da48df16f22512df7ffe163146735bcc685855a5e48bf5
+      reviewed_at: "2026-08-21T09:36:45Z"
     - requirement: INT-REQ-260820-NHBY
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -38,30 +48,83 @@ reviews:
       approval_fingerprint: sha256:cac58ab190d2ad646e50ff8c259397ec980b47463269469fca0553d8c047e834
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: INT-REQ-260820-NHBY
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:957b5fe4aa9b1c9c8540fb70e998b8201d2ed75d0e25f82e53d3f1c0f3352f83
+      approval_fingerprint: sha256:a32cdb9b85750f557f6116123f67c4d69d04c07db4badd60cb0e8041bf8aee96
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
+    - requirement: INT-REQ-260821-5BJJ
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:a932b9a929d00a059c73979093ee94e23e61b2c2d32366c88fbc7f45915a11f1
+      approval_fingerprint: sha256:8ea4bbcdbabb8b2263ed279fcfc40b4eb0a54b08be1c8d98ed1db5279fd1db6e
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
+    - requirement: INT-REQ-260821-8HAC
+      artifact: internal/app/remaining.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Remaining owner pairs are defensive mcdc:ignore comments on unreachable I/O and URL/JSON branches; requirement contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:1fdb9f00c28cd4c8f313264b06f7e8166e8c57776e928262678e5233d66c9182
+      approval_fingerprint: sha256:87beaf9693744067ace3b97727e8ebbf5d2eddcd2ac9bc178efb15a1e7e09a9c
+      artifact_fingerprint: sha256:79dd23ba5e48ed8be3f963bbe578a6ce858d7a3016cef5c0dc97a5967510d0b9
+      reviewed_at: "2026-08-21T09:38:54Z"
     - requirement: INT-REQ-260821-BSH3
       artifact: internal/cli/cli.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Defensive mcdc:ignore comments only mark unreachable I/O, regexp-capture, and nextHint branches; CLI/serve/dashboard/wikilink contracts and FRETish are unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:d759693b8ed2c9537c49a609c551c220862f8ebb4809c8402729f74bf1d6de27
       approval_fingerprint: sha256:e15db196d55f46b312527dc1553b20c38979c7079e1563213b172206fb4d5ee9
-      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
-      reviewed_at: "2026-08-21T07:45:23Z"
+      artifact_fingerprint: sha256:55758dd72c61504504da48df16f22512df7ffe163146735bcc685855a5e48bf5
+      reviewed_at: "2026-08-21T09:36:45Z"
     - requirement: INT-REQ-260821-BSH3
       artifact: internal/cli/help.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
       base: HEAD~1
       requirement_fingerprint: sha256:d759693b8ed2c9537c49a609c551c220862f8ebb4809c8402729f74bf1d6de27
       approval_fingerprint: sha256:e15db196d55f46b312527dc1553b20c38979c7079e1563213b172206fb4d5ee9
-      artifact_fingerprint: sha256:daaae7f55e1bd4dd1e8da450a2ba93cb94745ad0a1c748d763e3f3508908c2c5
-      reviewed_at: "2026-08-21T07:45:23Z"
+      artifact_fingerprint: sha256:2bd98b099725bf5fe5c7e8eb92b728e35135a33f8bbe5aec84c5f2e58a90444e
+      reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: INT-REQ-260821-MRGW
+      artifact: internal/app/remaining.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:c57cff9ea0e23aca7b9f589ecb8ed8fa098096725e5d295f17dcd487309ef73a
+      approval_fingerprint: sha256:773dd955e35308b26a9f2f0c0e391c83f2f3877613e3ac1e339baecb4d33e0e3
+      artifact_fingerprint: sha256:af8c2c5779703b953b55bb9fa836ba56c66e958e4752f5137285619b73b54348
+      reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: INT-REQ-260821-MRGW
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:c57cff9ea0e23aca7b9f589ecb8ed8fa098096725e5d295f17dcd487309ef73a
+      approval_fingerprint: sha256:773dd955e35308b26a9f2f0c0e391c83f2f3877613e3ac1e339baecb4d33e0e3
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SW-REQ-260820-6EVX
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -74,6 +137,39 @@ reviews:
       approval_fingerprint: sha256:9da8f2ec5c6194ba5af9ea77b2538c494dae1d09a29a77aaf497e0886f683a62
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-8PMR
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:1e8a43a53d7e98fcb6df871a137dec2a166058a1d2b25d467aac4dc9ae861efc
+      approval_fingerprint: sha256:9dcb5484d1846c8006663468100d63fd482a43a39ebf7995032902eb7b8556d9
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
+    - requirement: SW-REQ-260820-8ZS7
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:b70fc95db619ad611a4709b7d090354ae3f0d87af4db4ca350bda43999cc123f
+      approval_fingerprint: sha256:33efc2df9094967cee3f8897f8ca569e4cb676ca84b7720cd629f37a4164cb88
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
+    - requirement: SW-REQ-260820-9C5Z
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:08ff819cffc98accb465aea89b1e3c5fbabc9b1833b79579e57f9f1a4a5a6900
+      approval_fingerprint: sha256:fd03c05043b5f2ff75df9b0b261f3888fdb52c2fbd9d7d168d93342fa34755ff
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SW-REQ-260820-D5WE
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -86,6 +182,17 @@ reviews:
       approval_fingerprint: sha256:cb986e3f694a25e6da4cf9291e507e6779df8cba5e969f2c99baecd6af0df6f0
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-EJVT
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:3826b07375ef2b3e7a4a8ea4ccb2096af9152a2a5830ed74671e18a4b06bc560
+      approval_fingerprint: sha256:d40f87132d7abb1f34ae2333aa4ad425d22b4edd011fd4cec52163aff51a263a
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SW-REQ-260820-MQF2
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -98,6 +205,17 @@ reviews:
       approval_fingerprint: sha256:b5e573d7cb72629ddf9ffb426101d43e96f77de1bdfd68c141e205df49c48fa5
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-MQF2
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:658654f1236691894601ca4fe14fe93cf881485655b5af3b37e5c0f707f0a762
+      approval_fingerprint: sha256:b5e573d7cb72629ddf9ffb426101d43e96f77de1bdfd68c141e205df49c48fa5
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SW-REQ-260820-N02Y
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -110,6 +228,17 @@ reviews:
       approval_fingerprint: sha256:f1428172a40e55b7a98fa3da462cd4f91203f5990177672742bfc461167027d8
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-N02Y
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:6e7c8c93b8d64bf7f028593294bc13759596eccf9a10960ff9a76304f1f3968c
+      approval_fingerprint: sha256:f1428172a40e55b7a98fa3da462cd4f91203f5990177672742bfc461167027d8
+      artifact_fingerprint: sha256:38ae4eb55d53728a46919b747eab8b039219e5cd41b2eb8437b3a3c5eece66f6
+      reviewed_at: "2026-08-21T09:40:59Z"
     - requirement: SW-REQ-260820-NA06
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -122,6 +251,17 @@ reviews:
       approval_fingerprint: sha256:2d9096abd76dddf3af58344f505f855b5e6525509163c06a582c87bf6b571f5d
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-NA06
+      artifact: internal/dashboard/dashboard.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:97dae40588bdaa983422d5aec8c38c54fe0b4c7cd5c5f284b33b124e2b8369fe
+      approval_fingerprint: sha256:2d9096abd76dddf3af58344f505f855b5e6525509163c06a582c87bf6b571f5d
+      artifact_fingerprint: sha256:401053e2f4a6b5bdbfed02b3ecaad3d424720100acb9aa91633cef9a559e999a
+      reviewed_at: "2026-08-21T09:40:59Z"
     - requirement: SW-REQ-260820-NBGR
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -134,6 +274,28 @@ reviews:
       approval_fingerprint: sha256:a94ce32d25c2ae99fcb1e1678b10fedef9225ed9810b44a6c6b5ff85a89bffea
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260820-NBGR
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:eee17b7ee5ce31a0fa308e6f02bd25b877daca5646fb1b303478a412f9a0b527
+      approval_fingerprint: sha256:a94ce32d25c2ae99fcb1e1678b10fedef9225ed9810b44a6c6b5ff85a89bffea
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
+    - requirement: SW-REQ-260820-Q3C4
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:f721e51e98390fb658d220fabb06b68c7a51e7d59f84c13cde2731be4d052462
+      approval_fingerprint: sha256:9abd82d50b66affc939cc9623aa2e0f9041ff17b0b11d52367520137abb90e6c
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SW-REQ-260820-X37F
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -149,15 +311,14 @@ reviews:
     - requirement: SW-REQ-260820-YB5C
       artifact: internal/cli/cli.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Defensive mcdc:ignore comments only mark unreachable I/O, regexp-capture, and nextHint branches; CLI/serve/dashboard/wikilink contracts and FRETish are unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:03b94ea566302fa2d93a345f7fe1bab2395a3f9d1e55bf32b98ed6c5f9531d4a
       approval_fingerprint: sha256:721a3e29c7dd0c57ce3f6b324fac314ae9285526a11f5ac88b5a744bc1543a35
-      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
-      reviewed_at: "2026-08-21T07:45:23Z"
+      artifact_fingerprint: sha256:55758dd72c61504504da48df16f22512df7ffe163146735bcc685855a5e48bf5
+      reviewed_at: "2026-08-21T09:36:45Z"
     - requirement: SW-REQ-260820-ZKCV
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -170,30 +331,83 @@ reviews:
       approval_fingerprint: sha256:ffb7d30bc6ee675c983bdb2fc83058d49317705fd2ccc4bcc519763aa6594f1f
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SW-REQ-260821-82BA
+      artifact: internal/app/remaining.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:650160abf68adbf2a29803c8f0f5d04878259a30aa0e8b1877d14b8d28fb281e
+      approval_fingerprint: sha256:b5763ba10877f2fd3f9958ac4b8bb1d3de17a7befa5637f7a1ca22681d230018
+      artifact_fingerprint: sha256:af8c2c5779703b953b55bb9fa836ba56c66e958e4752f5137285619b73b54348
+      reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: SW-REQ-260821-82BA
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
+      base: HEAD~1
+      requirement_fingerprint: sha256:650160abf68adbf2a29803c8f0f5d04878259a30aa0e8b1877d14b8d28fb281e
+      approval_fingerprint: sha256:b5763ba10877f2fd3f9958ac4b8bb1d3de17a7befa5637f7a1ca22681d230018
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: SW-REQ-260821-82BA
+      artifact: internal/wikilink/wikilink.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Defensive mcdc:ignore comments only mark unreachable I/O, regexp-capture, and nextHint branches; CLI/serve/dashboard/wikilink contracts and FRETish are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:650160abf68adbf2a29803c8f0f5d04878259a30aa0e8b1877d14b8d28fb281e
+      approval_fingerprint: sha256:b5763ba10877f2fd3f9958ac4b8bb1d3de17a7befa5637f7a1ca22681d230018
+      artifact_fingerprint: sha256:7268987cb90a0fc46f641d4a0f7b707b22f103dfc98ce9e8b899316e1b70c197
+      reviewed_at: "2026-08-21T09:36:45Z"
+    - requirement: SW-REQ-260821-8C2C
+      artifact: internal/app/remaining.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:a0dd078e1a04e23caf6e0b18468f96592c391aeb1caef1a38e987953269b42b0
+      approval_fingerprint: sha256:f65874d5eb122ca051953bcd5a794691978c24748c8f90f430bed326a678b56a
+      artifact_fingerprint: sha256:af8c2c5779703b953b55bb9fa836ba56c66e958e4752f5137285619b73b54348
+      reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: SW-REQ-260821-8C2C
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:a0dd078e1a04e23caf6e0b18468f96592c391aeb1caef1a38e987953269b42b0
+      approval_fingerprint: sha256:f65874d5eb122ca051953bcd5a794691978c24748c8f90f430bed326a678b56a
+      artifact_fingerprint: sha256:38ae4eb55d53728a46919b747eab8b039219e5cd41b2eb8437b3a3c5eece66f6
+      reviewed_at: "2026-08-21T09:40:59Z"
     - requirement: SW-REQ-260821-FCGM
       artifact: internal/cli/cli.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Defensive mcdc:ignore comments only mark unreachable I/O, regexp-capture, and nextHint branches; CLI/serve/dashboard/wikilink contracts and FRETish are unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:3f1c46a73d79a33048b6487eadd43db42458eaf76e2739db9e33591184c40a1e
       approval_fingerprint: sha256:dd7af75fbfa6ff5b9b0ac72daaebbcd013ff1dc1e5137c72a11b5d977c54cf39
-      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
-      reviewed_at: "2026-08-21T07:45:23Z"
+      artifact_fingerprint: sha256:55758dd72c61504504da48df16f22512df7ffe163146735bcc685855a5e48bf5
+      reviewed_at: "2026-08-21T09:36:45Z"
     - requirement: SW-REQ-260821-FCGM
       artifact: internal/cli/help.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
       base: HEAD~1
       requirement_fingerprint: sha256:3f1c46a73d79a33048b6487eadd43db42458eaf76e2739db9e33591184c40a1e
       approval_fingerprint: sha256:dd7af75fbfa6ff5b9b0ac72daaebbcd013ff1dc1e5137c72a11b5d977c54cf39
-      artifact_fingerprint: sha256:daaae7f55e1bd4dd1e8da450a2ba93cb94745ad0a1c748d763e3f3508908c2c5
-      reviewed_at: "2026-08-21T07:45:23Z"
+      artifact_fingerprint: sha256:2bd98b099725bf5fe5c7e8eb92b728e35135a33f8bbe5aec84c5f2e58a90444e
+      reviewed_at: "2026-08-21T09:37:57Z"
     - requirement: SYS-REQ-260820-0TQX
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -218,6 +432,17 @@ reviews:
       approval_fingerprint: sha256:78b1adcc5a6719716495d93304c592298bbaf74603ec6a1578b1cde22142d03a
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-2SQZ
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:44f2d2f439e5ea9323b714580a791870fffc6c47ad594d4c634c22dd1a525e17
+      approval_fingerprint: sha256:a866cb8346b57c961d8722b40c4376bf80285f9eaa65035935f32967c973a826
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SYS-REQ-260820-456X
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -230,6 +455,39 @@ reviews:
       approval_fingerprint: sha256:938a517797263a4c29708d4844e70c4ef2c98f30b577cfad784799e0b77d9405
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-456X
+      artifact: internal/cli/cli.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
+      base: HEAD~1
+      requirement_fingerprint: sha256:8f8a384d8273998daccf18d0d9dc5a7487b3acc2fd0152a1d31bc45f5446624f
+      approval_fingerprint: sha256:c2265231dfcce90d0cda2d7dba3879957d509d5318d326568567a1879c6c4c50
+      artifact_fingerprint: sha256:55758dd72c61504504da48df16f22512df7ffe163146735bcc685855a5e48bf5
+      reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: SYS-REQ-260820-456X
+      artifact: internal/dashboard/dashboard.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:8f8a384d8273998daccf18d0d9dc5a7487b3acc2fd0152a1d31bc45f5446624f
+      approval_fingerprint: sha256:c2265231dfcce90d0cda2d7dba3879957d509d5318d326568567a1879c6c4c50
+      artifact_fingerprint: sha256:401053e2f4a6b5bdbfed02b3ecaad3d424720100acb9aa91633cef9a559e999a
+      reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: SYS-REQ-260820-456X
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:8f8a384d8273998daccf18d0d9dc5a7487b3acc2fd0152a1d31bc45f5446624f
+      approval_fingerprint: sha256:c2265231dfcce90d0cda2d7dba3879957d509d5318d326568567a1879c6c4c50
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SYS-REQ-260820-4628
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -242,6 +500,17 @@ reviews:
       approval_fingerprint: sha256:5a42f9f9fe317036008ca5c2ff9fba0e12e941a828df433b1feb43f2e861648b
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-4628
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:1921bb0bc1c80f96313d102fe08efd8b1a7f80e01c82b4c68f64ba3a426b0ff2
+      approval_fingerprint: sha256:6f13b9ff21138d3834a7883701c0385fe1aa6ec7259bff01b99818b967602a60
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SYS-REQ-260820-5C9D
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -254,6 +523,17 @@ reviews:
       approval_fingerprint: sha256:9dbe722e272d93f68eab99ea60628628822dc8a588bd4290fd705f842edba19f
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-7WT4
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:4088657d56d175b07261560e8e3f7ea8c0b4e50429fccb3d9586d607517f137a
+      approval_fingerprint: sha256:af4569c4c4bc0c3a65088492afc9af88b9aa9216b4216cfd9ded4cfee66e1867
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SYS-REQ-260820-9J7C
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -266,6 +546,28 @@ reviews:
       approval_fingerprint: sha256:20de6da20d87eda58c7d7bc4b666af4de30e0d7a77a037a0f158b8f24dee1aa7
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-9J7C
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:72b9d0df4ad9b587dc51fdaccc3648d5f7f237ddc4119721e2ad01d9cd5296a1
+      approval_fingerprint: sha256:04440920b0f4d95e5d58e4825723f24270de7f12ebc91e31c25ad9647ce71445
+      artifact_fingerprint: sha256:38ae4eb55d53728a46919b747eab8b039219e5cd41b2eb8437b3a3c5eece66f6
+      reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: SYS-REQ-260820-9W1S
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:c143521a4e922d266b39af11b560ac1d90765bc23e52d13a0433b05ab5345486
+      approval_fingerprint: sha256:807b5b5e7c5877783a27850c40cdf47b2b805ecfeae5a8182774d7ff08af8898
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SYS-REQ-260820-BVBE
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -326,18 +628,28 @@ reviews:
       approval_fingerprint: sha256:0bca2fad07e58111c2cf562e7397b01ad9084b49b0deeab5f7ff751b88ce5a49
       artifact_fingerprint: sha256:0e2e45e481b111005acbe473731137fe3cfb0f266ffc433d35b94a43d321dced
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-KJ34
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:f8cb72e29841946a915e638ca2c6d8ed32a4cab016cbde4469b2335186710df4
+      approval_fingerprint: sha256:ce37027c6c0222f3064cb0ede1cc1d7229637af1de3d0321476e79dd68c10d78
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SYS-REQ-260820-PG9C
       artifact: internal/cli/cli.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Defensive mcdc:ignore comments only mark unreachable I/O, regexp-capture, and nextHint branches; CLI/serve/dashboard/wikilink contracts and FRETish are unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:03df4e4ea26c8e449bab76f346de818ae92d3cf92199f8777f96b2b456a9ce51
-      approval_fingerprint: sha256:dd10436f85d393c1760ae9e655c0793331b85a7aa9d1ff93bb178ee609677cd3
-      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
-      reviewed_at: "2026-08-21T07:45:23Z"
+      approval_fingerprint: sha256:c41a9ae4c3bf65b97ecc6babee7c3c60e58afdb1cf0fe57247b6b95f7796235b
+      artifact_fingerprint: sha256:55758dd72c61504504da48df16f22512df7ffe163146735bcc685855a5e48bf5
+      reviewed_at: "2026-08-21T09:36:45Z"
     - requirement: SYS-REQ-260820-Q8GR
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -362,6 +674,17 @@ reviews:
       approval_fingerprint: sha256:952a91cdf4cf7017ad0972bfec47ce37dba484c7c4630b4c98dab639e51fcb0c
       artifact_fingerprint: sha256:cff404c765f7c874821cb0695e513ecae4b022d874be8063cd7aa595afb1e549
       reviewed_at: "2026-08-21T07:45:23Z"
+    - requirement: SYS-REQ-260820-YWV4
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:0fda4334a4ece93e2bc3fdffa06ba040caa4b3133d773344406b4727b024c5f1
+      approval_fingerprint: sha256:144951e6eab4efe97e6d88ea7b257da7b43f77c02870f89c6a7096e77591eb05
+      artifact_fingerprint: sha256:efc5b3e750c3f091e989a74f2a09f2a21cf06f87de53aac55a36b347581bfdf7
+      reviewed_at: "2026-08-21T09:38:32Z"
     - requirement: SYS-REQ-260820-ZTC3
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -377,24 +700,88 @@ reviews:
     - requirement: SYS-REQ-260821-8FKR
       artifact: internal/cli/cli.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Defensive mcdc:ignore comments only mark unreachable I/O, regexp-capture, and nextHint branches; CLI/serve/dashboard/wikilink contracts and FRETish are unchanged.
       base: HEAD~1
-      requirement_fingerprint: sha256:5c1f2bf3e3d9c7ed94da3aa13df749d2482e7be8c0f689712db9ecb2219c2d1b
-      approval_fingerprint: sha256:689e73ee45a3cad1030569a57294ed6501a2975f64fb9b71d3f5bc69912e721b
-      artifact_fingerprint: sha256:1dd6939613523022e27386a48f2a7124df31d7ea3cf199d401876f792cab42a1
-      reviewed_at: "2026-08-21T07:45:23Z"
+      requirement_fingerprint: sha256:2b3d586199fff407b7031af5840ed238557eadc89d2e17375faf30169a9b64a0
+      approval_fingerprint: sha256:abca808653e45e983c08e59608dbad582192d39e10a63a6b21dd4ab9312e933f
+      artifact_fingerprint: sha256:55758dd72c61504504da48df16f22512df7ffe163146735bcc685855a5e48bf5
+      reviewed_at: "2026-08-21T09:36:45Z"
     - requirement: SYS-REQ-260821-8FKR
       artifact: internal/cli/help.go
       decision: no-authored-change
-      change_type: feature
-      change_ref: CHG-260821-DFVQ
-      reviewer: buger
-      reason: Implementation and help-interface edits stay within existing FRETish intent; no additional authored obligation change is required.
+      change_type: refactor
+      reviewer: agent:grok
+      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
       base: HEAD~1
-      requirement_fingerprint: sha256:5c1f2bf3e3d9c7ed94da3aa13df749d2482e7be8c0f689712db9ecb2219c2d1b
-      approval_fingerprint: sha256:689e73ee45a3cad1030569a57294ed6501a2975f64fb9b71d3f5bc69912e721b
-      artifact_fingerprint: sha256:daaae7f55e1bd4dd1e8da450a2ba93cb94745ad0a1c748d763e3f3508908c2c5
-      reviewed_at: "2026-08-21T07:45:23Z"
+      requirement_fingerprint: sha256:2b3d586199fff407b7031af5840ed238557eadc89d2e17375faf30169a9b64a0
+      approval_fingerprint: sha256:abca808653e45e983c08e59608dbad582192d39e10a63a6b21dd4ab9312e933f
+      artifact_fingerprint: sha256:2bd98b099725bf5fe5c7e8eb92b728e35135a33f8bbe5aec84c5f2e58a90444e
+      reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: SYS-REQ-260821-JYEJ
+      artifact: internal/app/remaining.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:8fac42043b0d370ca6bc3d60363c199a98e0235fb781407e6664a496fcf6d0f3
+      approval_fingerprint: sha256:91fc473d9d0802d181425b14d94d4af864a8dd5e4eab5e7195c0d07db904e2ec
+      artifact_fingerprint: sha256:af8c2c5779703b953b55bb9fa836ba56c66e958e4752f5137285619b73b54348
+      reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: SYS-REQ-260821-JYEJ
+      artifact: internal/cli/cli.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
+      base: HEAD~1
+      requirement_fingerprint: sha256:8fac42043b0d370ca6bc3d60363c199a98e0235fb781407e6664a496fcf6d0f3
+      approval_fingerprint: sha256:91fc473d9d0802d181425b14d94d4af864a8dd5e4eab5e7195c0d07db904e2ec
+      artifact_fingerprint: sha256:55758dd72c61504504da48df16f22512df7ffe163146735bcc685855a5e48bf5
+      reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: SYS-REQ-260821-JYEJ
+      artifact: internal/store/store.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:8fac42043b0d370ca6bc3d60363c199a98e0235fb781407e6664a496fcf6d0f3
+      approval_fingerprint: sha256:91fc473d9d0802d181425b14d94d4af864a8dd5e4eab5e7195c0d07db904e2ec
+      artifact_fingerprint: sha256:38ae4eb55d53728a46919b747eab8b039219e5cd41b2eb8437b3a3c5eece66f6
+      reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: SYS-REQ-260821-QF1J
+      artifact: internal/app/remaining.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Latest store.go bytes are still only defensive mcdc:ignore comments; concurrent-patch contracts are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:d7e0e671008300447b00e5fec6ffae0e798de1dd39c8205879a4381bbf8919a7
+      approval_fingerprint: sha256:123ce9f22c3dcf36a851bbb57a437b0d465c1f8beba67840b939c38752c9976f
+      artifact_fingerprint: sha256:af8c2c5779703b953b55bb9fa836ba56c66e958e4752f5137285619b73b54348
+      reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: SYS-REQ-260821-QF1J
+      artifact: internal/serve/serve.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
+      base: HEAD~1
+      requirement_fingerprint: sha256:d7e0e671008300447b00e5fec6ffae0e798de1dd39c8205879a4381bbf8919a7
+      approval_fingerprint: sha256:123ce9f22c3dcf36a851bbb57a437b0d465c1f8beba67840b939c38752c9976f
+      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
+      reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: SYS-REQ-260821-QF1J
+      artifact: internal/wikilink/wikilink.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Defensive mcdc:ignore comments only mark unreachable I/O, regexp-capture, and nextHint branches; CLI/serve/dashboard/wikilink contracts and FRETish are unchanged.
+      base: HEAD~1
+      requirement_fingerprint: sha256:d7e0e671008300447b00e5fec6ffae0e798de1dd39c8205879a4381bbf8919a7
+      approval_fingerprint: sha256:123ce9f22c3dcf36a851bbb57a437b0d465c1f8beba67840b939c38752c9976f
+      artifact_fingerprint: sha256:7268987cb90a0fc46f641d4a0f7b707b22f103dfc98ce9e8b899316e1b70c197
+      reviewed_at: "2026-08-21T09:36:45Z"

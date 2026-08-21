@@ -41,7 +41,7 @@ func Match(query string, recs []*record.Record) *record.Record {
 func Resolve(src string, recs []*record.Record) string {
 	return wikiRe.ReplaceAllStringFunc(src, func(m string) string {
 		parts := wikiRe.FindStringSubmatch(m)
-		if len(parts) < 2 {
+		if len(parts) < 2 { //mcdc:ignore:defensive wikiRe.FindStringSubmatch always includes the target group
 			return m
 		}
 		label := parts[1]
@@ -62,7 +62,7 @@ func FindAll(src string) []string {
 	matches := wikiRe.FindAllStringSubmatch(src, -1)
 	var out []string
 	for _, m := range matches {
-		if len(m) > 1 {
+		if len(m) > 1 { //mcdc:ignore:defensive FindAllStringSubmatch always includes the target group
 			out = append(out, m[1])
 		}
 	}

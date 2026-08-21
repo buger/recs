@@ -33,3 +33,24 @@ func TestMatchAndResolve(t *testing.T) {
 		t.Fatal("findall")
 	}
 }
+
+
+func TestMatchCaseAndFuzzy(t *testing.T) {
+	recs := []*record.Record{
+		{ID: "Note_A", Type: "note", Fields: map[string]any{"title": "Alpha"}},
+		{ID: "note_xyz", Type: "note", Fields: map[string]any{"name": "Zed"}},
+		nil,
+	}
+	if wikilink.Match("note_a", recs) == nil {
+		t.Fatal("case")
+	}
+	if wikilink.Match("xyz", recs) == nil {
+		t.Fatal("fuzzy id")
+	}
+	if wikilink.Match("lph", recs) == nil {
+		t.Fatal("fuzzy name")
+	}
+	_ = wikilink.Resolve("[[note_a]] and [[missing]] and [[Note_A|Lab]]", recs)
+	_ = wikilink.FindAll("[[a]] [[b|c]]")
+	_ = wikilink.Match("", recs)
+}

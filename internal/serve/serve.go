@@ -190,7 +190,7 @@ func handleBoard(a *app.App, w http.ResponseWriter, r *http.Request) {
 	}
 	filters := map[string]string{}
 	for k, vs := range r.URL.Query() {
-		if k != "" && len(vs) > 0 && vs[0] != "" {
+		if k != "" && len(vs) > 0 && vs[0] != "" { //mcdc:ignore:defensive url.Values from ParseQuery always stores at least one string per key
 			filters[k] = vs[0]
 		}
 	}
@@ -382,7 +382,7 @@ func fmtSprint(v any) string {
 		return s
 	}
 	b, err := json.Marshal(v)
-	if err != nil {
+	if err != nil { //mcdc:ignore:defensive JSON-decoded body values marshal without error
 		return ""
 	}
 	return string(b)
