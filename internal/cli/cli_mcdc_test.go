@@ -7,7 +7,6 @@ import (
 	"path/filepath"
 	"strconv"
 	"testing"
-	"time"
 
 	"crm/internal/cli"
 )
@@ -57,21 +56,23 @@ func TestCLIServePortDefaultAndOverride(t *testing.T) {
 	if cli.Main([]string{"--root", root, "init"}, out, errb) != 0 {
 		t.Fatal("init")
 	}
-	done := make(chan int, 1)
-	go func() {
-		done <- cli.Main([]string{"--root", root, "--port", "0", "serve"}, out, errb)
-	}()
-	select {
-	case <-done:
-	case <-time.After(150 * time.Millisecond):
+	// Occupy the default and override ports so Main returns. A successful
+	// ListenAndServe would leak a goroutine and hang go test -cover.
+	def, err := net.Listen("tcp", "127.0.0.1:7777")
+	if err != nil {
+		t.Skip("default serve port 7777 busy:", err)
 	}
-	done2 := make(chan int, 1)
-	go func() {
-		done2 <- cli.Main([]string{"--root", root, "--port", "18765", "serve"}, out, errb)
-	}()
-	select {
-	case <-done2:
-	case <-time.After(150 * time.Millisecond):
+	defer def.Close()
+	if cli.Main([]string{"--root", root, "--port", "0", "serve"}, out, errb) == 0 {
+		t.Fatal("expected default port 7777 busy")
+	}
+	ov, err := net.Listen("tcp", "127.0.0.1:18765")
+	if err != nil {
+		t.Skip("override port 18765 busy:", err)
+	}
+	defer ov.Close()
+	if cli.Main([]string{"--root", root, "--port", "18765", "serve"}, out, errb) == 0 {
+		t.Fatal("expected override port busy")
 	}
 }
 

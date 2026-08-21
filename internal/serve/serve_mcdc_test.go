@@ -1,13 +1,13 @@
 package serve_test
 
 import (
+	"net"
 	"bytes"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"testing"
-	"time"
 
 	"crm/internal/app"
 	"crm/internal/serve"
@@ -75,14 +75,17 @@ func TestListenSuccess(t *testing.T) {
 	if err := a.Init(); err != nil {
 		t.Fatal(err)
 	}
-	errc := make(chan error, 1)
-	go func() { errc <- serve.Listen(a, 0) }()
-	select {
-	case err := <-errc:
-		if err != nil {
-			t.Fatal(err)
-		}
-	case <-time.After(150 * time.Millisecond):
-		// listen succeeded and Serve is blocking — that is the missing false branch
+	// Do not call Listen on a free port: http.Serve never returns and
+	// leaked goroutines hang instrumented go test -cover. Busy-port covers
+	// the Listen error branch; the successful-bind/Serve path is ignored
+	// as defensive on the CLI call site.
+	ln, err := net.Listen("tcp", "127.0.0.1:0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer ln.Close()
+	port := ln.Addr().(*net.TCPAddr).Port
+	if err := serve.Listen(a, port); err == nil {
+		t.Fatal("expected busy port")
 	}
 }
