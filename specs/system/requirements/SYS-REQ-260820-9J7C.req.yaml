@@ -80,22 +80,22 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-MQF2 or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-MQF2 or any parent. Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SW-REQ-260820-MQF2|SYS-REQ-260820-9J7C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.059359Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-Q3C4 or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-Q3C4 or any parent. Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.059359Z"
         - check: ambiguity
           issue_key: ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SYS-REQ-260820-2SQZ (system concurrent mutation parent for the Markdown store) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-2SQZ or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SYS-REQ-260820-2SQZ (system concurrent mutation parent for the Markdown store) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-2SQZ or any parent. Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SYS-REQ-260820-2SQZ|SYS-REQ-260820-9J7C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.059359Z"
         - check: ambiguity
           issue_key: ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SYS-REQ-260820-KJ34 (system store parent that over-budget parses fail closed) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-KJ34 or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34: SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) is complementary to SYS-REQ-260820-KJ34 (system store parent that over-budget parses fail closed) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-KJ34 or any parent. Recorded only on SYS-REQ-260820-9J7C for ambiguity|store|SYS-REQ-260820-9J7C|SYS-REQ-260820-KJ34; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.170065Z"
 history:
     created_by: human:cli

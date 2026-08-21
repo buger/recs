@@ -22,7 +22,7 @@ import (
 var Input io.Reader = os.Stdin
 
 // Main is the CLI entry.
-// Implements: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C INT-REQ-260820-JC9M SYS-REQ-260821-8FKR SW-REQ-260821-FCGM INT-REQ-260821-BSH3
+// Implements: SYS-REQ-260820-PG9C SW-REQ-260820-YB5C INT-REQ-260820-JC9M SYS-REQ-260821-8FKR SW-REQ-260821-FCGM INT-REQ-260821-BSH3 SW-REQ-260821-9657 SW-REQ-260821-T9AY SW-REQ-260821-MFR2 SW-REQ-260821-E5V8 SW-REQ-260821-9737 SW-REQ-260821-AY8F
 func Main(args []string, stdout, stderr io.Writer) int {
 	jsonOut := false
 	root := ""
@@ -410,9 +410,6 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		if err != nil {
 			return fail(err)
 		}
-		if items == nil {
-			items = []app.NextAction{}
-		}
 		var b strings.Builder
 		for _, it := range items {
 			fmt.Fprintf(&b, "[%s] %s\n       %s\n", strings.ToUpper(it.Priority), it.Title, it.ID)
@@ -426,9 +423,6 @@ func Main(args []string, stdout, stderr io.Writer) int {
 		items, err := a.Triage()
 		if err != nil {
 			return fail(err)
-		}
-		if items == nil {
-			items = []app.TriageItem{}
 		}
 		var b strings.Builder
 		for _, it := range items {
@@ -637,7 +631,7 @@ func Main(args []string, stdout, stderr io.Writer) int {
 	}
 }
 
-// Implements: SYS-REQ-260820-PG9C
+// Implements: SYS-REQ-260820-PG9C SW-REQ-260821-E5V8
 func openApp(cmd, root string) (*app.App, error) {
 	if cmd == "init" {
 		return app.OpenOrCWD(root), nil
@@ -655,7 +649,7 @@ func public(rec *record.Record) map[string]any {
 	return out
 }
 
-// Implements: SYS-REQ-260820-PG9C
+// Implements: SYS-REQ-260820-PG9C SW-REQ-260821-9657
 func publicList(recs []*record.Record) []map[string]any {
 	out := make([]map[string]any, 0, len(recs))
 	for _, rec := range recs {

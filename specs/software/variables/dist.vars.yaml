@@ -1,0 +1,5 @@
+component: dist
+variables: []
+no_interface:
+    declared: true
+    reason: dist is go-build packaging only, not an operator-facing runtime interface. Cosmopolitan/APE is a permanent non-goal; CLI and serve INT-REQs already own the operator-facing boundary.

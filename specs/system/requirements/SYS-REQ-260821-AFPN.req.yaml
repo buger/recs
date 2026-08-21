@@ -11,7 +11,6 @@ informal_verification:
     method: ""
     evidence: ""
     verified: false
-parent: STK-REQ-260820-T8AZ
 component: dist
 rationale: A maintainer needs one file users can download and run. A true Go APE is not available, so the APE wraps the host binary. Refined by SW-REQ-260821-AC3S.
 tags: []
@@ -25,37 +24,6 @@ variables:
     - ape_build_rejected
     - rc
 traces:
-    satisfies:
-        - STK-REQ-260820-T8AZ
-    reviewed_at: "2026-08-21T07:46:57.813007Z"
-    reviewed_by: agent:grok
-    reviewed_fingerprint: sha256:e9735511cf2e27a12e7b999e0f504697d62b0874b167604fc6052776779107fd
-    review_history:
-        - reviewed_at: "2026-08-21T06:37:34.180386Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: Evidence-cited review of APE system traces.
-          source: proof trace review --citation
-          citations:
-            - ape/wrapper.c
-            - docs/distribution.md
-            - docs/phase1.md
-            - internal/app/remaining_test.go
-            - scripts/build-ape.sh
-            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
-        - reviewed_at: "2026-08-21T07:46:57.813007Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: manual trace review via proof trace review
-          source: proof trace review --citation
-          citations:
-            - ape/hello.c
-            - ape/wrapper.c
-            - docs/distribution.md
-            - docs/phase1.md
-            - internal/app/remaining_test.go
-            - scripts/build-ape.sh
-            - specs/stakeholder/requirements/STK-REQ-260820-T8AZ.req.yaml
 verification:
     assurance_level: E
     formalization_status: valid
@@ -104,7 +72,7 @@ history:
     created_by: agent:grok
     created_at: "2026-08-21T06:17:22Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T11:01:04Z"
+    last_modified_at: "2026-08-21T11:55:23Z"
 obligation_checklist:
     - error_handling
     - nominal

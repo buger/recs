@@ -22,21 +22,22 @@ traces:
         - SYS-REQ-260820-ZTC3
         - SYS-REQ-260820-4628
         - SYS-REQ-260820-PG9C
-    reviewed_at: "2026-08-21T07:46:41.349893Z"
+    reviewed_at: "2026-08-21T11:56:08.233508Z"
     reviewed_by: agent:grok
     reviewed_fingerprint: sha256:c1040f4b89cd5375c152df68cbc623d995eee3139c758386f459e99cb0d74b4b
     review_history:
-        - reviewed_at: "2026-08-21T07:46:41.349893Z"
+        - reviewed_at: "2026-08-21T11:56:08.233508Z"
           reviewed_by: agent:grok
           method: inspection
-          rationale: manual trace review via proof trace review
+          rationale: Re-inspected after cmd/crm renamed to cmd/recs; shared app layer and satisfies parents still name JC9M.
           source: proof trace review --citation
           citations:
-            - cmd/crm/main.go
+            - cmd/recs/main.go
             - docs/phase1.md
             - internal/app/app.go
             - internal/cli/cli.go
             - internal/cli/cli_test.go
+            - internal/cli/mcdc_noaction_test.go
             - specs/system/requirements/SYS-REQ-260820-4628.req.yaml
             - specs/system/requirements/SYS-REQ-260820-9J7C.req.yaml
             - specs/system/requirements/SYS-REQ-260820-PG9C.req.yaml
@@ -81,54 +82,54 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
-    gaps_reviewed_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T12:10:35.011893Z"
+    gaps_reviewed_by: buger
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|INT-REQ-260821-8HAC
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|INT-REQ-260821-8HAC: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to INT-REQ-260821-8HAC (remaining-CLI integration for edit/delete/link/ingest/export/import/git) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-8HAC or any parent.'
-          reviewed_at: "2026-08-21T09:23:43.506846Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from 8HAC (remaining-CLI commands use the store/shared model). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|INT-REQ-260821-8HAC; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|INT-REQ-260821-BSH3
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|INT-REQ-260821-BSH3: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to INT-REQ-260821-BSH3 (CLI integration that rejects unknown or incomplete argv in JSON) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-BSH3 or any parent.'
-          reviewed_at: "2026-08-21T09:23:43.714257Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from BSH3 (help/errors from the binary, no sidecar, next/allowed). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|INT-REQ-260821-BSH3; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to SW-REQ-260820-D5WE (software crm new/get command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-D5WE or any parent.'
-          reviewed_at: "2026-08-21T09:23:43.919821Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from D5WE (triage collects inbox/missing/overdue/blocker rows). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-YB5C
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-YB5C: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to SW-REQ-260820-YB5C (software crm query command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-YB5C or any parent.'
-          reviewed_at: "2026-08-21T09:23:44.133979Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from YB5C (JSON vs human encoding, mutually exclusive). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-YB5C; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-ZKCV
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-ZKCV: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to SW-REQ-260820-ZKCV (software crm serve command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-ZKCV or any parent.'
-          reviewed_at: "2026-08-21T09:23:44.338672Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from ZKCV (next collects and sorts due actions). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-ZKCV; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-8C2C
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-8C2C: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to SW-REQ-260821-8C2C (software remaining-CLI command implementations) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260821-8C2C or any parent.'
-          reviewed_at: "2026-08-21T09:23:44.55426Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from 8C2C (edit/delete/link/ingest/export/import/git implementations). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-8C2C; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260821-FCGM or any parent.'
-          reviewed_at: "2026-08-21T09:23:44.753737Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-8FKR
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-8FKR: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to SYS-REQ-260821-8FKR (system CLI parent that unknown commands must fail closed) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260821-8FKR or any parent.'
-          reviewed_at: "2026-08-21T09:23:45.133438Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from 8FKR (L1 agent-discovery: help, structured error, unknown-flag reject). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-8FKR; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-JYEJ: INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) is complementary to SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260821-JYEJ or any parent.'
-          reviewed_at: "2026-08-21T09:23:45.315255Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on INT-REQ-260820-JC9M for ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
     not_modeled:
         - predicate: 1 < len(args)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]

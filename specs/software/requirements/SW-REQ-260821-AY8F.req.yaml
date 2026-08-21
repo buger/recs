@@ -19,6 +19,22 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260821-8FKR
+    reviewed_at: "2026-08-21T12:02:41.865768Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:c1bd1a7204d1de397b1d2b4862cda87f7d06d7e720522ce4ed2df92116d708c2
+    review_history:
+        - reviewed_at: "2026-08-21T12:02:41.865768Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: knownFlags and ChoiceError reject unknown flags; phase1 and 8FKR still name AY8F.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli.go
+            - internal/cli/dogfood_test.go
+            - internal/cli/obligation_evidence_test.go
+            - internal/store/store.go
+            - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
 verification:
     assurance_level: E
     formalization_status: none

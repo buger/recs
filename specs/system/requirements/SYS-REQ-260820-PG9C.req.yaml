@@ -13,7 +13,7 @@ informal_verification:
     verified: false
 parent: STK-REQ-260820-V5ZD
 component: cli
-rationale: Agents consume machine output. Human text remains the default. Refined by INT-REQ-260820-JC9M, SW-REQ-260820-YB5C.
+rationale: Agents consume machine output. Human text remains the default. Refined by INT-REQ-260820-JC9M, SW-REQ-260820-YB5C, SW-REQ-260821-9657, SW-REQ-260821-CR08.
 tags: []
 variables: []
 references:
@@ -45,13 +45,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T11:13:00Z"
+        reviewed_at: "2026-08-21T12:01:32Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:2775840e224c58810973b9bbb93b07d4f5d3759293498a6601eb88034cd9ea39
+        fingerprint: sha256:9bf79edbb8a485d261127659e98e655e5725eadfb47c94b96e463f652ef999a5
         ai_generated: false
         motivation:
-            kind: chg
-            ref: CHG-260821-72GQ
+            kind: unchanged
+            rationale: Re-approve after naming refined children in rationale so satisfies citations stay current.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -73,54 +73,58 @@ verification:
               rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
-    gaps_reviewed_by: agent:grok
+            - kind: chg
+              ref: CHG-260821-72GQ
+              superseded_at: "2026-08-21T12:01:32Z"
+              superseded_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T12:10:35.011893Z"
+    gaps_reviewed_by: buger
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260821-8HAC|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|INT-REQ-260821-8HAC|SYS-REQ-260820-PG9C: SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) is complementary to INT-REQ-260821-8HAC (remaining-CLI integration for edit/delete/link/ingest/export/import/git) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-8HAC or any parent.'
+          reason: '8HAC (remaining-CLI commands use the store/shared model) is distinct from PG9C (L1 JSON encoding: --json object, empty array, RFC3339). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|INT-REQ-260821-8HAC|SYS-REQ-260820-PG9C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.949804Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260821-BSH3|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|INT-REQ-260821-BSH3|SYS-REQ-260820-PG9C: SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) is complementary to INT-REQ-260821-BSH3 (CLI integration that rejects unknown or incomplete argv in JSON) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-BSH3 or any parent.'
-          reviewed_at: "2026-08-21T09:23:44.949804Z"
+          reason: 'BSH3 (help/errors from the binary, no sidecar, next/allowed) is distinct from PG9C (L1 JSON encoding: --json object, empty array, RFC3339). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|INT-REQ-260821-BSH3|SYS-REQ-260820-PG9C; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C: SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) is complementary to SW-REQ-260820-D5WE (software crm new/get command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-D5WE or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from PG9C (L1 JSON encoding: --json object, empty array, RFC3339). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.949804Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260820-PG9C: SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) is complementary to SW-REQ-260820-ZKCV (software crm serve command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-ZKCV or any parent.'
+          reason: 'ZKCV (next collects and sorts due actions) is distinct from PG9C (L1 JSON encoding: --json object, empty array, RFC3339). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260820-PG9C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.949804Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260821-8C2C|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SW-REQ-260821-8C2C|SYS-REQ-260820-PG9C: SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) is complementary to SW-REQ-260821-8C2C (software remaining-CLI command implementations) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260821-8C2C or any parent.'
+          reason: '8C2C (edit/delete/link/ingest/export/import/git implementations) is distinct from PG9C (L1 JSON encoding: --json object, empty array, RFC3339). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SW-REQ-260821-8C2C|SYS-REQ-260820-PG9C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.949804Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C: SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) is complementary to SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260821-FCGM or any parent.'
+          reason: 'FCGM (help pages, structured reject, no AGENTS.md write) is distinct from PG9C (L1 JSON encoding: --json object, empty array, RFC3339). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.949804Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-8FKR
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-8FKR: SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) is complementary to SYS-REQ-260821-8FKR (system CLI parent that unknown commands must fail closed) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260821-8FKR or any parent.'
+          reason: 'PG9C (L1 JSON encoding: --json object, empty array, RFC3339) is distinct from 8FKR (L1 agent-discovery: help, structured error, unknown-flag reject). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-8FKR; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.133438Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-JYEJ: SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) is complementary to SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260821-JYEJ or any parent.'
+          reason: 'PG9C (L1 JSON encoding: --json object, empty array, RFC3339) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260820-PG9C for ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:09Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T11:13:00Z"
+    last_modified_at: "2026-08-21T12:01:32Z"
 obligation_checklist:
     - boundary
     - determinism

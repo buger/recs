@@ -19,6 +19,21 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260821-8FKR
+    reviewed_at: "2026-08-21T12:02:41.659733Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:d342de07e67f129a884897039e053a6e444b96de9938e552f65e13429d9cf59e
+    review_history:
+        - reviewed_at: "2026-08-21T12:02:41.659733Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: parseAssignment and Main reject empty/malformed --set, patch, and search; phase1 and 8FKR still name 9737.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli.go
+            - internal/cli/dogfood_test.go
+            - internal/cli/obligation_evidence_test.go
+            - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
 verification:
     assurance_level: E
     formalization_status: none

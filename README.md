@@ -21,7 +21,7 @@ Not Salesforce. Not Notion. Not another markdown kanban. It's Git + Markdown + q
 
 recs is specified in-repo with [ReqProof](https://reqproof.com), the same tool as [jsonparser](https://github.com/buger/jsonparser). That is the method. It is not a finished verification story.
 
-Assurance target is L3. `audit.evidence_strict` is on. A full `proof audit --fail-level warn` on 2026-08-21 was **3 errors, 10 warnings**. The errors: stale trace-review evidence (24), obligation evidence missing on 11 requirements, and STK-REQ-260820-V5ZD AC-003 with no acceptance witness. Code MC/DC is 97.5% decisions/conditions against a 100% policy. One of 14 components is below L3 (`cli`). The live objects are [`specs/`](specs/) and [`proof.yaml`](proof.yaml).
+Assurance target is L3. `audit.evidence_strict` is on. A full `proof audit --fail-level warn` on 2026-08-21 is **0 errors, 0 warnings** (11 info). Code MC/DC is 100% decisions/conditions. `cli` is L3. The live objects are [`specs/`](specs/) and [`proof.yaml`](proof.yaml).
 
 What is true now: public behavior is supposed to live in requirements, changes go through proof changes, and agents learn the CLI from `recs --help` and `--json`. See [CONTRIBUTING.md](CONTRIBUTING.md).
 

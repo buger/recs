@@ -77,32 +77,32 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to INT-REQ-260821-5BJJ (store_lock integration: version mismatch under a non-negative parse budget reports conflict) on the store ambiguity finding. This rationale is not copied onto INT-REQ-260821-5BJJ or any parent.'
+          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to INT-REQ-260821-5BJJ (store_lock integration: version mismatch under a non-negative parse budget reports conflict) on the store ambiguity finding. This rationale is not copied onto INT-REQ-260821-5BJJ or any parent. Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:03:49.61319Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SW-REQ-260820-9C5Z (software store invariant that frontmatter updates preserve the rest of the record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-9C5Z or any parent.'
+          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SW-REQ-260820-9C5Z (software store invariant that frontmatter updates preserve the rest of the record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-9C5Z or any parent. Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-9C5Z|SW-REQ-260820-Q3C4; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.57823Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-MQF2 or any parent.'
+          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SW-REQ-260820-MQF2 (software parse-budget cap on a single store read) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-MQF2 or any parent. Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-MQF2|SW-REQ-260820-Q3C4; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.837188Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SW-REQ-260820-N02Y (software frontmatter separator scan bounded by parse_budget) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-N02Y or any parent.'
+          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SW-REQ-260820-N02Y (software frontmatter separator scan bounded by parse_budget) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-N02Y or any parent. Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-N02Y|SW-REQ-260820-Q3C4; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.946706Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-9J7C or any parent.'
+          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SYS-REQ-260820-9J7C (system store parse-budget parent for frontmatter extraction) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-9J7C or any parent. Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-9J7C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.059359Z"
         - check: ambiguity
           issue_key: ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SYS-REQ-260820-KJ34 (system store parent that over-budget parses fail closed) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-KJ34 or any parent.'
+          reason: 'Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34: SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) is complementary to SYS-REQ-260820-KJ34 (system store parent that over-budget parses fail closed) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-KJ34 or any parent. Recorded only on SW-REQ-260820-Q3C4 for ambiguity|store|SW-REQ-260820-Q3C4|SYS-REQ-260820-KJ34; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.170065Z"
     not_modeled:
         - predicate: end == -1

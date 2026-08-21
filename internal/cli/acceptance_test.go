@@ -258,3 +258,58 @@ func TestAcceptanceDashboardGallery(t *testing.T) {
 		}
 	}
 }
+
+// STK-REQ-260820-V5ZD:AC-003:acceptance
+func TestAcceptanceUnknownFlagAndIncompleteCommand(t *testing.T) {
+	root := t.TempDir()
+	if run(t, root, "init") != 0 {
+		t.Fatal("init")
+	}
+
+	out, errb := &bytes.Buffer{}, &bytes.Buffer{}
+	if cli.Main([]string{"--root", root, "list", "--not-a-flag", "--json"}, out, errb) == 0 {
+		t.Fatal("unknown flag succeeded")
+	}
+	raw := out.Bytes()
+	if len(raw) == 0 {
+		raw = errb.Bytes()
+	}
+	var payload map[string]any
+	if err := json.Unmarshal(raw, &payload); err != nil {
+		t.Fatalf("unknown flag json: %v %s", err, raw)
+	}
+	if payload["ok"] != false {
+		t.Fatalf("unknown flag ok: %#v", payload)
+	}
+	next, _ := payload["next"].(string)
+	if next == "" {
+		t.Fatalf("unknown flag missing next: %#v", payload)
+	}
+	if !strings.Contains(next, "recs help") && !strings.Contains(next, "recs --help") {
+		t.Fatalf("unknown flag next is not a recovery command: %#v", payload)
+	}
+
+	out.Reset()
+	errb.Reset()
+	if cli.Main([]string{"--root", root, "show", "--json"}, out, errb) == 0 {
+		t.Fatal("incomplete command succeeded")
+	}
+	raw = out.Bytes()
+	if len(raw) == 0 {
+		raw = errb.Bytes()
+	}
+	payload = map[string]any{}
+	if err := json.Unmarshal(raw, &payload); err != nil {
+		t.Fatalf("incomplete json: %v %s", err, raw)
+	}
+	if payload["ok"] != false {
+		t.Fatalf("incomplete ok: %#v", payload)
+	}
+	next, _ = payload["next"].(string)
+	if next == "" {
+		t.Fatalf("incomplete missing next: %#v", payload)
+	}
+	if !strings.Contains(next, "recs help") && !strings.Contains(next, "recs --help") {
+		t.Fatalf("incomplete next is not a recovery command: %#v", payload)
+	}
+}

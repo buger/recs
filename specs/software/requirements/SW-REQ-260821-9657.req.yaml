@@ -19,6 +19,20 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-PG9C
+    reviewed_at: "2026-08-21T12:02:26.441778Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:18a0df6d68732d0bd4de697a5dfd505d32c15efa79dc8e23bb7e32c2b0ad57ed
+    review_history:
+        - reviewed_at: "2026-08-21T12:02:26.441778Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Empty JSON collections stay arrays in Main/publicList; phase1 CLI contract and PG9C rationale still name 9657.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli.go
+            - internal/cli/dogfood_test.go
+            - specs/system/requirements/SYS-REQ-260820-PG9C.req.yaml
 verification:
     assurance_level: E
     formalization_status: none

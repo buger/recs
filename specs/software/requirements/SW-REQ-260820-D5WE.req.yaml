@@ -66,58 +66,58 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
-    gaps_reviewed_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T12:10:35.011893Z"
+    gaps_reviewed_by: buger
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260820-JC9M or any parent.'
-          reviewed_at: "2026-08-21T09:23:43.919821Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from D5WE (triage collects inbox/missing/overdue/blocker rows). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260820-D5WE; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260820-D5WE
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260820-D5WE: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to INT-REQ-260821-8HAC (remaining-CLI integration for edit/delete/link/ingest/export/import/git) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-8HAC or any parent.'
+          reason: '8HAC (remaining-CLI commands use the store/shared model) is distinct from D5WE (triage collects inbox/missing/overdue/blocker rows). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260820-D5WE; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:43.919821Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260820-D5WE
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260820-D5WE: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to INT-REQ-260821-BSH3 (CLI integration that rejects unknown or incomplete argv in JSON) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-BSH3 or any parent.'
-          reviewed_at: "2026-08-21T09:23:43.919821Z"
+          reason: 'BSH3 (help/errors from the binary, no sidecar, next/allowed) is distinct from D5WE (triage collects inbox/missing/overdue/blocker rows). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260820-D5WE; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260820-YB5C
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260820-YB5C: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to SW-REQ-260820-YB5C (software crm query command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-YB5C or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from YB5C (JSON vs human encoding, mutually exclusive). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260820-YB5C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.133979Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260820-ZKCV
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260820-ZKCV: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to SW-REQ-260820-ZKCV (software crm serve command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-ZKCV or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from ZKCV (next collects and sorts due actions). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260820-ZKCV; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.338672Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-8C2C
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-8C2C: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to SW-REQ-260821-8C2C (software remaining-CLI command implementations) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260821-8C2C or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from 8C2C (edit/delete/link/ingest/export/import/git implementations). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-8C2C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.55426Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260821-FCGM or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.753737Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260820-PG9C or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from PG9C (L1 JSON encoding: --json object, empty array, RFC3339). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260820-PG9C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.949804Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-8FKR
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-8FKR: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to SYS-REQ-260821-8FKR (system CLI parent that unknown commands must fail closed) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260821-8FKR or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from 8FKR (L1 agent-discovery: help, structured error, unknown-flag reject). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-8FKR; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.133438Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-JYEJ: SW-REQ-260820-D5WE (software crm new/get command surface) is complementary to SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260821-JYEJ or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260820-D5WE for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
     not_modeled:
         - predicate: len(record.StringSlice(rec.Get("blockers")

@@ -103,6 +103,7 @@ func TestEnumerableErrorsIncludeAllowed(t *testing.T) {
 
 // Verifies: SW-REQ-260821-9657 SW-REQ-260820-YB5C SYS-REQ-260820-PG9C
 // SW-REQ-260821-9657:boundary:nominal
+// SW-REQ-260820-YB5C:boundary:nominal
 func TestEmptyJSONCollectionsAreArrays(t *testing.T) {
 	root := t.TempDir()
 	out, errb := &bytes.Buffer{}, &bytes.Buffer{}

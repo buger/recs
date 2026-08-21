@@ -107,12 +107,12 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260821-5BJJ for ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4: INT-REQ-260821-5BJJ (store_lock integration: version mismatch under a non-negative parse budget reports conflict) is complementary to SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-Q3C4 or any parent.'
+          reason: 'Recorded only on INT-REQ-260821-5BJJ for ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4: INT-REQ-260821-5BJJ (store_lock integration: version mismatch under a non-negative parse budget reports conflict) is complementary to SW-REQ-260820-Q3C4 (software concurrent patch serialization or conflict on one record) on the store ambiguity finding. This rationale is not copied onto SW-REQ-260820-Q3C4 or any parent. Recorded only on INT-REQ-260821-5BJJ for ambiguity|store|INT-REQ-260821-5BJJ|SW-REQ-260820-Q3C4; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:03:49.61319Z"
         - check: ambiguity
           issue_key: ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260821-5BJJ for ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ: INT-REQ-260821-5BJJ (store_lock integration: version mismatch under a non-negative parse budget reports conflict) is complementary to SYS-REQ-260820-2SQZ (system concurrent mutation parent for the Markdown store) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-2SQZ or any parent.'
+          reason: 'Recorded only on INT-REQ-260821-5BJJ for ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ: INT-REQ-260821-5BJJ (store_lock integration: version mismatch under a non-negative parse budget reports conflict) is complementary to SYS-REQ-260820-2SQZ (system concurrent mutation parent for the Markdown store) on the store ambiguity finding. This rationale is not copied onto SYS-REQ-260820-2SQZ or any parent. Recorded only on INT-REQ-260821-5BJJ for ambiguity|store|INT-REQ-260821-5BJJ|SYS-REQ-260820-2SQZ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T08:58:56.356721Z"
     not_modeled:
         - predicate: len(fields)

@@ -93,53 +93,53 @@ verification:
               rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
-    gaps_reviewed_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T12:10:35.011893Z"
+    gaps_reviewed_by: buger
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260820-JC9M or any parent.'
-          reviewed_at: "2026-08-21T09:23:44.753737Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|INT-REQ-260820-JC9M|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260821-FCGM: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to INT-REQ-260821-8HAC (remaining-CLI integration for edit/delete/link/ingest/export/import/git) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-8HAC or any parent.'
+          reason: '8HAC (remaining-CLI commands use the store/shared model) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|INT-REQ-260821-8HAC|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.753737Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260821-FCGM: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to INT-REQ-260821-BSH3 (CLI integration that rejects unknown or incomplete argv in JSON) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-BSH3 or any parent.'
-          reviewed_at: "2026-08-21T09:23:44.753737Z"
+          reason: 'BSH3 (help/errors from the binary, no sidecar, next/allowed) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|INT-REQ-260821-BSH3|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to SW-REQ-260820-D5WE (software crm new/get command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-D5WE or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260820-D5WE|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.753737Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-YB5C|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260820-YB5C|SW-REQ-260821-FCGM: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to SW-REQ-260820-YB5C (software crm query command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-YB5C or any parent.'
+          reason: 'YB5C (JSON vs human encoding, mutually exclusive) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260820-YB5C|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.753737Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-ZKCV|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260820-ZKCV|SW-REQ-260821-FCGM: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to SW-REQ-260820-ZKCV (software crm serve command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-ZKCV or any parent.'
+          reason: 'ZKCV (next collects and sorts due actions) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260820-ZKCV|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.753737Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260821-8C2C|SW-REQ-260821-FCGM
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260821-8C2C|SW-REQ-260821-FCGM: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to SW-REQ-260821-8C2C (software remaining-CLI command implementations) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260821-8C2C or any parent.'
+          reason: '8C2C (edit/delete/link/ingest/export/import/git implementations) is distinct from FCGM (help pages, structured reject, no AGENTS.md write). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260821-8C2C|SW-REQ-260821-FCGM; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.753737Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260820-PG9C or any parent.'
+          reason: 'FCGM (help pages, structured reject, no AGENTS.md write) is distinct from PG9C (L1 JSON encoding: --json object, empty array, RFC3339). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260820-PG9C; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:44.949804Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ: SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) is complementary to SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260821-JYEJ or any parent.'
+          reason: 'FCGM (help pages, structured reject, no AGENTS.md write) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SW-REQ-260821-FCGM for ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
     not_modeled:
         - predicate: i < len(args)

@@ -75,22 +75,22 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260820-NHBY
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260820-NHBY: INT-REQ-260820-AHKR (serve HTTP integration that uses the shared app layer and forbids a separate database) is complementary to INT-REQ-260820-NHBY (dashboard gallery HTTP integration through the shared app layer) on the serve ambiguity finding. This rationale is not copied onto INT-REQ-260820-NHBY or any parent.'
+          reason: 'Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260820-NHBY: INT-REQ-260820-AHKR (serve HTTP integration that uses the shared app layer and forbids a separate database) is complementary to INT-REQ-260820-NHBY (dashboard gallery HTTP integration through the shared app layer) on the serve ambiguity finding. This rationale is not copied onto INT-REQ-260820-NHBY or any parent. Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260820-NHBY; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:42.479508Z"
         - check: ambiguity
           issue_key: ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260821-MRGW
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260821-MRGW: INT-REQ-260820-AHKR (serve HTTP integration that uses the shared app layer and forbids a separate database) is complementary to INT-REQ-260821-MRGW (remaining-UI HTTP integration for record/search/board/attachment/wikilink handlers) on the serve ambiguity finding. This rationale is not copied onto INT-REQ-260821-MRGW or any parent.'
+          reason: 'Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260821-MRGW: INT-REQ-260820-AHKR (serve HTTP integration that uses the shared app layer and forbids a separate database) is complementary to INT-REQ-260821-MRGW (remaining-UI HTTP integration for record/search/board/attachment/wikilink handlers) on the serve ambiguity finding. This rationale is not copied onto INT-REQ-260821-MRGW or any parent. Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|INT-REQ-260821-MRGW; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:42.624901Z"
         - check: ambiguity
           issue_key: ambiguity|serve|INT-REQ-260820-AHKR|SW-REQ-260820-8ZS7
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|SW-REQ-260820-8ZS7: INT-REQ-260820-AHKR (serve HTTP integration that uses the shared app layer and forbids a separate database) is complementary to SW-REQ-260820-8ZS7 (software HTTP listen/bind on listen_port) on the serve ambiguity finding. This rationale is not copied onto SW-REQ-260820-8ZS7 or any parent.'
+          reason: 'Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|SW-REQ-260820-8ZS7: INT-REQ-260820-AHKR (serve HTTP integration that uses the shared app layer and forbids a separate database) is complementary to SW-REQ-260820-8ZS7 (software HTTP listen/bind on listen_port) on the serve ambiguity finding. This rationale is not copied onto SW-REQ-260820-8ZS7 or any parent. Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|SW-REQ-260820-8ZS7; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:42.73973Z"
         - check: ambiguity
           issue_key: ambiguity|serve|INT-REQ-260820-AHKR|SYS-REQ-260821-QF1J
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|SYS-REQ-260821-QF1J: INT-REQ-260820-AHKR (serve HTTP integration that uses the shared app layer and forbids a separate database) is complementary to SYS-REQ-260821-QF1J (system remaining-UI parent that also forbids a separate browser database) on the serve ambiguity finding. This rationale is not copied onto SYS-REQ-260821-QF1J or any parent.'
+          reason: 'Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|SYS-REQ-260821-QF1J: INT-REQ-260820-AHKR (serve HTTP integration that uses the shared app layer and forbids a separate database) is complementary to SYS-REQ-260821-QF1J (system remaining-UI parent that also forbids a separate browser database) on the serve ambiguity finding. This rationale is not copied onto SYS-REQ-260821-QF1J or any parent. Recorded only on INT-REQ-260820-AHKR for ambiguity|serve|INT-REQ-260820-AHKR|SYS-REQ-260821-QF1J; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:43.189952Z"
 history:
     created_by: human:cli

@@ -79,17 +79,17 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-4628 for ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628: SYS-REQ-260820-4628 (system board parent for filter encoding) is complementary to INT-REQ-260820-JRWN (board integration that saved views read the shared record model) on the board ambiguity finding. This rationale is not copied onto INT-REQ-260820-JRWN or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-4628 for ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628: SYS-REQ-260820-4628 (system board parent for filter encoding) is complementary to INT-REQ-260820-JRWN (board integration that saved views read the shared record model) on the board ambiguity finding. This rationale is not copied onto INT-REQ-260820-JRWN or any parent. Recorded only on SYS-REQ-260820-4628 for ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.964082Z"
         - check: ambiguity
           issue_key: ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-4628 for ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628: SYS-REQ-260820-4628 (system board parent for filter encoding) is complementary to SW-REQ-260820-EX7Q (software board filter encoding) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-EX7Q or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-4628 for ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628: SYS-REQ-260820-4628 (system board parent for filter encoding) is complementary to SW-REQ-260820-EX7Q (software board filter encoding) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-EX7Q or any parent. Recorded only on SYS-REQ-260820-4628 for ambiguity|board|SW-REQ-260820-EX7Q|SYS-REQ-260820-4628; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.964082Z"
         - check: ambiguity
           issue_key: ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-4628 for ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE: SYS-REQ-260820-4628 (system board parent for filter encoding) is complementary to SYS-REQ-260820-BVBE (system board parent for saved views) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-BVBE or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-4628 for ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE: SYS-REQ-260820-4628 (system board parent for filter encoding) is complementary to SYS-REQ-260820-BVBE (system board parent for saved views) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-BVBE or any parent. Recorded only on SYS-REQ-260820-4628 for ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.964082Z"
 history:
     created_by: human:cli

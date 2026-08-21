@@ -143,48 +143,48 @@ verification:
               ref: CHG-260821-AHD2
               superseded_at: "2026-08-21T09:16:14Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:23:45.315255Z"
-    gaps_reviewed_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T12:10:35.011893Z"
+    gaps_reviewed_by: buger
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-JYEJ: SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) is complementary to INT-REQ-260820-JC9M (CLI integration requiring the shared record model on every command) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260820-JC9M or any parent.'
-          reviewed_at: "2026-08-21T09:23:45.315255Z"
+          reason: 'JC9M (shared app/record model on every dispatched command) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|INT-REQ-260820-JC9M|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|INT-REQ-260821-BSH3|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|INT-REQ-260821-BSH3|SYS-REQ-260821-JYEJ: SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) is complementary to INT-REQ-260821-BSH3 (CLI integration that rejects unknown or incomplete argv in JSON) on the cli ambiguity finding. This rationale is not copied onto INT-REQ-260821-BSH3 or any parent.'
-          reviewed_at: "2026-08-21T09:23:45.315255Z"
+          reason: 'BSH3 (help/errors from the binary, no sidecar, next/allowed) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|INT-REQ-260821-BSH3|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:10:35.011893Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-JYEJ: SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) is complementary to SW-REQ-260820-D5WE (software crm new/get command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-D5WE or any parent.'
+          reason: 'D5WE (triage collects inbox/missing/overdue/blocker rows) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SW-REQ-260820-D5WE|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-YB5C|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SW-REQ-260820-YB5C|SYS-REQ-260821-JYEJ: SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) is complementary to SW-REQ-260820-YB5C (software crm query command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-YB5C or any parent.'
+          reason: 'YB5C (JSON vs human encoding, mutually exclusive) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SW-REQ-260820-YB5C|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260821-JYEJ: SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) is complementary to SW-REQ-260820-ZKCV (software crm serve command surface) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260820-ZKCV or any parent.'
+          reason: 'ZKCV (next collects and sorts due actions) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SW-REQ-260820-ZKCV|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ: SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) is complementary to SW-REQ-260821-FCGM (software CLI reject path when argv cannot be honored) on the cli ambiguity finding. This rationale is not copied onto SW-REQ-260821-FCGM or any parent.'
+          reason: 'FCGM (help pages, structured reject, no AGENTS.md write) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SW-REQ-260821-FCGM|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-JYEJ: SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) is complementary to SYS-REQ-260820-PG9C (system CLI parent for the original new/get/query/serve set) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260820-PG9C or any parent.'
+          reason: 'PG9C (L1 JSON encoding: --json object, empty array, RFC3339) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SYS-REQ-260820-PG9C|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
         - check: ambiguity
           issue_key: ambiguity|cli|SYS-REQ-260821-8FKR|SYS-REQ-260821-JYEJ
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SYS-REQ-260821-8FKR|SYS-REQ-260821-JYEJ: SYS-REQ-260821-JYEJ (system remaining-CLI parent for edit/delete/link/ingest/export/import/git) is complementary to SYS-REQ-260821-8FKR (system CLI parent that unknown commands must fail closed) on the cli ambiguity finding. This rationale is not copied onto SYS-REQ-260821-8FKR or any parent.'
+          reason: '8FKR (L1 agent-discovery: help, structured error, unknown-flag reject) is distinct from JYEJ (L1 remaining-CLI command set). They share a trigger variable (arg_count or expr_len) only as a non-empty guard; outputs and command families differ. Recorded only on SYS-REQ-260821-JYEJ for ambiguity|cli|SYS-REQ-260821-8FKR|SYS-REQ-260821-JYEJ; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:45.315255Z"
 history:
     created_by: agent:grok

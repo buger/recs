@@ -79,17 +79,17 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q: INT-REQ-260820-JRWN (board integration that saved views read the shared record model) is complementary to SW-REQ-260820-EX7Q (software board filter encoding) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-EX7Q or any parent.'
+          reason: 'Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q: INT-REQ-260820-JRWN (board integration that saved views read the shared record model) is complementary to SW-REQ-260820-EX7Q (software board filter encoding) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-EX7Q or any parent. Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-EX7Q; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.799192Z"
         - check: ambiguity
           issue_key: ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR: INT-REQ-260820-JRWN (board integration that saved views read the shared record model) is complementary to SW-REQ-260820-NBGR (software board saved-view apply path) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-NBGR or any parent.'
+          reason: 'Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR: INT-REQ-260820-JRWN (board integration that saved views read the shared record model) is complementary to SW-REQ-260820-NBGR (software board saved-view apply path) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-NBGR or any parent. Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SW-REQ-260820-NBGR; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.706247Z"
         - check: ambiguity
           issue_key: ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628: INT-REQ-260820-JRWN (board integration that saved views read the shared record model) is complementary to SYS-REQ-260820-4628 (system board parent for filter encoding) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-4628 or any parent.'
+          reason: 'Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628: INT-REQ-260820-JRWN (board integration that saved views read the shared record model) is complementary to SYS-REQ-260820-4628 (system board parent for filter encoding) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-4628 or any parent. Recorded only on INT-REQ-260820-JRWN for ambiguity|board|INT-REQ-260820-JRWN|SYS-REQ-260820-4628; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.964082Z"
     not_modeled:
         - predicate: len(gots)

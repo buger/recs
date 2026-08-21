@@ -170,7 +170,7 @@ func printCommandHelp(w, errw io.Writer, name string, jsonOut bool) int {
 	return 0
 }
 
-// Implements: SYS-REQ-260821-8FKR SW-REQ-260821-FCGM
+// Implements: SYS-REQ-260821-8FKR SW-REQ-260821-FCGM SW-REQ-260821-E5V8
 func nextHint(cmd, errMsg string) string {
 	if strings.Contains(errMsg, "crm.yaml not found") {
 		return "recs init --root <dir>"
@@ -184,13 +184,13 @@ func nextHint(cmd, errMsg string) string {
 	if strings.HasPrefix(errMsg, "unknown command") {
 		return "recs --help"
 	}
-	if strings.Contains(errMsg, "board") && strings.Contains(errMsg, "not found") {
+	if strings.Contains(errMsg, "dashboard") && strings.Contains(errMsg, "not found") {
 		return "recs board"
 	}
 	if strings.Contains(errMsg, "unknown column") {
 		return "recs help move"
 	}
-	if strings.Contains(errMsg, "dashboard") && strings.Contains(errMsg, "not found") {
+	if strings.Contains(errMsg, "board") && strings.Contains(errMsg, "not found") {
 		return "recs board"
 	}
 	if strings.Contains(errMsg, "not found") {

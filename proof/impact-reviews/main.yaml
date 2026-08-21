@@ -1,6 +1,6 @@
 schema_version: 1
 branch: main
-generated_at: "2026-08-21T09:44:24Z"
+generated_at: "2026-08-21T12:14:10Z"
 reviews:
     - requirement: INT-REQ-260820-AHKR
       artifact: internal/serve/serve.go
@@ -103,6 +103,17 @@ reviews:
       approval_fingerprint: sha256:e15db196d55f46b312527dc1553b20c38979c7079e1563213b172206fb4d5ee9
       artifact_fingerprint: sha256:2bd98b099725bf5fe5c7e8eb92b728e35135a33f8bbe5aec84c5f2e58a90444e
       reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: INT-REQ-260821-BSH3
+      artifact: internal/cli/help.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Reordered nextHint dashboard-not-found before the board substring check. Help and structured errors still come from the binary with next hints; BSH3 contract is unchanged.
+      base: origin/main
+      requirement_fingerprint: sha256:d759693b8ed2c9537c49a609c551c220862f8ebb4809c8402729f74bf1d6de27
+      approval_fingerprint: sha256:95e898057f671e8ffcc3ded0429072d31aa6151ffbaaf51feeffae25b2928b51
+      artifact_fingerprint: sha256:96357aee797a4ca54b75476d5da2cc012fe6d24fe49eb6208789dab01645a909
+      reviewed_at: "2026-08-21T12:14:10Z"
     - requirement: INT-REQ-260821-MRGW
       artifact: internal/app/remaining.go
       decision: no-authored-change
@@ -386,6 +397,17 @@ reviews:
       approval_fingerprint: sha256:f65874d5eb122ca051953bcd5a794691978c24748c8f90f430bed326a678b56a
       artifact_fingerprint: sha256:38ae4eb55d53728a46919b747eab8b039219e5cd41b2eb8437b3a3c5eece66f6
       reviewed_at: "2026-08-21T09:40:59Z"
+    - requirement: SW-REQ-260821-E5V8
+      artifact: internal/cli/help.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Reordered nextHint so the dashboard-not-found check runs before the board substring check. Both branches still return recs board; agent error shape and help contract are unchanged.
+      base: origin/main
+      requirement_fingerprint: sha256:0bf136c20d9214ee930fb5e03d1775853761e569ca8ee1955215fb61444386d0
+      approval_fingerprint: sha256:7c96546837bc1377ef9173804e58f1059d1be9a319a0d5f8e9700f4e7f6b0c01
+      artifact_fingerprint: sha256:96357aee797a4ca54b75476d5da2cc012fe6d24fe49eb6208789dab01645a909
+      reviewed_at: "2026-08-21T12:13:53Z"
     - requirement: SW-REQ-260821-FCGM
       artifact: internal/cli/cli.go
       decision: no-authored-change
@@ -408,6 +430,17 @@ reviews:
       approval_fingerprint: sha256:dd7af75fbfa6ff5b9b0ac72daaebbcd013ff1dc1e5137c72a11b5d977c54cf39
       artifact_fingerprint: sha256:2bd98b099725bf5fe5c7e8eb92b728e35135a33f8bbe5aec84c5f2e58a90444e
       reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: SW-REQ-260821-FCGM
+      artifact: internal/cli/help.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Reordered nextHint so the dashboard-not-found check runs before the board substring check. Both branches still return recs board; agent error shape and help contract are unchanged.
+      base: origin/main
+      requirement_fingerprint: sha256:3f1c46a73d79a33048b6487eadd43db42458eaf76e2739db9e33591184c40a1e
+      approval_fingerprint: sha256:22a45bdaf91a32e36b74a8b3d2d0ca985a1e75d3c928632ab378ee300a811bd6
+      artifact_fingerprint: sha256:96357aee797a4ca54b75476d5da2cc012fe6d24fe49eb6208789dab01645a909
+      reviewed_at: "2026-08-21T12:13:53Z"
     - requirement: SYS-REQ-260820-0TQX
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -719,6 +752,17 @@ reviews:
       approval_fingerprint: sha256:abca808653e45e983c08e59608dbad582192d39e10a63a6b21dd4ab9312e933f
       artifact_fingerprint: sha256:2bd98b099725bf5fe5c7e8eb92b728e35135a33f8bbe5aec84c5f2e58a90444e
       reviewed_at: "2026-08-21T09:37:57Z"
+    - requirement: SYS-REQ-260821-8FKR
+      artifact: internal/cli/help.go
+      decision: no-authored-change
+      change_type: refactor
+      reviewer: agent:grok
+      reason: Reordered nextHint so the dashboard-not-found check runs before the board substring check. Both branches still return recs board; agent error shape and help contract are unchanged.
+      base: origin/main
+      requirement_fingerprint: sha256:2b3d586199fff407b7031af5840ed238557eadc89d2e17375faf30169a9b64a0
+      approval_fingerprint: sha256:a83ac2a802e58d934cf33e5906aa3bd92d5771e58b226a130ec9777cf13acf5c
+      artifact_fingerprint: sha256:96357aee797a4ca54b75476d5da2cc012fe6d24fe49eb6208789dab01645a909
+      reviewed_at: "2026-08-21T12:13:53Z"
     - requirement: SYS-REQ-260821-JYEJ
       artifact: internal/app/remaining.go
       decision: no-authored-change

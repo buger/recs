@@ -78,12 +78,12 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-BVBE for ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE: SYS-REQ-260820-BVBE (system board parent for saved views) is complementary to SW-REQ-260820-NBGR (software board saved-view apply path) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-NBGR or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-BVBE for ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE: SYS-REQ-260820-BVBE (system board parent for saved views) is complementary to SW-REQ-260820-NBGR (software board saved-view apply path) on the board ambiguity finding. This rationale is not copied onto SW-REQ-260820-NBGR or any parent. Recorded only on SYS-REQ-260820-BVBE for ambiguity|board|SW-REQ-260820-NBGR|SYS-REQ-260820-BVBE; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.889326Z"
         - check: ambiguity
           issue_key: ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE
           reviewer: agent:grok
-          reason: 'Recorded only on SYS-REQ-260820-BVBE for ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE: SYS-REQ-260820-BVBE (system board parent for saved views) is complementary to SYS-REQ-260820-4628 (system board parent for filter encoding) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-4628 or any parent.'
+          reason: 'Recorded only on SYS-REQ-260820-BVBE for ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE: SYS-REQ-260820-BVBE (system board parent for saved views) is complementary to SYS-REQ-260820-4628 (system board parent for filter encoding) on the board ambiguity finding. This rationale is not copied onto SYS-REQ-260820-4628 or any parent. Recorded only on SYS-REQ-260820-BVBE for ambiguity|board|SYS-REQ-260820-4628|SYS-REQ-260820-BVBE; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:46.964082Z"
 history:
     created_by: human:cli

@@ -1,0 +1,14 @@
+id: CHG-260821-TYH4
+type: fix
+title: Close L3 audit errors and warnings
+intent: Bring proof audit to 0 errors and 0 warnings under L3 plus evidence_strict without waivers, mutes, threshold cuts, audit_ignore, or deferred obligations.
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-21T11:46:41Z"
+      by: agent:grok
+      action: created

@@ -1,4 +1,4 @@
-<!-- Documents: STK-REQ-260820-4255 STK-REQ-260821-QTPP STK-REQ-260821-NTWY SYS-REQ-260821-JYEJ SYS-REQ-260821-QF1J SYS-REQ-260821-8FKR SW-REQ-260821-8C2C SW-REQ-260821-82BA SW-REQ-260821-FCGM INT-REQ-260821-8HAC INT-REQ-260821-MRGW INT-REQ-260821-BSH3 INT-REQ-260821-5BJJ -->
+<!-- Documents: STK-REQ-260820-4255 STK-REQ-260821-QTPP STK-REQ-260821-NTWY SYS-REQ-260821-JYEJ SYS-REQ-260821-QF1J SYS-REQ-260821-8FKR SW-REQ-260821-8C2C SW-REQ-260821-82BA SW-REQ-260821-FCGM INT-REQ-260821-8HAC INT-REQ-260821-MRGW INT-REQ-260821-BSH3 INT-REQ-260821-5BJJ SW-REQ-260821-9657 SW-REQ-260821-9737 SW-REQ-260821-AY8F SW-REQ-260821-CR08 SW-REQ-260821-E5V8 SW-REQ-260821-MFR2 SW-REQ-260821-T9AY -->
 # Phase 1 file-native CRM
 
 This document explains Phase 1 behavior for the local `recs` binary.
@@ -71,3 +71,15 @@ go build -o recs ./cmd/recs
 - `recs export --json|--csv` and `recs import <file.csv> [--type]` interchange workspace records.
 - `recs diff`, `recs changed`, and `recs history <id>` delegate to git when a repo exists.
 - `recs serve` record routes are `#/r/<id>` and `#/search`.
+
+## CLI contract
+
+These software requirements refine the agent-facing CLI so help and JSON stay parseable without sidecar files.
+
+- SW-REQ-260821-9657: empty JSON collections (`next.actions`, `triage.items`, board column records) encode as `[]`, never `null`, so agents can iterate recovery lists.
+- SW-REQ-260821-9737: `--set` without `=` or with an empty key is rejected; `--set` with no value is rejected; `patch` without `--set` or `--body` is rejected; `search` with empty query text is rejected.
+- SW-REQ-260821-AY8F: an unknown flag exits non-zero and sets JSON `error` to `unknown_flag`.
+- SW-REQ-260821-CR08: every JSON timestamp uses RFC3339, not Go `Time.String`.
+- SW-REQ-260821-E5V8: when `crm.yaml` is missing the message names `--root`; workspace-not-found and `not_found` JSON set `next` to a list or board command.
+- SW-REQ-260821-MFR2: ingest with no file and a TTY prints usage and exits 1; stdin is read only when the operand is `-`.
+- SW-REQ-260821-T9AY: empty `next` or `triage` prints one explicit empty-result line (`no next actions` / `no triage items`) instead of blank success.

@@ -19,6 +19,20 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260820-PG9C
+    reviewed_at: "2026-08-21T12:02:41.432648Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:7f1860038c3d7190e19bf2056e73dcc7fd3029b177412d1877a794897940c9b3
+    review_history:
+        - reviewed_at: "2026-08-21T12:02:41.432648Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: jsonValue emits RFC3339; phase1 CLI contract and PG9C rationale still name CR08.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli.go
+            - internal/cli/dogfood_test.go
+            - specs/system/requirements/SYS-REQ-260820-PG9C.req.yaml
 verification:
     assurance_level: E
     formalization_status: none

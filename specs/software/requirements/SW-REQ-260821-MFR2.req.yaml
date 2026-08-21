@@ -19,6 +19,21 @@ variables: []
 traces:
     satisfies:
         - SYS-REQ-260821-8FKR
+    reviewed_at: "2026-08-21T12:02:42.113362Z"
+    reviewed_by: agent:grok
+    reviewed_fingerprint: sha256:3850b0f64aab801de4a9eeca9df62296ba71643c44c64dc252661ae27e6ef565
+    review_history:
+        - reviewed_at: "2026-08-21T12:02:42.113362Z"
+          reviewed_by: agent:grok
+          method: inspection
+          rationale: Main rejects ingest with no file and reads stdin only for -; phase1 and 8FKR still name MFR2.
+          source: proof trace review --citation
+          citations:
+            - docs/phase1.md
+            - internal/cli/cli.go
+            - internal/cli/dogfood_test.go
+            - internal/cli/obligation_evidence_test.go
+            - specs/system/requirements/SYS-REQ-260821-8FKR.req.yaml
 verification:
     assurance_level: E
     formalization_status: none

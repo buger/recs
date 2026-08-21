@@ -15,10 +15,16 @@ import (
 // SYS-REQ-260821-8FKR:nominal:nominal
 // SYS-REQ-260821-8FKR:error_handling:nominal
 // SYS-REQ-260821-8FKR:error_handling:negative
+// SYS-REQ-260821-8FKR:malformed_input:nominal
+// SYS-REQ-260821-8FKR:malformed_input:negative
 // SW-REQ-260821-FCGM:nominal:nominal
 // SW-REQ-260821-FCGM:error_handling:nominal
 // SW-REQ-260821-FCGM:error_handling:negative
+// SW-REQ-260821-FCGM:malformed_input:nominal
+// SW-REQ-260821-FCGM:malformed_input:negative
 // INT-REQ-260821-BSH3:nominal:nominal
+// INT-REQ-260821-BSH3:error_handling:nominal
+// INT-REQ-260821-BSH3:error_handling:negative
 // INT-REQ-260821-BSH3:integration:integration
 // MCDC SW-REQ-260821-FCGM: agent_discovery_requested=T, agent_sidecar_written=F, arg_count_GE_1=T, command_help_emitted=F, command_rejected=F, global_help_emitted=T, structured_error_emitted=F => TRUE
 // MCDC SW-REQ-260821-FCGM: agent_discovery_requested=T, agent_sidecar_written=F, arg_count_GE_1=T, command_help_emitted=F, command_rejected=F, global_help_emitted=F, structured_error_emitted=T => TRUE

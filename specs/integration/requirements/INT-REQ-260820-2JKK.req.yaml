@@ -71,7 +71,7 @@ verification:
         - check: ambiguity
           issue_key: ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7
           reviewer: agent:grok
-          reason: 'Recorded only on INT-REQ-260820-2JKK for ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7: INT-REQ-260820-2JKK (index rebuild interface that rewrites disposable derived files without mutating canonical Markdown) is complementary to SW-REQ-260820-BNR7 (software 100000-row record_count envelope on index rebuild) on the index ambiguity finding. This rationale is not copied onto SW-REQ-260820-BNR7 or any parent.'
+          reason: 'Recorded only on INT-REQ-260820-2JKK for ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7: INT-REQ-260820-2JKK (index rebuild interface that rewrites disposable derived files without mutating canonical Markdown) is complementary to SW-REQ-260820-BNR7 (software 100000-row record_count envelope on index rebuild) on the index ambiguity finding. This rationale is not copied onto SW-REQ-260820-BNR7 or any parent. Recorded only on INT-REQ-260820-2JKK for ambiguity|index|INT-REQ-260820-2JKK|SW-REQ-260820-BNR7; not copied onto the peer or any parent.'
           reviewed_at: "2026-08-21T09:23:42.298214Z"
 history:
     created_by: human:cli

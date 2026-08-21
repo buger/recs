@@ -71,19 +71,19 @@ verification:
               rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T09:23:46.457775Z"
-    gaps_reviewed_by: agent:grok
+    gaps_reviewed_at: "2026-08-21T12:11:27.146856Z"
+    gaps_reviewed_by: buger
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-6EVX for ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F: SW-REQ-260820-6EVX (software query compilation of a filter expression) is complementary to SW-REQ-260820-X37F (software query evaluation against loaded records) on the query ambiguity finding. This rationale is not copied onto SW-REQ-260820-X37F or any parent.'
-          reviewed_at: "2026-08-21T09:23:46.383594Z"
+          reason: '6EVX is the software structured-query engine (operators and clause bound). X37F is software full-text search (frontmatter/body/filename). Different triggers and outputs; expr_len is only a non-empty guard. Recorded only on SW-REQ-260820-6EVX for ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:11:27.146856Z"
         - check: ambiguity
           issue_key: ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH
           reviewer: agent:grok
-          reason: 'Recorded only on SW-REQ-260820-6EVX for ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH: SW-REQ-260820-6EVX (software query compilation of a filter expression) is complementary to SYS-REQ-260820-HJPH (system query parent for compiling a filter) on the query ambiguity finding. This rationale is not copied onto SYS-REQ-260820-HJPH or any parent.'
-          reviewed_at: "2026-08-21T09:23:46.457775Z"
+          reason: '6EVX is the SW child of ZTC3 (structured operators). HJPH is the L1 full-text search parent. Different layers and features; they share expr_len only as a non-empty guard. Recorded only on SW-REQ-260820-6EVX for ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH; not copied onto the peer or any parent.'
+          reviewed_at: "2026-08-21T12:11:21.793455Z"
     not_modeled:
         - predicate: len(matches)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]

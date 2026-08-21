@@ -27,31 +27,16 @@ variables:
 traces:
     satisfies:
         - SYS-REQ-260821-AFPN
-    reviewed_at: "2026-08-21T07:46:51.728747Z"
+    reviewed_at: "2026-08-21T11:56:33.904322Z"
     reviewed_by: agent:grok
     reviewed_fingerprint: sha256:b7a9eae63c0e79ac923aa169121b288c0e787c73e233e7fe9d475facef0ad400
     review_history:
-        - reviewed_at: "2026-08-21T06:37:20.089243Z"
+        - reviewed_at: "2026-08-21T11:56:33.904322Z"
           reviewed_by: agent:grok
           method: inspection
-          rationale: Evidence-cited review of APE software traces.
+          rationale: Retired Cosmo software req still satisfies retired AFPN; AFPN rationale still names AC3S as the refinement.
           source: proof trace review --citation
           citations:
-            - ape/wrapper.c
-            - docs/distribution.md
-            - docs/phase1.md
-            - internal/app/remaining_test.go
-        - reviewed_at: "2026-08-21T07:46:51.728747Z"
-          reviewed_by: agent:grok
-          method: inspection
-          rationale: manual trace review via proof trace review
-          source: proof trace review --citation
-          citations:
-            - ape/hello.c
-            - ape/wrapper.c
-            - docs/distribution.md
-            - docs/phase1.md
-            - internal/app/remaining_test.go
             - specs/system/requirements/SYS-REQ-260821-AFPN.req.yaml
 verification:
     assurance_level: E
