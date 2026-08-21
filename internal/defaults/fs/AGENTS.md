@@ -1,3 +1,4 @@
+<!-- Documents: STK-REQ-260821-QTPP SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C INT-REQ-260821-8HAC -->
 # Agent contract
 
 Files are the database. Prefer `crm` CLI mutations for structured fields.
@@ -42,7 +43,17 @@ Use CLI mutations for structured fields:
 ```
 crm set grant_x status applied
 crm patch grant_x --set status=applied --if-version sha256:...
+crm edit grant_x --set status=applied --body "notes"
+crm delete grant_x
+crm link person_alice company_acme --relation works_at
 crm move grant_x grants applied
+crm ingest email mail.json
+crm export --json
+crm export --csv
+crm import people.csv --type person
+crm diff
+crm changed
+crm history grant_x
 ```
 
 Direct Markdown editing remains valid. Run `crm validate` after a manual edit.

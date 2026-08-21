@@ -1,3 +1,4 @@
+<!-- Documents: STK-REQ-260821-QTPP SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C INT-REQ-260821-8HAC -->
 # CRM skill
 
 Use this skill to operate a file-native CRM workspace.
@@ -41,6 +42,15 @@ crm validate
 crm index
 crm serve [--port 7777]
 crm agent install
+crm edit <id> [--body ...] [--set k=v]
+crm delete <id>
+crm link <id> <target> --relation <type>
+crm ingest [email] [file|-]
+crm export --json|--csv
+crm import <file.csv> [--type <type>]
+crm diff
+crm changed
+crm history <id>
 ```
 
 ## Mutations

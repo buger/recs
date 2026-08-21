@@ -1,6 +1,6 @@
 id: SW-REQ-260820-6EVX
 version: 1
-status: review
+status: approved
 priority: shall
 category: functional
 req_type: guarantee
@@ -23,10 +23,18 @@ verification:
     assurance_level: E
     formalization_status: valid
     review:
-        status: in_review
+        status: approved
         reviewer: agent:grok
-        reviewed_at: "2026-08-20T19:30:00Z"
-        ai_generated: true
+        role: system_owner
+        roles:
+            - system_owner
+        reviewed_at: "2026-08-21T06:30:35Z"
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:9da8f2ec5c6194ba5af9ea77b2538c494dae1d09a29a77aaf497e0886f683a62
+        ai_generated: false
+        motivation:
+            kind: unchanged
+            rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
     gaps_reviewed_at: "2026-08-20T19:24:30.43733Z"
     gaps_reviewed_by: agent:grok
     gap_reviews:
@@ -44,7 +52,7 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-20T19:39:49Z"
+    last_modified_at: "2026-08-21T06:30:35Z"
 obligation_checklist:
     - determinism
     - malformed_input

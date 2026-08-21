@@ -1,3 +1,4 @@
+<!-- Documents: STK-REQ-260821-QTPP STK-REQ-260821-NTWY SYS-REQ-260821-JYEJ SYS-REQ-260821-QF1J SYS-REQ-260821-AFPN SW-REQ-260821-8C2C SW-REQ-260821-82BA SW-REQ-260821-AC3S INT-REQ-260821-8HAC INT-REQ-260821-MRGW -->
 # Phase 1 file-native CRM
 
 This document explains Phase 1 behavior for the local `crm` binary.
@@ -35,6 +36,9 @@ This document explains Phase 1 behavior for the local `crm` binary.
 - INT-REQ-260820-NHBY: HTTP dashboard routes project through the same application layer.
 - INT-REQ-260820-JRWN: board move writes frontmatter through the store.
 - INT-REQ-260820-2JKK: index rebuild scans store records and does not mutate canonical files.
+- SYS-REQ-260821-JYEJ / SW-REQ-260821-8C2C / INT-REQ-260821-8HAC: edit, delete, link, ingest, export, import, and git companion commands.
+- SYS-REQ-260821-QF1J / SW-REQ-260821-82BA / INT-REQ-260821-MRGW: record view, editor, search page, board filters, attachments, and wikilinks.
+- SYS-REQ-260821-AFPN / SW-REQ-260821-AC3S: Cosmopolitan APE wrapper (`make ape`).
 
 ## Run
 
@@ -59,3 +63,11 @@ go build -o crm ./cmd/crm
 - `crm patch --if-version` returns structured `conflict` with expected_version and current_version.
 - `crm set`/`crm patch` expand `now` to an RFC3339 timestamp.
 - `crm triage` treats `deadline` as an overdue date in addition to `due` and `next_action.date`.
+- `crm edit` applies `--body` / `--set`, or opens `$EDITOR` on a temp copy and writes back atomically.
+- `crm delete` removes the record file.
+- `crm link <id> <target> --relation <type>` writes `relations:` on the source record.
+- `crm ingest [email] [file|-]` creates a record from provider-neutral JSON.
+- `crm export --json|--csv` and `crm import <file.csv> [--type]` interchange workspace records.
+- `crm diff`, `crm changed`, and `crm history <id>` delegate to git when a repo exists.
+- `crm serve` record routes are `#/r/<id>` and `#/search`.
+- `make ape` builds `crm.com` (APE wrapper + host Go blob). See docs/distribution.md.
