@@ -2,3 +2,7 @@
 .proof/
 
 /crm
+/crm.com
+.build/
+/crm.aarch64.elf
+/crm.com.dbg

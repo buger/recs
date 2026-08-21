@@ -46,6 +46,8 @@ The target user experience is:
 
 curl .../crm.com -o crm.com chmod +x crm.com  ./crm.com init ./crm.com serve
 
+See docs/distribution.md for the current APE wrapper path (`make ape`). darwin/arm64 runs today; other OS blobs are not embedded yet.
+
 Ideally the same binary works on:
 
 Linux x86-64
