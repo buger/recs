@@ -272,6 +272,7 @@ func Handler(a *app.App) http.Handler {
 	})
 }
 
+// Implements: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 INT-REQ-260820-AHKR
 func allowedOrigin(origin string) bool {
 	switch strings.ToLower(origin) {
 	case "http://127.0.0.1", "http://localhost", "https://127.0.0.1", "https://localhost":
@@ -322,6 +323,7 @@ func writeErr(w http.ResponseWriter, code int, err error) {
 	writeJSON(w, code, payload)
 }
 
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA
 func fmtSprint(v any) string {
 	if v == nil {
 		return ""

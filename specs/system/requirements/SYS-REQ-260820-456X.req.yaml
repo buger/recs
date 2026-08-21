@@ -4,8 +4,8 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when dashboard_requested the dashboard shall always satisfy (layout_slot_count >= 0 => ((layout_slot_count <= 4) & yaml_source_used & (widget_projected | placeholder_rendered | dashboard_rejected)))
-description: The product shall load dashboard views from YAML files. The product shall project widgets from a query, a source path, or a board. The product shall keep Markdown records as the store.
+fretish: when dashboard_requested the dashboard shall always satisfy ((((layout_slot_count >= 0) & (layout_slot_count <= 4)) => (yaml_source_used & (widget_projected | placeholder_rendered | widget_rejected | dashboard_rejected))) & (((layout_slot_count < 0) | (layout_slot_count > 4)) => dashboard_rejected))
+description: The product shall load dashboard views from YAML files. The product shall project widgets from a query, a source path, or a board. The product shall reject a layout with more than four slots. The product shall keep Markdown records as the store.
 formalization_strategy: fretish
 informal_verification:
     method: ""
@@ -15,7 +15,14 @@ parent: STK-REQ-260820-4255
 component: dashboard
 rationale: Dashboards are views. The files stay the store. Refined by INT-REQ-260820-NHBY, SW-REQ-260820-EJVT, SW-REQ-260820-NA06.
 tags: []
-variables: []
+variables:
+    - dashboard_requested
+    - layout_slot_count
+    - yaml_source_used
+    - widget_projected
+    - placeholder_rendered
+    - widget_rejected
+    - dashboard_rejected
 traces:
     satisfies:
         - STK-REQ-260820-Y3Q4
@@ -51,13 +58,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:47:05Z"
+        reviewed_at: "2026-08-21T08:00:02Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:d7a5df33b60531b00f42d207303ecf91e574bd8350e9fef13fa3bb6017713fa0
+        fingerprint: sha256:c2265231dfcce90d0cda2d7dba3879957d509d5318d326568567a1879c6c4c50
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+            kind: chg
+            ref: CHG-260821-4CMA
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -71,11 +78,15 @@ verification:
               ref: CHG-260821-DFVQ
               superseded_at: "2026-08-21T07:47:05Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T08:00:02Z"
+              superseded_by: agent:grok
 history:
     created_by: agent:grok
     created_at: "2026-08-20T20:17:28Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:47:05Z"
+    last_modified_at: "2026-08-21T08:00:02Z"
 obligation_checklist:
     - boundary
     - empty_input

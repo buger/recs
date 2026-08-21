@@ -1,0 +1,22 @@
+id: CHG-260821-4CMA
+type: fix
+title: Make dashboard slot-count contract realizable
+intent: The system dashboard guarantee required layout_slot_count <= 4 as a consequent, but layout_slot_count is an input the environment controls. Move the bound into the antecedent and reject out-of-range layouts so Kind2 can realize the contract.
+problem: proof realize specs/system dashboard reports SYS-REQ-260820-456X unrealizable because the guarantee tries to constrain an input integer.
+non_goals:
+    - Do not add two-bool stubs or orphan variables
+owner: Leonid Bugaev
+requirements:
+    - SYS-REQ-260820-456X
+affects:
+    - SYS-REQ-260820-456X
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: draft
+history:
+    - at: "2026-08-21T07:59:59Z"
+      by: agent:grok
+      action: created

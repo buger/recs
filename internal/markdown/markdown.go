@@ -81,6 +81,7 @@ func Render(src string) string {
 	return b.String()
 }
 
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA
 func inline(s string) string {
 	s = html.EscapeString(s)
 	s = replaceDelim(s, "**", "strong")
@@ -90,6 +91,7 @@ func inline(s string) string {
 	return s
 }
 
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA
 func replaceDelim(s, delim, tag string) string {
 	esc := html.EscapeString(delim)
 	for {
@@ -107,6 +109,7 @@ func replaceDelim(s, delim, tag string) string {
 	}
 }
 
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA
 func replaceLinks(s string) string {
 	for {
 		open := strings.Index(s, "[")

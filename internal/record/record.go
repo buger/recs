@@ -245,6 +245,7 @@ func ValidType(typ string) bool {
 	return sanitizeID(typ) == typ
 }
 
+// Implements: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func SlugID(typ, title string) string {
 	typ = sanitizeID(typ)
 	title = sanitizeID(title)

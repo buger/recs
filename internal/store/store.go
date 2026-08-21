@@ -31,6 +31,7 @@ type EnumError struct {
 	Allowed []string
 }
 
+// Implements: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
 func (e *EnumError) Error() string { return "invalid_enum" }
 
 // ConflictError is a structured optimistic-concurrency failure.
@@ -39,10 +40,12 @@ type ConflictError struct {
 	Current  string
 }
 
+// Implements: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4
 func (e *ConflictError) Error() string {
 	return fmt.Sprintf("%s: expected %s current %s", ErrConflict, e.Expected, e.Current)
 }
 
+// Implements: SYS-REQ-260820-2SQZ SW-REQ-260820-Q3C4
 func (e *ConflictError) Unwrap() error { return ErrConflict }
 
 // Store reads and writes Markdown records under a workspace root.
@@ -183,6 +186,7 @@ func (s *Store) readFile(path string) (*record.Record, error) {
 	return rec, nil
 }
 
+// Implements: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func walkMarkdown(root string, fn func(path string) error) error {
 	if _, err := os.Stat(root); err != nil {
 		if os.IsNotExist(err) {
@@ -406,6 +410,7 @@ func (s *Store) Patch(id string, sets map[string]any, deletes []string, ifVersio
 	return &PatchResult{Record: rec, Changed: changed, Version: rec.Version()}, nil
 }
 
+// Implements: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
 func (s *Store) checkEnum(rec *record.Record, sets map[string]any) error {
 	cfg, err := loadTypeSchemas(s.Root)
 	if err != nil || cfg == nil {
@@ -438,6 +443,7 @@ func (s *Store) checkEnum(rec *record.Record, sets map[string]any) error {
 	return nil
 }
 
+// Implements: SYS-REQ-260820-YWV4 SW-REQ-260820-8PMR
 func loadTypeSchemas(root string) (map[string]map[string][]string, error) {
 	data, err := os.ReadFile(filepath.Join(root, "crm.yaml"))
 	if err != nil {
@@ -538,6 +544,7 @@ func FileHash(path string) (string, error) {
 	return "sha256:" + hex.EncodeToString(sum[:]), nil
 }
 
+// Implements: SYS-REQ-260820-9J7C SW-REQ-260820-N02Y
 func expandNow(v any) any {
 	s, ok := v.(string)
 	if !ok {
