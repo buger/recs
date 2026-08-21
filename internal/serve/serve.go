@@ -20,12 +20,15 @@ var uiFS embed.FS
 
 // Listen serves the local HTTP API, dashboard gallery, and Kanban UI.
 // Implements: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 INT-REQ-260820-AHKR
+// serveHTTP is http.Serve; tests replace it so a successful bind can return.
+var serveHTTP = http.Serve
+
 func Listen(a *app.App, port int) error {
 	ln, err := net.Listen("tcp", net.JoinHostPort("127.0.0.1", strconv.Itoa(port)))
 	if err != nil {
 		return err
 	}
-	return http.Serve(ln, Handler(a))
+	return serveHTTP(ln, Handler(a))
 }
 
 // Implements: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7

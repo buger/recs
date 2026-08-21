@@ -1,18 +1,18 @@
 schema_version: 1
 branch: main
-generated_at: "2026-08-21T09:40:59Z"
+generated_at: "2026-08-21T09:44:24Z"
 reviews:
     - requirement: INT-REQ-260820-AHKR
       artifact: internal/serve/serve.go
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen gained a test-only http.Serve hook so the successful-bind MC/DC row can return; the HTTP contract is unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:20344e90755fc239d1fd6e2927dca932825f167317b48d0d55070d52c0f022d8
       approval_fingerprint: sha256:569dd43360721f562ce7778394cd3a0a45e9b5adf7e5f408fafb48f45a04cb74
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:19Z"
     - requirement: INT-REQ-260820-JC9M
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -53,12 +53,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen test-seam only; serve HTTP contracts unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:957b5fe4aa9b1c9c8540fb70e998b8201d2ed75d0e25f82e53d3f1c0f3352f83
       approval_fingerprint: sha256:a32cdb9b85750f557f6116123f67c4d69d04c07db4badd60cb0e8041bf8aee96
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:24Z"
     - requirement: INT-REQ-260821-5BJJ
       artifact: internal/store/store.go
       decision: no-authored-change
@@ -119,12 +119,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen test-seam only; serve HTTP contracts unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:c57cff9ea0e23aca7b9f589ecb8ed8fa098096725e5d295f17dcd487309ef73a
       approval_fingerprint: sha256:773dd955e35308b26a9f2f0c0e391c83f2f3877613e3ac1e339baecb4d33e0e3
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:24Z"
     - requirement: SW-REQ-260820-6EVX
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -153,12 +153,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen gained a test-only http.Serve hook so the successful-bind MC/DC row can return; the HTTP contract is unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:b70fc95db619ad611a4709b7d090354ae3f0d87af4db4ca350bda43999cc123f
       approval_fingerprint: sha256:33efc2df9094967cee3f8897f8ca569e4cb676ca84b7720cd629f37a4164cb88
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:19Z"
     - requirement: SW-REQ-260820-9C5Z
       artifact: internal/store/store.go
       decision: no-authored-change
@@ -187,12 +187,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen test-seam only; serve HTTP contracts unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:3826b07375ef2b3e7a4a8ea4ccb2096af9152a2a5830ed74671e18a4b06bc560
       approval_fingerprint: sha256:d40f87132d7abb1f34ae2333aa4ad425d22b4edd011fd4cec52163aff51a263a
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:24Z"
     - requirement: SW-REQ-260820-MQF2
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -279,12 +279,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen test-seam only; serve HTTP contracts unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:eee17b7ee5ce31a0fa308e6f02bd25b877daca5646fb1b303478a412f9a0b527
       approval_fingerprint: sha256:a94ce32d25c2ae99fcb1e1678b10fedef9225ed9810b44a6c6b5ff85a89bffea
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:24Z"
     - requirement: SW-REQ-260820-Q3C4
       artifact: internal/store/store.go
       decision: no-authored-change
@@ -347,12 +347,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
+      reason: Listen test-seam only; serve HTTP contracts unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:650160abf68adbf2a29803c8f0f5d04878259a30aa0e8b1877d14b8d28fb281e
       approval_fingerprint: sha256:b5763ba10877f2fd3f9958ac4b8bb1d3de17a7befa5637f7a1ca22681d230018
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:37:57Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:24Z"
     - requirement: SW-REQ-260821-82BA
       artifact: internal/wikilink/wikilink.go
       decision: no-authored-change
@@ -482,12 +482,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen test-seam only; serve HTTP contracts unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:8f8a384d8273998daccf18d0d9dc5a7487b3acc2fd0152a1d31bc45f5446624f
       approval_fingerprint: sha256:c2265231dfcce90d0cda2d7dba3879957d509d5318d326568567a1879c6c4c50
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:24Z"
     - requirement: SYS-REQ-260820-4628
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -505,12 +505,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen test-seam only; serve HTTP contracts unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:1921bb0bc1c80f96313d102fe08efd8b1a7f80e01c82b4c68f64ba3a426b0ff2
       approval_fingerprint: sha256:6f13b9ff21138d3834a7883701c0385fe1aa6ec7259bff01b99818b967602a60
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:24Z"
     - requirement: SYS-REQ-260820-5C9D
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -562,12 +562,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: Store.go change is a defensive mcdc:ignore on Create Path-empty; concurrent-patch and parse-budget contracts are unchanged.
+      reason: Listen gained a test-only http.Serve hook so the successful-bind MC/DC row can return; the HTTP contract is unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:c143521a4e922d266b39af11b560ac1d90765bc23e52d13a0433b05ab5345486
       approval_fingerprint: sha256:807b5b5e7c5877783a27850c40cdf47b2b805ecfeae5a8182774d7ff08af8898
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:38:32Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:19Z"
     - requirement: SYS-REQ-260820-BVBE
       artifact: internal/app/app.go
       decision: no-authored-change
@@ -768,12 +768,12 @@ reviews:
       decision: no-authored-change
       change_type: refactor
       reviewer: agent:grok
-      reason: 'Second sweep: remaining owner pairs on remaining.go, cli.go, help.go, dashboard.go, and wikilink.go are the same defensive mcdc:ignore comment-only edits; authored contracts unchanged.'
+      reason: Listen test-seam only; serve HTTP contracts unchanged.
       base: HEAD~1
       requirement_fingerprint: sha256:d7e0e671008300447b00e5fec6ffae0e798de1dd39c8205879a4381bbf8919a7
       approval_fingerprint: sha256:123ce9f22c3dcf36a851bbb57a437b0d465c1f8beba67840b939c38752c9976f
-      artifact_fingerprint: sha256:9642e1d791ca26165f085f05658e7e0a8629a27d5ee3ad29910bdb3486419cf8
-      reviewed_at: "2026-08-21T09:37:57Z"
+      artifact_fingerprint: sha256:e6ce2fcf04f885532a8f8d3fd117800c33a0e111ed45e3436984a2d7b3ed7c5b
+      reviewed_at: "2026-08-21T09:44:24Z"
     - requirement: SYS-REQ-260821-QF1J
       artifact: internal/wikilink/wikilink.go
       decision: no-authored-change
