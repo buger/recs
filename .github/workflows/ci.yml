@@ -16,3 +16,17 @@ jobs:
         run: go test ./...
       - name: Build
         run: go build -o recs ./cmd/recs
+
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+      - uses: probelabs/proof-action@v1
+        with:
+          fail-level: warn
+          scope: full

@@ -2,6 +2,7 @@ project:
     name: recs
     purpose: File-native records workspace as a native Go binary with Markdown records, CLI, boards, and local serve
     scope: File-native recs verification of the native Go binary
+    assurance_target: L3
     specs:
         - path: specs/stakeholder
           prefix: STK-REQ
@@ -124,6 +125,10 @@ project:
     approval:
         agent_autonomous_for:
             all: true
+    audit:
+        fail_level: warn
+        scope: full
+        evidence_strict: true
     documentation:
         sources:
             - path: docs/

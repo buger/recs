@@ -1,0 +1,17 @@
+id: CHG-260821-TEKC
+type: docs
+title: Pin L3 and evidence-strict audit in CI
+intent: 'Dogfood ReqProof at L3: set assurance_target L3, audit.evidence_strict true, and run proof audit in GitHub Actions so the public repo gates on the same machine as local work.'
+owner: Leonid Bugaev
+requirements:
+    - STK-REQ-260820-T8AZ
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-21T11:41:54Z"
+      by: agent:grok
+      action: created
