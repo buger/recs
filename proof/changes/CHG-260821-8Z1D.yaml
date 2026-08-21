@@ -1,0 +1,21 @@
+id: CHG-260821-8Z1D
+type: fix
+title: Remove mis-attached invariant_preservation from status-change contracts
+intent: Status lives in frontmatter is a CRUD persistence contract, not a universally quantified invariant. The catalog requires removing invariant_preservation rather than deferring it.
+owner: agent:grok
+requirements:
+    - SYS-REQ-260820-7WT4
+    - SW-REQ-260820-9C5Z
+affects:
+    - SYS-REQ-260820-7WT4
+    - SW-REQ-260820-9C5Z
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-21T08:50:04Z"
+      by: agent:grok
+      action: created

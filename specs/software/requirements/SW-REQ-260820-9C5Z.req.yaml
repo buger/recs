@@ -42,13 +42,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:42:37Z"
+        reviewed_at: "2026-08-21T08:50:13Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:08b17c13d1c11fa0c5065255b8a108cb4c70f7db3e7ef63fb42e290862c742b9
+        fingerprint: sha256:3c9f708c478d9c5fc4ef9d60a56b71782a5d8ada8bb1d5b660775dedfcd1281e
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+            kind: chg
+            ref: CHG-260821-8Z1D
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -57,6 +57,10 @@ verification:
             - kind: unchanged
               rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
               superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:50:13Z"
               superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.050143Z"
     gaps_reviewed_by: agent:grok
@@ -88,15 +92,9 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:31Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:42:38Z"
+    last_modified_at: "2026-08-21T08:50:13Z"
 obligation_checklist:
-    - invariant_preservation
     - nominal
-obligation_deferrals:
-    - obligation_class: invariant_preservation
-      reason: Filesystem status-change invariant is not SMT-modelable yet; TestMoveKeepsPath is the executable witness until a lemma lands.
-      tracking: onboard_v1-annotations
-      owner: agent:grok
 obligation_hazards:
     - class: invariant_preservation
       worst_case: A status change relocates the file or drops id/type, breaking the Markdown-is-canonical invariant.

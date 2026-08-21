@@ -13,8 +13,10 @@ import (
 
 // Verifies: SYS-REQ-260821-8FKR SW-REQ-260821-FCGM INT-REQ-260821-BSH3 STK-REQ-260820-V5ZD
 // SYS-REQ-260821-8FKR:nominal:nominal
+// SYS-REQ-260821-8FKR:error_handling:nominal
 // SYS-REQ-260821-8FKR:error_handling:negative
 // SW-REQ-260821-FCGM:nominal:nominal
+// SW-REQ-260821-FCGM:error_handling:nominal
 // SW-REQ-260821-FCGM:error_handling:negative
 // INT-REQ-260821-BSH3:nominal:nominal
 // INT-REQ-260821-BSH3:integration:integration

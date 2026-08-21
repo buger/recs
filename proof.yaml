@@ -60,7 +60,17 @@ project:
                 language: go
                 command: go test ./...
                 mcdc_command: ./scripts/test-cover.sh
+            race:
+                language: go
+                command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
         lint: go vet ./...
+    evidence_profiles:
+        race:
+            evidence_type: race
+            command: race
+            result: proof/evidence/race.yaml
+            required_for:
+                - concurrent
     verification_scope:
         include:
             - '**'

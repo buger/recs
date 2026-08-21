@@ -43,13 +43,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:42:37Z"
+        reviewed_at: "2026-08-21T08:50:51Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
         fingerprint: sha256:9abd82d50b66affc939cc9623aa2e0f9041ff17b0b11d52367520137abb90e6c
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+            rationale: Re-approve after closing the concurrent deferral with a race test and INT-REQ-260821-5BJJ; required store behavior is unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -58,6 +58,10 @@ verification:
             - kind: unchanged
               rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
               superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:50:51Z"
               superseded_by: agent:grok
     gaps_reviewed_at: "2026-08-20T19:24:30.504223Z"
     gaps_reviewed_by: agent:grok
@@ -110,18 +114,13 @@ history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:29Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:42:38Z"
+    last_modified_at: "2026-08-21T08:50:51Z"
 obligation_checklist:
     - atomic_write
     - atomicity
     - concurrent
     - concurrent_invariant_preserved
     - error_handling
-obligation_deferrals:
-    - obligation_class: concurrent
-      reason: Race-lane evidence profile is not configured yet; flock serialization is covered by nominal patch tests until go test -race is wired.
-      tracking: onboard_v1-annotations
-      owner: agent:grok
 obligation_hazards:
     - class: atomic_write
       worst_case: A crash mid-write leaves a truncated Markdown file as the only copy of the record.

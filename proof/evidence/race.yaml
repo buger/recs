@@ -1,0 +1,45 @@
+schema_version: proof.evidence_profile.v1
+results:
+    - profile: race
+      evidence_type: race
+      requirement: SYS-REQ-260820-2SQZ
+      artifact: internal/store/store_race_test.go
+      command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
+      status: pass
+      executed_at: "2026-08-21T08:56:32Z"
+      freshness_hashes:
+        internal/store/store.go: sha256:5c4488857c98147e3e56024ce91eae55ef8eebb7d365674336f747825a4c9350
+        internal/store/store_race_test.go: sha256:7b0730a9eb6a6180a642bd09728993729b07d6141e887a72c29e2c68febebe31
+    - profile: race
+      evidence_type: race
+      requirement: SW-REQ-260820-Q3C4
+      artifact: internal/store/store_race_test.go
+      command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
+      status: pass
+      executed_at: "2026-08-21T08:56:32Z"
+      freshness_hashes:
+        internal/store/store.go: sha256:5c4488857c98147e3e56024ce91eae55ef8eebb7d365674336f747825a4c9350
+        internal/store/store_race_test.go: sha256:7b0730a9eb6a6180a642bd09728993729b07d6141e887a72c29e2c68febebe31
+    - profile: race
+      evidence_type: race
+      requirement: INT-REQ-260821-5BJJ
+      artifact: internal/store/store_race_test.go
+      command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
+      status: pass
+      executed_at: "2026-08-21T08:56:32Z"
+      freshness_hashes:
+        internal/store/store.go: sha256:5c4488857c98147e3e56024ce91eae55ef8eebb7d365674336f747825a4c9350
+        internal/store/store_race_test.go: sha256:7b0730a9eb6a6180a642bd09728993729b07d6141e887a72c29e2c68febebe31
+profile: race
+evidence_type: race
+requirements:
+    - SYS-REQ-260820-2SQZ
+    - SW-REQ-260820-Q3C4
+    - INT-REQ-260821-5BJJ
+artifact: internal/store/store_race_test.go
+command: go test -race -v ./internal/store -count=1 -run TestConcurrentPatchesSerializeOrConflict
+status: pass
+executed_at: "2026-08-21T08:54:28Z"
+freshness_hashes:
+    internal/store/store.go: sha256:5c4488857c98147e3e56024ce91eae55ef8eebb7d365674336f747825a4c9350
+    internal/store/store_race_test.go: sha256:7b0730a9eb6a6180a642bd09728993729b07d6141e887a72c29e2c68febebe31

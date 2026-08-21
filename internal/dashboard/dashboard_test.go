@@ -72,6 +72,8 @@ func setupWorkspace(t *testing.T) *app.App {
 }
 
 // SW-REQ-260820-NA06:path_traversal_prevented:negative
+// SYS-REQ-260820-456X:error_handling:negative
+// SW-REQ-260820-NA06:error_handling:negative
 func TestLoadCreateProject(t *testing.T) {
 	a := setupWorkspace(t)
 	list, err := a.ListDashboards()

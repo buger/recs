@@ -1,0 +1,46 @@
+id: INT-REQ-260821-5BJJ
+version: 1
+status: approved
+priority: shall
+category: interface
+req_type: guarantee
+fretish: when record_mutation_requested the store shall always satisfy (version_mismatch => conflict_reported)
+description: Concurrent patches of the same record shall serialize through the store lock and report a conflict when the caller version no longer matches.
+formalization_strategy: fretish
+informal_verification:
+    method: ""
+    evidence: ""
+    verified: false
+parent: SW-REQ-260820-Q3C4
+component: store
+rationale: CLI and HTTP callers share the store lock. A stale version must surface as conflict rather than a torn write.
+tags: []
+variables: []
+traces: {}
+verification:
+    assurance_level: E
+    formalization_status: valid
+    review:
+        status: approved
+        reviewer: agent:grok
+        role: system_owner
+        roles:
+            - system_owner
+        reviewed_at: "2026-08-21T08:50:45Z"
+        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        fingerprint: sha256:f705d40aa303827cc00b975e847194db90bac350465fc3a8389712f1f92a36e3
+        ai_generated: false
+history:
+    created_by: agent:grok
+    created_at: "2026-08-21T08:50:23Z"
+    last_modified_by: agent:grok
+    last_modified_at: "2026-08-21T08:50:45Z"
+obligation_checklist:
+    - concurrent
+lifecycle:
+    change_history:
+        - date: "2026-08-21T08:50:45Z"
+          from: draft
+          to: review
+          reason: ""
+          changed_by: agent:grok

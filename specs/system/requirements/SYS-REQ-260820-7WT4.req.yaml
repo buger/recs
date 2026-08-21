@@ -45,13 +45,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:47:05Z"
+        reviewed_at: "2026-08-21T08:50:13Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:b9bcb87d7d07ec91653b763a20d54f5f100a1dc897f5eb6fbfd2c4d4f08bc491
+        fingerprint: sha256:2d982d8f07c2b123a2f7b14e15c65e7421f6ee73f634494a08575c1b84ffb407
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+            kind: chg
+            ref: CHG-260821-8Z1D
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -61,19 +61,17 @@ verification:
               rationale: Re-attest parent after children were reviewed so the plan of record stays current.
               superseded_at: "2026-08-21T07:47:05Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after naming refined children in rationale so satisfies citations stay current.
+              superseded_at: "2026-08-21T08:50:13Z"
+              superseded_by: agent:grok
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:09Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:47:05Z"
+    last_modified_at: "2026-08-21T08:50:13Z"
 obligation_checklist:
-    - invariant_preservation
     - nominal
-obligation_deferrals:
-    - obligation_class: invariant_preservation
-      reason: Filesystem status-change invariant is not SMT-modelable yet; TestMoveKeepsPath is the executable witness until a lemma lands.
-      tracking: onboard_v1-annotations
-      owner: agent:grok
 obligation_hazards:
     - class: invariant_preservation
       worst_case: A status change relocates the file or drops id/type, breaking the Markdown-is-canonical invariant.

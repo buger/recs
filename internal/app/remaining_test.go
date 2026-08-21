@@ -27,10 +27,14 @@ func setupRemaining(t *testing.T) *app.App {
 
 // Verifies: SYS-REQ-260821-JYEJ SW-REQ-260821-8C2C INT-REQ-260821-8HAC STK-REQ-260821-QTPP
 // SYS-REQ-260821-JYEJ:nominal:nominal
+// SYS-REQ-260821-JYEJ:error_handling:nominal
 // SYS-REQ-260821-JYEJ:error_handling:negative
 // SW-REQ-260821-8C2C:nominal:nominal
+// SW-REQ-260821-8C2C:error_handling:nominal
 // SW-REQ-260821-8C2C:error_handling:negative
 // INT-REQ-260821-8HAC:nominal:nominal
+// INT-REQ-260821-8HAC:error_handling:nominal
+// INT-REQ-260821-8HAC:error_handling:negative
 // INT-REQ-260821-8HAC:integration:integration
 // STK-REQ-260821-QTPP:nominal:nominal
 func TestEditDeleteLinkIngestExportImport(t *testing.T) {

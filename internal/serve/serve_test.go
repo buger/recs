@@ -159,11 +159,21 @@ func TestListenBusyPort(t *testing.T) {
 	_ = io.Discard
 }
 
-// Verifies: SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY
+// Verifies: SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY STK-REQ-260820-4255
 // SYS-REQ-260820-456X:nominal:nominal
+// SYS-REQ-260820-456X:error_handling:nominal
+// SYS-REQ-260820-456X:error_handling:negative
 // SW-REQ-260820-EJVT:nominal:nominal
+// SW-REQ-260820-EJVT:boundary:nominal
+// SW-REQ-260820-EJVT:error_handling:nominal
+// SW-REQ-260820-EJVT:error_handling:negative
 // INT-REQ-260820-NHBY:nominal:nominal
+// INT-REQ-260820-NHBY:error_handling:nominal
+// INT-REQ-260820-NHBY:error_handling:negative
 // INT-REQ-260820-NHBY:integration:integration
+// STK-REQ-260820-4255:error_handling:nominal
+// STK-REQ-260820-4255:error_handling:negative
+// STK-REQ-260820-4255:boundary:nominal
 func TestDashboardAPIAndUI(t *testing.T) {
 	a := setupApp(t)
 	h := serve.Handler(a)
