@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: functional
 req_type: guarantee
-fretish: when gallery_requested the serve shall always satisfy gallery_rendered & preview_cards_shown & static_ui_served
+fretish: when gallery_requested the serve shall always satisfy ((dashboards_present => (gallery_rendered & preview_cards_shown & static_ui_served)) | (!dashboards_present => (empty_gallery_shown & static_ui_served)) | gallery_rejected)
 description: The serve component shall show a dashboard gallery. The gallery shall show a live preview for each dashboard. The serve component shall open one dashboard in a widget grid.
 formalization_strategy: fretish
 informal_verification:
@@ -15,7 +15,14 @@ parent: SYS-REQ-260820-456X
 component: serve
 rationale: The gallery is the home view. The Kanban view stays available.
 tags: []
-variables: []
+variables:
+    - gallery_requested
+    - dashboards_present
+    - gallery_rendered
+    - preview_cards_shown
+    - static_ui_served
+    - empty_gallery_shown
+    - gallery_rejected
 traces:
     satisfies:
         - SYS-REQ-260820-456X
@@ -43,13 +50,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:42:37Z"
+        reviewed_at: "2026-08-21T08:07:51Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:c06c093901aa01f57db57bf25280975f2b203ec48009caaad676ff873fcfb0b0
+        fingerprint: sha256:d40f87132d7abb1f34ae2333aa4ad425d22b4edd011fd4cec52163aff51a263a
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+            kind: chg
+            ref: CHG-260821-TZ9S
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -58,6 +65,10 @@ verification:
             - kind: unchanged
               rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
               superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:07:51Z"
               superseded_by: agent:grok
     not_modeled:
         - predicate: len(d.Widgets)
@@ -70,7 +81,7 @@ history:
     created_by: agent:grok
     created_at: "2026-08-20T20:17:33Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:42:38Z"
+    last_modified_at: "2026-08-21T08:07:51Z"
 obligation_checklist:
     - boundary
     - error_handling

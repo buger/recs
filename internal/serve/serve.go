@@ -28,238 +28,288 @@ func Listen(a *app.App, port int) error {
 	return http.Serve(ln, Handler(a))
 }
 
-// Implements: SYS-REQ-260820-9W1S SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY SYS-REQ-260821-QF1J SW-REQ-260821-82BA INT-REQ-260821-MRGW
+// Implements: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7
 func Handler(a *app.App) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api/records", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case http.MethodGet:
-			typ := r.URL.Query().Get("type")
-			recs, err := a.List(typ)
-			if err != nil {
-				writeErr(w, 500, err)
-				return
-			}
-			writeJSON(w, 200, map[string]any{"ok": true, "records": summaries(recs)})
-		case http.MethodPost:
-			var body map[string]any
-			if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-				writeErr(w, 400, err)
-				return
-			}
-			typ, _ := body["type"].(string)
-			id, _ := body["id"].(string)
-			md, _ := body["body"].(string)
-			delete(body, "type")
-			delete(body, "id")
-			delete(body, "body")
-			rec, err := a.Create(typ, id, body, md)
-			if err != nil {
-				writeErr(w, 400, err)
-				return
-			}
-			writeJSON(w, 201, map[string]any{"ok": true, "record": rec.ID})
-		default:
-			w.WriteHeader(405)
-		}
+		handleRecords(a, w, r)
 	})
 	mux.HandleFunc("/api/records/", func(w http.ResponseWriter, r *http.Request) {
-		id := strings.TrimPrefix(r.URL.Path, "/api/records/")
-		if id == "" {
-			w.WriteHeader(404)
-			return
-		}
-		switch r.Method {
-		case http.MethodGet:
-			view, err := a.View(id)
-			if err != nil {
-				writeErr(w, 404, err)
-				return
-			}
-			writeJSON(w, 200, map[string]any{
-				"ok": true, "record": view.Public, "html": view.HTML,
-				"relations": view.Relations, "backlinks": view.Backlinks,
-				"attachments": view.Attachments,
-			})
-		case http.MethodPatch:
-			var body map[string]any
-			if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-				writeErr(w, 400, err)
-				return
-			}
-			ifv, _ := body["_if_version"].(string)
-			delete(body, "_if_version")
-			var bp *string
-			if raw, ok := body["body"]; ok {
-				s := fmtSprint(raw)
-				bp = &s
-				delete(body, "body")
-			}
-			if bp != nil {
-				res, err := a.Edit(id, body, bp, ifv)
-				if err != nil {
-					writeErr(w, 409, err)
-					return
-				}
-				writeJSON(w, 200, map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed})
-				return
-			}
-			res, err := a.Patch(id, body, nil, ifv)
-			if err != nil {
-				writeErr(w, 409, err)
-				return
-			}
-			writeJSON(w, 200, map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed})
-		default:
-			w.WriteHeader(405)
-		}
+		handleRecord(a, w, r)
 	})
 	mux.HandleFunc("/api/boards", func(w http.ResponseWriter, r *http.Request) {
-		boards, err := a.ListBoards()
-		if err != nil {
-			writeErr(w, 500, err)
-			return
-		}
-		var names []map[string]string
-		for _, b := range boards {
-			names = append(names, map[string]string{"id": b.ID, "name": b.Name})
-		}
-		writeJSON(w, 200, map[string]any{"ok": true, "boards": names})
+		handleBoards(a, w, r)
 	})
 	mux.HandleFunc("/api/boards/", func(w http.ResponseWriter, r *http.Request) {
-		rest := strings.TrimPrefix(r.URL.Path, "/api/boards/")
-		if strings.HasSuffix(rest, "/move") && r.Method == http.MethodPost {
-			name := strings.TrimSuffix(rest, "/move")
-			name = strings.TrimSuffix(name, "/")
-			var body struct {
-				ID     string `json:"id"`
-				Column string `json:"column"`
-			}
-			if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-				writeErr(w, 400, err)
-				return
-			}
-			rec, _, err := a.Move(body.ID, name, body.Column)
-			if err != nil {
-				writeErr(w, 400, err)
-				return
-			}
-			writeJSON(w, 200, map[string]any{"ok": true, "record": rec.ID})
-			return
-		}
-		if r.Method != http.MethodGet {
-			w.WriteHeader(405)
-			return
-		}
-		filters := map[string]string{}
-		for k, vs := range r.URL.Query() {
-			if k != "" && len(vs) > 0 && vs[0] != "" {
-				filters[k] = vs[0]
-			}
-		}
-		view, err := a.Board(rest, filters)
-		if err != nil {
-			writeErr(w, 404, err)
-			return
-		}
-		cols := []map[string]any{}
-		for _, c := range view.Columns {
-			cols = append(cols, map[string]any{"id": c.Column.ID, "title": c.Column.Title, "records": summaries(c.Records)})
-		}
-		controls := []map[string]string{}
-		for _, fc := range view.Board.FilterControls {
-			controls = append(controls, map[string]string{"field": fc.Field, "type": fc.Type})
-		}
-		writeJSON(w, 200, map[string]any{"ok": true, "board": view.Board.ID, "name": view.Board.Name, "columns": cols, "filter_controls": controls, "filters": filters})
+		handleBoard(a, w, r)
 	})
 	mux.HandleFunc("/api/dashboards", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case http.MethodGet:
-			dashboards, err := a.ListDashboards()
-			if err != nil {
-				writeErr(w, 500, err)
-				return
-			}
-			var items []map[string]any
-			for _, d := range dashboards {
-				items = append(items, map[string]any{
-					"id": d.ID, "name": d.Name, "description": d.Description,
-					"layout": d.Layout, "widgets": len(d.Widgets),
-				})
-			}
-			if items == nil {
-				items = []map[string]any{}
-			}
-			writeJSON(w, 200, map[string]any{"ok": true, "dashboards": items})
-		case http.MethodPost:
-			var body struct {
-				ID          string             `json:"id"`
-				Name        string             `json:"name"`
-				Layout      string             `json:"layout"`
-				Description string             `json:"description"`
-				Widgets     []dashboard.Widget `json:"widgets"`
-			}
-			if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-				writeErr(w, 400, err)
-				return
-			}
-			d, err := a.CreateDashboard(body.ID, body.Name, body.Layout, body.Description, body.Widgets)
-			if err != nil {
-				writeErr(w, 400, err)
-				return
-			}
-			writeJSON(w, 201, map[string]any{"ok": true, "dashboard": d.ID, "path": d.File})
-		default:
-			w.WriteHeader(405)
-		}
+		handleDashboards(a, w, r)
 	})
 	mux.HandleFunc("/api/dashboards/", func(w http.ResponseWriter, r *http.Request) {
-		id := strings.TrimPrefix(r.URL.Path, "/api/dashboards/")
-		if id == "" {
-			w.WriteHeader(404)
-			return
-		}
-		if r.Method != http.MethodGet {
-			w.WriteHeader(405)
-			return
-		}
-		proj, err := a.ProjectDashboard(id)
-		if err != nil {
-			writeErr(w, 404, err)
-			return
-		}
-		writeJSON(w, 200, map[string]any{"ok": true, "dashboard": proj})
+		handleDashboard(a, w, r)
 	})
 	mux.HandleFunc("/api/files/", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method != http.MethodGet && r.Method != http.MethodHead {
-			w.WriteHeader(405)
-			return
-		}
-		rel := strings.TrimPrefix(r.URL.Path, "/api/files/")
-		path, err := a.AttachmentFile(rel)
-		if err != nil {
-			writeErr(w, 404, err)
-			return
-		}
-		http.ServeFile(w, r, path)
+		handleFiles(a, w, r)
 	})
 	mux.HandleFunc("/api/search", func(w http.ResponseWriter, r *http.Request) {
-		recs, err := a.Search(r.URL.Query().Get("q"))
+		handleSearch(a, w, r)
+	})
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		handleGallery(w, r)
+	})
+	return guardOrigin(mux)
+}
+
+// Implements: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 SYS-REQ-260821-QF1J SW-REQ-260821-82BA
+func handleRecords(a *app.App, w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		typ := r.URL.Query().Get("type")
+		recs, err := a.List(typ)
 		if err != nil {
 			writeErr(w, 500, err)
 			return
 		}
 		writeJSON(w, 200, map[string]any{"ok": true, "records": summaries(recs)})
-	})
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/" {
-			http.NotFound(w, r)
+	case http.MethodPost:
+		var body map[string]any
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			writeErr(w, 400, err)
 			return
 		}
-		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		data, _ := uiFS.ReadFile("static/index.html") //mcdc:ignore:defensive embedded index.html is always present
-		_, _ = w.Write(data)
-	})
+		typ, _ := body["type"].(string)
+		id, _ := body["id"].(string)
+		md, _ := body["body"].(string)
+		delete(body, "type")
+		delete(body, "id")
+		delete(body, "body")
+		rec, err := a.Create(typ, id, body, md)
+		if err != nil {
+			writeErr(w, 400, err)
+			return
+		}
+		writeJSON(w, 201, map[string]any{"ok": true, "record": rec.ID})
+	default:
+		w.WriteHeader(405)
+	}
+}
+
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA INT-REQ-260821-MRGW
+func handleRecord(a *app.App, w http.ResponseWriter, r *http.Request) {
+	id := strings.TrimPrefix(r.URL.Path, "/api/records/")
+	if id == "" {
+		w.WriteHeader(404)
+		return
+	}
+	switch r.Method {
+	case http.MethodGet:
+		view, err := a.View(id)
+		if err != nil {
+			writeErr(w, 404, err)
+			return
+		}
+		writeJSON(w, 200, map[string]any{
+			"ok": true, "record": view.Public, "html": view.HTML,
+			"relations": view.Relations, "backlinks": view.Backlinks,
+			"attachments": view.Attachments,
+		})
+	case http.MethodPatch:
+		var body map[string]any
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			writeErr(w, 400, err)
+			return
+		}
+		ifv, _ := body["_if_version"].(string)
+		delete(body, "_if_version")
+		var bp *string
+		if raw, ok := body["body"]; ok {
+			s := fmtSprint(raw)
+			bp = &s
+			delete(body, "body")
+		}
+		if bp != nil {
+			res, err := a.Edit(id, body, bp, ifv)
+			if err != nil {
+				writeErr(w, 409, err)
+				return
+			}
+			writeJSON(w, 200, map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed})
+			return
+		}
+		res, err := a.Patch(id, body, nil, ifv)
+		if err != nil {
+			writeErr(w, 409, err)
+			return
+		}
+		writeJSON(w, 200, map[string]any{"ok": true, "record": res.Record.ID, "changed": res.Changed})
+	default:
+		w.WriteHeader(405)
+	}
+}
+
+// Implements: SYS-REQ-260820-4628 SW-REQ-260820-NBGR SYS-REQ-260821-QF1J SW-REQ-260821-82BA
+func handleBoards(a *app.App, w http.ResponseWriter, r *http.Request) {
+	boards, err := a.ListBoards()
+	if err != nil {
+		writeErr(w, 500, err)
+		return
+	}
+	var names []map[string]string
+	for _, b := range boards {
+		names = append(names, map[string]string{"id": b.ID, "name": b.Name})
+	}
+	writeJSON(w, 200, map[string]any{"ok": true, "boards": names})
+}
+
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA
+func handleBoard(a *app.App, w http.ResponseWriter, r *http.Request) {
+	rest := strings.TrimPrefix(r.URL.Path, "/api/boards/")
+	if strings.HasSuffix(rest, "/move") && r.Method == http.MethodPost {
+		name := strings.TrimSuffix(rest, "/move")
+		name = strings.TrimSuffix(name, "/")
+		var body struct {
+			ID     string `json:"id"`
+			Column string `json:"column"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			writeErr(w, 400, err)
+			return
+		}
+		rec, _, err := a.Move(body.ID, name, body.Column)
+		if err != nil {
+			writeErr(w, 400, err)
+			return
+		}
+		writeJSON(w, 200, map[string]any{"ok": true, "record": rec.ID})
+		return
+	}
+	if r.Method != http.MethodGet {
+		w.WriteHeader(405)
+		return
+	}
+	filters := map[string]string{}
+	for k, vs := range r.URL.Query() {
+		if k != "" && len(vs) > 0 && vs[0] != "" {
+			filters[k] = vs[0]
+		}
+	}
+	view, err := a.Board(rest, filters)
+	if err != nil {
+		writeErr(w, 404, err)
+		return
+	}
+	cols := []map[string]any{}
+	for _, c := range view.Columns {
+		cols = append(cols, map[string]any{"id": c.Column.ID, "title": c.Column.Title, "records": summaries(c.Records)})
+	}
+	controls := []map[string]string{}
+	for _, fc := range view.Board.FilterControls {
+		controls = append(controls, map[string]string{"field": fc.Field, "type": fc.Type})
+	}
+	writeJSON(w, 200, map[string]any{"ok": true, "board": view.Board.ID, "name": view.Board.Name, "columns": cols, "filter_controls": controls, "filters": filters})
+}
+
+// Implements: SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY
+func handleDashboards(a *app.App, w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		dashboards, err := a.ListDashboards()
+		if err != nil {
+			writeErr(w, 500, err)
+			return
+		}
+		var items []map[string]any
+		for _, d := range dashboards {
+			items = append(items, map[string]any{
+				"id": d.ID, "name": d.Name, "description": d.Description,
+				"layout": d.Layout, "widgets": len(d.Widgets),
+			})
+		}
+		if items == nil {
+			items = []map[string]any{}
+		}
+		writeJSON(w, 200, map[string]any{"ok": true, "dashboards": items})
+	case http.MethodPost:
+		var body struct {
+			ID          string             `json:"id"`
+			Name        string             `json:"name"`
+			Layout      string             `json:"layout"`
+			Description string             `json:"description"`
+			Widgets     []dashboard.Widget `json:"widgets"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			writeErr(w, 400, err)
+			return
+		}
+		d, err := a.CreateDashboard(body.ID, body.Name, body.Layout, body.Description, body.Widgets)
+		if err != nil {
+			writeErr(w, 400, err)
+			return
+		}
+		writeJSON(w, 201, map[string]any{"ok": true, "dashboard": d.ID, "path": d.File})
+	default:
+		w.WriteHeader(405)
+	}
+}
+
+// Implements: SYS-REQ-260820-456X SW-REQ-260820-EJVT INT-REQ-260820-NHBY
+func handleDashboard(a *app.App, w http.ResponseWriter, r *http.Request) {
+	id := strings.TrimPrefix(r.URL.Path, "/api/dashboards/")
+	if id == "" {
+		w.WriteHeader(404)
+		return
+	}
+	if r.Method != http.MethodGet {
+		w.WriteHeader(405)
+		return
+	}
+	proj, err := a.ProjectDashboard(id)
+	if err != nil {
+		writeErr(w, 404, err)
+		return
+	}
+	writeJSON(w, 200, map[string]any{"ok": true, "dashboard": proj})
+}
+
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA
+func handleFiles(a *app.App, w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet && r.Method != http.MethodHead {
+		w.WriteHeader(405)
+		return
+	}
+	rel := strings.TrimPrefix(r.URL.Path, "/api/files/")
+	path, err := a.AttachmentFile(rel)
+	if err != nil {
+		writeErr(w, 404, err)
+		return
+	}
+	http.ServeFile(w, r, path)
+}
+
+// Implements: SYS-REQ-260821-QF1J SW-REQ-260821-82BA
+func handleSearch(a *app.App, w http.ResponseWriter, r *http.Request) {
+	recs, err := a.Search(r.URL.Query().Get("q"))
+	if err != nil {
+		writeErr(w, 500, err)
+		return
+	}
+	writeJSON(w, 200, map[string]any{"ok": true, "records": summaries(recs)})
+}
+
+// Implements: SYS-REQ-260820-456X SW-REQ-260820-EJVT SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7
+func handleGallery(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	data, _ := uiFS.ReadFile("static/index.html") //mcdc:ignore:defensive embedded index.html is always present
+	_, _ = w.Write(data)
+}
+
+// Implements: SYS-REQ-260820-9W1S SW-REQ-260820-8ZS7 INT-REQ-260820-AHKR
+func guardOrigin(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodGet && r.Method != http.MethodHead {
 			r.Body = http.MaxBytesReader(w, r.Body, 1<<20)
@@ -268,7 +318,7 @@ func Handler(a *app.App) http.Handler {
 				return
 			}
 		}
-		mux.ServeHTTP(w, r)
+		next.ServeHTTP(w, r)
 	})
 }
 
@@ -337,4 +387,3 @@ func fmtSprint(v any) string {
 	}
 	return string(b)
 }
-

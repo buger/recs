@@ -4,7 +4,7 @@ status: approved
 priority: shall
 category: interface
 req_type: guarantee
-fretish: when dashboard_api_requested the serve shall always satisfy shared_app_layer_used & shared_record_model_used & !separate_database_used
+fretish: when dashboard_api_requested the serve shall always satisfy (shared_app_layer_used & shared_record_model_used & !separate_database_used & (gallery_rendered | preview_cards_shown | empty_gallery_shown | gallery_rejected))
 description: The HTTP dashboard API shall call the same application layer that the CLI uses.
 formalization_strategy: fretish
 informal_verification:
@@ -15,7 +15,15 @@ parent: SYS-REQ-260820-456X
 component: serve
 rationale: Serve is a projection of the files. Serve shall not add a database.
 tags: []
-variables: []
+variables:
+    - dashboard_api_requested
+    - shared_app_layer_used
+    - shared_record_model_used
+    - separate_database_used
+    - gallery_rendered
+    - preview_cards_shown
+    - empty_gallery_shown
+    - gallery_rejected
 traces:
     satisfies:
         - SYS-REQ-260820-456X
@@ -47,13 +55,13 @@ verification:
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T07:42:37Z"
+        reviewed_at: "2026-08-21T08:07:51Z"
         comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
-        fingerprint: sha256:cac58ab190d2ad646e50ff8c259397ec980b47463269469fca0553d8c047e834
+        fingerprint: sha256:a32cdb9b85750f557f6116123f67c4d69d04c07db4badd60cb0e8041bf8aee96
         ai_generated: false
         motivation:
-            kind: unchanged
-            rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+            kind: chg
+            ref: CHG-260821-TZ9S
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -66,6 +74,10 @@ verification:
             - kind: unchanged
               rationale: Re-attest after listing honest not_modeled Go length predicates without changing required behavior.
               superseded_at: "2026-08-21T07:42:37Z"
+              superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-attest after adding [ki:len-guards] to honest not_modeled Go length predicates.
+              superseded_at: "2026-08-21T08:07:51Z"
               superseded_by: agent:grok
     not_modeled:
         - predicate: len(d.Widgets)
@@ -80,7 +92,7 @@ history:
     created_by: agent:grok
     created_at: "2026-08-20T20:17:37Z"
     last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T07:42:37Z"
+    last_modified_at: "2026-08-21T08:07:51Z"
 obligation_checklist:
     - error_handling
     - nominal

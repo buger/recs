@@ -91,6 +91,18 @@ variables:
       type: bool
       direction: output
       description: Decide condition remaining UI request rejected.
+    - name: dashboards_present
+      type: bool
+      direction: input
+      description: Decide condition at least one dashboard file exists.
+    - name: empty_gallery_shown
+      type: bool
+      direction: output
+      description: Decide condition the gallery shows an empty state.
+    - name: gallery_rejected
+      type: bool
+      direction: output
+      description: Decide condition the gallery request is rejected.
 domain:
     mutex:
         - name: listen_port_mode

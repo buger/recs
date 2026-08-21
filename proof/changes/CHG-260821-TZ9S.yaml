@@ -1,0 +1,26 @@
+id: CHG-260821-TZ9S
+type: fix
+title: Model gallery and HTTP shared-layer outcomes
+intent: The gallery and HTTP integration requirements named only summary booleans while Handler decisions were much richer. State empty-gallery, reject, and remaining UI outcomes in FRETish so the spec matches the serve surface.
+problem: under_modeled_requirements_clean flags EJVT, NHBY, and MRGW because persisted Handler decisions outnumber the spec variables.
+non_goals:
+    - Do not add two-bool stubs or orphan variables
+owner: Leonid Bugaev
+requirements:
+    - SW-REQ-260820-EJVT
+    - INT-REQ-260820-NHBY
+    - INT-REQ-260821-MRGW
+affects:
+    - SW-REQ-260820-EJVT
+    - INT-REQ-260820-NHBY
+    - INT-REQ-260821-MRGW
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: draft
+history:
+    - at: "2026-08-21T08:06:47Z"
+      by: agent:grok
+      action: created
