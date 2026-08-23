@@ -71,19 +71,19 @@ verification:
               rationale: Re-approve after complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T11:12:01Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T12:11:27.146856Z"
-    gaps_reviewed_by: buger
+    gaps_reviewed_at: "2026-08-23T19:02:57.425626Z"
+    gaps_reviewed_by: unknown
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F
-          reviewer: agent:grok
-          reason: '6EVX is the software structured-query engine (operators and clause bound). X37F is software full-text search (frontmatter/body/filename). Different triggers and outputs; expr_len is only a non-empty guard. Recorded only on SW-REQ-260820-6EVX for ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F; not copied onto the peer or any parent.'
-          reviewed_at: "2026-08-21T12:11:27.146856Z"
+          reviewer: agent:kimi
+          reason: 'Recorded on SW-REQ-260820-6EVX: this requirement caps the query clause expression parsed by recs query, whereas SW-REQ-260820-X37F caps the free-text search expression for recs search. Different commands and different buffers with no shared state; the naming overlap is harmless. Re-attested under CHG-260823-E9HJ.'
+          reviewed_at: "2026-08-23T19:02:57.330749Z"
         - check: ambiguity
           issue_key: ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH
-          reviewer: agent:grok
-          reason: '6EVX is the SW child of ZTC3 (structured operators). HJPH is the L1 full-text search parent. Different layers and features; they share expr_len only as a non-empty guard. Recorded only on SW-REQ-260820-6EVX for ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH; not copied onto the peer or any parent.'
-          reviewed_at: "2026-08-21T12:11:21.793455Z"
+          reviewer: agent:kimi
+          reason: 'Recorded on SW-REQ-260820-6EVX: the clause parser bound here implements recs query, whereas SYS-REQ-260820-HJPH parents the recs search behavior. Each expr_len constraint scopes a different command surface, so neither can tighten or relax the other. Re-attested under CHG-260823-E9HJ.'
+          reviewed_at: "2026-08-23T19:02:57.425626Z"
     not_modeled:
         - predicate: len(matches)
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]

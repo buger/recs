@@ -1,0 +1,23 @@
+id: CHG-260823-E9HJ
+type: feature
+title: Expand $now in query clause values
+intent: Query expressions accept $now (and bare now) as a clause value, expanded to the current UTC timestamp at parse time, so dashboards and CLI filters can express rolling due-date windows without literal dates. Matches the existing set/patch $now semantics.
+owner: Leonid Bugaev
+requirements:
+    - SYS-REQ-260820-ZTC3
+    - SW-REQ-260823-1PTN
+    - SW-REQ-260820-6EVX
+readiness_policy:
+    require_requirements_reviewed: true
+    require_tests: false
+    require_docs: false
+    require_no_suspect_links: true
+status: active
+history:
+    - at: "2026-08-23T18:37:26Z"
+      by: agent:kimi
+      action: created
+    - at: "2026-08-23T18:46:10Z"
+      by: agent:kimi
+      action: edit
+      detail: add-requirement

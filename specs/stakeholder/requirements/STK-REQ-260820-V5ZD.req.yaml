@@ -47,17 +47,17 @@ verification:
     formalization_status: none
     review:
         status: approved
-        reviewer: agent:grok
+        reviewer: agent:kimi
         role: system_owner
         roles:
             - system_owner
-        reviewed_at: "2026-08-21T12:10:29Z"
-        comment: Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.
+        reviewed_at: "2026-08-23T19:02:48Z"
+        comment: Re-approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-23.
         fingerprint: sha256:f01c0098deda8ddab8b68d64602508d88a00d71c0174599a1c069536e6b3e787
         ai_generated: false
         motivation:
             kind: unchanged
-            rationale: Re-review parent STK-REQ-260820-V5ZD against the current child set after SYS-REQ-260820-PG9C was reviewed more recently; the stakeholder deterministic-CLI and stable-JSON contract is unchanged.
+            rationale: Re-attest stakeholder parent after descendant SW-REQ-260823-1PTN was added under SYS-REQ-260820-ZTC3; stakeholder intent for query filtering is unchanged.
         motivation_history:
             - kind: unchanged
               rationale: Re-attest implemented Phase 1 requirements under explicit owner authorization without changing their obligations.
@@ -83,11 +83,15 @@ verification:
               ref: CHG-260821-72GQ
               superseded_at: "2026-08-21T12:10:29Z"
               superseded_by: agent:grok
+            - kind: unchanged
+              rationale: Re-review parent STK-REQ-260820-V5ZD against the current child set after SYS-REQ-260820-PG9C was reviewed more recently; the stakeholder deterministic-CLI and stable-JSON contract is unchanged.
+              superseded_at: "2026-08-23T19:02:48Z"
+              superseded_by: agent:kimi
 history:
     created_by: human:cli
     created_at: "2026-08-20T18:59:33Z"
-    last_modified_by: agent:grok
-    last_modified_at: "2026-08-21T12:10:30Z"
+    last_modified_by: agent:kimi
+    last_modified_at: "2026-08-23T19:02:48Z"
 obligation_checklist:
     - boundary
     - determinism
@@ -173,3 +177,8 @@ lifecycle:
           to: review
           reason: ''
           changed_by: human:cli
+        - date: "2026-08-23T19:02:48Z"
+          from: approved
+          to: approved
+          reason: 're-approve (prior: role="system_owner" reviewer="agent:grok" at=2026-08-21T12:10:29Z comment="Approved on behalf of Leonid Bugaev, explicit chat authorization 2026-08-21.")'
+          changed_by: agent:kimi

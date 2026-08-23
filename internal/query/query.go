@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/buger/recs/internal/record"
 )
@@ -56,9 +57,26 @@ func Parse(expr string) ([]Clause, error) {
 		default:
 			return nil, fmt.Errorf("unknown operator %q", m[2])
 		}
-		out = append(out, c)
+		out = append(out, expandClauseNow(c))
 	}
 	return out, nil
+}
+
+// expandClauseNow replaces the $now token and the bare word now in clause
+// values with the current UTC timestamp. It mirrors the store set path.
+// Implements: SW-REQ-260823-1PTN
+func expandClauseNow(c Clause) Clause {
+	expand := func(s string) string {
+		if strings.EqualFold(s, "now") || s == "$now" {
+			return time.Now().UTC().Format(time.RFC3339)
+		}
+		return s
+	}
+	c.Value = expand(c.Value)
+	for i, v := range c.Values {
+		c.Values[i] = expand(v)
+	}
+	return c
 }
 
 // Implements: SYS-REQ-260820-ZTC3

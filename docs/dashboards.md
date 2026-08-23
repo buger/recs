@@ -38,6 +38,12 @@ widgets:
 
 Widgets get data from `query:`, `source:`, or `board:`.
 
+Query clause values accept the `$now` token (or the bare word `now`). It
+expands to the current UTC timestamp at query time, so saved queries can
+express rolling windows such as `due < $now` for overdue records without
+hard-coding a date (SW-REQ-260823-1PTN). The same token works in `recs
+query` filters and in `recs set` values.
+
 `layout: 2x2` is the default. Missing slots render as empty placeholders.
 
 Theme is a UI toggle. Do not put `theme:` in dashboard YAML.

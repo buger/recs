@@ -73,9 +73,17 @@ variables:
       range:
         max: 4096
         min: 0
-no_interface:
-    declared: true
-    reason: This component is an internal library called only through the shared app layer; CLI and serve INT-REQs already own the operator-facing boundary.
+    - name: now_token_in_clause_value
+      type: bool
+      direction: input
+      description: A query clause value is the $now token or the bare word now.
+    - name: clause_value_replaced_with_utc_now
+      type: bool
+      direction: internal
+      description: The clause value is replaced with the current UTC timestamp in RFC3339 format at parse time.
 independence:
     declared: true
     reason: Query and full-text search share no output vocabulary; they are independent operator surfaces on the same component.
+no_interface:
+    declared: true
+    reason: This component is an internal library called only through the shared app layer; CLI and serve INT-REQs already own the operator-facing boundary.

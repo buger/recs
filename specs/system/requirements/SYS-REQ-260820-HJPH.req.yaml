@@ -72,19 +72,19 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T12:11:27.146856Z"
-    gaps_reviewed_by: buger
+    gaps_reviewed_at: "2026-08-23T19:02:57.425626Z"
+    gaps_reviewed_by: unknown
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH
-          reviewer: agent:grok
-          reason: '6EVX is the SW child of ZTC3 (structured operators). HJPH is the L1 full-text search parent. Different layers and features; they share expr_len only as a non-empty guard. Recorded only on SYS-REQ-260820-HJPH for ambiguity|query|SW-REQ-260820-6EVX|SYS-REQ-260820-HJPH; not copied onto the peer or any parent.'
-          reviewed_at: "2026-08-21T12:11:21.793455Z"
+          reviewer: agent:kimi
+          reason: 'Recorded on SYS-REQ-260820-HJPH: this system requirement parents search behavior and bounds the search expression, while SW-REQ-260820-6EVX implements the query clause parser for a different command. The two expr_len bounds are complementary command-surface caps. Re-attested under CHG-260823-E9HJ.'
+          reviewed_at: "2026-08-23T19:02:57.425626Z"
         - check: ambiguity
           issue_key: ambiguity|query|SYS-REQ-260820-HJPH|SYS-REQ-260820-ZTC3
-          reviewer: agent:grok
-          reason: 'HJPH is the L1 full-text search parent (frontmatter, Markdown, filename). ZTC3 is the L1 deterministic query-language parent (field operators). Sibling system reqs; expr_len is only a non-empty guard. Recorded only on SYS-REQ-260820-HJPH for ambiguity|query|SYS-REQ-260820-HJPH|SYS-REQ-260820-ZTC3; not copied onto the peer or any parent.'
-          reviewed_at: "2026-08-21T12:11:27.146856Z"
+          reviewer: agent:kimi
+          reason: 'Recorded on SYS-REQ-260820-HJPH: search under this requirement and query filtering under SYS-REQ-260820-ZTC3 are sibling system behaviors with separate expression inputs; both cap expr_len for the same bounding rationale without constraining each other. Re-attested under CHG-260823-E9HJ.'
+          reviewed_at: "2026-08-23T19:02:57.425626Z"
 history:
     created_by: human:cli
     created_at: "2026-08-20T19:00:08Z"

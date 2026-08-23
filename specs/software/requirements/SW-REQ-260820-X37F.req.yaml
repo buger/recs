@@ -67,19 +67,19 @@ verification:
               rationale: Re-approve after recording complementary ambiguity reviews; required behavior and FRETish contracts are unchanged.
               superseded_at: "2026-08-21T09:00:05Z"
               superseded_by: agent:grok
-    gaps_reviewed_at: "2026-08-21T12:11:27.146856Z"
-    gaps_reviewed_by: buger
+    gaps_reviewed_at: "2026-08-23T19:02:57.330749Z"
+    gaps_reviewed_by: unknown
     gap_reviews:
         - check: ambiguity
           issue_key: ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F
-          reviewer: agent:grok
-          reason: '6EVX is the software structured-query engine (operators and clause bound). X37F is software full-text search (frontmatter/body/filename). Different triggers and outputs; expr_len is only a non-empty guard. Recorded only on SW-REQ-260820-X37F for ambiguity|query|SW-REQ-260820-6EVX|SW-REQ-260820-X37F; not copied onto the peer or any parent.'
-          reviewed_at: "2026-08-21T12:11:27.146856Z"
+          reviewer: agent:kimi
+          reason: 'Recorded on SW-REQ-260820-X37F: this software requirement caps the search expression length for term extraction, while SW-REQ-260820-6EVX caps the query clause expression. The recs search and recs query commands are separate input surfaces, so the shared expr_len name is coincidental, not a conflicting constraint. Re-recorded after the CHG-260823-E9HJ re-attestation.'
+          reviewed_at: "2026-08-23T19:02:57.330749Z"
         - check: ambiguity
           issue_key: ambiguity|query|SW-REQ-260820-X37F|SYS-REQ-260820-ZTC3
-          reviewer: agent:grok
-          reason: 'X37F is the SW search child of HJPH (three-surface scan). ZTC3 is the L1 structured query-language parent. Search scan vs operator filter; expr_len is only a non-empty guard. Recorded only on SW-REQ-260820-X37F for ambiguity|query|SW-REQ-260820-X37F|SYS-REQ-260820-ZTC3; not copied onto the peer or any parent.'
-          reviewed_at: "2026-08-21T12:11:27.146856Z"
+          reviewer: agent:kimi
+          reason: 'Recorded on SW-REQ-260820-X37F: this requirement bounds the search term expression, while SYS-REQ-260820-ZTC3 bounds the deterministic query filter expression. Search scans free text and query parses operator clauses, so the two expr_len variables never interact. Re-recorded after the CHG-260823-E9HJ re-attestation.'
+          reviewed_at: "2026-08-23T19:02:57.330749Z"
     not_modeled:
         - predicate: len(record.StringSlice(rec.Get("blockers")
           reason: Runtime Go length and equality guards are implementation detail; FRETish models command outcomes, not slice lengths. [ki:len-guards]

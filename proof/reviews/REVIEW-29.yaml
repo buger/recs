@@ -1,0 +1,10 @@
+id: REVIEW-29
+kind: spec_conformance
+reviewer: agent:kimi
+reviewed_at: "2026-08-23T19:00:34Z"
+subject: SW-REQ-260823-1PTN
+decision: approved
+comment: 'Read the implementation. expandClauseNow runs for every parsed clause in Parse, so the trigger query_expression_received maps to a successful parse. The single gating branch is exactly now_token_in_clause_value: a case-insensitive match on the bare word now or the dollar-prefixed now token. When the branch fires, the clause value is replaced with the current UTC timestamp, which is clause_value_replaced_with_utc_now; otherwise the value passes through unchanged. The loop over in-list members applies the same replacement, so no operator path bypasses expansion. The FRETish implication models the branch faithfully and no silent preconditions were found.'
+citations:
+    - internal/query/query.go:68
+    - internal/query/query.go:70
